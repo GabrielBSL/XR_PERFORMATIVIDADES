@@ -12,10 +12,10 @@ namespace Main.Mimics
         // Start is called before the first frame update
         void Start()
         {
+            MainEventsManager.bodyTransformUpdate?.Invoke(transform);
             MainEventsManager.rightHandTransformUpdate?.Invoke(rightArmTarget);
             MainEventsManager.leftHandTransformUpdate?.Invoke(leftArmTarget);
             MainEventsManager.headTransformUpdate?.Invoke(headTarget);
-            MainEventsManager.bodyTransformUpdate?.Invoke(transform);
         }
     }
 }
