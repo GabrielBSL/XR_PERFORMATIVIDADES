@@ -20,16 +20,28 @@ namespace Main.Mimics
         [Header("Movement")]
         [SerializeField] private Transform rightHandDestination;
         [SerializeField] private Transform leftHandDestination;
-        [SerializeField, Range(.01f, 1f)] private float handMovementSmoothness = .1f;
+        [SerializeField, Range(.01f, 1f)] private float handMovementSmoothness = .033f;
         [SerializeField] private Vector2 movementDeltaVariation = Vector2.one;
         [SerializeField] private float movementDelay = .5f;
+
+        [Header("Random")]
+        [SerializeField] private float positionVariation = .05f;
+        [SerializeField] private float variationDuration = .75f;
+        [SerializeField, Range(.01f, 1f)] private float variationSmoothness = .033f;
 
         private Transform rightArmTargetReference;
         private Transform leftArmTargetReference;
         private Transform bodyReference;
 
+        private float variationDurationTimer = 0;
+
         private Vector3 _lastRightHandLocalPos;
         private Vector3 _lastLeftHandLocalPos;
+
+        private Vector3 _leftHandFinalPositionVariation;
+        private Vector3 _rightHandFinalPositionVariation;
+        private Vector3 _leftHandCurrentPositionVariation;
+        private Vector3 _rightHandCurrentPositionVariation;
 
         private void OnEnable()
         {
@@ -65,44 +77,41 @@ namespace Main.Mimics
         // Update is called once per frame
         void Update()
         {
-            //StartCoroutine(DelayAction());
-            HandInfo rightHandInfo = new HandInfo()
+            variationDurationTimer -= Time.deltaTime;
+            if(variationDurationTimer <= 0)
             {
-                localEulerAngles = rightArmTargetReference.localEulerAngles,
-                localPosition = rightArmTargetReference.localPosition,
-                globalPosition = rightArmTargetReference.position,
-            };
-            HandInfo leftHandInfo = new HandInfo()
-            {
-                localEulerAngles = leftArmTargetReference.localEulerAngles,
-                localPosition = leftArmTargetReference.localPosition,
-                globalPosition = leftArmTargetReference.position,
-            };
+                variationDurationTimer = variationDuration;
+                SetRandomPositionVariation();
+            }
 
-            Vector3 bodyReferencePosition = bodyReference.position;
-
-            //body Height
-            transform.position = new Vector3(transform.position.x, bodyReferencePosition.y, transform.position.z);
-
-            //body Rotation
-            Vector3 direction = bodyReferencePosition - transform.position;
-            Quaternion newRotation = Quaternion.LookRotation(direction, Vector3.up);
-            newRotation.x = transform.rotation.x;
-            newRotation.z = transform.rotation.z;
-            transform.rotation = newRotation;
-
-            SetHandsRotationAndPosition(rightHandInfo, leftHandInfo);
-
+            StartCoroutine(DelayMovementReading());
             MoveToDestination();
+        }
+
+        private void SetRandomPositionVariation()
+        {
+            _rightHandFinalPositionVariation = new Vector3(UnityEngine.Random.Range(-positionVariation, positionVariation),
+                                                         UnityEngine.Random.Range(-positionVariation, positionVariation),
+                                                         UnityEngine.Random.Range(-positionVariation, positionVariation));
+
+            _leftHandFinalPositionVariation = new Vector3(UnityEngine.Random.Range(-positionVariation, positionVariation),
+                                                     UnityEngine.Random.Range(-positionVariation, positionVariation),
+                                                     UnityEngine.Random.Range(-positionVariation, positionVariation));
         }
 
         private void MoveToDestination()
         {
-            rightArmTarget.localPosition = Vector3.Lerp(rightArmTarget.localPosition, rightHandDestination.localPosition, handMovementSmoothness);
-            leftArmTarget.localPosition = Vector3.Lerp(leftArmTarget.localPosition, leftHandDestination.localPosition, handMovementSmoothness);
+            _rightHandCurrentPositionVariation = Vector3.Lerp(_rightHandCurrentPositionVariation, _rightHandFinalPositionVariation, variationSmoothness);
+            _leftHandCurrentPositionVariation = Vector3.Lerp(_leftHandCurrentPositionVariation, _leftHandFinalPositionVariation, variationSmoothness);
+
+            Vector3 rightHandFinalPosition = rightHandDestination.localPosition + _rightHandCurrentPositionVariation;
+            Vector3 leftHandFinalPosition = leftHandDestination.localPosition + _leftHandCurrentPositionVariation;
+
+            rightArmTarget.localPosition = Vector3.Lerp(rightArmTarget.localPosition, rightHandFinalPosition, handMovementSmoothness);
+            leftArmTarget.localPosition = Vector3.Lerp(leftArmTarget.localPosition, leftHandFinalPosition, handMovementSmoothness);
         }
 
-        private IEnumerator DelayAction()
+        private IEnumerator DelayMovementReading()
         {
             HandInfo rightHandInfo = new HandInfo()
             {
@@ -128,7 +137,7 @@ namespace Main.Mimics
             Vector3 direction = bodyReferencePosition - transform.position;
             Quaternion newRotation = Quaternion.LookRotation(direction, Vector3.up);
             newRotation.x = transform.rotation.x;
-            newRotation.z = transform.rotation.z;
+            newRotation.z = transform.rotation.z; 
             transform.rotation = newRotation;
 
             SetHandsRotationAndPosition(rightHandInfo, leftHandInfo);
@@ -159,9 +168,6 @@ namespace Main.Mimics
 
             _lastRightHandLocalPos = rhiLp;
             _lastLeftHandLocalPos = lhiLp;
-
-            //Debug.Log(new Vector3(rhiLp.x, rhiLp.y, rhiLp.z) + " + " + rightHandLocalDelta + " = " + (new Vector3(rhiLp.x, rhiLp.y, rhiLp.z) + rightHandLocalDelta));
-            //Debug.Log(rhdLp + " - " + rightHandLocalDelta + " - " +_lastRightHandLocalPos);
         }
     }
 }
