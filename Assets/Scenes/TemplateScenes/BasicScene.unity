@@ -8085,6 +8085,7 @@ MonoBehaviour:
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
+  showDebugMessages: 1
 --- !u!114 &1087264916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8479,6 +8480,7 @@ MonoBehaviour:
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
+  showDebugMessages: 0
 --- !u!114 &1100311730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8912,6 +8914,7 @@ MonoBehaviour:
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
+  showDebugMessages: 0
 --- !u!114 &1197398422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16594,7 +16597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4344741212311423113}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.00000037252897, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.02, z: 4.9265213}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1

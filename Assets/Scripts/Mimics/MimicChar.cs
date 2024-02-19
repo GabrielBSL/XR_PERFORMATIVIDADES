@@ -9,7 +9,8 @@ namespace Main.Mimics
     {
         private struct HandInfo
         {
-            public Vector3 localEulerAngles;
+            public Vector3 up;
+            public Vector3 forward;
             public Vector3 localPosition;
             public Vector3 globalPosition;
         }
@@ -28,6 +29,9 @@ namespace Main.Mimics
         [SerializeField] private float positionVariation = .05f;
         [SerializeField] private float variationDuration = .75f;
         [SerializeField, Range(.01f, 1f)] private float variationSmoothness = .033f;
+
+        [Header("Debug")]
+        [SerializeField] private bool showDebugMessages;
 
         private Transform rightArmTargetReference;
         private Transform leftArmTargetReference;
@@ -86,6 +90,8 @@ namespace Main.Mimics
 
             StartCoroutine(DelayMovementReading());
             MoveToDestination();
+
+            //Debug.Log(transform.forward);
         }
 
         private void SetRandomPositionVariation()
@@ -115,18 +121,21 @@ namespace Main.Mimics
         {
             HandInfo rightHandInfo = new HandInfo()
             {
-                localEulerAngles = rightArmTargetReference.localEulerAngles,
+                up = rightArmTargetReference.up,
+                forward = rightArmTargetReference.forward,
                 localPosition = rightArmTargetReference.localPosition,
                 globalPosition = rightArmTargetReference.position,
             };
             HandInfo leftHandInfo = new HandInfo()
             {
-                localEulerAngles = leftArmTargetReference.localEulerAngles,
+                up = leftArmTargetReference.up,
+                forward = leftArmTargetReference.forward,
                 localPosition = leftArmTargetReference.localPosition,
                 globalPosition = leftArmTargetReference.position,
             };
 
             Vector3 bodyReferencePosition = bodyReference.position;
+            Vector3 bodyReferenceForward = bodyReference.forward;
 
             yield return new WaitForSeconds(movementDelay);
 
@@ -140,14 +149,27 @@ namespace Main.Mimics
             newRotation.z = transform.rotation.z; 
             transform.rotation = newRotation;
 
-            SetHandsRotationAndPosition(rightHandInfo, leftHandInfo);
+            SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReferenceForward);
         }
 
-        private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo)
+        private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)
         {
+            float bodyAngle = 180 - Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(bodyReferenceForward.x, bodyReferenceForward.z));
+
             //Hands angles
-            rightArmTarget.localEulerAngles = leftHandInfo.localEulerAngles - new Vector3(0, 0, 180);
-            leftArmTarget.localEulerAngles = rightHandInfo.localEulerAngles - new Vector3(0, 0, 180);
+            Vector3 rightArmForward = RotateVectorYAxis(leftHandInfo.forward, bodyAngle);
+            Vector3 rightArmUp = RotateVectorYAxis(leftHandInfo.up, bodyAngle);
+
+            Vector3 leftArmForward = RotateVectorYAxis(rightHandInfo.forward, bodyAngle);
+            Vector3 leftArmUp = RotateVectorYAxis(rightHandInfo.up, bodyAngle);
+
+            if(showDebugMessages)
+            {
+                //Debug.Log(name + " -> angle: " + bodyAngle + " - rightHandUp -> normal (left reference): " + leftHandInfo.up + " result: " + RotateVectorYAxis(leftHandInfo.up, bodyAngle));
+            }
+
+            rightArmTarget.rotation = Quaternion.LookRotation(rightArmForward, rightArmUp);
+            leftArmTarget.rotation = Quaternion.LookRotation(leftArmForward, leftArmUp);
 
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;
@@ -168,6 +190,46 @@ namespace Main.Mimics
 
             _lastRightHandLocalPos = rhiLp;
             _lastLeftHandLocalPos = lhiLp;
+        }
+        
+        // Função para rotacionar um vetor em torno do eixo Y por um ângulo especificado em graus
+        public Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
+        {
+            // Converte o ângulo de graus para radianos
+            float angleRadians = angleDegrees * Mathf.Deg2Rad;
+
+            // Calcula as coordenadas x e z do vetor rotacionado usando trigonometria
+            float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
+            float rotatedZ = originalVector.x * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
+
+            // Retorna o vetor rotacionado
+            return new Vector3(rotatedX, originalVector.y, rotatedZ);
+        }
+        // Função para rotacionar um vetor em torno do eixo Z por um ângulo especificado em graus
+        public Vector3 RotateVectorZAxis(Vector3 originalVector, float angleDegrees)
+        {
+            // Converte o ângulo de graus para radianos
+            float angleRadians = angleDegrees * Mathf.Deg2Rad;
+
+            // Calcula as coordenadas x e y do vetor rotacionado usando trigonometria
+            float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.y * Mathf.Sin(angleRadians);
+            float rotatedY = originalVector.x * Mathf.Sin(angleRadians) + originalVector.y * Mathf.Cos(angleRadians);
+
+            // Retorna o vetor rotacionado
+            return new Vector3(rotatedX, rotatedY, originalVector.z);
+        }
+        // Função para rotacionar um vetor em torno do eixo X por um ângulo especificado em graus
+        public Vector3 RotateVectorXAxis(Vector3 originalVector, float angleDegrees)
+        {
+            // Converte o ângulo de graus para radianos
+            float angleRadians = angleDegrees * Mathf.Deg2Rad;
+
+            // Calcula as coordenadas y e z do vetor rotacionado usando trigonometria
+            float rotatedY = originalVector.y * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
+            float rotatedZ = originalVector.y * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
+
+            // Retorna o vetor rotacionado
+            return new Vector3(originalVector.x, rotatedY, rotatedZ);
         }
     }
 }
