@@ -154,22 +154,44 @@ namespace Main.Mimics
 
         private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)
         {
-            float bodyAngle = 180 - Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(bodyReferenceForward.x, bodyReferenceForward.z));
+            float bodyReferenceAngle = Vector2.Angle(new Vector2(bodyReferenceForward.x, bodyReferenceForward.z), new Vector2(0, 1));
+            float bodyMimicAngle = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(0, 1));
 
-            //Hands angles
-            Vector3 rightArmForward = RotateVectorYAxis(leftHandInfo.forward, bodyAngle);
-            Vector3 rightArmUp = RotateVectorYAxis(leftHandInfo.up, bodyAngle);
-
-            Vector3 leftArmForward = RotateVectorYAxis(rightHandInfo.forward, bodyAngle);
-            Vector3 leftArmUp = RotateVectorYAxis(rightHandInfo.up, bodyAngle);
-
-            if(showDebugMessages)
+            bodyReferenceAngle = bodyReferenceForward.x > .001f ? 360 - bodyReferenceAngle : bodyReferenceAngle;
+            if (bodyReferenceForward.x > .001f)
             {
-                //Debug.Log(name + " -> angle: " + bodyAngle + " - rightHandUp -> normal (left reference): " + leftHandInfo.up + " result: " + RotateVectorYAxis(leftHandInfo.up, bodyAngle));
+                bodyReferenceAngle = 360 - bodyReferenceAngle;
+            }
+            if (transform.forward.x > .001f)
+            {
+                bodyMimicAngle = 360 - bodyMimicAngle;
             }
 
-            rightArmTarget.rotation = Quaternion.LookRotation(rightArmForward, rightArmUp);
-            leftArmTarget.rotation = Quaternion.LookRotation(leftArmForward, leftArmUp);
+            Vector3 localReferenceRightHandTranformUp = RotateVectorYAxis(leftHandInfo.up, (360 - bodyReferenceAngle));
+            Vector3 rightHandTranformUp = RotateVectorYAxis(localReferenceRightHandTranformUp, (360 - bodyMimicAngle));
+
+            Vector3 localReferenceLeftHandTranformUp = RotateVectorYAxis(rightHandInfo.up, (360 - bodyReferenceAngle));
+            Vector3 leftHandTranformUp = RotateVectorYAxis(localReferenceLeftHandTranformUp, (360 - bodyMimicAngle));
+
+            Vector3 localReferenceRightHandTranformForward = RotateVectorYAxis(leftHandInfo.forward, (360 - bodyReferenceAngle));
+            Vector3 rightHandTranformForward = RotateVectorYAxis(localReferenceRightHandTranformForward, (360 - bodyMimicAngle));
+
+            Vector3 localReferenceLeftHandTranformForward = RotateVectorYAxis(rightHandInfo.forward, (360 - bodyReferenceAngle));
+            Vector3 leftHandTranformForward = RotateVectorYAxis(localReferenceLeftHandTranformForward, (360 - bodyMimicAngle));
+
+            if (showDebugMessages)
+            {
+                //Debug.Log(bodyMimicAngle + " - " + (360 - bodyMimicAngle));
+                Debug.Log(leftHandInfo.up + " - " + localReferenceRightHandTranformUp + " - " + rightHandTranformUp + " - rotation angle: " + (360 - bodyMimicAngle));
+            }
+            rightHandTranformUp = new Vector3(rightHandTranformUp.x * -1, rightHandTranformUp.y, rightHandTranformUp.z);
+            leftHandTranformUp = new Vector3(leftHandTranformUp.x * -1, leftHandTranformUp.y, leftHandTranformUp.z);
+
+            rightHandTranformForward = new Vector3(rightHandTranformForward.x * -1, rightHandTranformForward.y, rightHandTranformForward.z);
+            leftHandTranformForward = new Vector3(leftHandTranformForward.x * -1, leftHandTranformForward.y, leftHandTranformForward.z);
+
+            rightArmTarget.rotation = Quaternion.LookRotation(rightHandTranformForward, rightHandTranformUp);
+            leftArmTarget.rotation = Quaternion.LookRotation(leftHandTranformForward, leftHandTranformUp);
 
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;

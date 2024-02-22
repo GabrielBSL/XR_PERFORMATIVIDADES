@@ -25,10 +25,6 @@ namespace Main.Mimics
 
             // Rotaciona o vetor
             Vector3 rotatedVector = RotateVector(originalVector, angleDegrees);
-
-            // Imprime o vetor rotacionado
-            Debug.Log("Vetor original: " + originalVector);
-            Debug.Log("Vetor rotacionado (" + angleDegrees + " graus): " + rotatedVector);
         }
 
         // Função para rotacionar um vetor em torno do eixo Y por um ângulo especificado em graus
