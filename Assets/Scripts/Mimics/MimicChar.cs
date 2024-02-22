@@ -192,10 +192,10 @@ namespace Main.Mimics
             _lastLeftHandLocalPos = lhiLp;
         }
         
-        // Função para rotacionar um vetor em torno do eixo Y por um ângulo especificado em graus
+        // Funï¿½ï¿½o para rotacionar um vetor em torno do eixo Y por um ï¿½ngulo especificado em graus
         public Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
         {
-            // Converte o ângulo de graus para radianos
+            // Converte o ï¿½ngulo de graus para radianos
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 
             // Calcula as coordenadas x e z do vetor rotacionado usando trigonometria
@@ -205,10 +205,10 @@ namespace Main.Mimics
             // Retorna o vetor rotacionado
             return new Vector3(rotatedX, originalVector.y, rotatedZ);
         }
-        // Função para rotacionar um vetor em torno do eixo Z por um ângulo especificado em graus
+        // Funï¿½ï¿½o para rotacionar um vetor em torno do eixo Z por um ï¿½ngulo especificado em graus
         public Vector3 RotateVectorZAxis(Vector3 originalVector, float angleDegrees)
         {
-            // Converte o ângulo de graus para radianos
+            // Converte o ï¿½ngulo de graus para radianos
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 
             // Calcula as coordenadas x e y do vetor rotacionado usando trigonometria
@@ -218,10 +218,10 @@ namespace Main.Mimics
             // Retorna o vetor rotacionado
             return new Vector3(rotatedX, rotatedY, originalVector.z);
         }
-        // Função para rotacionar um vetor em torno do eixo X por um ângulo especificado em graus
+        // Funï¿½ï¿½o para rotacionar um vetor em torno do eixo X por um ï¿½ngulo especificado em graus
         public Vector3 RotateVectorXAxis(Vector3 originalVector, float angleDegrees)
         {
-            // Converte o ângulo de graus para radianos
+            // Converte o ï¿½ngulo de graus para radianos
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 
             // Calcula as coordenadas y e z do vetor rotacionado usando trigonometria
