@@ -1,6 +1,7 @@
 using Main.Events;
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 namespace Main.Mimics
@@ -158,100 +159,59 @@ namespace Main.Mimics
             float bodyMimicAngle = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(0, 1));
 
             bodyReferenceAngle = bodyReferenceForward.x > .001f ? 360 - bodyReferenceAngle : bodyReferenceAngle;
-            if (bodyReferenceForward.x > .001f)
-            {
-                bodyReferenceAngle = 360 - bodyReferenceAngle;
-            }
-            if (transform.forward.x > .001f)
-            {
-                bodyMimicAngle = 360 - bodyMimicAngle;
-            }
+            bodyMimicAngle = transform.forward.x > .001f ? 360 - bodyMimicAngle : bodyMimicAngle;
 
-            Vector3 localReferenceRightHandTranformUp = RotateVectorYAxis(leftHandInfo.up, (360 - bodyReferenceAngle));
-            Vector3 rightHandTranformUp = RotateVectorYAxis(localReferenceRightHandTranformUp, (360 - bodyMimicAngle));
-
-            Vector3 localReferenceLeftHandTranformUp = RotateVectorYAxis(rightHandInfo.up, (360 - bodyReferenceAngle));
-            Vector3 leftHandTranformUp = RotateVectorYAxis(localReferenceLeftHandTranformUp, (360 - bodyMimicAngle));
-
-            Vector3 localReferenceRightHandTranformForward = RotateVectorYAxis(leftHandInfo.forward, (360 - bodyReferenceAngle));
-            Vector3 rightHandTranformForward = RotateVectorYAxis(localReferenceRightHandTranformForward, (360 - bodyMimicAngle));
-
-            Vector3 localReferenceLeftHandTranformForward = RotateVectorYAxis(rightHandInfo.forward, (360 - bodyReferenceAngle));
-            Vector3 leftHandTranformForward = RotateVectorYAxis(localReferenceLeftHandTranformForward, (360 - bodyMimicAngle));
-
-            if (showDebugMessages)
-            {
-                //Debug.Log(bodyMimicAngle + " - " + (360 - bodyMimicAngle));
-                Debug.Log(leftHandInfo.up + " - " + localReferenceRightHandTranformUp + " - " + rightHandTranformUp + " - rotation angle: " + (360 - bodyMimicAngle));
-            }
-            rightHandTranformUp = new Vector3(rightHandTranformUp.x * -1, rightHandTranformUp.y, rightHandTranformUp.z);
-            leftHandTranformUp = new Vector3(leftHandTranformUp.x * -1, leftHandTranformUp.y, leftHandTranformUp.z);
-
-            rightHandTranformForward = new Vector3(rightHandTranformForward.x * -1, rightHandTranformForward.y, rightHandTranformForward.z);
-            leftHandTranformForward = new Vector3(leftHandTranformForward.x * -1, leftHandTranformForward.y, leftHandTranformForward.z);
-
-            rightArmTarget.rotation = Quaternion.LookRotation(rightHandTranformForward, rightHandTranformUp);
-            leftArmTarget.rotation = Quaternion.LookRotation(leftHandTranformForward, leftHandTranformUp);
+            SetUpHandRotation(rightArmTarget, bodyMimicAngle, bodyReferenceAngle, leftHandInfo.up, leftHandInfo.forward);
+            SetUpHandRotation(leftArmTarget, bodyMimicAngle, bodyReferenceAngle, rightHandInfo.up, rightHandInfo.forward);
 
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;
-            Vector3 rhdLp = rightHandDestination.localPosition;
-            Vector3 lhdLp = leftHandDestination.localPosition;
-
-            Vector3 rightHandLocalDelta = rhiLp - _lastRightHandLocalPos;
-            Vector3 leftHandLocalDelta = lhiLp - _lastLeftHandLocalPos;
 
             float randomRightDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
+            leftHandDestination.localPosition = GetHandPositionDestination(rhiLp, leftHandDestination.localPosition, _lastRightHandLocalPos, randomRightDeltaMultiplier);
+
             float randomLeftDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
-
-            rightHandLocalDelta = new Vector3(-rightHandLocalDelta.x, 0, rightHandLocalDelta.z) * randomRightDeltaMultiplier;
-            leftHandLocalDelta = new Vector3(-leftHandLocalDelta.x, 0, leftHandLocalDelta.z) * randomLeftDeltaMultiplier;
-
-            rightHandDestination.localPosition = new Vector3(rhdLp.x, lhiLp.y, rhdLp.z) + leftHandLocalDelta;
-            leftHandDestination.localPosition = new Vector3(lhdLp.x, rhiLp.y, lhdLp.z) + rightHandLocalDelta;
+            rightHandDestination.localPosition = GetHandPositionDestination(lhiLp, rightHandDestination.localPosition, _lastLeftHandLocalPos, randomLeftDeltaMultiplier);
 
             _lastRightHandLocalPos = rhiLp;
             _lastLeftHandLocalPos = lhiLp;
         }
+
+        //Calculates the delta of the reference hand position and returns the expected current position
+        private Vector3 GetHandPositionDestination(Vector3 refHandPos, Vector3 handDest, Vector3 lastHandPos, float deltaMultiplier)
+        {
+            Vector3 handLocalDelta = refHandPos - lastHandPos;
+            handLocalDelta = new Vector3(-handLocalDelta.x, 0, handLocalDelta.z) * deltaMultiplier;
+            return new Vector3(handDest.x, refHandPos.y, handDest.z) + handLocalDelta;
+        }
+
+        //Calculates the hand "transform.up" and "transform.forward" based on the reference hand rotation
+        private void SetUpHandRotation(Transform handTransform, float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceUp, Vector3 handReferenceForward)
+        {
+            Vector3 handTransformUp = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceUp);
+            Vector3 handTransformForward = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceForward);
+
+            handTransform.rotation = Quaternion.LookRotation(handTransformForward, handTransformUp);
+        }
+
+        //Takes the local direction of a transform and converts to a local direction to other transform, takes both the reference transform angle and the transform of who called
+        //X value inverted to give the "mirror" effect
+        private Vector3 FindLocalAngleByDirection(float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceDirection)
+        {
+            Vector3 localReferenceTranformDirection = RotateVectorYAxis(handReferenceDirection, (360 - bodyReferenceAngle));
+            Vector3 rotatedDirection = RotateVectorYAxis(localReferenceTranformDirection, (360 - bodyAngle));
+            return Vector3.Scale(rotatedDirection, new Vector3(-1, 1, 1));
+        }
         
-        // Função para rotacionar um vetor em torno do eixo Y por um ângulo especificado em graus
+        // Rotates a vector by a degree amount in the y axis
         public Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
         {
-            // Converte o ângulo de graus para radianos
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 
-            // Calcula as coordenadas x e z do vetor rotacionado usando trigonometria
             float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
             float rotatedZ = originalVector.x * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
 
-            // Retorna o vetor rotacionado
             return new Vector3(rotatedX, originalVector.y, rotatedZ);
-        }
-        // Função para rotacionar um vetor em torno do eixo Z por um ângulo especificado em graus
-        public Vector3 RotateVectorZAxis(Vector3 originalVector, float angleDegrees)
-        {
-            // Converte o ângulo de graus para radianos
-            float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-            // Calcula as coordenadas x e y do vetor rotacionado usando trigonometria
-            float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.y * Mathf.Sin(angleRadians);
-            float rotatedY = originalVector.x * Mathf.Sin(angleRadians) + originalVector.y * Mathf.Cos(angleRadians);
-
-            // Retorna o vetor rotacionado
-            return new Vector3(rotatedX, rotatedY, originalVector.z);
-        }
-        // Função para rotacionar um vetor em torno do eixo X por um ângulo especificado em graus
-        public Vector3 RotateVectorXAxis(Vector3 originalVector, float angleDegrees)
-        {
-            // Converte o ângulo de graus para radianos
-            float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-            // Calcula as coordenadas y e z do vetor rotacionado usando trigonometria
-            float rotatedY = originalVector.y * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
-            float rotatedZ = originalVector.y * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
-
-            // Retorna o vetor rotacionado
-            return new Vector3(originalVector.x, rotatedY, rotatedZ);
         }
     }
 }
