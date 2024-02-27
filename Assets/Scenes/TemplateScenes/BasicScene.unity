@@ -8085,7 +8085,7 @@ MonoBehaviour:
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
-  showDebugMessages: 1
+  showDebugMessages: 0
 --- !u!114 &1087264916
 MonoBehaviour:
   m_ObjectHideFlags: 0
