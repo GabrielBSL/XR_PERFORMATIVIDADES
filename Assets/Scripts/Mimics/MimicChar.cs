@@ -82,6 +82,11 @@ namespace Main.Mimics
         // Update is called once per frame
         void Update()
         {
+            if(bodyReference == null || leftArmTarget == null || rightArmTarget == null)
+            {
+                return;
+            }
+
             variationDurationTimer -= Time.deltaTime;
             if(variationDurationTimer <= 0)
             {
