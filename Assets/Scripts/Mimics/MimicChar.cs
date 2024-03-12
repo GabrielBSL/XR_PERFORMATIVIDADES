@@ -1,6 +1,7 @@
 using Main.Events;
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 namespace Main.Mimics
@@ -81,6 +82,11 @@ namespace Main.Mimics
         // Update is called once per frame
         void Update()
         {
+            if(bodyReference == null || leftArmTarget == null || rightArmTarget == null)
+            {
+                return;
+            }
+
             variationDurationTimer -= Time.deltaTime;
             if(variationDurationTimer <= 0)
             {
@@ -154,82 +160,63 @@ namespace Main.Mimics
 
         private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)
         {
-            float bodyAngle = 180 - Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(bodyReferenceForward.x, bodyReferenceForward.z));
+            float bodyReferenceAngle = Vector2.Angle(new Vector2(bodyReferenceForward.x, bodyReferenceForward.z), new Vector2(0, 1));
+            float bodyMimicAngle = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), new Vector2(0, 1));
 
-            //Hands angles
-            Vector3 rightArmForward = RotateVectorYAxis(leftHandInfo.forward, bodyAngle);
-            Vector3 rightArmUp = RotateVectorYAxis(leftHandInfo.up, bodyAngle);
+            bodyReferenceAngle = bodyReferenceForward.x > .001f ? 360 - bodyReferenceAngle : bodyReferenceAngle;
+            bodyMimicAngle = transform.forward.x > .001f ? 360 - bodyMimicAngle : bodyMimicAngle;
 
-            Vector3 leftArmForward = RotateVectorYAxis(rightHandInfo.forward, bodyAngle);
-            Vector3 leftArmUp = RotateVectorYAxis(rightHandInfo.up, bodyAngle);
-
-            if(showDebugMessages)
-            {
-                //Debug.Log(name + " -> angle: " + bodyAngle + " - rightHandUp -> normal (left reference): " + leftHandInfo.up + " result: " + RotateVectorYAxis(leftHandInfo.up, bodyAngle));
-            }
-
-            rightArmTarget.rotation = Quaternion.LookRotation(rightArmForward, rightArmUp);
-            leftArmTarget.rotation = Quaternion.LookRotation(leftArmForward, leftArmUp);
+            SetUpHandRotation(rightArmTarget, bodyMimicAngle, bodyReferenceAngle, leftHandInfo.up, leftHandInfo.forward);
+            SetUpHandRotation(leftArmTarget, bodyMimicAngle, bodyReferenceAngle, rightHandInfo.up, rightHandInfo.forward);
 
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;
-            Vector3 rhdLp = rightHandDestination.localPosition;
-            Vector3 lhdLp = leftHandDestination.localPosition;
-
-            Vector3 rightHandLocalDelta = rhiLp - _lastRightHandLocalPos;
-            Vector3 leftHandLocalDelta = lhiLp - _lastLeftHandLocalPos;
 
             float randomRightDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
+            leftHandDestination.localPosition = GetHandPositionDestination(rhiLp, leftHandDestination.localPosition, _lastRightHandLocalPos, randomRightDeltaMultiplier);
+
             float randomLeftDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
-
-            rightHandLocalDelta = new Vector3(-rightHandLocalDelta.x, 0, rightHandLocalDelta.z) * randomRightDeltaMultiplier;
-            leftHandLocalDelta = new Vector3(-leftHandLocalDelta.x, 0, leftHandLocalDelta.z) * randomLeftDeltaMultiplier;
-
-            rightHandDestination.localPosition = new Vector3(rhdLp.x, lhiLp.y, rhdLp.z) + leftHandLocalDelta;
-            leftHandDestination.localPosition = new Vector3(lhdLp.x, rhiLp.y, lhdLp.z) + rightHandLocalDelta;
+            rightHandDestination.localPosition = GetHandPositionDestination(lhiLp, rightHandDestination.localPosition, _lastLeftHandLocalPos, randomLeftDeltaMultiplier);
 
             _lastRightHandLocalPos = rhiLp;
             _lastLeftHandLocalPos = lhiLp;
         }
+
+        //Calculates the delta of the reference hand position and returns the expected current position
+        private Vector3 GetHandPositionDestination(Vector3 refHandPos, Vector3 handDest, Vector3 lastHandPos, float deltaMultiplier)
+        {
+            Vector3 handLocalDelta = refHandPos - lastHandPos;
+            handLocalDelta = new Vector3(-handLocalDelta.x, 0, handLocalDelta.z) * deltaMultiplier;
+            return new Vector3(handDest.x, refHandPos.y, handDest.z) + handLocalDelta;
+        }
+
+        //Calculates the hand "transform.up" and "transform.forward" based on the reference hand rotation
+        private void SetUpHandRotation(Transform handTransform, float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceUp, Vector3 handReferenceForward)
+        {
+            Vector3 handTransformUp = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceUp);
+            Vector3 handTransformForward = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceForward);
+
+            handTransform.rotation = Quaternion.LookRotation(handTransformForward, handTransformUp);
+        }
+
+        //Takes the local direction of a transform and converts to a local direction to other transform, takes both the reference transform angle and the transform of who called
+        //X value inverted to give the "mirror" effect
+        private Vector3 FindLocalAngleByDirection(float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceDirection)
+        {
+            Vector3 localReferenceTranformDirection = RotateVectorYAxis(handReferenceDirection, (360 - bodyReferenceAngle));
+            Vector3 rotatedDirection = RotateVectorYAxis(localReferenceTranformDirection, (360 - bodyAngle));
+            return Vector3.Scale(rotatedDirection, new Vector3(-1, 1, 1));
+        }
         
-        // Fun��o para rotacionar um vetor em torno do eixo Y por um �ngulo especificado em graus
+        // Rotates a vector by a degree amount in the y axis
         public Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
         {
-            // Converte o �ngulo de graus para radianos
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 
-            // Calcula as coordenadas x e z do vetor rotacionado usando trigonometria
             float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
             float rotatedZ = originalVector.x * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
 
-            // Retorna o vetor rotacionado
             return new Vector3(rotatedX, originalVector.y, rotatedZ);
-        }
-        // Fun��o para rotacionar um vetor em torno do eixo Z por um �ngulo especificado em graus
-        public Vector3 RotateVectorZAxis(Vector3 originalVector, float angleDegrees)
-        {
-            // Converte o �ngulo de graus para radianos
-            float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-            // Calcula as coordenadas x e y do vetor rotacionado usando trigonometria
-            float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.y * Mathf.Sin(angleRadians);
-            float rotatedY = originalVector.x * Mathf.Sin(angleRadians) + originalVector.y * Mathf.Cos(angleRadians);
-
-            // Retorna o vetor rotacionado
-            return new Vector3(rotatedX, rotatedY, originalVector.z);
-        }
-        // Fun��o para rotacionar um vetor em torno do eixo X por um �ngulo especificado em graus
-        public Vector3 RotateVectorXAxis(Vector3 originalVector, float angleDegrees)
-        {
-            // Converte o �ngulo de graus para radianos
-            float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-            // Calcula as coordenadas y e z do vetor rotacionado usando trigonometria
-            float rotatedY = originalVector.y * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
-            float rotatedZ = originalVector.y * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
-
-            // Retorna o vetor rotacionado
-            return new Vector3(originalVector.x, rotatedY, rotatedZ);
         }
     }
 }
