@@ -47,7 +47,7 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638459216573843575
+  cacheTime: 638459313563001312
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -64,10 +64,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638459216573843575
+  lastModified: 638459313563001312
   FileSizes:
   - Name: Desktop
-    Value: 944
+    Value: 980
   Exists: 1
 --- !u!114 &3920622392559139112
 MonoBehaviour:
@@ -96,6 +96,7 @@ MonoBehaviour:
   - {fileID: 8315991905542242708}
   - {fileID: 5583498916032081501}
   - {fileID: -3529034071909454110}
+  - {fileID: 6836795501500282546}
   MinDistance: 1
   MaxDistance: 20
   Length: 74563
@@ -150,6 +151,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6836795501500282546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/river
+  m_EditorClassIdentifier: 
+  Name: river
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3252932040
+    data2: 1361437953
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7742826145432322553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,10 +190,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638459216573810696
+  lastModified: 638459313562973369
   FileSizes:
   - Name: Desktop
-    Value: 4476416
+    Value: 4476928
   Exists: 1
 --- !u!114 &8315991905542242708
 MonoBehaviour:

@@ -61,9 +61,6 @@ public class FMODAudioManager : MonoBehaviour
         // Controller Assignment (Not used)
         leftControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
 	    rightControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-
-        // Rotation
-        rightCurrentRotation = rightRotationInputActionReference.action.ReadValue<Quaternion>();
     }
 
     void Update()
@@ -83,7 +80,11 @@ public class FMODAudioManager : MonoBehaviour
         //Debug.Log($"rotation = {rightCurrentRotation}");
         rightDeltaRotation = rightCurrentRotation * Quaternion.Inverse(rightLastRotation);
         //Debug.Log($"delta    = {rightDeltaRotation}");
-        SetRiver(Math.Abs(rightDeltaRotation.x));
+        if (leftGripInputActionReference.action.ReadValue<bool>())
+        {
+            rightCurrentRotation = rightRotationInputActionReference.action.ReadValue<Quaternion>();
+            SetRiver(Math.Abs(rightDeltaRotation.x));
+        }
     }    
     
     //================ Unity Transforms Getters ================
