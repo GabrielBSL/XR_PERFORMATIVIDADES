@@ -4,30 +4,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using Main.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class FMODAudioManager : MonoBehaviour
 {
-    public static FMODUnity.EventReference MusicEventReference;
-    public static FMOD.Studio.EventInstance MusicEventInstance;
+    // FMOD
+    private static FMODUnity.EventReference MusicEventReference;
+    private static FMOD.Studio.EventInstance MusicEventInstance;
 
-    public InputActionReference triggerInputActionReference;
-    public InputActionReference rotationInputActionReference;
-    private Transform transformRight;
+    // Actions (using Input System)    
+    public InputActionReference rightTriggerInputActionReference;
+    public InputActionReference leftGripInputActionReference;
+
+    // Devices (using XR Tolkit)
+    private UnityEngine.XR.InputDevice leftControllerDevice;
+    private UnityEngine.XR.InputDevice rightControllerDevice;
+
+    //================ DISTANCE BETWEEN CONTROLLERS ================
+    // Controller Transforms (Temporary implementation using Events)
+    private Transform leftControllerTransform;
+    private Transform rightControllerTransform;
+    private float distance;
     
-    private Quaternion currentRotationRight;
-    private Quaternion lastRotationRight;
-    private Quaternion deltaRotationRight;
+    //================ RIGHT CONTROLLER ROTATION ================
+    public InputActionReference rightRotationInputActionReference;
+    private Quaternion rightCurrentRotation;
+    private Quaternion rightLastRotation;
+    private Quaternion rightDeltaRotation;
+
+    // Velocity
+    private Vector3 leftControllerVelocity;
+    private Vector3 rightControllerVelocity;
+    
+    //================ MAIN FUNCTIONS ================
 
     private void OnEnable()
     {
-        //MainEventsManager.leftHandTransformUpdate += ReceiveLeftArmTarget;
-        MainEventsManager.rightHandTransformUpdate += ReceiveRightArmTarget;
+        MainEventsManager.leftHandTransformUpdate += ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTransformUpdate += ReceiveRightControllerTransform;
     }
 
     private void OnDisable()
     {
-        //MainEventsManager.leftHandTransformUpdate -= ReceiveLeftArmTarget;
-        MainEventsManager.rightHandTransformUpdate -= ReceiveRightArmTarget;
+        MainEventsManager.leftHandTransformUpdate -= ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTransformUpdate -= ReceiveRightControllerTransform;
     }
 
     void Start()
@@ -36,59 +57,46 @@ public class FMODAudioManager : MonoBehaviour
         MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
-       
-        currentRotationRight = rotationInputActionReference.action.ReadValue<Quaternion>();
+
+        // Controller Assignment (Not used)
+        leftControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+	    rightControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+        // Rotation
+        rightCurrentRotation = rightRotationInputActionReference.action.ReadValue<Quaternion>();
     }
 
     void Update()
     {
-        /*
-        currentPositionRight = transformRight.position;
-        positionQueueRight.Enqueue(currentPositionRight);
-        while (positionQueueRight.Count > 10) oldestPositionRight = positionQueueRight.Dequeue();
-        oldestPositionRight = positionQueueRight.ToArray()[0];
+        //================ RIGHT CONTROLLER TRIGGER ================
+        //Debug.Log($"trigger  = {rightTriggerInputActionReference.action.ReadValue<float>()}");
+        SetMomentum(rightTriggerInputActionReference.action.ReadValue<float>());
 
-        currentRotationRight = transformRight.rotation.eulerAngles;
-        rotationQueueRight.Enqueue(currentRotationRight);
-        while (rotationQueueRight.Count > 20) avgRotationRight -= rotationQueueRight.Dequeue() / rotationQueueRight.Count;
-        //avgRotationRight = Vector3.zero;
-        avgRotationRight += currentRotationRight / rotationQueueRight.Count;
-        Debug.Log($"avg rotation delta = {avgRotationRight.x}");
-        //deltaPositionRight = currentPositionRight - oldestPositionRight;
-        //Debug.Log($"delta = {deltaPositionRight.sqrMagnitude}, sample count = {positionQueueRight.Count}");
-        //SetMomentum(deltaPositionRight.sqrMagnitude);
+        //================ DISTANCE BETWEEN CONTROLLERS ================
+        distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
+        //Debug.Log($"distance = {distance}");
+        SetOnirico(distance);
 
-        if ()
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
-        }
-    
-        */
-
-        lastRotationRight = currentRotationRight;
-        currentRotationRight = rotationInputActionReference.action.ReadValue<Quaternion>();
-        Debug.Log($"rotation = {rotationInputActionReference.action.ReadValue<Quaternion>()}");
-
-        deltaRotationRight = currentRotationRight * Quaternion.Inverse(lastRotationRight);
-        Debug.Log($"delta    = {deltaRotationRight}");
-
-        Debug.Log($"trigger  = {triggerInputActionReference.action.ReadValue<float>()}");
-        SetMomentum(triggerInputActionReference.action.ReadValue<float>());
+        //================ RIGHT CONTROLLER ROTATION ================
+        rightLastRotation = rightCurrentRotation;
+        rightCurrentRotation = rightRotationInputActionReference.action.ReadValue<Quaternion>();
+        //Debug.Log($"rotation = {rightCurrentRotation}");
+        rightDeltaRotation = rightCurrentRotation * Quaternion.Inverse(rightLastRotation);
+        //Debug.Log($"delta    = {rightDeltaRotation}");
+        SetRiver(Math.Abs(rightDeltaRotation.x));
     }    
     
     //================ Unity Transforms Getters ================
-    
-    private void ReceiveRightArmTarget(Transform _rightArmTarget)
-    {
-        transformRight = _rightArmTarget;
-    }
 
-    /*
-    private void ReceiveLeftArmTarget(Transform _leftArmTarget)
+    private void ReceiveLeftControllerTransform(Transform _leftControllerTransform)
     {
-        leftHandTransform = _leftArmTarget;
+        leftControllerTransform = _leftControllerTransform;
     }
-    */
+    
+    private void ReceiveRightControllerTransform(Transform _rightControllerTransform)
+    {
+        rightControllerTransform = _rightControllerTransform;
+    }
 
     //================ FMOD Parameter Setters ================
 
@@ -111,4 +119,32 @@ public class FMODAudioManager : MonoBehaviour
     {
         MusicEventInstance.setParameterByName("momentum", value);
     }
+
+    public static void SetRiver(float value)
+    {
+        MusicEventInstance.setParameterByName("river", value);
+    }
 }
+
+/*
+        currentPositionRight = transformRight.position;
+        positionQueueRight.Enqueue(currentPositionRight);
+        while (positionQueueRight.Count > 10) oldestPositionRight = positionQueueRight.Dequeue();
+        oldestPositionRight = positionQueueRight.ToArray()[0];
+
+        currentRotationRight = transformRight.rotation.eulerAngles;
+        rotationQueueRight.Enqueue(currentRotationRight);
+        while (rotationQueueRight.Count > 20) avgRotationRight -= rotationQueueRight.Dequeue() / rotationQueueRight.Count;
+        //avgRotationRight = Vector3.zero;
+        avgRotationRight += currentRotationRight / rotationQueueRight.Count;
+        Debug.Log($"avg rotation delta = {avgRotationRight.x}");
+        //deltaPositionRight = currentPositionRight - oldestPositionRight;
+        //Debug.Log($"delta = {deltaPositionRight.sqrMagnitude}, sample count = {positionQueueRight.Count}");
+        //SetMomentum(deltaPositionRight.sqrMagnitude);
+
+        if ()
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
+        }
+    
+*/
