@@ -46,13 +46,14 @@ namespace Main.IK
             Ray ray = new Ray(body.position + (body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
 
             Debug.DrawRay(body.position + (body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
+            RaycastHit[] info = Physics.RaycastAll(body.position + (body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down, rayLength, terrainLayer.value);
 
-            if (Physics.Raycast(ray, out RaycastHit info, rayLength, terrainLayer.value))
+            if (info.Length > 0)
             {
-                if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
+                if (Vector3.Distance(newPosition, info[0].point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
                 {
                     lerp = 0;
-                    Vector3 direction = Vector3.ProjectOnPlane(info.point - currentPosition, Vector3.up).normalized;
+                    Vector3 direction = Vector3.ProjectOnPlane(info[0].point - currentPosition, Vector3.up).normalized;
 
                     float angle = Vector3.Angle(body.forward, body.InverseTransformDirection(direction));
 
@@ -60,13 +61,13 @@ namespace Main.IK
 
                     if (isMovingForward)
                     {
-                        newPosition = info.point + direction * stepLength + footOffset;
-                        newNormal = info.normal;
+                        newPosition = info[0].point + direction * stepLength + footOffset;
+                        newNormal = info[0].normal;
                     }
                     else
                     {
-                        newPosition = info.point + direction * sideStepLength + footOffset;
-                        newNormal = info.normal;
+                        newPosition = info[0].point + direction * sideStepLength + footOffset;
+                        newNormal = info[0].normal;
                     }
                 }
             }
