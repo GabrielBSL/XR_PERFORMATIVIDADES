@@ -48,6 +48,8 @@ namespace Main.Mimics
         private Vector3 _leftHandCurrentPositionVariation;
         private Vector3 _rightHandCurrentPositionVariation;
 
+        private float _lastReferenceHeight;
+
         private void OnEnable()
         {
             MainEventsManager.rightHandTransformUpdate += ReceiveRightArmTarget;
@@ -77,6 +79,7 @@ namespace Main.Mimics
         private void ReceiveBodyReference(Transform _bodyReference)
         {
             bodyReference = _bodyReference;
+            _lastReferenceHeight = bodyReference.position.y;
         }
 
         // Update is called once per frame
@@ -146,7 +149,9 @@ namespace Main.Mimics
             yield return new WaitForSeconds(movementDelay);
 
             //body Height
-            transform.position = new Vector3(transform.position.x, bodyReferencePosition.y, transform.position.z);
+            float referenceBodyHeightDelta = bodyReferencePosition.y - _lastReferenceHeight;
+            transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
+            _lastReferenceHeight = bodyReferencePosition.y;
 
             //body Rotation
             Vector3 direction = bodyReferencePosition - transform.position;
