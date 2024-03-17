@@ -1004,6 +1004,7 @@ GameObject:
   - component: {fileID: 51900952011556159}
   - component: {fileID: 4129440007108419561}
   - component: {fileID: 836860363713123040}
+  - component: {fileID: 2363769174383732308}
   m_Layer: 0
   m_Name: MimicChar
   m_TagString: Untagged
@@ -1128,6 +1129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 6499539142032905099}
   leftArmTarget: {fileID: 67481269400407965}
+  rightArmHint: {fileID: 5894628968259780201}
+  leftArmHint: {fileID: 3280516540341368867}
   rightHandDestination: {fileID: 3102050936263945050}
   leftHandDestination: {fileID: 5490817168096785050}
   handMovementSmoothness: 0.033
@@ -1137,6 +1140,27 @@ MonoBehaviour:
   variationDuration: 0.75
   variationSmoothness: 0.033
   showDebugMessages: 0
+--- !u!114 &2363769174383732308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555894858897874871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a0c9a4da7049c458c7b3ec1e82a25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandTarget: {fileID: 6499539142032905099}
+  leftHandTarget: {fileID: 67481269400407965}
+  rightArmHint: {fileID: 5894628968259780201}
+  leftArmHint: {fileID: 3280516540341368867}
+  distanceTargetHint: 2
+  hintMoveRatioPerFrame: 0.05
+  maxAbsValueXAxis: 0.5
+  maxYValueAxis: 3.25
+  maxZValueAxis: -0.3
 --- !u!1 &5835379486965343082
 GameObject:
   m_ObjectHideFlags: 0

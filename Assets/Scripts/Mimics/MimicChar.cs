@@ -18,6 +18,8 @@ namespace Main.Mimics
 
         [SerializeField] private Transform rightArmTarget;
         [SerializeField] private Transform leftArmTarget;
+        [SerializeField] private Transform rightArmHint;
+        [SerializeField] private Transform leftArmHint;
 
         [Header("Movement")]
         [SerializeField] private Transform rightHandDestination;
@@ -36,6 +38,8 @@ namespace Main.Mimics
 
         private Transform rightArmTargetReference;
         private Transform leftArmTargetReference;
+        private Transform rightArmHintReference;
+        private Transform leftHandHintReference;
         private Transform bodyReference;
 
         private float variationDurationTimer = 0;
@@ -52,14 +56,18 @@ namespace Main.Mimics
 
         private void OnEnable()
         {
-            MainEventsManager.rightHandTransformUpdate += ReceiveRightArmTarget;
-            MainEventsManager.leftHandTransformUpdate += ReceiveLeftArmTarget;
+            MainEventsManager.rightHandTargetTransformUpdate += ReceiveRightArmTarget;
+            MainEventsManager.leftHandTargetTransformUpdate += ReceiveLeftArmTarget;
+            MainEventsManager.rightHandHintTransformUpdate += ReceiveRightArmHint;
+            MainEventsManager.leftHandHintTransformUpdate += ReceiveLeftArmHint;
             MainEventsManager.bodyTransformUpdate += ReceiveBodyReference;
         }
         private void OnDisable()
         {
-            MainEventsManager.rightHandTransformUpdate -= ReceiveRightArmTarget;
-            MainEventsManager.leftHandTransformUpdate -= ReceiveLeftArmTarget;
+            MainEventsManager.rightHandTargetTransformUpdate -= ReceiveRightArmTarget;
+            MainEventsManager.leftHandTargetTransformUpdate -= ReceiveLeftArmTarget;
+            MainEventsManager.rightHandHintTransformUpdate -= ReceiveRightArmHint;
+            MainEventsManager.leftHandHintTransformUpdate -= ReceiveLeftArmHint;
             MainEventsManager.bodyTransformUpdate -= ReceiveBodyReference;
         }
         private void ReceiveRightArmTarget(Transform _rightArmTarget)
@@ -75,6 +83,14 @@ namespace Main.Mimics
             _lastLeftHandLocalPos = _leftArmTarget.localPosition;
             leftArmTarget.localPosition = _leftArmTarget.localPosition;
             leftHandDestination.localPosition = _leftArmTarget.localPosition;
+        }
+        private void ReceiveRightArmHint(Transform _rightArmHint)
+        {
+            rightArmHintReference = _rightArmHint;
+        }
+        private void ReceiveLeftArmHint(Transform _leftArmHint)
+        {
+            leftHandHintReference = _leftArmHint;
         }
         private void ReceiveBodyReference(Transform _bodyReference)
         {
@@ -146,6 +162,9 @@ namespace Main.Mimics
             Vector3 bodyReferencePosition = bodyReference.position;
             Vector3 bodyReferenceForward = bodyReference.forward;
 
+            Vector3 rightArmHintPosition = rightArmHintReference.localPosition;
+            Vector3 leftArmHintPosition = leftHandHintReference.localPosition;
+
             yield return new WaitForSeconds(movementDelay);
 
             //body Height
@@ -159,6 +178,9 @@ namespace Main.Mimics
             newRotation.x = transform.rotation.x;
             newRotation.z = transform.rotation.z; 
             transform.rotation = newRotation;
+
+            leftArmHint.localPosition = Vector3.Scale(rightArmHintPosition, new Vector3(-1, 1, 1));
+            rightArmHint.localPosition = Vector3.Scale(leftArmHintPosition, new Vector3(-1, 1, 1));
 
             SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReferenceForward);
         }
@@ -214,7 +236,7 @@ namespace Main.Mimics
         }
         
         // Rotates a vector by a degree amount in the y axis
-        public Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
+        private Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
         {
             float angleRadians = angleDegrees * Mathf.Deg2Rad;
 

@@ -41,14 +41,14 @@ public class FMODAudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        MainEventsManager.leftHandTransformUpdate += ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTransformUpdate += ReceiveRightControllerTransform;
+        MainEventsManager.leftHandTargetTransformUpdate += ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTargetTransformUpdate += ReceiveRightControllerTransform;
     }
 
     private void OnDisable()
     {
-        MainEventsManager.leftHandTransformUpdate -= ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTransformUpdate -= ReceiveRightControllerTransform;
+        MainEventsManager.leftHandTargetTransformUpdate -= ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTargetTransformUpdate -= ReceiveRightControllerTransform;
     }
 
     void Start()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18306595, g: 0.2287429, b: 0.3066922, a: 1}
+  m_IndirectSpecularColor: {r: 0.18306622, g: 0.2287434, b: 0.30669293, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10399,6 +10399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 989799629}
   leftArmTarget: {fileID: 876585545}
+  rightArmHint: {fileID: 0}
+  leftArmHint: {fileID: 0}
   rightHandDestination: {fileID: 1594394138}
   leftHandDestination: {fileID: 6541199}
   handMovementSmoothness: 0.033
@@ -10794,6 +10796,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 1304121262}
   leftArmTarget: {fileID: 422150368}
+  rightArmHint: {fileID: 0}
+  leftArmHint: {fileID: 0}
   rightHandDestination: {fileID: 478827340}
   leftHandDestination: {fileID: 88483009}
   handMovementSmoothness: 0.033
@@ -11091,6 +11095,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 1437583364}
   leftArmTarget: {fileID: 483062748}
+  rightArmHint: {fileID: 506508342}
+  leftArmHint: {fileID: 2112934834}
   rightHandDestination: {fileID: 1705418348}
   leftHandDestination: {fileID: 771889848}
   handMovementSmoothness: 0.033
@@ -11465,6 +11471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 430323152}
   leftArmTarget: {fileID: 644769327}
+  rightArmHint: {fileID: 0}
+  leftArmHint: {fileID: 0}
   rightHandDestination: {fileID: 1589662114}
   leftHandDestination: {fileID: 441760144}
   handMovementSmoothness: 0.033
@@ -12423,6 +12431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 1860555512}
   leftArmTarget: {fileID: 941048474}
+  rightArmHint: {fileID: 1826899577}
+  leftArmHint: {fileID: 895739615}
   rightHandDestination: {fileID: 1176178036}
   leftHandDestination: {fileID: 262900819}
   handMovementSmoothness: 0.033
@@ -21942,6 +21952,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 866770613}
   leftArmTarget: {fileID: 2135321336}
+  rightArmHint: {fileID: 0}
+  leftArmHint: {fileID: 0}
   headTarget: {fileID: 326249465}
 --- !u!1 &7127080589680780219
 GameObject:
@@ -22277,6 +22289,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
       propertyPath: head.vrTarget
       value: 
