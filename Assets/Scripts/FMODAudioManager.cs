@@ -4,8 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Main.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
+
+/*----------------------------------------------------------------{
+    Position of controllers is currently handled using C# Events.
+    The functions subscribed to Main.Events receive broadcast 
+    references to the controller Transforms
+
+    Button Input is handled using Action Input System. The Player
+    Input component inside the FMODAudioManager GameObject inkoves
+    C# Events for each action defined in the FMODInput Asset.
+
+    TO-DO:
+    {
+        Receive direct position of controllers using Input System and
+        XR Interaction Toolkit, instead of getting the Transforms of
+        the character's hands.
+    }
+
+}----------------------------------------------------------------*/
 
 public class FMODAudioManager : MonoBehaviour
 {   
@@ -19,24 +35,37 @@ public class FMODAudioManager : MonoBehaviour
     private Transform leftControllerTransform;
     private Transform rightControllerTransform;
     
+    // Positional
     [SerializeField] private bool manualSettings;
     [SerializeField] [Range(0f, 1f)] private float distance;
     [SerializeField] [Range(0f, 1f)] private float height;
-    
+
+    // Actions (using Input System)
+    private FMODInput FMODInputInstance;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
+    private void Awake()
+    {
+        FMODInputInstance = new FMODInput();
+    }
+
     private void OnEnable()
     {
-        // Get transform though event
         MainEventsManager.leftHandTransformUpdate += ReceiveLeftControllerTransform;
         MainEventsManager.rightHandTransformUpdate += ReceiveRightControllerTransform;
+
+        FMODInputInstance.FMODGestures.Thunder.Enable();
+        FMODInputInstance.FMODGestures.Thunder.performed += Thunder;
     }
 
     private void OnDisable()
     {
         MainEventsManager.leftHandTransformUpdate -= ReceiveLeftControllerTransform;
         MainEventsManager.rightHandTransformUpdate -= ReceiveRightControllerTransform;
+
+        FMODInputInstance.FMODGestures.Thunder.Disable();
+        FMODInputInstance.FMODGestures.Thunder.performed -= Thunder;
     }
 
     void Start()
@@ -53,11 +82,11 @@ public class FMODAudioManager : MonoBehaviour
         if (!manualSettings)
         {
             distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
-            Debug.Log($"distance = {distance}");
+            //Debug.Log($"distance = {distance}");
         }
         SetOnirico(distance);
 
-        //================ DISTANCE BETWEEN CONTROLLERS ================
+        //================ CONTROLLER HEIGHT ================
         if (!manualSettings)
         {
             height = ((leftControllerTransform.position.y + rightControllerTransform.position.y) / 2) - 1.25f;
@@ -97,5 +126,13 @@ public class FMODAudioManager : MonoBehaviour
     public static void SetWind(float value)
     {
         MusicEventInstance.setParameterByName("wind", value);
+    }
+
+    //================ FMOD Oneshots ================
+
+    public static void Thunder(InputAction.CallbackContext callbackContext)
+    {
+        Debug.Log("Thunder");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
     }
 }

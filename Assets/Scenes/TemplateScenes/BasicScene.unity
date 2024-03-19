@@ -9530,6 +9530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 957675974}
   - component: {fileID: 957675975}
+  - component: {fileID: 957675976}
   m_Layer: 0
   m_Name: FMODAudioManager
   m_TagString: Untagged
@@ -9564,10 +9565,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aeb28c587ab86b42bd68b2a3fef1be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualSettings: 0
   distance: 0
-  manualDistance: 0
   height: 0
-  manualHeight: 0
+  thunderInputActionReference: {fileID: -6755553768555707710, guid: 479117b2f647d804d84c85567308439d, type: 3}
+--- !u!114 &957675976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957675972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 479117b2f647d804d84c85567308439d, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: FMOD Gestures
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &969848647
 GameObject:
   m_ObjectHideFlags: 0
