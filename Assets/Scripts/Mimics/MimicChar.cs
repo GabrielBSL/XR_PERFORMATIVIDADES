@@ -20,12 +20,12 @@ namespace Main.Mimics
         [SerializeField] private Transform leftArmTarget;
         [SerializeField] private Transform rightArmHint;
         [SerializeField] private Transform leftArmHint;
+        [SerializeField] private Transform headTarget;
 
         [Header("Movement")]
         [SerializeField] private Transform rightHandDestination;
         [SerializeField] private Transform leftHandDestination;
         [SerializeField, Range(.01f, 1f)] private float handMovementSmoothness = .033f;
-        [SerializeField] private Vector2 movementDeltaVariation = Vector2.one;
         [SerializeField] private float movementDelay = .5f;
 
         [Header("Random")]
@@ -40,12 +40,10 @@ namespace Main.Mimics
         private Transform leftArmTargetReference;
         private Transform rightArmHintReference;
         private Transform leftHandHintReference;
+        private Transform headReference;
         private Transform bodyReference;
 
         private float variationDurationTimer = 0;
-
-        private Vector3 _lastRightHandLocalPos;
-        private Vector3 _lastLeftHandLocalPos;
 
         private Vector3 _leftHandFinalPositionVariation;
         private Vector3 _rightHandFinalPositionVariation;
@@ -60,6 +58,7 @@ namespace Main.Mimics
             MainEventsManager.leftHandTargetTransformUpdate += ReceiveLeftArmTarget;
             MainEventsManager.rightHandHintTransformUpdate += ReceiveRightArmHint;
             MainEventsManager.leftHandHintTransformUpdate += ReceiveLeftArmHint;
+            MainEventsManager.headTransformUpdate += ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate += ReceiveBodyReference;
         }
         private void OnDisable()
@@ -68,19 +67,18 @@ namespace Main.Mimics
             MainEventsManager.leftHandTargetTransformUpdate -= ReceiveLeftArmTarget;
             MainEventsManager.rightHandHintTransformUpdate -= ReceiveRightArmHint;
             MainEventsManager.leftHandHintTransformUpdate -= ReceiveLeftArmHint;
+            MainEventsManager.headTransformUpdate -= ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate -= ReceiveBodyReference;
         }
         private void ReceiveRightArmTarget(Transform _rightArmTarget)
         {
             rightArmTargetReference = _rightArmTarget;
-            _lastRightHandLocalPos = _rightArmTarget.localPosition;
             rightArmTarget.localPosition = _rightArmTarget.localPosition;
             rightHandDestination.localPosition = _rightArmTarget.localPosition;
         }
         private void ReceiveLeftArmTarget(Transform _leftArmTarget)
         {
             leftArmTargetReference = _leftArmTarget;
-            _lastLeftHandLocalPos = _leftArmTarget.localPosition;
             leftArmTarget.localPosition = _leftArmTarget.localPosition;
             leftHandDestination.localPosition = _leftArmTarget.localPosition;
         }
@@ -96,6 +94,10 @@ namespace Main.Mimics
         {
             bodyReference = _bodyReference;
             _lastReferenceHeight = bodyReference.position.y;
+        }
+        private void ReceiveHeadReference(Transform _headReference)
+        {
+            headReference = _headReference;
         }
 
         // Update is called once per frame
@@ -165,6 +167,8 @@ namespace Main.Mimics
             Vector3 rightArmHintPosition = rightArmHintReference.localPosition;
             Vector3 leftArmHintPosition = leftHandHintReference.localPosition;
 
+            float headReferenceZTurn = headReference.localEulerAngles.z;
+
             yield return new WaitForSeconds(movementDelay);
 
             //body Height
@@ -181,6 +185,8 @@ namespace Main.Mimics
 
             leftArmHint.localPosition = Vector3.Scale(rightArmHintPosition, new Vector3(-1, 1, 1));
             rightArmHint.localPosition = Vector3.Scale(leftArmHintPosition, new Vector3(-1, 1, 1));
+
+            headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, headReferenceZTurn * -1);
 
             SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReferenceForward);
         }
@@ -199,14 +205,8 @@ namespace Main.Mimics
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;
 
-            float randomRightDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
-            leftHandDestination.localPosition = GetHandPositionDestination(rhiLp, leftHandDestination.localPosition, _lastRightHandLocalPos, randomRightDeltaMultiplier);
-
-            float randomLeftDeltaMultiplier = UnityEngine.Random.Range(movementDeltaVariation.x, movementDeltaVariation.y);
-            rightHandDestination.localPosition = GetHandPositionDestination(lhiLp, rightHandDestination.localPosition, _lastLeftHandLocalPos, randomLeftDeltaMultiplier);
-
-            _lastRightHandLocalPos = rhiLp;
-            _lastLeftHandLocalPos = lhiLp;
+            leftHandDestination.localPosition = Vector3.Scale(rhiLp, new Vector3(-1, 1, 1));
+            rightHandDestination.localPosition = Vector3.Scale(lhiLp, new Vector3(-1, 1, 1));
         }
 
         //Calculates the delta of the reference hand position and returns the expected current position
