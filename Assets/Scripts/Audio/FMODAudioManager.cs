@@ -84,14 +84,14 @@ public class FMODAudioManager : MonoBehaviour
             distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
             //Debug.Log($"distance = {distance}");
         }
-        SetOnirico(distance);
+        //SetOnirico(distance);
 
         //================ CONTROLLER HEIGHT ================
         if (!manualSettings)
         {
             height = ((leftControllerTransform.position.y + rightControllerTransform.position.y) / 2) - 1.25f;
         }
-        SetWind(height);
+        //SetWind(height);
     }    
     
     //================ Unity Transforms Getters ================
@@ -108,24 +108,24 @@ public class FMODAudioManager : MonoBehaviour
 
     //================ FMOD Parameter Setters ================
 
-    public static void SetVolume(float volume)
+    public static void SetVolume(double volume)
     {
-        MusicEventInstance.setVolume(volume);
+        MusicEventInstance.setVolume((float)volume);
     }
 
-    public static void SetIntensity(float value)
+    public static void SetIntensity(double value)
     {
-        MusicEventInstance.setParameterByName("intensity", value);
+        MusicEventInstance.setParameterByName("intensity", (float)value);
     }
 
-    public static void SetOnirico(float value)
+    public static void SetOnirico(double value)
     {
-        MusicEventInstance.setParameterByName("onirico", value);
+        MusicEventInstance.setParameterByName("onirico", (float)value);
     }
 
-    public static void SetWind(float value)
+    public static void SetWind(double value)
     {
-        MusicEventInstance.setParameterByName("wind", value);
+        MusicEventInstance.setParameterByName("wind", (float)value);
     }
 
     //================ FMOD Oneshots ================

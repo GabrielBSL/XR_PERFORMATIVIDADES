@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class VelocityTracker : MonoBehaviour
 {
-
+    [SerializeField] private double scale = 10;
     private Vector3 lastPosition;
     private Vector3 currentPosition;
-    private float deltaPosition;
+    private double deltaPosition;
+    private double parameter;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,11 @@ public class VelocityTracker : MonoBehaviour
         lastPosition = currentPosition;
         currentPosition = transform.position;
         deltaPosition = Vector3.Magnitude(currentPosition - lastPosition);
+        parameter = Math.Round(deltaPosition * scale, 3);
 
-        Debug.Log($"deltaPosition = {Math.Round((decimal)deltaPosition * 10, 2)}");
+        Debug.Log($"deltaPosition = {parameter}");
+        FMODAudioManager.SetWind(parameter);
+
+        
     }
 }
