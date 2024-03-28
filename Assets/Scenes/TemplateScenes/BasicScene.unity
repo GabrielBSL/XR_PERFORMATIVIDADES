@@ -11886,9 +11886,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c0c41d7a88b024d8cba5f0cf962163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headTarget: {fileID: 942827727}
-  leftHandTarget: {fileID: 49420542}
-  rightHandTarget: {fileID: 806544901}
+  headTarget: {fileID: 244847107}
+  leftHandTarget: {fileID: 532123643}
+  rightHandTarget: {fileID: 534063420}
+  idealHeight: 1.72
   headTargetHeight: 1.68
   handTargetsHeight: 1.58
   rightHandXDistance: 0.87
@@ -17859,6 +17860,9 @@ MonoBehaviour:
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.54, z: 0}
   headBodyYawOffset: 0
+  mainCameraTransform: {fileID: 0}
+  leftControllerTransform: {fileID: 0}
+  rightControllerTransform: {fileID: 0}
   ratioAction:
     m_Name: 
     m_Type: 0
@@ -18294,7 +18298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
       propertyPath: head.vrTarget
@@ -18316,6 +18320,18 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 806544901}
+    - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+      propertyPath: mainCameraTransform
+      value: 
+      objectReference: {fileID: 244847107}
+    - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+      propertyPath: leftControllerTransform
+      value: 
+      objectReference: {fileID: 532123643}
+    - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+      propertyPath: rightControllerTransform
+      value: 
+      objectReference: {fileID: 534063420}
     - target: {fileID: 3681153762549910353, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
       propertyPath: ratioAction.m_SingletonActionBindings.Array.size
       value: 1
