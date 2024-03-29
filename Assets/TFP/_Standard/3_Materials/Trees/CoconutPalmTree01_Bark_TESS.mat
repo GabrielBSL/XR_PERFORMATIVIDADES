@@ -2,19 +2,29 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: CoconutPalmTree01_Bark_TESS
   m_Shader: {fileID: 4800000, guid: b8ff0c8559a54486d94f7eb77111ff2c, type: 3}
-  m_ShaderKeywords: GEOM_TYPE_BRANCH _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - GEOM_TYPE_BRANCH
+  - _METALLICGLOSSMAP
+  m_InvalidKeywords:
+  - _DETAIL_MULX2
+  - _EMISSION
+  - _NORMALMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -74,6 +84,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3bba92a0f9e427149b05195d1cde2dd8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AnimateNormal: 1
     - _BumpScale: 1
@@ -118,3 +129,4 @@ Material:
     - _Color: {r: 0.83823526, g: 0.49558175, b: 0.0184905, a: 0.097}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 0.9, g: 0.5, b: 0, a: 0.1}
+  m_BuildTextureStacks: []

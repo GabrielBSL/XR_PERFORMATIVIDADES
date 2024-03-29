@@ -2,19 +2,28 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: CoconutPalmTree02_Leaf_LOD
   m_Shader: {fileID: 4800000, guid: b21dd9ef5428e47d88f72f8f830c7e26, type: 3}
-  m_ShaderKeywords: _DETAIL_MULX2 _FADEOUTWIND_ON _METALLICGLOSSMAP _NORMALMAP
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _METALLICGLOSSMAP
+  - _NORMALMAP
+  m_InvalidKeywords:
+  - _DETAIL_MULX2
+  - _FADEOUTWIND_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -78,6 +87,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: e362edb92bb0ed04b904a0824f0617e5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AnimateNormal: 1
     - _BumpScale: 1
@@ -98,9 +108,12 @@ Material:
     - _LeafTurbulence: 2
     - _Metallic: 0
     - _Mode: 0
+    - _NormalInfluence: 0.3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _Snow: 5
+    - _SnowMultiplier: 1.75
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TimeOffset: 0.25
@@ -111,8 +124,10 @@ Material:
     - _UseArrays: 0
     - _UseDetails: 0
     - _ViewDependency: 0.2
+    - _WetnessMaxSmoothness: 0.8
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.83823526, g: 0.49558175, b: 0.0184905, a: 0.097}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 0.9, g: 0.5, b: 0, a: 0.1}
+  m_BuildTextureStacks: []
