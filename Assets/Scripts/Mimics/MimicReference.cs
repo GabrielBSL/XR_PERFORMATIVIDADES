@@ -13,7 +13,6 @@ namespace Main.Mimics
 
         void Start()
         {
-            Debug.Log("start: " + headTarget.position);
             MainEventsManager.bodyTransformUpdate?.Invoke(transform);
             MainEventsManager.rightHandTargetTransformUpdate?.Invoke(rightArmTarget);
             MainEventsManager.leftHandTargetTransformUpdate?.Invoke(leftArmTarget);
