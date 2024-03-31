@@ -2341,7 +2341,31 @@ MonoBehaviour:
   m_Script: {fileID: -1774853514, guid: ebe26e22332665d4c8332b2a624e5e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rules: []
+  Rules:
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 701598372}
+    Ordinal: 0
+    Priority: 0
+    IconType: 117450
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 9000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 907316475}
+    Ordinal: 1
+    Priority: 0
+    IconType: 341000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &317398477
 Transform:
   m_ObjectHideFlags: 0
@@ -5844,6 +5868,11 @@ Transform:
   - {fileID: 1908305610}
   m_Father: {fileID: 626241122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &701598372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5634722430228078967, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+  m_PrefabInstance: {fileID: 8345824493729198073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &717143557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7305,6 +7334,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 93428564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &907316475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6691690518400685803, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+  m_PrefabInstance: {fileID: 8345824493729198073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &909029271
 GameObject:
   m_ObjectHideFlags: 0
@@ -11820,6 +11854,7 @@ GameObject:
   - component: {fileID: 1618983078}
   - component: {fileID: 1618983077}
   - component: {fileID: 1618983080}
+  - component: {fileID: 1618983081}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -11881,7 +11916,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618983076}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c0c41d7a88b024d8cba5f0cf962163, type: 3}
   m_Name: 
@@ -11889,12 +11924,24 @@ MonoBehaviour:
   headTarget: {fileID: 244847107}
   leftHandTarget: {fileID: 532123643}
   rightHandTarget: {fileID: 534063420}
-  idealHeight: 1.72
   headTargetHeight: 1.68
   handTargetsHeight: 1.58
   rightHandXDistance: 0.87
   leftHandXDistance: 0.87
   handTargetZAxis: -0.12
+--- !u!114 &1618983081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618983076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e2a34b434fdf74798deee788e4d55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idealHeight: 1.72
 --- !u!1 &1621060694
 GameObject:
   m_ObjectHideFlags: 0
