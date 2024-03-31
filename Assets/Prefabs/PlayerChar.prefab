@@ -1168,7 +1168,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.001, y: 1.05, z: 5.02}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4829728037728590707}
   - {fileID: 6589893282029397183}
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5634722430228078967}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 933ae96d5faaa984baa041eef30e1c53, type: 3}
   m_Name: 
@@ -1290,6 +1290,29 @@ MonoBehaviour:
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.5, z: 0}
   headBodyYawOffset: 0
+  mainCameraTransform: {fileID: 0}
+  leftControllerTransform: {fileID: 0}
+  rightControllerTransform: {fileID: 0}
+  ratioAction:
+    m_Name: Ratio
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a0fca89e-23d6-4895-8d34-6b5d063ccb1b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1c4d939e-d1bc-47ec-b044-dbaeeb047e51
+      m_Path: <XRController>{RightHand}/{TriggerButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: Generic XR Controller
+      m_Action: Ratio
+      m_Flags: 0
+    m_Flags: 0
+  xAxisRatioBase: 0.87
+  yAxisRatioBase: 1.68
+  forceRatioCalculation: 0
 --- !u!114 &1145256066281361090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,7 +1348,7 @@ MonoBehaviour:
   leftArmHint: {fileID: 851447703710498552}
   distanceTargetHint: 1
   hintMoveRatioPerFrame: 0.05
-  maxAbsValueXAxis: 0.5
+  maxAbsValueXAxis: 1
   maxYValueAxis: 3.2
   maxZValueAxis: 0.5
 --- !u!1 &5646963487044087182

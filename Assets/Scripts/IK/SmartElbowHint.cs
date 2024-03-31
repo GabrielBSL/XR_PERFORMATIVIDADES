@@ -36,7 +36,20 @@ namespace Main.IK
             
             hintTranform.position = Vector3.Lerp(hintTranform.position, targetTransform.position + direction, hintMoveRatioPerFrame);
 
-            float clampedLocalX = isRight ? Mathf.Max(hintTranform.localPosition.x, maxAbsValueXAxis) : Mathf.Min(hintTranform.localPosition.x, maxAbsValueXAxis * -1);
+            float clampedLocalX;
+            float correctedMaxValueXAxis;
+
+            if (isRight )
+            {
+                correctedMaxValueXAxis = Mathf.Max(maxAbsValueXAxis, maxAbsValueXAxis - (targetTransform.localPosition.x - maxAbsValueXAxis));
+                clampedLocalX = Mathf.Max(hintTranform.localPosition.x, correctedMaxValueXAxis);
+            }
+            else
+            {
+                correctedMaxValueXAxis = Mathf.Min(maxAbsValueXAxis, maxAbsValueXAxis - (targetTransform.localPosition.x - maxAbsValueXAxis));
+                clampedLocalX = Mathf.Min(hintTranform.localPosition.x, correctedMaxValueXAxis);
+            }
+
             float clampedLocalY = Mathf.Min(hintTranform.localPosition.y, maxYValueAxis);
             float clampedLocalZ = Mathf.Min(hintTranform.localPosition.z, maxZValueAxis);
 
