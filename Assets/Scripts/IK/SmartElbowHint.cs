@@ -22,7 +22,7 @@ namespace Main.IK
         private int _loopCounter;
 
         // Update is called once per frame
-        void FixedUpdate()
+        void Update()
         {
             AjustHintPosition(rightHandTarget, rightArmHint, true);
             AjustHintPosition(leftHandTarget, leftArmHint, false);
@@ -46,7 +46,8 @@ namespace Main.IK
             }
             else
             {
-                correctedMaxValueXAxis = Mathf.Min(maxAbsValueXAxis, maxAbsValueXAxis - (targetTransform.localPosition.x - maxAbsValueXAxis));
+                float invertMaxAbsValueXAxis = maxAbsValueXAxis * -1;
+                correctedMaxValueXAxis = Mathf.Min(invertMaxAbsValueXAxis, invertMaxAbsValueXAxis - (targetTransform.localPosition.x - invertMaxAbsValueXAxis));
                 clampedLocalX = Mathf.Min(hintTranform.localPosition.x, correctedMaxValueXAxis);
             }
 
@@ -55,17 +56,6 @@ namespace Main.IK
 
 
             hintTranform.localPosition = new Vector3(clampedLocalX, clampedLocalY, clampedLocalZ);
-        }
-
-        // Rotates a vector by a degree amount in the y axis
-        private Vector3 RotateVectorYAxis(Vector3 originalVector, float angleDegrees)
-        {
-            float angleRadians = angleDegrees * Mathf.Deg2Rad;
-
-            float rotatedX = originalVector.x * Mathf.Cos(angleRadians) - originalVector.z * Mathf.Sin(angleRadians);
-            float rotatedZ = originalVector.x * Mathf.Sin(angleRadians) + originalVector.z * Mathf.Cos(angleRadians);
-
-            return new Vector3(rotatedX, originalVector.y, rotatedZ);
         }
     }
 }
