@@ -13,14 +13,19 @@ namespace Main.IK
             public Transform ikTarget;
             public Vector3 trackingPositionOffset;
             public Vector3 trackingRotationOffset;
-            public Vector3 Map(Vector3 positionRatio)
+            public Vector3 Map(Vector3 positionRatio, Vector3 offset, bool debugPrint = false)
             {
-                Vector3 vrTargetPosCorrected = Vector3.Scale(vrTarget.position, positionRatio);
-                Vector3 originalIkPosition = vrTarget.position;
+                Vector3 vrTargetPosCorrected = Vector3.Scale(vrTarget.position - offset, positionRatio);
+                Vector3 originalVrPosition = vrTarget.position;
 
-                vrTarget.position = vrTargetPosCorrected;
+                vrTarget.position = vrTargetPosCorrected + offset;
                 ikTarget.position = vrTarget.TransformPoint(trackingPositionOffset);
-                vrTarget.position = originalIkPosition;
+                vrTarget.position = originalVrPosition;
+
+                if (debugPrint)
+                {
+                    //print("Original: " + originalVrPosition + " - corrected: " + vrTargetPosCorrected + " - ratio: " + positionRatio);
+                }
 
                 ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
                 return ikTarget.position;
@@ -42,15 +47,17 @@ namespace Main.IK
         [SerializeField] private Transform rightControllerTransform;
 
         [Header("Config")]
+        [SerializeField] private bool allowRatioCalculation;
         [SerializeField] private InputAction ratioAction;
-        [SerializeField] private float xAxisRatioBase = .87f;
-        [SerializeField] private float yAxisRatioBase = 1.24f;
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
 
-        private float _currentXRatio;
-        private float _currentYRatio;
+        private float _xAxisRatioBase = 1;
+        private float _yAxisRatioBase = 1;
+        private float _currentXRatio = 1;
+        private float _currentYRatio = 1;
+        private bool _ratioBaseConfigurated = false;
         private bool _firstHeightCalculated = false;
 
         private void Awake()
@@ -67,16 +74,6 @@ namespace Main.IK
             ratioAction.Disable();
         }
 
-        private void Start()
-        {
-            _currentXRatio = xAxisRatioBase;
-            _currentYRatio = yAxisRatioBase;
-        }
-
-        private void Update()
-        {
-        }
-
         // Update is called once per frame
         void LateUpdate()
         {
@@ -90,119 +87,37 @@ namespace Main.IK
             float yaw = head.vrTarget.eulerAngles.y;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, yaw, transform.eulerAngles.z), turnSmoothness);
 
-            Vector3 positionRatio = new Vector3(xAxisRatioBase / _currentXRatio, yAxisRatioBase / _currentYRatio, 1);
+            Vector3 positionRatio = _ratioBaseConfigurated ? new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1) : Vector3.one;
+            //Debug.Log("Y ratio: " + positionRatio.y + " X ratio: " + positionRatio.x);
 
-            float currentHeight = head.Map(new Vector3(1, positionRatio.y, 1)).y;
+            float currentHeight = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true).y;
             if (!_firstHeightCalculated)
             {
                 MainEventsManager.defaultHeightValue?.Invoke(currentHeight);
                 _firstHeightCalculated = true;
             }
 
-            leftHand.Map(positionRatio);
-            rightHand.Map(positionRatio);
+            leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
+            rightHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
         }
 
         private void SetVRAndIKTargetPositionRation()
         {
-            print(_currentYRatio + " - " + mainCameraTransform.localPosition.y);
+            if (!allowRatioCalculation)
+            {
+                return;
+            }
 
             _currentYRatio = mainCameraTransform.localPosition.y;
-            _currentXRatio = rightControllerTransform.localPosition.x;
+            _currentXRatio = rightControllerTransform.localPosition.x - mainCameraTransform.localPosition.x;
+
+            if (!_ratioBaseConfigurated)
+            {
+                _ratioBaseConfigurated = true;
+
+                _xAxisRatioBase = _currentXRatio;
+                _yAxisRatioBase = _currentYRatio;
+            }
         }
     }
-
-    /*
-     * [System.Serializable]
-        public struct VRMap
-        {
-            public Transform vrTarget;
-            public Transform ikTarget;
-            public Vector3 trackingPositionOffset;
-            public Vector3 trackingRotationOffset;
-            public void Map()
-            {
-                ikTarget.position = vrTarget.TransformPoint(trackingPositionOffset);
-                ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
-            }
-        }
-
-        [Range(0, 1)]
-        public float turnSmoothness = 0.1f;
-        public VRMap head;
-        public VRMap leftHand;
-        public VRMap rightHand;
-
-        public Vector3 headBodyPositionOffset;
-        public float headBodyYawOffset;
-
-        [Header("Config")]
-        [SerializeField] private InputAction ratioAction;
-        [SerializeField] private float xAxisRatioBase = .87f;
-        [SerializeField] private float yAxisRatioBase = 1.24f;
-
-        [Header("Debug")]
-        [SerializeField] private bool forceRatioCalculation;
-
-        private float _currentXRatio;
-        private float _currentYRatio;
-
-        private void Awake()
-        {
-            ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
-        }
-
-        private void OnEnable()
-        {
-            ratioAction.Enable();
-        }
-        private void OnDisable()
-        {
-            ratioAction.Disable();
-        }
-
-        private void Start()
-        {
-            _currentXRatio = xAxisRatioBase;
-            _currentYRatio = yAxisRatioBase;
-        }
-
-        private void Update()
-        {
-            if (forceRatioCalculation)
-            {
-                forceRatioCalculation = false;
-                SetVRAndIKTargetPositionRation();
-            }
-        }
-
-        // Update is called once per frame
-        void LateUpdate()
-        {
-            transform.position = head.ikTarget.position + headBodyPositionOffset;
-            float yaw = head.vrTarget.eulerAngles.y;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, yaw, transform.eulerAngles.z), turnSmoothness);
-
-            Vector3 positionRatio = new Vector3(xAxisRatioBase / _currentXRatio, yAxisRatioBase / _currentYRatio, 1);
-            print(positionRatio.x);
-
-            Vector3 vrTargetPosCorrected = Vector3.Scale(head.vrTarget.position, new Vector3(1, positionRatio.y, 1));
-            head.ikTarget.position = vrTargetPosCorrected + head.trackingPositionOffset;
-            head.ikTarget.rotation = head.vrTarget.rotation * Quaternion.Euler(head.trackingRotationOffset);
-
-            vrTargetPosCorrected = Vector3.Scale(leftHand.vrTarget.position, positionRatio);
-            leftHand.ikTarget.position = vrTargetPosCorrected + leftHand.trackingPositionOffset;
-            leftHand.ikTarget.rotation = leftHand.vrTarget.rotation * Quaternion.Euler(leftHand.trackingRotationOffset);
-
-            vrTargetPosCorrected = Vector3.Scale(rightHand.vrTarget.position, positionRatio);
-            rightHand.ikTarget.position = vrTargetPosCorrected + rightHand.trackingPositionOffset;
-            rightHand.ikTarget.rotation = rightHand.vrTarget.rotation * Quaternion.Euler(rightHand.trackingRotationOffset);
-        }
-
-        private void SetVRAndIKTargetPositionRation()
-        {
-            _currentYRatio = head.vrTarget.position.y;
-            _currentXRatio = rightHand.vrTarget.position.x;
-        }
-     */
 }
