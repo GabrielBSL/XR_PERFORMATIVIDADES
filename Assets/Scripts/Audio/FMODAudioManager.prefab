@@ -45,9 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aeb28c587ab86b42bd68b2a3fef1be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualSettings: 1
+  manualSettings: 0
   distance: 0
   height: 0
+  intensity: 0
+  sampleSize: 60
+  scale: 10
 --- !u!114 &1313240298826343162
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class VelocityTracker : MonoBehaviour
         parameter = Math.Round(deltaPosition * scale, 3);
 
         Debug.Log($"deltaPosition = {parameter}");
-        FMODAudioManager.SetWind(parameter);
+        //FMODAudioManager.SetWind(parameter);
 
         
     }

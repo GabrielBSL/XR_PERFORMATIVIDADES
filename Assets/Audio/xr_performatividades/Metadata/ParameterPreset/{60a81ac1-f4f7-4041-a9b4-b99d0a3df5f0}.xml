@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{60a81ac1-f4f7-4041-a9b4-b99d0a3df5f0}">
 		<property name="name">
-			<value>wind</value>
+			<value>height</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>

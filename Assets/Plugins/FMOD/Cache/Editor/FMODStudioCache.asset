@@ -34,9 +34,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/wind
+  m_Name: parameter:/music_magnet/height
   m_EditorClassIdentifier: 
-  Name: wind
+  Name: height
   StudioPath: 
   Min: 0
   Max: 1
@@ -96,7 +96,7 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638470664820264847
+  cacheTime: 638475740488108013
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638470664820264847
+  lastModified: 638475740488108013
   FileSizes:
   - Name: Desktop
-    Value: 990
+    Value: 992
   Exists: 1
 --- !u!114 &1290508865706229744
 MonoBehaviour:
@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/onirico
+  m_Name: parameter:/music_magnet/oneiric
   m_EditorClassIdentifier: 
-  Name: onirico
+  Name: oneiric
   StudioPath: 
   Min: 0
   Max: 1
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/onirico
+  m_Name: parameter:/music/oneiric
   m_EditorClassIdentifier: 
-  Name: onirico
+  Name: oneiric
   StudioPath: 
   Min: 0
   Max: 1
@@ -206,9 +206,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/wind
+  m_Name: parameter:/music/height
   m_EditorClassIdentifier: 
-  Name: wind
+  Name: height
   StudioPath: 
   Min: 0
   Max: 1
@@ -292,8 +292,8 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638470664820249588
+  lastModified: 638475740488097833
   FileSizes:
   - Name: Desktop
-    Value: 6540544
+    Value: 8391744
   Exists: 1

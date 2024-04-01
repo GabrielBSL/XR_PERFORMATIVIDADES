@@ -52,8 +52,8 @@ public class FMODAudioManagerBackup : MonoBehaviour
 
     private void OnEnable()
     {
-        MainEventsManager.leftHandTransformUpdate += ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTransformUpdate += ReceiveRightControllerTransform;
+        MainEventsManager.leftHandTargetTransformUpdate += ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTargetTransformUpdate += ReceiveRightControllerTransform;
 
         FMODInputInstance.FMODGestures.Thunder.Enable();
         FMODInputInstance.FMODGestures.Thunder.performed += Thunder;
@@ -61,8 +61,8 @@ public class FMODAudioManagerBackup : MonoBehaviour
 
     private void OnDisable()
     {
-        MainEventsManager.leftHandTransformUpdate -= ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTransformUpdate -= ReceiveRightControllerTransform;
+        MainEventsManager.leftHandTargetTransformUpdate -= ReceiveLeftControllerTransform;
+        MainEventsManager.rightHandTargetTransformUpdate -= ReceiveRightControllerTransform;
 
         FMODInputInstance.FMODGestures.Thunder.Disable();
         FMODInputInstance.FMODGestures.Thunder.performed -= Thunder;
