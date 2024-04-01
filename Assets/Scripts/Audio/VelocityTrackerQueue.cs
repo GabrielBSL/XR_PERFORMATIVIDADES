@@ -21,8 +21,7 @@ public class VelocityTrackerQueue : MonoBehaviour
         while (positionQueue.Count > sampleSize) oldestPosition = positionQueue.Dequeue();
         deltaPosition = Vector3.Magnitude(currentPosition - oldestPosition);
         parameter = Math.Round(deltaPosition * scale, 3);
-
-
+        
         Debug.Log($"deltaPosition = {parameter}");
         FMODAudioManager.SetWind(parameter);
     }

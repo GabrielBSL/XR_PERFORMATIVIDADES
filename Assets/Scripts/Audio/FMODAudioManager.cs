@@ -84,14 +84,14 @@ public class FMODAudioManager : MonoBehaviour
             distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
             //Debug.Log($"distance = {distance}");
         }
-        //SetOnirico(distance);
+        SetOnirico(distance);
 
         //================ CONTROLLER HEIGHT ================
         if (!manualSettings)
         {
             height = ((leftControllerTransform.position.y + rightControllerTransform.position.y) / 2) - 1.25f;
         }
-        //SetWind(height);
+        SetWind(height);
     }    
     
     //================ Unity Transforms Getters ================
