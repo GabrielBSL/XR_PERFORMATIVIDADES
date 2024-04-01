@@ -24944,8 +24944,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aeb28c587ab86b42bd68b2a3fef1be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerInputActionReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rotationInputActionReference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightTriggerInputActionReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftGripInputActionReference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightRotationInputActionReference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1777838048
 Transform:
   m_ObjectHideFlags: 0
