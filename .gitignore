@@ -89,6 +89,10 @@ crashlytics-build.properties
 fmod.log
 fmod_editor.log
 
+# Studio temp folders
+/Assets/Audio/xr_performatividades/.cache/*
+/Assets/Audio/xr_performatividades/.user/*
+
 # FMOD 1.10.x (Legacy)
 /Assets/FMODAssets/*
 /Assets/FMODStudioCache.meta
