@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace Main.XR
 {
-    public class XROriginHeightCorrector : MonoBehaviour
+    public class XROriginPositionCorrector : MonoBehaviour
     {
-        [SerializeField] private float idealHeight = 1.72f;
+        [SerializeField] private Transform headSpawn;
+        [SerializeField] private Vector3 offset;
 
         private void OnEnable()
         {
@@ -18,11 +19,11 @@ namespace Main.XR
             MainEventsManager.defaultHeightValue -= ReceiveInitialHeight;
         }
 
-        private void ReceiveInitialHeight(float height)
+        private void ReceiveInitialHeight(Vector3 headPosition)
         {
-            Debug.Log(height);
-            float heightDifference = idealHeight - height;
-            transform.position = new Vector3(transform.position.x, transform.position.y + heightDifference, transform.position.z);
+            Debug.Log(headPosition);
+            Vector3 positionDifference = headSpawn.position - headPosition;
+            transform.position += positionDifference + offset;
         }
     }
 }

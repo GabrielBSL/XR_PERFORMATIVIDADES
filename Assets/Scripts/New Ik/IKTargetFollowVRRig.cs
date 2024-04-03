@@ -48,21 +48,26 @@ namespace Main.IK
 
         [Header("Config")]
         [SerializeField] private bool allowRatioCalculation;
+        [SerializeField] private Transform groundPoint;
         [SerializeField] private InputAction ratioAction;
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
 
-        private float _xAxisRatioBase = 1;
-        private float _yAxisRatioBase = 1;
+        private float _xAxisRatioBase = .76f;
+        private float _yAxisRatioBase = 1.93f;
         private float _currentXRatio = 1;
         private float _currentYRatio = 1;
-        private bool _ratioBaseConfigurated = false;
+        private float _firstHeightValue = float.NegativeInfinity;
+
         private bool _firstHeightCalculated = false;
 
         private void Awake()
         {
             ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
+
+            _currentXRatio = _xAxisRatioBase;
+            _currentYRatio = _yAxisRatioBase;
         }
 
         private void OnEnable()
@@ -87,14 +92,17 @@ namespace Main.IK
             float yaw = head.vrTarget.eulerAngles.y;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, yaw, transform.eulerAngles.z), turnSmoothness);
 
-            Vector3 positionRatio = _ratioBaseConfigurated ? new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1) : Vector3.one;
-            //Debug.Log("Y ratio: " + positionRatio.y + " X ratio: " + positionRatio.x);
+            Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
+            Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
 
-            float currentHeight = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true).y;
-            if (!_firstHeightCalculated)
+            if (_firstHeightValue == float.NegativeInfinity)
             {
-                MainEventsManager.defaultHeightValue?.Invoke(currentHeight);
+                _firstHeightValue = headPosition.y;
+            }
+            else if(_firstHeightValue != headPosition.y && !_firstHeightCalculated)
+            {
                 _firstHeightCalculated = true;
+                MainEventsManager.defaultHeightValue?.Invoke(headPosition);
             }
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
@@ -108,16 +116,11 @@ namespace Main.IK
                 return;
             }
 
-            _currentYRatio = mainCameraTransform.localPosition.y;
+            _currentYRatio = mainCameraTransform.position.y - groundPoint.position.y;
             _currentXRatio = rightControllerTransform.localPosition.x - mainCameraTransform.localPosition.x;
 
-            if (!_ratioBaseConfigurated)
-            {
-                _ratioBaseConfigurated = true;
-
-                _xAxisRatioBase = _currentXRatio;
-                _yAxisRatioBase = _currentYRatio;
-            }
+            Debug.Log("height: " + _currentYRatio);
+            Debug.Log("width: " + _currentXRatio);
         }
     }
 }
