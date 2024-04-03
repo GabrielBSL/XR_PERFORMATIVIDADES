@@ -12,6 +12,6 @@ namespace Main.Events
         public static Action<Transform> headTransformUpdate;
         public static Action<Transform> bodyTransformUpdate;
 
-        public static Action<float> defaultHeightValue;
+        public static Action<Vector3> defaultHeightValue;
     }
 }

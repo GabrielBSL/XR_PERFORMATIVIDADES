@@ -2,15 +2,16 @@ using Main.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Main.Debugs
 {
     public class XRTargetSetter : MonoBehaviour
     {
         [Header("Targets")]
-        [SerializeField] private Transform headTarget;
-        [SerializeField] private Transform leftHandTarget;
-        [SerializeField] private Transform rightHandTarget;
+        [SerializeField] private Transform headController;
+        [SerializeField] private Transform leftHandController;
+        [SerializeField] private Transform rightHandController;
 
         [Header("Configurations")]
         [SerializeField] private float headTargetHeight;
@@ -18,21 +19,37 @@ namespace Main.Debugs
         [SerializeField] private float rightHandXDistance;
         [SerializeField] private float leftHandXDistance;
         [SerializeField] private float handTargetZAxis;
+        [SerializeField] private Vector2 XZOffset;
 
-        private void Start()
+        private bool updateManually = true;
+
+        private void OnEnable()
         {
-            headTarget.transform.localPosition = new Vector3(headTarget.localPosition.x, headTargetHeight, headTarget.localPosition.z);
+            XRDevice.deviceLoaded += OnDeviceLoaded;
+        }
 
-            leftHandTarget.transform.localPosition = new Vector3(leftHandXDistance * -1, handTargetsHeight, handTargetZAxis);
-            rightHandTarget.transform.localPosition = new Vector3(rightHandXDistance, handTargetsHeight, handTargetZAxis);
+        private void OnDisable()
+        {
+            XRDevice.deviceLoaded -= OnDeviceLoaded;
         }
 
         private void Update()
         {
-            headTarget.transform.localPosition = new Vector3(headTarget.localPosition.x, headTargetHeight, headTarget.localPosition.z);
+            if (!updateManually)
+            {
+                return;
+            }
 
-            leftHandTarget.transform.localPosition = new Vector3(leftHandXDistance * -1, handTargetsHeight, handTargetZAxis);
-            rightHandTarget.transform.localPosition = new Vector3(rightHandXDistance, handTargetsHeight, handTargetZAxis);
+            headController.transform.localPosition = new Vector3(headController.localPosition.x + XZOffset.x, headTargetHeight, headController.localPosition.z + XZOffset.y);
+
+            leftHandController.transform.localPosition = new Vector3(leftHandXDistance * -1 + XZOffset.x, handTargetsHeight, handTargetZAxis + XZOffset.y);
+            rightHandController.transform.localPosition = new Vector3(rightHandXDistance + XZOffset.x, handTargetsHeight, handTargetZAxis + XZOffset.y);
+        }
+
+        private void OnDeviceLoaded(string deviceName)
+        {
+            updateManually = !XRSettings.isDeviceActive;
         }
     }
 }
+ 
