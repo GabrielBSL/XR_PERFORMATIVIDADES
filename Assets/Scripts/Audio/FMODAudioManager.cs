@@ -46,9 +46,13 @@ public class FMODAudioManager : MonoBehaviour
     private FMODInput FMODInputInstance;
 
     // Intesity Detection
-    [SerializeField] private int sampleSize = 120;
+    [SerializeField] private int sampleSize = 60;
     [SerializeField] private double scale = 10;
-    [SerializeField] private float heightScale = 1.0f;
+
+    //MEDIDAS]
+    [SerializeField] private float maxWingspan; //= 1.752f
+    [SerializeField] private float maxHeight;
+    [SerializeField] private float groundHeight;
 
     private Queue<double> displacementQueue = new Queue<double>();
     private Vector3 currentHeadPosition;
@@ -104,6 +108,11 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
+        // remover isso
+        
+        //maxHeight = 2.43f;
+        //groundHeight = 2.0f;
+
         //================ INTENSITY ================
         if (!manualSettings)
         {
@@ -137,15 +146,22 @@ public class FMODAudioManager : MonoBehaviour
         //================ DISTANCE BETWEEN CONTROLLERS ================
         if (!manualSettings)
         {
-            distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
+            distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / maxWingspan;
             Debug.Log($"distance = {distance}");
         }
         SetOneiric(distance);
 
         //================ HEADSET HEIGHT ================
+        Debug.Log($"headset_height = {headsetTransform.position.y}");
         if (!manualSettings)
         {
-            height = (headsetTransform.position.y - 1.8f) * heightScale;
+            /*
+            Debug.Log($"(maxHeight) = {maxHeight}");    
+            Debug.Log($"(groundHeight) = {groundHeight}");
+            Debug.Log($"(maxHeight - groundHeight) = {maxHeight - groundHeight}");
+            */
+
+            height = (headsetTransform.position.y - groundHeight) / (maxHeight - groundHeight);
             Debug.Log($"height = {height}");
         }
         SetHeight(height);

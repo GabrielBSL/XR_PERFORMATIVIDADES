@@ -39,7 +39,7 @@ MonoBehaviour:
   Name: height
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 1.2
   Default: 0
   ID:
     data1: 3656428949
@@ -72,6 +72,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2024456359683284623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_magnet/flute
+  m_EditorClassIdentifier: 
+  Name: flute
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 964754189
+    data2: 3424696569
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +120,7 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638475767969998775
+  cacheTime: 638476544021338791
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -113,10 +137,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638475767969998775
+  lastModified: 638476544021338791
   FileSizes:
   - Name: Desktop
-    Value: 992
+    Value: 1028
   Exists: 1
 --- !u!114 &1290508865706229744
 MonoBehaviour:
@@ -211,7 +235,7 @@ MonoBehaviour:
   Name: height
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 1.2
   Default: 0
   ID:
     data1: 3656428949
@@ -274,6 +298,7 @@ MonoBehaviour:
   - {fileID: -7639020255411695591}
   - {fileID: -3629311448826345368}
   - {fileID: 1290508865706229744}
+  - {fileID: -2024456359683284623}
   MinDistance: 1
   MaxDistance: 20
   Length: 153600
@@ -292,8 +317,8 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638475767969922685
+  lastModified: 638476544021318126
   FileSizes:
   - Name: Desktop
-    Value: 8391744
+    Value: 8392096
   Exists: 1
