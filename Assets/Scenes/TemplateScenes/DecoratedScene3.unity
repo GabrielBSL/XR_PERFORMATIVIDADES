@@ -22401,8 +22401,6 @@ MonoBehaviour:
   sampleSize: 120
   scale: 10
   maxWingspan: 0
-  maxHeight: 1
-  groundHeight: 1
 --- !u!4 &1431971420
 Transform:
   m_ObjectHideFlags: 0
@@ -28295,14 +28293,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
-      propertyPath: maxHeight
-      value: 2.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
-      propertyPath: sampleSize
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
       propertyPath: groundHeight
       value: 1.86
       objectReference: {fileID: 0}
@@ -28310,10 +28300,6 @@ PrefabInstance:
       propertyPath: footTransform
       value: 
       objectReference: {fileID: 904661725}
-    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
-      propertyPath: manualSettings
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

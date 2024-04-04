@@ -50,9 +50,9 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] private double scale = 10;
 
     //MEDIDAS]
-    [SerializeField] private float maxWingspan; //= 1.752f
-    [SerializeField] private float maxHeight;
-    [SerializeField] private float groundHeight;
+    [SerializeField] private float maxWingspan;
+    private float maxHeight;
+    private float crouchHeight;
 
     private Queue<double> displacementQueue = new Queue<double>();
     private Vector3 currentHeadPosition;
@@ -108,11 +108,6 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
-        // remover isso
-        
-        //maxHeight = 2.43f;
-        //groundHeight = 2.0f;
-
         //================ INTENSITY ================
         if (!manualSettings)
         {
@@ -137,32 +132,34 @@ public class FMODAudioManager : MonoBehaviour
                 averageDisplacement -= oldestDisplacement / sampleSize;
             }
             
-            Debug.Log($"averageDisplacement = {averageDisplacement}");
+            //Debug.Log($"averageDisplacement = {averageDisplacement}");
             intensity = Math.Round(averageDisplacement * scale, 3);
         }
-        Debug.Log($"intensity = {intensity}");
+        //Debug.Log($"intensity = {intensity}");
         SetIntensity(intensity);
 
         //================ DISTANCE BETWEEN CONTROLLERS ================
         if (!manualSettings)
         {
             distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / maxWingspan;
-            Debug.Log($"distance = {distance}");
+            //Debug.Log($"distance = {distance}");
         }
         SetOneiric(distance);
 
         //================ HEADSET HEIGHT ================
-        Debug.Log($"headset_height = {headsetTransform.position.y}");
+        Debug.Log($"current target y = {headsetTransform.position.y}");
         if (!manualSettings)
         {
-            /*
-            Debug.Log($"(maxHeight) = {maxHeight}");    
-            Debug.Log($"(groundHeight) = {groundHeight}");
-            Debug.Log($"(maxHeight - groundHeight) = {maxHeight - groundHeight}");
-            */
+            //maxHeight = 2.43f;
+            //crouchHeight = 1.8f;
+            Debug.Log($"maxHeight = {maxHeight}");
+            Debug.Log($"crouchHeight = {crouchHeight}");
 
-            height = (headsetTransform.position.y - groundHeight) / (maxHeight - groundHeight);
-            Debug.Log($"height = {height}");
+            Debug.Log($"Math.Max(0, (headsetTransform.position.y - crouchHeight)) = {Math.Max(0, (headsetTransform.position.y - crouchHeight))}");    
+            Debug.Log($"Math.Max(0, (maxHeight - crouchHeight)) = {Math.Max(0, (maxHeight - crouchHeight))}");
+        
+            height = Math.Max(0, (headsetTransform.position.y - crouchHeight)) / Math.Max(0, (maxHeight - crouchHeight));
+            Debug.Log($"parameter = {height}");
         }
         SetHeight(height);
     }    
