@@ -85,6 +85,10 @@ crashlytics-build.properties
 /[Aa]ssets/Plugins/FMOD/Cache.meta
 /[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
 
+/Assets/Audio/xr_performatividades/.cache/*
+/Assets/Audio/xr_performatividades/.unsaved/*
+/Assets/Audio/xr_performatividades/.user/*
+
 # Log-files
 fmod.log
 fmod_editor.log

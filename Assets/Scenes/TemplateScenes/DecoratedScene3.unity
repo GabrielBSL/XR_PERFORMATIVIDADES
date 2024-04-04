@@ -12964,6 +12964,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903253612}
   m_Mesh: {fileID: -7453677252147620261, guid: 6cca6bbf9d57ac94f9a30664b02f67f7, type: 3}
+--- !u!4 &904661725 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7381045547827639211, guid: 4a714db2f3e90c446bab30e776aa98e9, type: 3}
+  m_PrefabInstance: {fileID: 1957063854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904803446
 GameObject:
   m_ObjectHideFlags: 0
@@ -22395,7 +22400,9 @@ MonoBehaviour:
   intensity: 0
   sampleSize: 120
   scale: 10
-  heightScale: 1
+  maxWingspan: 0
+  maxHeight: 1
+  groundHeight: 1
 --- !u!4 &1431971420
 Transform:
   m_ObjectHideFlags: 0
@@ -28285,6 +28292,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+      propertyPath: maxHeight
+      value: 2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+      propertyPath: sampleSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+      propertyPath: groundHeight
+      value: 1.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+      propertyPath: footTransform
+      value: 
+      objectReference: {fileID: 904661725}
+    - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+      propertyPath: manualSettings
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
