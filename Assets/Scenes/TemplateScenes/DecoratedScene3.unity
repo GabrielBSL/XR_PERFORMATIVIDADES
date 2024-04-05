@@ -1768,7 +1768,7 @@ Transform:
   m_GameObject: {fileID: 122154417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.23, y: 0.2, z: 119.4}
+  m_LocalPosition: {x: -20.14, y: 2.11, z: 119.4}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8933,7 +8933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e2a34b434fdf74798deee788e4d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idealHeight: 2.2
+  headSpawn: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &716012314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30798,6 +30799,7 @@ MonoBehaviour:
   leftControllerTransform: {fileID: 0}
   rightControllerTransform: {fileID: 0}
   allowRatioCalculation: 0
+  groundPoint: {fileID: 0}
   ratioAction:
     m_Name: Ratio
     m_Type: 0
