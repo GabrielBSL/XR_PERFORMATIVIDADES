@@ -1,6 +1,4 @@
 using Main.Events;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Main.XR
