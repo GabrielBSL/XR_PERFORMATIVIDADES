@@ -13,5 +13,7 @@ namespace Main.Events
         public static Action<Transform> bodyTransformUpdate;
 
         public static Action<Vector3> defaultHeightValue;
+
+        public static Action activateMimic;
     }
 }

@@ -54,6 +54,7 @@ namespace Main.IK
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
+        [SerializeField] private bool forceMimicActivation;
 
         private float _xAxisRatioBase = .76f;
         private float _yAxisRatioBase = 1.93f;
@@ -82,6 +83,14 @@ namespace Main.IK
         {
             ratioAction.Disable();
             positionCorrectionAction.Disable();
+        }
+
+        private void Update()
+        {
+            if (forceMimicActivation)
+            {
+                MainEventsManager.activateMimic?.Invoke();
+            }
         }
 
         // Update is called once per frame
