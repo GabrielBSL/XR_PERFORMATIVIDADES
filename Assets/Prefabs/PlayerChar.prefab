@@ -1294,6 +1294,8 @@ MonoBehaviour:
   mainCameraTransform: {fileID: 0}
   leftControllerTransform: {fileID: 0}
   rightControllerTransform: {fileID: 0}
+  allowRatioCalculation: 1
+  groundPoint: {fileID: 0}
   ratioAction:
     m_Name: Ratio
     m_Type: 0
@@ -1311,8 +1313,23 @@ MonoBehaviour:
       m_Action: Ratio
       m_Flags: 0
     m_Flags: 0
-  xAxisRatioBase: 0.87
-  yAxisRatioBase: 1.68
+  positionCorrectionAction:
+    m_Name: Position Correction
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 797b070b-574f-4e12-9475-62882e1dd2fb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d96ea9a7-34ff-4003-87de-750b44cc4e44
+      m_Path: <XRController>{LeftHand}/{TriggerButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Position Correction
+      m_Flags: 0
+    m_Flags: 0
   forceRatioCalculation: 0
 --- !u!114 &1145256066281361090
 MonoBehaviour:

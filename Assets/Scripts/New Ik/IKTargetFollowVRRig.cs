@@ -50,6 +50,7 @@ namespace Main.IK
         [SerializeField] private bool allowRatioCalculation;
         [SerializeField] private Transform groundPoint;
         [SerializeField] private InputAction ratioAction;
+        [SerializeField] private InputAction positionCorrectionAction;
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
@@ -59,12 +60,14 @@ namespace Main.IK
         private float _currentXRatio = 1;
         private float _currentYRatio = 1;
         private float _firstHeightValue = float.NegativeInfinity;
+        private Vector3 _currentHeadPosition;
 
         private bool _firstHeightCalculated = false;
 
         private void Awake()
         {
             ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
+            positionCorrectionAction.performed += _ => SendCurrentHeadPosition();
 
             _currentXRatio = _xAxisRatioBase;
             _currentYRatio = _yAxisRatioBase;
@@ -73,10 +76,12 @@ namespace Main.IK
         private void OnEnable()
         {
             ratioAction.Enable();
+            positionCorrectionAction.Enable();
         }
         private void OnDisable()
         {
             ratioAction.Disable();
+            positionCorrectionAction.Disable();
         }
 
         // Update is called once per frame
@@ -94,6 +99,7 @@ namespace Main.IK
 
             Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
             Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
+            _currentHeadPosition = headPosition;
 
             if (_firstHeightValue == float.NegativeInfinity)
             {
@@ -121,6 +127,11 @@ namespace Main.IK
 
             Debug.Log("height: " + _currentYRatio);
             Debug.Log("width: " + _currentXRatio);
+        }
+
+        private void SendCurrentHeadPosition()
+        {
+            MainEventsManager.defaultHeightValue?.Invoke(_currentHeadPosition);
         }
     }
 }

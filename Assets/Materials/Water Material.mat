@@ -68,8 +68,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_2932D165: 1
-    - Vector1_FD71C679: 0.005
+    - Vector1_2932D165: 10
+    - Vector1_FD71C679: 0.01
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 10
