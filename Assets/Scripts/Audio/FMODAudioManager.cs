@@ -32,27 +32,28 @@ public class FMODAudioManager : MonoBehaviour
     private static FMOD.Studio.EventInstance MusicEventInstance;
 
     // Controller Transforms (Temporary implementation using Events)
-    private Transform headsetTransform;
-    private Transform leftControllerTransform;
-    private Transform rightControllerTransform;
+    [SerializeField] private Transform headsetTransform;
+    [SerializeField] private Transform leftControllerTransform;
+    [SerializeField] private Transform rightControllerTransform;
+    [SerializeField] private Transform rightFootTransform;
+
+    //MEDIDAS
+    private float standingHeight;
+    private float wingspan;
     
     // Positional
-    [SerializeField] private bool manualSettings;
-    [SerializeField] [Range(0f, 1f)] private float distance;
-    [SerializeField] [Range(0f, 1f)] private float height;
-    [SerializeField] [Range(0f, 5f)] private double intensity;
-
-    // Actions (using Input System)
-    private FMODInput FMODInputInstance;
+    [SerializeField] private bool overrideSettings;
+    [SerializeField] private bool calibratingWingspan;
+    [SerializeField] [Range(0f, 1f)] private float volume;
+    [SerializeField] [Range(0f, 1f)] private float oneiric;
+    [SerializeField] [Range(0f, 1.2f)] private float height;
+    [SerializeField] [Range(0f, 1f)] private float flute;
+    [SerializeField] [Range(0f, 5f)] private float intensity;
+    [SerializeField] [Range(0f, 1f)] private float marimba;
 
     // Intesity Detection
     [SerializeField] private int sampleSize = 60;
     [SerializeField] private double scale = 10;
-
-    //MEDIDAS]
-    [SerializeField] private float maxWingspan;
-    private float maxHeight;
-    private float crouchHeight;
 
     private Queue<double> displacementQueue = new Queue<double>();
     private Vector3 currentHeadPosition;
@@ -69,48 +70,40 @@ public class FMODAudioManager : MonoBehaviour
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
-    private void Awake()
-    {
-        FMODInputInstance = new FMODInput();
-    }
-
-    private void OnEnable()
-    {
-        MainEventsManager.headTransformUpdate += ReceiveHeadsetTransform;
-        MainEventsManager.leftHandTargetTransformUpdate += ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTargetTransformUpdate += ReceiveRightControllerTransform;
-
-        FMODInputInstance.FMODGestures.Thunder.Enable();
-        FMODInputInstance.FMODGestures.Thunder.performed += Thunder;
-    }
-
-    private void OnDisable()
-    {
-        MainEventsManager.headTransformUpdate -= ReceiveHeadsetTransform;
-        MainEventsManager.leftHandTargetTransformUpdate -= ReceiveLeftControllerTransform;
-        MainEventsManager.rightHandTargetTransformUpdate -= ReceiveRightControllerTransform;
-
-        FMODInputInstance.FMODGestures.Thunder.Disable();
-        FMODInputInstance.FMODGestures.Thunder.performed -= Thunder;
-    }
-
     void Start()
     {
         // FMOD Setup
-        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_magnet");
+        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
 
         currentHeadPosition = rightControllerTransform.position;
         currentLeftPosition = leftControllerTransform.position;
         currentRightPosition = rightControllerTransform.position;
+
+        standingHeight = Vector3.Distance(headsetTransform.position, rightFootTransform.position);
     }
 
     void Update()
     {
-        //================ INTENSITY ================
-        if (!manualSettings)
+        if (calibratingWingspan)
         {
+            wingspan = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
+            Debug.Log($"Wingspan = {wingspan}");
+        }
+
+        if (!overrideSettings)
+        {
+            //================ ONEIRIC ================
+            oneiric = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / wingspan;
+
+            //================ HEIGHT ================
+            height = Vector3.Distance(headsetTransform.position, rightFootTransform.position) / standingHeight;
+
+            //================ FLUTE ================
+            flute = (leftControllerTransform.position.y + rightControllerTransform.position.y)/2 - (headsetTransform.position.y - standingHeight/2);
+
+            //================ INTENSITY ================
             lastHeadPosition = currentHeadPosition;
             lastLeftPosition = currentLeftPosition;
             lastRightPosition = currentRightPosition;
@@ -131,69 +124,25 @@ public class FMODAudioManager : MonoBehaviour
                 oldestDisplacement = displacementQueue.Dequeue();
                 averageDisplacement -= oldestDisplacement / sampleSize;
             }
-            
-            //Debug.Log($"averageDisplacement = {averageDisplacement}");
-            intensity = Math.Round(averageDisplacement * scale, 3);
+            intensity = (float) Math.Round(averageDisplacement * scale, 3);
+            //Debug.Log(intensity);
         }
-        //Debug.Log($"intensity = {intensity}");
-        SetIntensity(intensity);
 
-        //================ DISTANCE BETWEEN CONTROLLERS ================
-        if (!manualSettings)
-        {
-            distance = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / maxWingspan;
-            //Debug.Log($"distance = {distance}");
-        }
-        SetOneiric(distance);
-
-        //================ HEADSET HEIGHT ================
-        Debug.Log($"current target y = {headsetTransform.position.y}");
-        if (!manualSettings)
-        {
-            //maxHeight = 2.43f;
-            //crouchHeight = 1.8f;
-            Debug.Log($"maxHeight = {maxHeight}");
-            Debug.Log($"crouchHeight = {crouchHeight}");
-
-            Debug.Log($"Math.Max(0, (headsetTransform.position.y - crouchHeight)) = {Math.Max(0, (headsetTransform.position.y - crouchHeight))}");    
-            Debug.Log($"Math.Max(0, (maxHeight - crouchHeight)) = {Math.Max(0, (maxHeight - crouchHeight))}");
-        
-            height = Math.Max(0, (headsetTransform.position.y - crouchHeight)) / Math.Max(0, (maxHeight - crouchHeight));
-            Debug.Log($"parameter = {height}");
-        }
+        SetVolume(volume);
+        SetOneiric(oneiric);
         SetHeight(height);
-    }    
-    
-    //================ Unity Transforms Getters ================
-
-    
-    private void ReceiveHeadsetTransform(Transform _headsetTransform)
-    {
-        headsetTransform = _headsetTransform;
-    }
-
-    private void ReceiveLeftControllerTransform(Transform _leftControllerTransform)
-    {
-        leftControllerTransform = _leftControllerTransform;
+        SetFlute(flute);
+        SetIntensity(intensity);
+        SetMarimba(marimba);        
     }
     
-    private void ReceiveRightControllerTransform(Transform _rightControllerTransform)
-    {
-        rightControllerTransform = _rightControllerTransform;
-    }
-
     //================ FMOD Parameter Setters ================
 
     public static void SetVolume(double volume)
     {
         MusicEventInstance.setVolume((float)volume);
     }
-
-    public static void SetIntensity(double value)
-    {
-        MusicEventInstance.setParameterByName("intensity", (float)value);
-    }
-
+    
     public static void SetOneiric(double value)
     {
         MusicEventInstance.setParameterByName("oneiric", (float)value);
@@ -202,6 +151,21 @@ public class FMODAudioManager : MonoBehaviour
     public static void SetHeight(double value)
     {
         MusicEventInstance.setParameterByName("height", (float)value);
+    }
+    
+    public static void SetFlute(double value)
+    {
+        MusicEventInstance.setParameterByName("flute", (float)value);
+    }
+
+    public static void SetIntensity(double value)
+    {
+        MusicEventInstance.setParameterByName("intensity", (float)value);
+    }
+ 
+    public static void SetMarimba(double value)
+    {
+        MusicEventInstance.setParameterByName("marimba", (float)value);
     }
 
     //================ FMOD Oneshots ================

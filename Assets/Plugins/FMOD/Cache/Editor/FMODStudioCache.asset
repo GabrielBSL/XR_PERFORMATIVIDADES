@@ -1,53 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7639020255411695591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/intensity
-  m_EditorClassIdentifier: 
-  Name: intensity
-  StudioPath: 
-  Min: 0
-  Max: 6
-  Default: 0
-  ID:
-    data1: 3752549352
-    data2: 1789222794
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-3629311448826345368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/height
-  m_EditorClassIdentifier: 
-  Name: height
-  StudioPath: 
-  Min: 0
-  Max: 1.2
-  Default: 0
-  ID:
-    data1: 3656428949
-    data2: 954841651
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-2095206821335200369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,30 +24,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-2024456359683284623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/flute
-  m_EditorClassIdentifier: 
-  Name: flute
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 964754189
-    data2: 3424696569
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,15 +40,13 @@ MonoBehaviour:
   - {fileID: 918319241004307614}
   - {fileID: 7742826145432322553}
   EditorEvents:
-  - {fileID: 4167902295969160565}
   - {fileID: 3604542748348171373}
-  - {fileID: 4387347399935931576}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638477839409509831
+  cacheTime: 638479554935055117
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -137,34 +63,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638477839409509831
+  lastModified: 638479554935055117
   FileSizes:
   - Name: Desktop
-    Value: 1028
-  Exists: 1
---- !u!114 &1290508865706229744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_magnet/oneiric
-  m_EditorClassIdentifier: 
-  Name: oneiric
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 262618023
-    data2: 289592499
-  Type: 0
-  IsGlobal: 0
-  Labels: []
+    Value: 966
   Exists: 1
 --- !u!114 &2074101697553897651
 MonoBehaviour:
@@ -204,10 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/music
   Guid:
-    Data1: 1501604711
-    Data2: 1336749307
-    Data3: 771713170
-    Data4: 1605060953
+    Data1: -1380369795
+    Data2: 1081164596
+    Data3: -759650375
+    Data4: -733619706
   Banks:
   - {fileID: 7742826145432322553}
   IsStream: 1
@@ -217,9 +119,11 @@ MonoBehaviour:
   - {fileID: -2095206821335200369}
   - {fileID: 2074101697553897651}
   - {fileID: 3977600011487785382}
+  - {fileID: 8573772104616097239}
+  - {fileID: 5703339897121116424}
   MinDistance: 1
   MaxDistance: 20
-  Length: 153600
+  Length: 24006
 --- !u!114 &3977600011487785382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +148,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &4167902295969160565
+--- !u!114 &5703339897121116424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,55 +157,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/thunder
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/marimba
   m_EditorClassIdentifier: 
-  Path: event:/thunder
-  Guid:
-    Data1: -159499307
-    Data2: 1243357062
-    Data3: 1932119693
-    Data4: -134120697
-  Banks:
-  - {fileID: 7742826145432322553}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 9613
---- !u!114 &4387347399935931576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music_magnet
-  m_EditorClassIdentifier: 
-  Path: event:/music_magnet
-  Guid:
-    Data1: -1380369795
-    Data2: 1081164596
-    Data3: -759650375
-    Data4: -733619706
-  Banks:
-  - {fileID: 7742826145432322553}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -7639020255411695591}
-  - {fileID: -3629311448826345368}
-  - {fileID: 1290508865706229744}
-  - {fileID: -2024456359683284623}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 153600
+  Name: marimba
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3566582945
+    data2: 440890054
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7742826145432322553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,8 +187,32 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638477839409479827
+  lastModified: 638479554935029421
   FileSizes:
   - Name: Desktop
-    Value: 5605696
+    Value: 2819872
+  Exists: 1
+--- !u!114 &8573772104616097239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/flute
+  m_EditorClassIdentifier: 
+  Name: flute
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 964754189
+    data2: 3424696569
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
