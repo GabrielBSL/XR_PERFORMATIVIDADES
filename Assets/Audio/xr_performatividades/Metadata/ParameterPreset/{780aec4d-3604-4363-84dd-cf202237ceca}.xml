@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{780aec4d-3604-4363-84dd-cf202237ceca}">
 		<property name="name">
-			<value>onirico</value>
+			<value>oneiric</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
