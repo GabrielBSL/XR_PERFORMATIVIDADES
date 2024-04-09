@@ -1412,6 +1412,33 @@ MonoBehaviour:
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.5, z: 0}
   headBodyYawOffset: 0
+  mainCameraTransform: {fileID: 0}
+  leftControllerTransform: {fileID: 0}
+  rightControllerTransform: {fileID: 0}
+  leftKneeTargetTransform: {fileID: 0}
+  rightKneeTargetTransform: {fileID: 0}
+  allowRatioCalculation: 0
+  groundPoint: {fileID: 0}
+  ratioAction:
+    m_Name: Ratio
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a2cda405-8be4-4c5e-b941-626bf588f96c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  positionCorrectionAction:
+    m_Name: Position Correction
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5b1e1db2-dd23-4750-ab7c-d93a9d10029e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  forceRatioCalculation: 0
+  forceBodyPositionCorrection: 0
 --- !u!114 &1139063108686747155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,6 +1453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArmTarget: {fileID: 9145629842216626557}
   leftArmTarget: {fileID: 5390010099803938472}
+  rightArmHint: {fileID: 0}
+  leftArmHint: {fileID: 0}
   headTarget: {fileID: 4381529490393529994}
 --- !u!1 &6201881379236016236
 GameObject:

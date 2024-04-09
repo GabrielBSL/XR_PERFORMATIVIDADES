@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using Main.Events;
+using Main.Mimics;
 
 namespace Main.IK
 {
@@ -46,6 +47,10 @@ namespace Main.IK
         [SerializeField] private Transform leftControllerTransform;
         [SerializeField] private Transform rightControllerTransform;
 
+        [Header("Knee Target Tranforms")]
+        [SerializeField] private Transform leftKneeTargetTransform;
+        [SerializeField] private Transform rightKneeTargetTransform;
+
         [Header("Config")]
         [SerializeField] private bool allowRatioCalculation;
         [SerializeField] private Transform groundPoint;
@@ -54,7 +59,7 @@ namespace Main.IK
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
-        [SerializeField] private bool forceMimicActivation;
+        [SerializeField] private bool forceBodyPositionCorrection;
 
         private float _xAxisRatioBase = .76f;
         private float _yAxisRatioBase = 1.93f;
@@ -68,7 +73,7 @@ namespace Main.IK
         private void Awake()
         {
             ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
-            positionCorrectionAction.performed += _ => SendCurrentHeadPosition();
+            positionCorrectionAction.performed += _ => CorrectBodyPosition();
 
             _currentXRatio = _xAxisRatioBase;
             _currentYRatio = _yAxisRatioBase;
@@ -87,10 +92,20 @@ namespace Main.IK
 
         private void Update()
         {
-            if (forceMimicActivation)
+            if (forceBodyPositionCorrection)
             {
-                MainEventsManager.activateMimic?.Invoke();
+                forceBodyPositionCorrection = false;
+                CorrectBodyPosition();
             }
+        }
+        
+        private void CorrectBodyPosition()
+        {
+            //SendCurrentHeadPosition();
+            MainEventsManager.activateMimic?.Invoke();
+            TryGetComponent(out MimicReference mimicReference);
+
+            mimicReference?.SendTransforms();
         }
 
         // Update is called once per frame

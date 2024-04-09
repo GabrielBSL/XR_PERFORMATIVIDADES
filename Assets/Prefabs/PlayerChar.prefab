@@ -1294,6 +1294,8 @@ MonoBehaviour:
   mainCameraTransform: {fileID: 0}
   leftControllerTransform: {fileID: 0}
   rightControllerTransform: {fileID: 0}
+  leftKneeTargetTransform: {fileID: 8296143074264140942}
+  rightKneeTargetTransform: {fileID: 7207014943355894847}
   allowRatioCalculation: 1
   groundPoint: {fileID: 0}
   ratioAction:
@@ -1331,6 +1333,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   forceRatioCalculation: 0
+  forceBodyPositionCorrection: 0
 --- !u!114 &1145256066281361090
 MonoBehaviour:
   m_ObjectHideFlags: 0

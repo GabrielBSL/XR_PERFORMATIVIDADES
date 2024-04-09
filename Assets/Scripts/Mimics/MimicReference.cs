@@ -13,6 +13,11 @@ namespace Main.Mimics
 
         void Start()
         {
+            SendTransforms();
+        }
+
+        public void SendTransforms()
+        {
             MainEventsManager.bodyTransformUpdate?.Invoke(transform);
             MainEventsManager.rightHandTargetTransformUpdate?.Invoke(rightArmTarget);
             MainEventsManager.leftHandTargetTransformUpdate?.Invoke(leftArmTarget);
