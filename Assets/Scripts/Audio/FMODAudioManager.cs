@@ -44,6 +44,7 @@ public class FMODAudioManager : MonoBehaviour
     // Positional
     [SerializeField] private bool overrideSettings;
     [SerializeField] private bool calibratingWingspan;
+    [SerializeField] [Range(0f, 3)] private int stage = 1;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0f, 1f)] private float oneiric;
     [SerializeField] [Range(0f, 1.2f)] private float height;
@@ -92,41 +93,10 @@ public class FMODAudioManager : MonoBehaviour
             wingspan = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
             Debug.Log($"Wingspan = {wingspan}");
         }
-
-        if (!overrideSettings)
+        switch (stage)
         {
-            //================ MARIMBA ================
-            marimba = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / wingspan;
-
-            //================ HEIGHT ================
-            height = Vector3.Distance(headsetTransform.position, rightFootTransform.position) / standingHeight;
-
-            //================ FLUTE ================
-            flute = (leftControllerTransform.position.y + rightControllerTransform.position.y)/2 - (headsetTransform.position.y - standingHeight/3);
-
-            //================ INTENSITY ================
-            lastHeadPosition = currentHeadPosition;
-            lastLeftPosition = currentLeftPosition;
-            lastRightPosition = currentRightPosition;
-
-            currentHeadPosition = rightControllerTransform.position;
-            currentLeftPosition = leftControllerTransform.position;
-            currentRightPosition = rightControllerTransform.position;
-
-            currentDisplacement =   Vector3.Magnitude(currentHeadPosition - lastHeadPosition) +
-                                    Vector3.Magnitude(currentLeftPosition - lastLeftPosition) +
-                                    Vector3.Magnitude(currentRightPosition - lastRightPosition);
-
-            displacementQueue.Enqueue(currentDisplacement);
-            averageDisplacement += currentDisplacement / intensitySampleSize;
-
-            while (displacementQueue.Count > intensitySampleSize)
-            {
-                oldestDisplacement = displacementQueue.Dequeue();
-                averageDisplacement -= oldestDisplacement / intensitySampleSize;
-            }
-            intensity = (float) Math.Round((averageDisplacement * intensityScale) - intensityMinimum, 3);
-            //Debug.Log(intensity);
+            case 1: { intensityMinimum = 0; intensityScale = 10; Stage1(); break; }
+            case 2: { intensityMinimum = 1; intensityScale = 20; Stage2(); break; }
         }
 
         SetVolume(volume);
@@ -134,7 +104,7 @@ public class FMODAudioManager : MonoBehaviour
         SetHeight(height);
         SetFlute(flute);
         SetIntensity(intensity);
-        SetMarimba(marimba);        
+        SetMarimba(marimba);       
     }
     
     //================ FMOD Parameter Setters ================
@@ -174,5 +144,76 @@ public class FMODAudioManager : MonoBehaviour
     public static void Thunder(InputAction.CallbackContext callbackContext)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
+    }
+
+    private void Stage1()
+    {
+        if (!overrideSettings)
+        {
+            //================ HEIGHT ================
+            height = Vector3.Distance(headsetTransform.position, rightFootTransform.position) / standingHeight;
+
+            //================ INTENSITY ================
+            lastHeadPosition = currentHeadPosition;
+            lastLeftPosition = currentLeftPosition;
+            lastRightPosition = currentRightPosition;
+
+            currentHeadPosition = rightControllerTransform.position;
+            currentLeftPosition = leftControllerTransform.position;
+            currentRightPosition = rightControllerTransform.position;
+
+            currentDisplacement =   Vector3.Magnitude(currentHeadPosition - lastHeadPosition) +
+                                    Vector3.Magnitude(currentLeftPosition - lastLeftPosition) +
+                                    Vector3.Magnitude(currentRightPosition - lastRightPosition);
+
+            displacementQueue.Enqueue(currentDisplacement);
+            averageDisplacement += currentDisplacement / intensitySampleSize;
+
+            while (displacementQueue.Count > intensitySampleSize)
+            {
+                oldestDisplacement = displacementQueue.Dequeue();
+                averageDisplacement -= oldestDisplacement / intensitySampleSize;
+            }
+            marimba = (float) Math.Round((averageDisplacement * intensityScale) - intensityMinimum, 3);
+        }
+    }
+    
+    private void Stage2()
+    {
+        if (!overrideSettings)
+        {
+            //================ MARIMBA ================
+            marimba = 1 - (Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / wingspan);
+
+            //================ HEIGHT ================
+            height = Vector3.Distance(headsetTransform.position, rightFootTransform.position) / standingHeight;
+
+            //================ FLUTE ================
+            flute = (leftControllerTransform.position.y + rightControllerTransform.position.y)/2 - (headsetTransform.position.y - standingHeight/3);
+
+            //================ INTENSITY ================
+            lastHeadPosition = currentHeadPosition;
+            lastLeftPosition = currentLeftPosition;
+            lastRightPosition = currentRightPosition;
+
+            currentHeadPosition = rightControllerTransform.position;
+            currentLeftPosition = leftControllerTransform.position;
+            currentRightPosition = rightControllerTransform.position;
+
+            currentDisplacement =   Vector3.Magnitude(currentHeadPosition - lastHeadPosition) +
+                                    Vector3.Magnitude(currentLeftPosition - lastLeftPosition) +
+                                    Vector3.Magnitude(currentRightPosition - lastRightPosition);
+
+            displacementQueue.Enqueue(currentDisplacement);
+            averageDisplacement += currentDisplacement / intensitySampleSize;
+
+            while (displacementQueue.Count > intensitySampleSize)
+            {
+                oldestDisplacement = displacementQueue.Dequeue();
+                averageDisplacement -= oldestDisplacement / intensitySampleSize;
+            }
+            intensity = (float) Math.Round((averageDisplacement * intensityScale) - intensityMinimum, 3);
+            //Debug.Log(intensity);
+        }
     }
 }
