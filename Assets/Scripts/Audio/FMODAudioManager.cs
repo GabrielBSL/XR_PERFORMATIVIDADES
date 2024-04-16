@@ -44,7 +44,7 @@ public class FMODAudioManager : MonoBehaviour
     // Positional
     [SerializeField] private bool overrideSettings;
     [SerializeField] private bool calibratingWingspan;
-    [SerializeField] [Range(0f, 1f)] private float volume;
+    [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0f, 1f)] private float oneiric;
     [SerializeField] [Range(0f, 1.2f)] private float height;
     [SerializeField] [Range(0f, 1f)] private float flute;
@@ -52,8 +52,9 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float marimba;
 
     // Intesity Detection
-    [SerializeField] private int sampleSize = 60;
-    [SerializeField] private double scale = 10;
+    [SerializeField] private int intensitySampleSize = 120;
+    [SerializeField] private double intensityScale = 20;
+    [SerializeField] private double intensityMinimum = 1;
 
     private Queue<double> displacementQueue = new Queue<double>();
     private Vector3 currentHeadPosition;
@@ -94,14 +95,14 @@ public class FMODAudioManager : MonoBehaviour
 
         if (!overrideSettings)
         {
-            //================ ONEIRIC ================
-            oneiric = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / wingspan;
+            //================ MARIMBA ================
+            marimba = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position) / wingspan;
 
             //================ HEIGHT ================
             height = Vector3.Distance(headsetTransform.position, rightFootTransform.position) / standingHeight;
 
             //================ FLUTE ================
-            flute = (leftControllerTransform.position.y + rightControllerTransform.position.y)/2 - (headsetTransform.position.y - standingHeight/2);
+            flute = (leftControllerTransform.position.y + rightControllerTransform.position.y)/2 - (headsetTransform.position.y - standingHeight/3);
 
             //================ INTENSITY ================
             lastHeadPosition = currentHeadPosition;
@@ -117,14 +118,14 @@ public class FMODAudioManager : MonoBehaviour
                                     Vector3.Magnitude(currentRightPosition - lastRightPosition);
 
             displacementQueue.Enqueue(currentDisplacement);
-            averageDisplacement += currentDisplacement / sampleSize;
+            averageDisplacement += currentDisplacement / intensitySampleSize;
 
-            while (displacementQueue.Count > sampleSize)
+            while (displacementQueue.Count > intensitySampleSize)
             {
                 oldestDisplacement = displacementQueue.Dequeue();
-                averageDisplacement -= oldestDisplacement / sampleSize;
+                averageDisplacement -= oldestDisplacement / intensitySampleSize;
             }
-            intensity = (float) Math.Round(averageDisplacement * scale, 3);
+            intensity = (float) Math.Round((averageDisplacement * intensityScale) - intensityMinimum, 3);
             //Debug.Log(intensity);
         }
 

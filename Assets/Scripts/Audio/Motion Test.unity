@@ -559,14 +559,15 @@ MonoBehaviour:
   rightFootTransform: {fileID: 34630243}
   overrideSettings: 0
   calibratingWingspan: 0
-  volume: 0
+  volume: 0.5
   oneiric: 0
   height: 0
   flute: 0
   intensity: 0
   marimba: 0
-  sampleSize: 60
-  scale: 20
+  intensitySampleSize: 120
+  intensityScale: 20
+  intensityMinimum: 1
 --- !u!4 &1123147866
 Transform:
   m_ObjectHideFlags: 0
