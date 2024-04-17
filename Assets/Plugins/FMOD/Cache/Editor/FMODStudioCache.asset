@@ -94,7 +94,7 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638488631872790100
+  cacheTime: 638489125408707493
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638488631872790100
+  lastModified: 638489125408707493
   FileSizes:
   - Name: Desktop
-    Value: 1002
+    Value: 1046
   Exists: 1
 --- !u!114 &2693159408042478923
 MonoBehaviour:
@@ -170,9 +170,10 @@ MonoBehaviour:
   - {fileID: -3974426195276715187}
   - {fileID: -3447368338191535782}
   - {fileID: 2693159408042478923}
+  - {fileID: 8107148163393485765}
   MinDistance: 1
   MaxDistance: 20
-  Length: 24006
+  Length: 43200
 --- !u!114 &5583498916032081501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,10 +213,34 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638488631872769924
+  lastModified: 638489125408687577
   FileSizes:
   - Name: Desktop
-    Value: 3406080
+    Value: 3623680
+  Exists: 1
+--- !u!114 &8107148163393485765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/acceleration
+  m_EditorClassIdentifier: 
+  Name: acceleration
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: 0
+  ID:
+    data1: 808646889
+    data2: 2036937024
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &8315991905542242708
 MonoBehaviour:

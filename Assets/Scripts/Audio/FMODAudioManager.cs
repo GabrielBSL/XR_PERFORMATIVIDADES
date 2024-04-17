@@ -91,7 +91,7 @@ public class FMODAudioManager : MonoBehaviour
         if (calibratingWingspan)
         {
             wingspan = Vector3.Distance(leftControllerTransform.position, rightControllerTransform.position);
-            Debug.Log($"Wingspan = {wingspan}");
+            //Debug.Log($"Wingspan = {wingspan}");
         }
         switch (stage)
         {
@@ -104,7 +104,7 @@ public class FMODAudioManager : MonoBehaviour
         SetHeight(height);
         SetFlute(flute);
         SetIntensity(intensity);
-        SetMarimba(marimba);       
+        //SetMarimba(marimba);       
     }
     
     //================ FMOD Parameter Setters ================
@@ -137,6 +137,11 @@ public class FMODAudioManager : MonoBehaviour
     public static void SetMarimba(double value)
     {
         MusicEventInstance.setParameterByName("marimba", (float)value);
+    }
+
+    public static void SetAcceleration(double value)
+    {
+        MusicEventInstance.setParameterByName("acceleration", (float)value);
     }
 
     //================ FMOD Oneshots ================

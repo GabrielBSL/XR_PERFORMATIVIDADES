@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VelocityTracker : MonoBehaviour
+public class VelocityTrackerDEPRECATED : MonoBehaviour
 {
     [SerializeField] private double scale = 10;
     private Vector3 lastPosition;
