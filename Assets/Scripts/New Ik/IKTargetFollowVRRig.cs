@@ -147,7 +147,8 @@ namespace Main.IK
             }
 
             _currentYRatio = mainCameraTransform.position.y - groundPoint.position.y;
-            _currentXRatio = rightControllerTransform.localPosition.x - mainCameraTransform.localPosition.x;
+            _currentXRatio = Vector3.Distance(new Vector3(rightControllerTransform.localPosition.x, 1, rightControllerTransform.localPosition.z),
+                new Vector3(mainCameraTransform.localPosition.x, 1, mainCameraTransform.localPosition.z));
 
             Debug.Log("height: " + _currentYRatio);
             Debug.Log("width: " + _currentXRatio);
