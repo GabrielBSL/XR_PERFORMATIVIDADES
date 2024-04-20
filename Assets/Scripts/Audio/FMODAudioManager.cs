@@ -151,6 +151,11 @@ public class FMODAudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
     }
 
+    public static void Impulse()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/impulse");
+    }
+
     private void Stage1()
     {
         if (!overrideSettings)

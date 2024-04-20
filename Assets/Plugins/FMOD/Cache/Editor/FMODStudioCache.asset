@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8657269438665343814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/impulse
+  m_EditorClassIdentifier: 
+  Path: event:/impulse
+  Guid:
+    Data1: 2108221103
+    Data2: 1312179321
+    Data3: 1341203373
+    Data4: 1052272909
+  Banks:
+  - {fileID: 7742826145432322553}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2866
 --- !u!114 &-3974426195276715187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,12 +116,13 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   EditorEvents:
   - {fileID: 3920622392559139112}
+  - {fileID: -8657269438665343814}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638489125408707493
+  cacheTime: 638490740314417755
   cacheVersion: 131616
 --- !u!114 &918319241004307614
 MonoBehaviour:
@@ -111,10 +139,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638489125408707493
+  lastModified: 638490740314417755
   FileSizes:
   - Name: Desktop
-    Value: 1046
+    Value: 1096
   Exists: 1
 --- !u!114 &2693159408042478923
 MonoBehaviour:
@@ -213,10 +241,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638489125408687577
+  lastModified: 638490740314392698
   FileSizes:
   - Name: Desktop
-    Value: 3623680
+    Value: 3649312
   Exists: 1
 --- !u!114 &8107148163393485765
 MonoBehaviour:
