@@ -7,13 +7,11 @@ public class Fauna : MonoBehaviour
 {
     private float value;
 
-    [SerializeField] private TransformSampler left;
-    [SerializeField] private TransformSampler right;
+    [SerializeField] private TransformSampler head;
 
     void Update()
     {
-        value = Vector3.Dot(left.currentSample.Item2 * Vector3.left,
-                            right.currentSample.Item2 * Vector3.right);
+        value = Vector3.Dot(head.currentSample.Item2 * Vector3.right, Vector3.forward);
     }
 
     public float GetValue()

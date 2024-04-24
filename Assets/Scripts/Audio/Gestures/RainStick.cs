@@ -8,12 +8,11 @@ public class RainStick : MonoBehaviour
     private float value;
 
     [SerializeField] private float scale = 1f;
-    [SerializeField] private TransformSampler headset;
-
+    [SerializeField] private TransformSampler hand;
 
     void Update()
     {
-        value = headset.GetSpeed() * scale;
+        value = (hand.GetSpeed() + hand.GetAngularSpeed())* scale;
     }
 
     public float GetValue()

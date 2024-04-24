@@ -42,6 +42,6 @@ public class TransformSampler : MonoBehaviour
     public Vector3 GetVelocity() {return GetDisplacement() / GetDeltaTime();} //displacement / deltaTime
     public float GetSpeed() {return GetDisplacement().magnitude / GetDeltaTime();} //displacement magnitude / deltaTime
     
-    public float GetRotation() {return Quaternion.Angle(currentSample.Item2, oldestSample.Item2);} //currentPosition - oldestPosition    
+    public float GetRotation() {return Quaternion.Angle(currentSample.Item2, oldestSample.Item2) / 180;} //currentPosition - oldestPosition    
     public float GetAngularSpeed() {return GetRotation() / GetDeltaTime();} //rotation / deltaTime
 }

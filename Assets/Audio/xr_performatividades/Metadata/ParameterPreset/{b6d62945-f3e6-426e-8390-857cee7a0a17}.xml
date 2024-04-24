@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{b6d62945-f3e6-426e-8390-857cee7a0a17}">
+		<property name="name">
+			<value>fauna</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c6e62e17-472d-4125-911d-abe42fb1490f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c6e62e17-472d-4125-911d-abe42fb1490f}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

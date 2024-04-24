@@ -21,6 +21,8 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] private float intensity;
     [SerializeField] [Range(0f, 1f)] private float marimba;
     [SerializeField] [Range(0f, 1f)] private float rainstick;
+    [SerializeField] [Range(0f, 1f)] private float shaker;
+    [SerializeField] [Range(0f, 1f)] private float fauna;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
@@ -40,14 +42,16 @@ public class FMODAudioManager : MonoBehaviour
             {
                 case 0:
                 {
+                    height = this.GetComponent<RiverWind>().GetValue();
+                    fauna = this.GetComponent<Fauna>().GetValue();
                     rainstick = this.GetComponent<RainStick>().GetValue();
+                    shaker = this.GetComponent<Shaker>().GetValue();
                     break;
                 }
                 case 1:
                 {
                     marimba = this.GetComponent<TestGesture>().GetValue();
                     height = this.GetComponent<RiverWind>().GetValue();
-                    oneiric = this.GetComponent<Fauna>().GetValue();
                     break;
                 }
             }
@@ -63,6 +67,8 @@ public class FMODAudioManager : MonoBehaviour
         MusicEventInstance.setParameterByName("intensity", intensity);
         MusicEventInstance.setParameterByName("marimba", marimba);
         MusicEventInstance.setParameterByName("rainstick", rainstick);
+        MusicEventInstance.setParameterByName("shaker", shaker);
+        MusicEventInstance.setParameterByName("fauna", fauna);
     }
 
     //================ FMOD Oneshots ================
