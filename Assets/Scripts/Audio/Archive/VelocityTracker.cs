@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class VelocityTracker : MonoBehaviour
 {
+    /*
     [SerializeField] private Transform referenceTransform;
     [SerializeField] private int positionSampleCount = 2;
     //[SerializeField] private int velocitySampleCount = 2;
@@ -23,7 +24,6 @@ public class VelocityTracker : MonoBehaviour
     private Tuple<float, float> currentVelocity;
     private Tuple<float, float> oldestVelocity;
     //private float acceleration;
-    */
 
     public void Update()
     {   
@@ -48,14 +48,12 @@ public class VelocityTracker : MonoBehaviour
         /*
         velocityQueue.Enqueue(currentVelocity);
         while (velocityQueue.Count > velocitySampleCount) oldestVelocity = velocityQueue.Dequeue();
-        */
         Debug.Log($"currentVelocity    = {Math.Round(currentVelocity.Item1, 2)}");
 
         /*
         acceleration = (currentVelocity.Item1 - oldestVelocity.Item1) /
                        (currentVelocity.Item2 - oldestVelocity.Item2); //deltaTime;
         //Debug.Log($"acceleration    = {Math.Round(acceleration, 2)}");
-        */
 
         if (velocityQueue[1] > velocityThreshold &&
             velocityQueue[0] < velocityQueue[1] &&
@@ -63,4 +61,5 @@ public class VelocityTracker : MonoBehaviour
 
         FMODAudioManager.SetAcceleration(currentVelocity.Item1);
     }
+    */
 }
