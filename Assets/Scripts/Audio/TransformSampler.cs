@@ -36,6 +36,8 @@ public class TransformSampler : MonoBehaviour
 
     //================ 1 PREVIOUS FRAME COMPLEXITY ================
 
+    public Tuple<Vector3, Quaternion, float> GetCurrentSample() {return currentSample;}
+
     public float GetDeltaTime() {return currentSample.Item3 - oldestSample.Item3;}
 
     public Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;} //currentPosition - oldestPosition

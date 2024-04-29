@@ -24,33 +24,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-8657269438665343814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/impulse
-  m_EditorClassIdentifier: 
-  Path: event:/impulse
-  Guid:
-    Data1: 2108221103
-    Data2: 1312179321
-    Data3: 1341203373
-    Data4: 1052272909
-  Banks:
-  - {fileID: 7742826145432322553}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2866
 --- !u!114 &-4153539776668423232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,14 +137,42 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   EditorEvents:
   - {fileID: 3920622392559139112}
-  - {fileID: -8657269438665343814}
+  - {fileID: 173117766312615326}
+  - {fileID: 8081754583963283541}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638495751016874316
+  cacheTime: 638499935988743212
   cacheVersion: 131616
+--- !u!114 &173117766312615326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/oneshot/kick
+  m_EditorClassIdentifier: 
+  Path: event:/oneshot/kick
+  Guid:
+    Data1: 757768828
+    Data2: 1297710850
+    Data3: -136263032
+    Data4: 1233210788
+  Banks:
+  - {fileID: 7742826145432322553}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 553
 --- !u!114 &918319241004307614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,10 +188,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638495751016874316
+  lastModified: 638499935988743212
   FileSizes:
   - Name: Desktop
-    Value: 1230
+    Value: 1284
   Exists: 1
 --- !u!114 &2693159408042478923
 MonoBehaviour:
@@ -292,11 +293,38 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638495751016831082
+  lastModified: 638499935988706908
   FileSizes:
   - Name: Desktop
-    Value: 10619776
+    Value: 10609856
   Exists: 1
+--- !u!114 &8081754583963283541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/oneshot/snare
+  m_EditorClassIdentifier: 
+  Path: event:/oneshot/snare
+  Guid:
+    Data1: -1514744428
+    Data2: 1097108750
+    Data3: -56572012
+    Data4: -125054816
+  Banks:
+  - {fileID: 7742826145432322553}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 550
 --- !u!114 &8107148163393485765
 MonoBehaviour:
   m_ObjectHideFlags: 0

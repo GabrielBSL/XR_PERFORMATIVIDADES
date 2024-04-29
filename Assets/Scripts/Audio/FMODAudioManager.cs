@@ -42,16 +42,15 @@ public class FMODAudioManager : MonoBehaviour
             {
                 case 0:
                 {
-                    height = this.GetComponent<RiverWind>().GetValue();
-                    fauna = this.GetComponent<Fauna>().GetValue();
-                    rainstick = this.GetComponent<RainStick>().GetValue();
-                    shaker = this.GetComponent<Shaker>().GetValue();
+                    height = this.GetComponent<Crouch>().GetValue();
+                    fauna = this.GetComponent<HeadTurn>().GetValue();
+                    rainstick = this.GetComponent<MotionSpeed>().GetValue();
                     break;
                 }
                 case 1:
                 {
                     marimba = this.GetComponent<TestGesture>().GetValue();
-                    height = this.GetComponent<RiverWind>().GetValue();
+                    height = this.GetComponent<Crouch>().GetValue();
                     break;
                 }
             }
@@ -78,8 +77,13 @@ public class FMODAudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
     }
 
-    public static void Impulse()
+    public static void Kick()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/impulse");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/kick");
+    }
+    
+    public static void Snare()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/snare");
     }
 }

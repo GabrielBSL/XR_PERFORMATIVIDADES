@@ -123,6 +123,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8190867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4192010262988726632, guid: d5ed195c1a465a1478111a7d13edff5a, type: 3}
+  m_PrefabInstance: {fileID: 1483565448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8190874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 324709068}
+  referenceMode: 0
+  referenceTransform: {fileID: 0}
+  referenceVector3: {x: 0, y: -1, z: 0}
+  threshold: 8
+  cooldown: 0.25
+  oneshot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8190879}
+        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
+        m_MethodName: Kick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8190879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3599276621294035763, guid: d5ed195c1a465a1478111a7d13edff5a, type: 3}
+  m_PrefabInstance: {fileID: 1483565448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aeb28c587ab86b42bd68b2a3fef1be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8190881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 324709068}
+  referenceMode: 0
+  referenceTransform: {fileID: 0}
+  referenceVector3: {x: 0, y: 1, z: 0}
+  threshold: 6
+  cooldown: 0.25
+  oneshot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8190879}
+        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
+        m_MethodName: Snare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &29644330
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleCount: 16
+  sampleCount: 8
 --- !u!1 &461470123
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +617,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716012309}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c0c41d7a88b024d8cba5f0cf962163, type: 3}
   m_Name: 
@@ -2603,7 +2685,13 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4192010262988726632, guid: d5ed195c1a465a1478111a7d13edff5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8190874}
+    - targetCorrespondingSourceObject: {fileID: 4192010262988726632, guid: d5ed195c1a465a1478111a7d13edff5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8190881}
   m_SourcePrefab: {fileID: 100100000, guid: d5ed195c1a465a1478111a7d13edff5a, type: 3}
 --- !u!1001 &1957063854
 PrefabInstance:
