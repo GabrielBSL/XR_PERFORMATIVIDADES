@@ -72,6 +72,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-3931538558549714738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/oneshot/shaker
+  m_EditorClassIdentifier: 
+  Path: event:/oneshot/shaker
+  Guid:
+    Data1: -1130716488
+    Data2: 1327037766
+    Data3: 1814087845
+    Data4: 298270516
+  Banks:
+  - {fileID: 7742826145432322553}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-3529034071909454110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,12 +166,14 @@ MonoBehaviour:
   - {fileID: 3920622392559139112}
   - {fileID: 173117766312615326}
   - {fileID: 8081754583963283541}
+  - {fileID: -3931538558549714738}
+  - {fileID: 1640040407875744394}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
-  cacheTime: 638499935988743212
+  cacheTime: 638500361225726039
   cacheVersion: 131616
 --- !u!114 &173117766312615326
 MonoBehaviour:
@@ -188,11 +217,38 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638499935988743212
+  lastModified: 638500361225726039
   FileSizes:
   - Name: Desktop
-    Value: 1284
+    Value: 1366
   Exists: 1
+--- !u!114 &1640040407875744394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/oneshot/clap
+  m_EditorClassIdentifier: 
+  Path: event:/oneshot/clap
+  Guid:
+    Data1: 1246889154
+    Data2: 1338197109
+    Data3: 1513600923
+    Data4: -2003819983
+  Banks:
+  - {fileID: 7742826145432322553}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &2693159408042478923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,10 +349,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638499935988706908
+  lastModified: 638500361225706245
   FileSizes:
   - Name: Desktop
-    Value: 10609856
+    Value: 10623104
   Exists: 1
 --- !u!114 &8081754583963283541
 MonoBehaviour:

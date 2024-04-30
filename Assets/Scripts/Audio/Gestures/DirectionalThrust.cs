@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class DirectionalThrust : MonoBehaviour
-{    
+{
     [SerializeField] private TransformSampler hand;
 
     enum Reference {Vector3, Transform};
@@ -16,23 +16,29 @@ public class DirectionalThrust : MonoBehaviour
     private Vector3 reference;
 
     [SerializeField] private float threshold = 1f;
-    [SerializeField] private float cooldown = 1f;
-    private float lastActive;
+    private bool onCooldown = false;
 
     [SerializeField] private UnityEvent oneshot;
 
     void Update()
     {
-        reference = (referenceMode == Reference.Vector3)? referenceVector3 : referenceTransform.forward;
-
-        if
-        (
-            Vector3.Dot(hand.GetVelocity(), reference) > threshold &&
-            hand.GetCurrentSample().Item3 - lastActive > cooldown
-        )
+        reference = (referenceMode == Reference.Vector3)? referenceVector3 : referenceTransform.rotation * referenceVector3;
+        
+        if (Vector3.Dot(hand.GetVelocity(), reference) > 0) // Está se movendo na direção?
         {
-            oneshot?.Invoke();
-            lastActive = hand.GetCurrentSample().Item3;
+            if
+            (
+                Vector3.Dot(hand.GetVelocity(), reference) > threshold &&
+                Vector3.Dot(hand.GetAcceleration(), reference) <= 0
+                && !onCooldown
+            )
+            {
+                oneshot?.Invoke();
+                onCooldown = true;
+            }
         }
+        else onCooldown = false; // Se estiver na direção oposta, refresh cooldown
+
+        Debug.Log($"velocity = {Vector3.Dot(hand.GetVelocity(), reference)}");
     }
 }

@@ -8,7 +8,7 @@ public class Crouch : MonoBehaviour
     private float value;
 
     [SerializeField] private TransformSampler headset;
-    [SerializeField] private TransformSampler ground;
+    [SerializeField] private Transform ground;
     [SerializeField] private float userHeight = 1f;
     [SerializeField] private float crouchHeight = 1f;
     [SerializeField] private bool calibrating = true;
@@ -16,8 +16,8 @@ public class Crouch : MonoBehaviour
 
     void Update()
     {
-        if(calibrating) userHeight = Vector3.Distance(headset.currentSample.Item1, ground.currentSample.Item1);
-        value = (Vector3.Distance(headset.currentSample.Item1, ground.currentSample.Item1) - crouchHeight) / (userHeight - crouchHeight);
+        if(calibrating) userHeight = Vector3.Distance(headset.currentSample.Item1, ground.position);
+        value = (Vector3.Distance(headset.currentSample.Item1, ground.position) - crouchHeight) / (userHeight - crouchHeight);
     }
 
     public float GetValue()

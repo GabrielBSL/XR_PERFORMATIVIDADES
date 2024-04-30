@@ -49,7 +49,6 @@ public class FMODAudioManager : MonoBehaviour
                 }
                 case 1:
                 {
-                    marimba = this.GetComponent<TestGesture>().GetValue();
                     height = this.GetComponent<Crouch>().GetValue();
                     break;
                 }
@@ -85,5 +84,15 @@ public class FMODAudioManager : MonoBehaviour
     public static void Snare()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/snare");
+    }
+
+    public static void Clap()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/clap");
+    }
+    
+    public static void Shaker()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/shaker");
     }
 }

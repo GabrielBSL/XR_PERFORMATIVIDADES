@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18306622, g: 0.2287434, b: 0.30669293, a: 1}
+  m_IndirectSpecularColor: {r: 0.18306595, g: 0.2287429, b: 0.3066922, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4193,6 +4193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324709067}
+  - component: {fileID: 324709068}
   m_Layer: 0
   m_Name: Right Hand VR Target
   m_TagString: Untagged
@@ -4215,6 +4216,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 774791589}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: -98.5}
+--- !u!114 &324709068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324709066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sampleCount: 4
 --- !u!1 &325199209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,6 +5707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461470124}
+  - component: {fileID: 461470125}
   m_Layer: 0
   m_Name: Left Hand VR Target
   m_TagString: Untagged
@@ -5715,6 +5730,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1055946557}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 98.5}
+--- !u!114 &461470125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461470123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sampleCount: 4
 --- !u!1 &461611915
 GameObject:
   m_ObjectHideFlags: 0
@@ -8732,50 +8760,90 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3099713567907485375, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 165952905223718111, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 461470125}
+    - target: {fileID: 165952905223718111, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: referenceTransform
+      value: 
+      objectReference: {fileID: 953616888}
+    - target: {fileID: 1425718766001636871, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: head
+      value: 
+      objectReference: {fileID: 953616889}
+    - target: {fileID: 1532163569498672298, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: ground
+      value: 
+      objectReference: {fileID: 1607219167}
+    - target: {fileID: 1532163569498672298, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: headset
+      value: 
+      objectReference: {fileID: 953616889}
+    - target: {fileID: 2058217303621770052, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_Name
       value: FMODAudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 3114243999008419316, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 324709068}
+    - target: {fileID: 6121830443552166536, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 461470125}
+    - target: {fileID: 6121830443552166536, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: referenceTransform
+      value: 
+      objectReference: {fileID: 953616888}
+    - target: {fileID: 7525863379415443139, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 324709068}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6993225
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8633108
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalPosition.z
       value: 4.5543633
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4425446482358690806, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+    - target: {fileID: 7690848790691273784, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8852749086616907150, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 324709068}
     - target: {fileID: 8780115082399808975, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
       propertyPath: sampleSize
       value: 240
@@ -8812,7 +8880,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c672cf5e593056343b579d9aceeaaff7, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 0be4a5d88514dd14ab21282d8f5e7f34, type: 3}
 --- !u!1 &697548351
 GameObject:
   m_ObjectHideFlags: 0
@@ -14409,6 +14477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 953616888}
+  - component: {fileID: 953616889}
   m_Layer: 0
   m_Name: Head VR Target
   m_TagString: Untagged
@@ -14431,6 +14500,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 851923609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953616889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953616887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sampleCount: 4
 --- !u!1 &954379445
 GameObject:
   m_ObjectHideFlags: 0
@@ -34739,6 +34821,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2089223407}
+  - {fileID: 697536861}
   - {fileID: 716012310}
   - {fileID: 593725087}
   - {fileID: 859832190}
@@ -34758,4 +34841,3 @@ SceneRoots:
   - {fileID: 499163931}
   - {fileID: 858243164}
   - {fileID: 285860253}
-  - {fileID: 697536861}
