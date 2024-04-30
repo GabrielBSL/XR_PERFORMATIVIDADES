@@ -1,6 +1,9 @@
 using Main.Events;
+using Main.Scenario;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +16,6 @@ namespace Main.Mimics
             public Vector3 up;
             public Vector3 forward;
             public Vector3 localPosition;
-            public Vector3 globalPosition;
         }
 
         [SerializeField] private Transform rightArmTarget;
@@ -33,6 +35,10 @@ namespace Main.Mimics
         [SerializeField] private float variationDuration = .75f;
         [SerializeField, Range(.01f, 1f)] private float variationSmoothness = .033f;
 
+        [Header("Rewind")]
+        [SerializeField] private bool allowClipRewind;
+        [SerializeField, Range(0, 1)] private float rewindChance = .5f;
+
         [Header("Debug")]
         [SerializeField] private bool showDebugMessages;
 
@@ -44,13 +50,15 @@ namespace Main.Mimics
         private Transform bodyReference;
 
         private float variationDurationTimer = 0;
+        private float _lastReferenceHeight;
 
         private Vector3 _leftHandFinalPositionVariation;
         private Vector3 _rightHandFinalPositionVariation;
         private Vector3 _leftHandCurrentPositionVariation;
         private Vector3 _rightHandCurrentPositionVariation;
 
-        private float _lastReferenceHeight;
+        private List<PoseInfo> _clipInfo;
+        private bool _playingClip;
 
         private void OnEnable()
         {
@@ -60,6 +68,7 @@ namespace Main.Mimics
             MainEventsManager.leftHandHintTransformUpdate += ReceiveLeftArmHint;
             MainEventsManager.headTransformUpdate += ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate += ReceiveBodyReference;
+            RewindController.onStartRewind += ReceiveRewindCommand;
         }
         private void OnDisable()
         {
@@ -69,6 +78,7 @@ namespace Main.Mimics
             MainEventsManager.leftHandHintTransformUpdate -= ReceiveLeftArmHint;
             MainEventsManager.headTransformUpdate -= ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate -= ReceiveBodyReference;
+            RewindController.onStartRewind -= ReceiveRewindCommand;
         }
         private void ReceiveRightArmTarget(Transform _rightArmTarget)
         {
@@ -100,6 +110,30 @@ namespace Main.Mimics
             headReference = _headReference;
         }
 
+        private void ReceiveRewindCommand()
+        {
+            float randomChance = UnityEngine.Random.Range(0, 1f);
+
+            if (allowClipRewind && randomChance <= rewindChance)
+            {
+                StartClipRewind();
+            }
+        }
+
+        private void StartClipRewind()
+        {
+            if (!_playingClip)
+            {
+                _clipInfo = RewindController.GetRandomClip();
+
+                if (_clipInfo != null)
+                {
+                    _playingClip = true;
+                    StartCoroutine(ClipReadingCoroutine());
+                }
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -115,10 +149,11 @@ namespace Main.Mimics
                 SetRandomPositionVariation();
             }
 
-            StartCoroutine(DelayMovementReading());
+            if(!_playingClip)
+            {
+                StartCoroutine(DelayMovementReading());
+            }
             MoveToDestination();
-
-            //Debug.Log(transform.forward);
         }
 
         private void SetRandomPositionVariation()
@@ -151,14 +186,12 @@ namespace Main.Mimics
                 up = rightArmTargetReference.up,
                 forward = rightArmTargetReference.forward,
                 localPosition = rightArmTargetReference.localPosition,
-                globalPosition = rightArmTargetReference.position,
             };
             HandInfo leftHandInfo = new HandInfo()
             {
                 up = leftArmTargetReference.up,
                 forward = leftArmTargetReference.forward,
                 localPosition = leftArmTargetReference.localPosition,
-                globalPosition = leftArmTargetReference.position,
             };
 
             Vector3 bodyReferencePosition = bodyReference.position;
@@ -189,6 +222,50 @@ namespace Main.Mimics
             headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, headReferenceZTurn * -1);
 
             SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReferenceForward);
+        }
+
+        private IEnumerator ClipReadingCoroutine()
+        {
+            foreach (PoseInfo pose in _clipInfo.ToList())
+            {
+                HandInfo rightHandInfo = new HandInfo()
+                {
+                    up = pose.rightTargetUp,
+                    forward = pose.rightTargetForward,
+                    localPosition = pose.rightTargetLocalPos,
+                };
+                HandInfo leftHandInfo = new HandInfo()
+                {
+                    up = pose.leftTargetUp,
+                    forward = pose.leftTargetForward,
+                    localPosition = pose.leftTargetLocalPos,
+                };
+
+                //Debug.Log(pose.leftTargetLocalPos);
+
+                //body Height
+                float referenceBodyHeightDelta = pose.bodyPosition.y - _lastReferenceHeight;
+                transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
+                _lastReferenceHeight = pose.bodyPosition.y;
+
+                //body Rotation
+                Vector3 direction = bodyReference.position - transform.position;
+                Quaternion newRotation = Quaternion.LookRotation(direction, Vector3.up);
+                newRotation.x = transform.rotation.x;
+                newRotation.z = transform.rotation.z;
+                transform.rotation = newRotation;
+
+                leftArmHint.localPosition = Vector3.Scale(pose.rightHintLocalPos, new Vector3(-1, 1, 1));
+                rightArmHint.localPosition = Vector3.Scale(pose.leftHintLocalPos, new Vector3(-1, 1, 1));
+
+                headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, pose.headTargetLocalEulerAngles.z * -1);
+
+                SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReference.forward);
+
+                yield return null;
+            }
+
+            _playingClip = false;
         }
 
         private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)

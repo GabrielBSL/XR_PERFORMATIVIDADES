@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/StonyGroundPackage.meta
+guid: 55ab0782ef01e8c4aa7e4adfbc4edd07
+folderAsset: yes
+DefaultImporter:
+========
 guid: fc16eba9fa89c5d44be634d405731c78
 TextScriptImporter:
+>>>>>>>> sound:Assets/Audio/xr_performatividades/Metadata/AudioFile/{d3a64cf1-70a2-45df-bac1-f1692d2df9b4}.xml.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

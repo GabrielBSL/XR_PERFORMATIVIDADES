@@ -10,16 +10,15 @@ namespace Main.XR
 
         private void OnEnable()
         {
-            MainEventsManager.defaultHeightValue += ReceiveInitialHeight;
+            MainEventsManager.defaultHeadPosition += ReceiveInitialHeadPosition;
         }
         private void OnDisable()
         {
-            MainEventsManager.defaultHeightValue -= ReceiveInitialHeight;
+            MainEventsManager.defaultHeadPosition -= ReceiveInitialHeadPosition;
         }
 
-        private void ReceiveInitialHeight(Vector3 headPosition)
+        private void ReceiveInitialHeadPosition(Vector3 headPosition)
         {
-            Debug.Log(headPosition);
             Vector3 positionDifference = headSpawn.position - headPosition;
             transform.position += positionDifference + offset;
         }

@@ -129,10 +129,10 @@ namespace Main.IK
             {
                 _firstHeightValue = headPosition.y;
             }
-            else if(_firstHeightValue != headPosition.y && !_firstHeightCalculated)
+            else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated) //_firstHeightValue != headPosition.y
             {
                 _firstHeightCalculated = true;
-                MainEventsManager.defaultHeightValue?.Invoke(headPosition);
+                MainEventsManager.defaultHeadPosition?.Invoke(headPosition);
             }
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
@@ -147,7 +147,8 @@ namespace Main.IK
             }
 
             _currentYRatio = mainCameraTransform.position.y - groundPoint.position.y;
-            _currentXRatio = rightControllerTransform.localPosition.x - mainCameraTransform.localPosition.x;
+            _currentXRatio = Vector3.Distance(new Vector3(rightControllerTransform.localPosition.x, 1, rightControllerTransform.localPosition.z),
+                new Vector3(mainCameraTransform.localPosition.x, 1, mainCameraTransform.localPosition.z));
 
             Debug.Log("height: " + _currentYRatio);
             Debug.Log("width: " + _currentXRatio);
@@ -155,7 +156,7 @@ namespace Main.IK
 
         private void SendCurrentHeadPosition()
         {
-            MainEventsManager.defaultHeightValue?.Invoke(_currentHeadPosition);
+            MainEventsManager.defaultHeadPosition?.Invoke(_currentHeadPosition);
         }
     }
 }
