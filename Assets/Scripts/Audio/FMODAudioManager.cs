@@ -24,6 +24,8 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float shaker;
     [SerializeField] [Range(0f, 1f)] private float fauna;
 
+    //[SerializeField] [Range(1f, 60f)] private int fps;
+
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
     void Start()
@@ -36,6 +38,8 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
+        //Application.targetFrameRate = fps;
+
         if (!manualOverride)
         {
             switch(stage)
