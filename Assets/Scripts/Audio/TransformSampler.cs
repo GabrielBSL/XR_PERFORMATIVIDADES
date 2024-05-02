@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TransformSampler : MonoBehaviour
-{   
+{
     //================ VARIABLE DECLARATIONS ================
+
+    [SerializeField] private Transform reference;
 
     [SerializeField] [Range(2, 16)] private int sampleCount = 16;
 
@@ -28,7 +30,7 @@ public class TransformSampler : MonoBehaviour
     {
         currentSample = new Tuple<Vector3, Quaternion, float>
         (
-            this.transform.position,
+            this.transform.position - reference.transform.position,
             this.transform.rotation,
             Time.time
         );
