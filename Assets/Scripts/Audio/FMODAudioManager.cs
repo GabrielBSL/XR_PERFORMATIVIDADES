@@ -15,6 +15,7 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] private bool manualOverride;
     [SerializeField] private int stage;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float acceleration;
     [SerializeField] [Range(0f, 1f)] private float oneiric;
     [SerializeField] [Range(0f, 2f)] private float height = 1f;
     [SerializeField] [Range(0f, 1f)] private float flute;
@@ -49,6 +50,7 @@ public class FMODAudioManager : MonoBehaviour
                     height = this.GetComponent<Crouch>().GetValue();
                     fauna = this.GetComponent<HeadTurn>().GetValue();
                     rainstick = this.GetComponent<MotionSpeed>().GetValue();
+                    acceleration = this.GetComponent<MotionSpeed2>().GetValue();
                     break;
                 }
                 case 1:
@@ -63,6 +65,7 @@ public class FMODAudioManager : MonoBehaviour
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("stage", stage);
 
+        MusicEventInstance.setParameterByName("acceleration", acceleration);
         MusicEventInstance.setParameterByName("oneiric", oneiric);
         MusicEventInstance.setParameterByName("height", height);
         MusicEventInstance.setParameterByName("flute", flute);

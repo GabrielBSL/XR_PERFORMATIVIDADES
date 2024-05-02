@@ -7,6 +7,7 @@ public class TransformSampler : MonoBehaviour
 {   
     //================ VARIABLE DECLARATIONS ================
 
+    [SerializeField] private Transform referenceTransform;
     [SerializeField] [Range(2, 16)] private int sampleCount = 16;
 
     public Queue<Tuple<Vector3, Quaternion, float>> sampleQueue = new Queue<Tuple<Vector3, Quaternion, float>>();
@@ -28,7 +29,7 @@ public class TransformSampler : MonoBehaviour
     {
         currentSample = new Tuple<Vector3, Quaternion, float>
         (
-            this.transform.position,
+            this.transform.position - referenceTransform.position,
             this.transform.rotation,
             Time.time
         );

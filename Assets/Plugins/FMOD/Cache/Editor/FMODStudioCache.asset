@@ -173,7 +173,11 @@ MonoBehaviour:
   - {fileID: 7742826145432322553}
   StringsBanks:
   - {fileID: 918319241004307614}
+<<<<<<< Updated upstream
   cacheTime: 638500644730729171
+=======
+  cacheTime: 638502134387568308
+>>>>>>> Stashed changes
   cacheVersion: 131616
 --- !u!114 &173117766312615326
 MonoBehaviour:
@@ -217,7 +221,11 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< Updated upstream
   lastModified: 638500644730729171
+=======
+  lastModified: 638502134387568308
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
     Value: 1366
@@ -309,7 +317,7 @@ MonoBehaviour:
   - {fileID: -8864109934260323153}
   MinDistance: 1
   MaxDistance: 20
-  Length: 33606
+  Length: 43206
 --- !u!114 &5583498916032081501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,10 +357,14 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< Updated upstream
   lastModified: 638500644730654916
+=======
+  lastModified: 638502134387537425
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
-    Value: 10623104
+    Value: 14115168
   Exists: 1
 --- !u!114 &8081754583963283541
 MonoBehaviour:
@@ -395,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: acceleration
   StudioPath: 
-  Min: -1
+  Min: 0
   Max: 1
   Default: 0
   ID:
