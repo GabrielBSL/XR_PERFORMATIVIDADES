@@ -16,6 +16,7 @@ public class DirectionalThrust : MonoBehaviour
     private Vector3 reference;
 
     [SerializeField] private float threshold = 1f;
+    [SerializeField] private float roundness = 1f;
     private bool onCooldown = false;
 
     [SerializeField] private UnityEvent oneshot;
@@ -28,7 +29,7 @@ public class DirectionalThrust : MonoBehaviour
         {
             if
             (
-                Vector3.Dot(Quaternion.Slerp(Quaternion.identity, hand.GetAngularVelocity(), ) * hand.GetVelocity(), reference) * Time.deltaTime > threshold
+                Vector3.Dot(Quaternion.Slerp(Quaternion.identity, hand.GetAngularVelocity(), roundness) * hand.GetVelocity(), reference) * Time.deltaTime > threshold
                 && Vector3.Dot(hand.GetAcceleration(), reference) <= 0
                 && !onCooldown
             )

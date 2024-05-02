@@ -1578,7 +1578,6 @@
 		<property name="timelockedOffset">
 			<value>3.9300480875448769</value>
 		</property>
-		<property name="name" />
 		<relationship name="automators">
 			<destination>{93b6c3c3-9555-4d9a-9854-26560ed9768e}</destination>
 		</relationship>
@@ -3546,7 +3545,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-65</value>
+			<value>-12</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.45170331</value>
@@ -3557,7 +3556,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>4</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{50cc4b5d-7ea6-4f3b-8281-975ce9f2b630}">
@@ -3584,7 +3583,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-65</value>
+			<value>-12</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.451703131</value>
@@ -3595,7 +3594,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>4</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{599474b2-50a0-4246-ab59-7b12ea91078f}">

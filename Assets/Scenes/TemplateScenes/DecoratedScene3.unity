@@ -745,7 +745,11 @@ PrefabInstance:
     - target: {fileID: 1946334931721652059, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: head
       value: 
-      objectReference: {fileID: 953616889}
+      objectReference: {fileID: 953616888}
+    - target: {fileID: 1946334931721652059, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: referenceTransform
+      value: 
+      objectReference: {fileID: 394621954}
     - target: {fileID: 2400719073075679421, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: m_Name
       value: FMODAudioManager

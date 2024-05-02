@@ -49,6 +49,7 @@ public class FMODAudioManager : MonoBehaviour
                 {
                     height = this.GetComponent<Crouch>().GetValue();
                     fauna = this.GetComponent<HeadTurn>().GetValue();
+                    print($"fauna = {fauna}");
                     rainstick = this.GetComponent<MotionSpeed>().GetValue();
                     acceleration = this.GetComponent<MotionSpeed2>().GetValue();
                     break;
