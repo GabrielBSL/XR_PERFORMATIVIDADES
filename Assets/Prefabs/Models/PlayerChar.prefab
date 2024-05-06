@@ -1151,6 +1151,8 @@ GameObject:
   - component: {fileID: 3681153762549910353}
   - component: {fileID: 1145256066281361090}
   - component: {fileID: 2968714471774188142}
+  - component: {fileID: 3816399683164391383}
+  - component: {fileID: 4879746756038721049}
   m_Layer: 3
   m_Name: PlayerChar
   m_TagString: Player
@@ -1296,8 +1298,8 @@ MonoBehaviour:
   rightControllerTransform: {fileID: 0}
   leftKneeTargetTransform: {fileID: 8296143074264140942}
   rightKneeTargetTransform: {fileID: 7207014943355894847}
-  allowRatioCalculation: 1
   groundPoint: {fileID: 0}
+  allowRatioCalculation: 1
   ratioAction:
     m_Name: Ratio
     m_Type: 0
@@ -1315,21 +1317,23 @@ MonoBehaviour:
       m_Action: Ratio
       m_Flags: 0
     m_Flags: 0
-  positionCorrectionAction:
-    m_Name: Position Correction
+  correctPosition: 0
+  correctRotation: 1
+  originCorrectionAction:
+    m_Name: Origin Correction
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 797b070b-574f-4e12-9475-62882e1dd2fb
+    m_Id: 72f7e7f8-a73a-4cf7-bab6-eca5757efec9
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: d96ea9a7-34ff-4003-87de-750b44cc4e44
+      m_Id: dc4e4812-1eb4-4e3c-a8c9-42b77476de36
       m_Path: <XRController>{LeftHand}/{TriggerButton}
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Position Correction
+      m_Action: Origin Correction
       m_Flags: 0
     m_Flags: 0
   forceRatioCalculation: 0
@@ -1372,6 +1376,54 @@ MonoBehaviour:
   maxAbsValueXAxis: 1
   maxYValueAxis: 3.2
   maxZValueAxis: 0.5
+--- !u!65 &3816399683164391383
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634722430228078967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.63, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4879746756038721049
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634722430228078967}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5646963487044087182
 GameObject:
   m_ObjectHideFlags: 0

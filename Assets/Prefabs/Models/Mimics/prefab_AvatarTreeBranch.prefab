@@ -346,6 +346,11 @@ MonoBehaviour:
   - {fileID: 7593623547425836900}
   - {fileID: 4889317011885135586}
   - {fileID: 5281043404802289842}
+--- !u!137 &1402732153964667906 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7781855329518093697, guid: 37454da68ce6ac34f9b1ac4d50cae851, type: 3}
+  m_PrefabInstance: {fileID: 537840099396869757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1948447251045065610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7170701702895337993, guid: 37454da68ce6ac34f9b1ac4d50cae851, type: 3}
@@ -647,6 +652,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.5275415
       objectReference: {fileID: 0}
+    - target: {fileID: 5435338684446330171, guid: c552066d9b4e59c43a4b4f4ff08ac876, type: 3}
+      propertyPath: mimicRenderer
+      value: 
+      objectReference: {fileID: 1402732153964667906}
     - target: {fileID: 6184842618365431536, guid: c552066d9b4e59c43a4b4f4ff08ac876, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.10337843

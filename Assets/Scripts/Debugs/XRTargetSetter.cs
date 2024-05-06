@@ -13,13 +13,16 @@ namespace Main.Debugs
         [SerializeField] private Transform leftHandController;
         [SerializeField] private Transform rightHandController;
 
-        [Header("Configurations")]
+        [Header("Position")]
         [SerializeField] private float headTargetHeight;
         [SerializeField] private float handTargetsHeight;
         [SerializeField] private float rightHandXDistance;
         [SerializeField] private float leftHandXDistance;
         [SerializeField] private float handTargetZAxis;
         [SerializeField] private Vector2 XZOffset;
+
+        [Header("Rotation")]
+        [SerializeField] private float headRotation;
 
         private bool updateManually = true;
 
@@ -41,6 +44,7 @@ namespace Main.Debugs
             }
 
             headController.transform.localPosition = new Vector3(headController.localPosition.x + XZOffset.x, headTargetHeight, headController.localPosition.z + XZOffset.y);
+            headController.transform.rotation *= Quaternion.Euler(Vector3.up * headRotation);
 
             leftHandController.transform.localPosition = new Vector3(leftHandXDistance * -1 + XZOffset.x, handTargetsHeight, handTargetZAxis + XZOffset.y);
             rightHandController.transform.localPosition = new Vector3(rightHandXDistance + XZOffset.x, handTargetsHeight, handTargetZAxis + XZOffset.y);

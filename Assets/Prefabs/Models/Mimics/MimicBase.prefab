@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 3451112194531562385}
   - component: {fileID: 5128049031364927627}
   - component: {fileID: 2352369097803356837}
+  - component: {fileID: 5435338684446330171}
   - component: {fileID: 9179999803004194171}
   - component: {fileID: 425112033153341540}
   m_Layer: 0
@@ -383,6 +384,28 @@ MonoBehaviour:
   allowClipRewind: 1
   rewindChance: 1
   showDebugMessages: 0
+--- !u!114 &5435338684446330171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3687577350193726345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03372f26e212c984297b5118e3dc0ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mimicRenderer: {fileID: 0}
+  loopBaseDuration: 12
+  smoothnessLoopDuration: 6
+  smoothnessRange: 1
+  emissionRangeBase: 32
+  loopDurationMultiplier: 3
+  smoothnessDurationMultiplier: 3
+  emissionMultiplier: 5
+  movementDeltaDuration: 3
+  maxMultiplierMovementDelta: 30
 --- !u!114 &9179999803004194171
 MonoBehaviour:
   m_ObjectHideFlags: 0

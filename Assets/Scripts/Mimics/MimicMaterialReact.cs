@@ -29,6 +29,12 @@ namespace Main.Mimics
         // Start is called before the first frame update
         void Start()
         {
+            if(mimicRenderer == null)
+            {
+                enabled = false;
+                return;
+            }
+
             _materialCopy = new Material(mimicRenderer.material);
             mimicRenderer.material = _materialCopy;
 

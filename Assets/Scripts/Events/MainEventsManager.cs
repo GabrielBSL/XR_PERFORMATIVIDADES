@@ -12,7 +12,8 @@ namespace Main.Events
         public static Action<Transform> headTransformUpdate;
         public static Action<Transform> bodyTransformUpdate;
 
-        public static Action<Vector3> defaultHeadPosition;
+        public static Action<Vector3> currentHeadPosition;
+        public static Action<Vector3> currentHeadEulerAngles;
 
         public static Action activateMimic;
     }

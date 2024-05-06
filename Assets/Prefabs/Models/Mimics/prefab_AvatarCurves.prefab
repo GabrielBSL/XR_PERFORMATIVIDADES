@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.6063837
       objectReference: {fileID: 0}
+    - target: {fileID: 5435338684446330171, guid: c552066d9b4e59c43a4b4f4ff08ac876, type: 3}
+      propertyPath: mimicRenderer
+      value: 
+      objectReference: {fileID: 9140141090941666674}
     - target: {fileID: 6184842618365431536, guid: c552066d9b4e59c43a4b4f4ff08ac876, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.13670252
@@ -1286,5 +1290,10 @@ Transform:
 --- !u!4 &9137879170634670805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6150955558214665707, guid: 9cd74d0f583c5b943ac9f03550dabff8, type: 3}
+  m_PrefabInstance: {fileID: 6085258316567058624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &9140141090941666674 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6148711087148687950, guid: 9cd74d0f583c5b943ac9f03550dabff8, type: 3}
   m_PrefabInstance: {fileID: 6085258316567058624}
   m_PrefabAsset: {fileID: 0}
