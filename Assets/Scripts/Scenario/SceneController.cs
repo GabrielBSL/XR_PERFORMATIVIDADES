@@ -7,7 +7,7 @@ namespace Main.Scenario
 {
     public class SceneController : MonoBehaviour
     {
-        [SerializeField] private GameObject mimicToActivate;
+        [SerializeField] private SkinnedMeshRenderer meshToRender;
 
         private void OnEnable()
         {
@@ -21,7 +21,7 @@ namespace Main.Scenario
 
         private void ActivateMimic()
         {
-            mimicToActivate.SetActive(true);
+            meshToRender.enabled = true;
         }
     }
 }

@@ -112,6 +112,7 @@ namespace Main.Scenario
             {
                 forceSaveClip = false;
                 SaveClip();
+                onStartRewind?.Invoke();
             }
         }
 
@@ -155,7 +156,7 @@ namespace Main.Scenario
             {
                 _currentClip.RemoveAt(0);
                 _clipFull = true;
-                Debug.Log("clip full");
+                //Debug.Log("clip full");
             }
             else
             {
