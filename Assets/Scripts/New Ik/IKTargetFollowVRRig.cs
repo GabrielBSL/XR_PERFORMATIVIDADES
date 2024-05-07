@@ -51,11 +51,17 @@ namespace Main.IK
         [SerializeField] private Transform leftKneeTargetTransform;
         [SerializeField] private Transform rightKneeTargetTransform;
 
+        [Header("Ground Transform")]
+        [SerializeField] private Transform groundPoint;
+
         [Header("Config")]
         [SerializeField] private bool allowRatioCalculation;
-        [SerializeField] private Transform groundPoint;
         [SerializeField] private InputAction ratioAction;
-        [SerializeField] private InputAction positionCorrectionAction;
+
+        [Header("Origin Correction")]
+        [SerializeField] private bool correctPosition;
+        [SerializeField] private bool correctRotation;
+        [SerializeField] private InputAction originCorrectionAction;
 
         [Header("Debug")]
         [SerializeField] private bool forceRatioCalculation;
@@ -73,7 +79,7 @@ namespace Main.IK
         private void Awake()
         {
             ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
-            positionCorrectionAction.performed += _ => CorrectBodyPosition();
+            originCorrectionAction.performed += _ => CorrectBodyPosition();
 
             _currentXRatio = _xAxisRatioBase;
             _currentYRatio = _yAxisRatioBase;
@@ -82,12 +88,12 @@ namespace Main.IK
         private void OnEnable()
         {
             ratioAction.Enable();
-            positionCorrectionAction.Enable();
+            originCorrectionAction.Enable();
         }
         private void OnDisable()
         {
             ratioAction.Disable();
-            positionCorrectionAction.Disable();
+            originCorrectionAction.Disable();
         }
 
         private void Update()
@@ -101,11 +107,15 @@ namespace Main.IK
         
         private void CorrectBodyPosition()
         {
-            //SendCurrentHeadPosition();
+            if (correctPosition)
+            {
+                SendCurrentHeadPosition();
+            }
+            else if (correctRotation)
+            {
+                SendCurrentHeadRotation();
+            }
             MainEventsManager.activateMimic?.Invoke();
-            TryGetComponent(out MimicReference mimicReference);
-
-            mimicReference?.SendTransforms();
         }
 
         // Update is called once per frame
@@ -132,7 +142,7 @@ namespace Main.IK
             else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated) //_firstHeightValue != headPosition.y
             {
                 _firstHeightCalculated = true;
-                MainEventsManager.defaultHeadPosition?.Invoke(headPosition);
+                MainEventsManager.currentHeadPosition?.Invoke(headPosition);
             }
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
@@ -156,7 +166,11 @@ namespace Main.IK
 
         private void SendCurrentHeadPosition()
         {
-            MainEventsManager.defaultHeadPosition?.Invoke(_currentHeadPosition);
+            MainEventsManager.currentHeadPosition?.Invoke(_currentHeadPosition);
+        }
+        private void SendCurrentHeadRotation()
+        {
+            MainEventsManager.currentHeadEulerAngles?.Invoke(transform.eulerAngles);
         }
     }
 }

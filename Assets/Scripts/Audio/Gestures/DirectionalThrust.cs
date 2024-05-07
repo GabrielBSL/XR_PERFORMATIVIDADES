@@ -40,6 +40,6 @@ public class DirectionalThrust : MonoBehaviour
         }
         else onCooldown = false; // Se estiver na direção oposta, refresh cooldown
 
-        Debug.Log($"velocity = {Vector3.Dot(hand.GetVelocity(), reference)}");
+        //Debug.Log($"velocity = {Vector3.Dot(hand.GetVelocity(), reference)}");
     }
 }

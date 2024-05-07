@@ -35,6 +35,9 @@ namespace Main.Mimics
         [SerializeField] private float variationDuration = .75f;
         [SerializeField, Range(.01f, 1f)] private float variationSmoothness = .033f;
 
+        [Header("Correction")]
+        [SerializeField] private float handsYCorrection;
+
         [Header("Rewind")]
         [SerializeField] private bool allowClipRewind;
         [SerializeField, Range(0, 1)] private float rewindChance = .5f;
@@ -185,13 +188,13 @@ namespace Main.Mimics
             {
                 up = rightArmTargetReference.up,
                 forward = rightArmTargetReference.forward,
-                localPosition = rightArmTargetReference.localPosition,
+                localPosition = rightArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
             };
             HandInfo leftHandInfo = new HandInfo()
             {
                 up = leftArmTargetReference.up,
                 forward = leftArmTargetReference.forward,
-                localPosition = leftArmTargetReference.localPosition,
+                localPosition = leftArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
             };
 
             Vector3 bodyReferencePosition = bodyReference.position;
@@ -232,13 +235,13 @@ namespace Main.Mimics
                 {
                     up = pose.rightTargetUp,
                     forward = pose.rightTargetForward,
-                    localPosition = pose.rightTargetLocalPos,
+                    localPosition = pose.rightTargetLocalPos + new Vector3(0, handsYCorrection, 0),
                 };
                 HandInfo leftHandInfo = new HandInfo()
                 {
                     up = pose.leftTargetUp,
                     forward = pose.leftTargetForward,
-                    localPosition = pose.leftTargetLocalPos,
+                    localPosition = pose.leftTargetLocalPos + new Vector3(0, handsYCorrection, 0),
                 };
 
                 //Debug.Log(pose.leftTargetLocalPos);

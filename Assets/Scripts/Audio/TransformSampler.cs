@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TransformSampler : MonoBehaviour
-{   
+{
     //================ VARIABLE DECLARATIONS ================
 
     [SerializeField] private Transform referenceTransform;
