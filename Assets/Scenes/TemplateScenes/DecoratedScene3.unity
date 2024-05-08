@@ -1232,7 +1232,6 @@ GameObject:
   - component: {fileID: 196829850}
   - component: {fileID: 196829844}
   - component: {fileID: 196829843}
-  - component: {fileID: 196829851}
   m_Layer: 0
   m_Name: FMODAudioManager
   m_TagString: Untagged
@@ -1311,10 +1310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overrideInterpolation: 0
-  volume: 0.515
+  volume: 0.5
   stage: 0
-  crouch_stand: 1
-  west_east: 1
+  crouch_stand: 0.5
+  west_east: 0.5
   handsHeight: 0
   leftVelocity: 0
   rightVelocity: 0
@@ -1333,7 +1332,7 @@ MonoBehaviour:
   rightTransform: {fileID: 324709067}
   rightTransformSampler: {fileID: 324709068}
   leftTransform: {fileID: 461470124}
-  leftTransformSampler: {fileID: 324709068}
+  leftTransformSampler: {fileID: 461470125}
   headTransform: {fileID: 953616888}
   headTransformSampler: {fileID: 953616889}
   jangadaTransform: {fileID: 394621954}
@@ -1367,19 +1366,6 @@ MonoBehaviour:
   value: 0
   scale: 1
   threshold: 0
---- !u!114 &196829851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196829842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!137 &239462436 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1402732153964667906, guid: 75a2237d08719ba4892c0bbf68a902b7, type: 3}

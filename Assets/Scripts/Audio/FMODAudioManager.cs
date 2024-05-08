@@ -20,7 +20,7 @@ public class FMODAudioManager : MonoBehaviour
 
     // GESTURES
     [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
-    [SerializeField] [Range(-1f, 1f)] private float west_east = 0.5f;
+    [SerializeField] [Range(-1f, 1f)] private float west_east = 1f;
     [SerializeField] [Range(0f, 1f)] private float handsHeight;
     [SerializeField] [Range(0f, 1f)] private float leftVelocity;
     [SerializeField] [Range(0f, 1f)] private float rightVelocity;

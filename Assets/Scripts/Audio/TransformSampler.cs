@@ -59,7 +59,7 @@ public class TransformSampler : MonoBehaviour
     
     public Quaternion GetRotation() {return currentSample.Item2 * Quaternion.Inverse(oldestSample.Item2);}
     public Quaternion GetAngularVelocity() {return GetRotation();}// * GetDeltaTime();}
-    public float GetAngularSpeed() {return Quaternion.Angle(currentSample.Item2, oldestSample.Item2) / 180;}
+    public float GetAngularSpeed() {return (Quaternion.Angle(currentSample.Item2, oldestSample.Item2) / 180) / GetDeltaTime();}
 
     public Vector3 GetDeltaVelocity() {return (derivativeCurrentSample.Item1 - derivativeOldestSample.Item1);}
     
