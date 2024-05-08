@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rock_pack/Rock_01/rock1.mat.meta
 guid: d0648fb0e7ee41a41ac3ce9f4a505f2c
+========
+guid: 0bb9577326fd0ae4d96c455b7b6ac9c7
+>>>>>>>> Stashed changes:Assets/ReedsGen04-Reeds01/Materials/Base.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
