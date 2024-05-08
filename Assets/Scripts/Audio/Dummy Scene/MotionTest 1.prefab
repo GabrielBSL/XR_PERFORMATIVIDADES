@@ -12,11 +12,9 @@ GameObject:
   - component: {fileID: 5378579658087958498}
   - component: {fileID: 2683727045768582988}
   - component: {fileID: 1946334931721652059}
+  - component: {fileID: 416571498609833266}
   - component: {fileID: 4235498016611855458}
-  - component: {fileID: 7683419663143088553}
-  - component: {fileID: 2827259047983874022}
-  - component: {fileID: 481916807835291086}
-  - component: {fileID: 5377334868479942255}
+  - component: {fileID: 5707019252520159846}
   m_Layer: 0
   m_Name: MotionTest 1
   m_TagString: Untagged
@@ -54,6 +52,7 @@ MonoBehaviour:
   manualOverride: 0
   stage: 0
   volume: 0.5
+  acceleration: 0
   oneiric: 0
   height: 1
   flute: 0
@@ -62,6 +61,7 @@ MonoBehaviour:
   rainstick: 0
   shaker: 0
   fauna: 0
+  water: 0
 --- !u!114 &2683727045768582988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +92,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 0}
+  referenceTransform: {fileID: 0}
+--- !u!114 &416571498609833266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400719073075679421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a4b6b469cc9fb429a60d64ba148e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 0}
 --- !u!114 &4235498016611855458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0.75
+  threshold: 1
   hand: {fileID: 0}
---- !u!114 &7683419663143088553
+--- !u!114 &5707019252520159846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,122 +130,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2400719073075679421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 311ec4ef98f8156409aee38b7e315dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0.75
+  threshold: 1
   hand: {fileID: 0}
-  referenceMode: 0
-  referenceTransform: {fileID: 0}
-  referenceVector3: {x: 0, y: -1, z: 0}
-  threshold: 0.035
-  oneshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5378579658087958498}
-        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
-        m_MethodName: Kick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2827259047983874022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2400719073075679421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 0}
-  referenceMode: 0
-  referenceTransform: {fileID: 0}
-  referenceVector3: {x: 0, y: 1, z: 0}
-  threshold: 0.04
-  oneshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5378579658087958498}
-        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
-        m_MethodName: Snare
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &481916807835291086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2400719073075679421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 0}
-  referenceMode: 1
-  referenceTransform: {fileID: 0}
-  referenceVector3: {x: 0, y: 0, z: 1}
-  threshold: 0.02
-  oneshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5378579658087958498}
-        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
-        m_MethodName: Shaker
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5377334868479942255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2400719073075679421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b6932a39fb6c94980ef225193490eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 0}
-  referenceMode: 1
-  referenceTransform: {fileID: 0}
-  referenceVector3: {x: 0, y: 0, z: -1}
-  threshold: 0.04
-  oneshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5378579658087958498}
-        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
-        m_MethodName: Clap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

@@ -29,7 +29,7 @@ public class DirectionalThrust : MonoBehaviour
         {
             if
             (
-                Vector3.Dot(Quaternion.Slerp(Quaternion.identity, hand.GetAngularVelocity(), roundness) * hand.GetVelocity(), reference) * Time.deltaTime > threshold
+                Vector3.Dot(hand.GetVelocity(), reference) * Time.deltaTime > threshold
                 && Vector3.Dot(hand.GetAcceleration(), reference) <= 0
                 && !onCooldown
             )

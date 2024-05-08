@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18306622, g: 0.2287434, b: 0.30669293, a: 1}
+  m_IndirectSpecularColor: {r: 0.18306595, g: 0.2287429, b: 0.3066922, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1042,7 +1042,11 @@ PrefabInstance:
     - target: {fileID: 1946334931721652059, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: head
       value: 
-      objectReference: {fileID: 953616889}
+      objectReference: {fileID: 953616888}
+    - target: {fileID: 1946334931721652059, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: referenceTransform
+      value: 
+      objectReference: {fileID: 394621954}
     - target: {fileID: 2400719073075679421, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: m_Name
       value: FMODAudioManager
@@ -1101,12 +1105,24 @@ PrefabInstance:
       objectReference: {fileID: 324709068}
     - target: {fileID: 2827259047983874022, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827259047983874022, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: referenceMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827259047983874022, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: referenceTransform
       value: 
       objectReference: {fileID: 953616888}
+    - target: {fileID: 2827259047983874022, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: oneshot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 162347976}
+    - target: {fileID: 2827259047983874022, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: oneshot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Tap
+      objectReference: {fileID: 0}
     - target: {fileID: 4235498016611855458, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: hand
       value: 
@@ -1125,17 +1141,79 @@ PrefabInstance:
       objectReference: {fileID: 324709068}
     - target: {fileID: 7683419663143088553, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683419663143088553, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: referenceMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7683419663143088553, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
       propertyPath: referenceTransform
       value: 
       objectReference: {fileID: 953616888}
+    - target: {fileID: 7683419663143088553, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: oneshot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 162347976}
+    - target: {fileID: 7683419663143088553, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      propertyPath: oneshot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Splash
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2400719073075679421, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 162347974}
+    - targetCorrespondingSourceObject: {fileID: 2400719073075679421, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 162347975}
   m_SourcePrefab: {fileID: 100100000, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+--- !u!1 &162347973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2400719073075679421, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+  m_PrefabInstance: {fileID: 162347972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &162347974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162347973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a4b6b469cc9fb429a60d64ba148e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 953616888}
+--- !u!114 &162347975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162347973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311ec4ef98f8156409aee38b7e315dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0.75
+  threshold: 1
+  hand: {fileID: 461470125}
+--- !u!114 &162347976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5378579658087958498, guid: 3b8466a328dbfc24086fd77ae5a20bd3, type: 3}
+  m_PrefabInstance: {fileID: 162347972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162347973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aeb28c587ab86b42bd68b2a3fef1be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &165262487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,7 +1840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 394621954}
+  referenceTransform: {fileID: 394621954}
   sampleCount: 4
 --- !u!1 &332971579
 GameObject:
@@ -2140,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 394621954}
+  referenceTransform: {fileID: 394621954}
   sampleCount: 4
 --- !u!1 &466834769
 GameObject:
@@ -5363,7 +5441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reference: {fileID: 394621954}
+  referenceTransform: {fileID: 394621954}
   sampleCount: 4
 --- !u!1001 &986061002
 PrefabInstance:

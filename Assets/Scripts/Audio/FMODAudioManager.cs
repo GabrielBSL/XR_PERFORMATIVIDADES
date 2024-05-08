@@ -24,6 +24,7 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float rainstick;
     [SerializeField] [Range(0f, 1f)] private float shaker;
     [SerializeField] [Range(0f, 1f)] private float fauna;
+    [SerializeField] [Range(0f, 1f)] private float water;
 
     //[SerializeField] [Range(1f, 60f)] private int fps;
 
@@ -47,20 +48,23 @@ public class FMODAudioManager : MonoBehaviour
             {
                 case 0:
                 {
+                    marimba = this.GetComponent<HeadTurn2>().GetValue();
                     height = this.GetComponent<Crouch>().GetValue();
                     fauna = this.GetComponent<HeadTurn>().GetValue();
-                    print($"fauna = {fauna}");
                     rainstick = this.GetComponent<MotionSpeed>().GetValue();
-                    acceleration = this.GetComponent<MotionSpeed2>().GetValue();
+                    water = this.GetComponent<MotionSpeed2>().GetValue();
                     break;
                 }
                 case 1:
                 {
+                    marimba = this.GetComponent<HeadTurn2>().GetValue();
                     height = this.GetComponent<Crouch>().GetValue();
+                    fauna = this.GetComponent<HeadTurn>().GetValue();
+                    rainstick = this.GetComponent<MotionSpeed>().GetValue();
+                    water = this.GetComponent<MotionSpeed2>().GetValue();
                     break;
                 }
             }
-            
         }
 
         MusicEventInstance.setVolume(volume);
@@ -75,6 +79,7 @@ public class FMODAudioManager : MonoBehaviour
         MusicEventInstance.setParameterByName("rainstick", rainstick);
         MusicEventInstance.setParameterByName("shaker", shaker);
         MusicEventInstance.setParameterByName("fauna", fauna);
+        MusicEventInstance.setParameterByName("water", water);
     }
 
     //================ FMOD Oneshots ================
@@ -84,14 +89,14 @@ public class FMODAudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
     }
 
-    public static void Kick()
+    public static void Splash()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/kick");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/splash");
     }
     
-    public static void Snare()
+    public static void Tap()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/snare");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/tap");
     }
 
     public static void Clap()
