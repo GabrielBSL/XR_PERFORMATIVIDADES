@@ -1313,7 +1313,7 @@ MonoBehaviour:
   volume: 0.5
   stage: 0
   crouch_stand: 0.5
-  west_east: 0.5
+  west_east: 1
   handsHeight: 0
   leftVelocity: 0
   rightVelocity: 0

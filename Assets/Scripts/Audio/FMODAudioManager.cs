@@ -16,9 +16,10 @@ public class FMODAudioManager : MonoBehaviour
     //[SerializeField] private int targetFPS = 30;
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
-    [SerializeField] private int stage;
+    [SerializeField] [Range(0, 8)] private int stage;
 
-    // GESTURES
+
+    [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
     [SerializeField] [Range(-1f, 1f)] private float west_east = 1f;
     [SerializeField] [Range(0f, 1f)] private float handsHeight;
