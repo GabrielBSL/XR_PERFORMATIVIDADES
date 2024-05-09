@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a5b6d594-8d0e-4164-94c7-a0fca0d08bf8}">
 		<property name="name">
-			<value>snare</value>
+			<value>tap</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -39,7 +39,7 @@
 	</object>
 	<object class="MasterTrack" id="{864809a1-9f8f-48b9-8c17-847763f8f3cd}">
 		<relationship name="modules">
-			<destination>{abff689c-63a5-4002-ab99-d695ef70e464}</destination>
+			<destination>{7d72c6be-5b36-4836-b8d1-7134ec452328}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{d8f9c3a4-71bf-4aa8-aa7b-b4148698a3f8}</destination>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{59070b25-91f7-4c48-b62d-447f1fe0ff62}" />
 	<object class="Timeline" id="{a831e669-53d1-4210-8721-1913c98da46c}">
 		<relationship name="modules">
-			<destination>{abff689c-63a5-4002-ab99-d695ef70e464}</destination>
+			<destination>{7d72c6be-5b36-4836-b8d1-7134ec452328}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{d8f9c3a4-71bf-4aa8-aa7b-b4148698a3f8}">
@@ -74,15 +74,15 @@
 			<destination>{8ecd549b-2a60-4a06-9eb7-5f19e94730de}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{abff689c-63a5-4002-ab99-d695ef70e464}">
+	<object class="SingleSound" id="{7d72c6be-5b36-4836-b8d1-7134ec452328}">
 		<property name="length">
-			<value>0.55003507653061223</value>
+			<value>2.6259236453201971</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>0.05078125</value>
+			<value>0.87407635467980294</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{899c410f-e0b3-4a40-a97f-bdc6bd3038f5}</destination>
+			<destination>{2ebd8921-b8f2-4587-a57b-eddf5420d349}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{ecadf6c0-c9d5-4ff8-b32a-c04bedc19904}">
