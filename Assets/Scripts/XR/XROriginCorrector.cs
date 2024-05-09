@@ -8,6 +8,13 @@ namespace Main.XR
         [SerializeField] private Transform headSpawn;
         [SerializeField] private Vector3 offset;
 
+        private Vector3 _initialPosition;
+
+        private void Awake()
+        {
+            _initialPosition = transform.position;
+        }
+
         private void OnEnable()
         {
             MainEventsManager.currentHeadPosition += ReceiveCurrentHeadPosition;
@@ -22,7 +29,7 @@ namespace Main.XR
         private void ReceiveCurrentHeadPosition(Vector3 headPosition)
         {
             Vector3 positionDifference = headSpawn.position - headPosition;
-            transform.position += positionDifference + offset;
+            transform.position += _initialPosition + offset;
         }
         private void ReceiveCurrentHeadEulerAngles(Vector3 headEulerAngles)
         {
