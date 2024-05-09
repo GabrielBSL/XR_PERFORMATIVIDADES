@@ -1295,8 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
-  maxHeight: 0
-  crouchHeight: 1.8
+  threshold: -1
 --- !u!114 &196829847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1311,15 @@ MonoBehaviour:
   overrideInterpolation: 0
   volume: 0.5
   stage: 0
+  stageInput:
+    m_Name: Stage Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6a1ab1f2-3af3-4cb8-8afc-ffbf58b986d3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   crouch_stand: 0.5
   west_east: 1
   handsHeight: 0

@@ -25,7 +25,7 @@ public class West_East : MonoBehaviour
 
     void Update()
     {
-        value = Vector3.Dot(headTransform.rotation * Vector3.forward, jangadaTransform.right);
+        value = Vector3.Dot(headTransform.rotation * Vector3.forward, jangadaTransform.up);
     }
 }
 

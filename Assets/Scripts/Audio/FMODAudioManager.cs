@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class FMODAudioManager : MonoBehaviour
 {   
@@ -16,7 +15,8 @@ public class FMODAudioManager : MonoBehaviour
     //[SerializeField] private int targetFPS = 30;
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
-    [SerializeField] [Range(0, 8)] private int stage;
+    [SerializeField] [Range(0, 8)] private int stage = 0;
+    [SerializeField] private InputAction stageInput;
 
 
     [Header("Gestures")]
@@ -27,6 +27,27 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float rightVelocity;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
+
+    private void NextStage()
+    {
+        stage += 1;
+        Debug.Log($"stage: {stage}");
+    }
+
+    void Awake()
+    {
+        stageInput.performed += _ => NextStage();
+    }
+
+    private void OnEnable()
+    {
+        stageInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        stageInput.Disable();
+    }
 
     void Start()
     {

@@ -9,8 +9,7 @@ public class Crouch_Stand : MonoBehaviour
     private Transform headTransform;
     private Transform jangadaTransform;
 
-    [SerializeField] private float maxHeight;
-    [SerializeField] private float crouchHeight;
+    [SerializeField] private float threshold = -1;
 
     void GetHeadTransform(Transform _headTransform){headTransform = _headTransform;}
     void GetJangadaTransform(Transform _jangadaTransform){jangadaTransform = _jangadaTransform;}
@@ -28,7 +27,7 @@ public class Crouch_Stand : MonoBehaviour
 
     void Update()
     {
-        value = (headTransform.position.y - jangadaTransform.position.y - crouchHeight) / (maxHeight - crouchHeight);
+        value = (headTransform.position.y - jangadaTransform.position.y) - threshold;
     }
 }
 
