@@ -16,5 +16,6 @@ namespace Main.Events
         public static Action<Vector3> currentHeadEulerAngles;
 
         public static Action activateMimic;
+        public static Action endOfPath;
     }
 }

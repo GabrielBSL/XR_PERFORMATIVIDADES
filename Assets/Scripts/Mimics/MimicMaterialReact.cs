@@ -10,6 +10,7 @@ namespace Main.Mimics
     public class MimicMaterialReact : MonoBehaviour
     {
         [SerializeField] private Renderer mimicRenderer;
+        [SerializeField] private Color emissionColor;
         [SerializeField] private float loopBaseDuration = 12;
         [SerializeField] private float smoothnessLoopDuration = 6;
         [SerializeField, Range(0, 1)] private float smoothnessRange = 1;
@@ -79,13 +80,14 @@ namespace Main.Mimics
 
         private IEnumerator materialEmissionCoroutine()
         {
-            float colorChangeDuration = loopBaseDuration / 6;
+            float colorChangeDuration = loopBaseDuration / 2;
 
-            float[] colorMult = new float[3] {1, 0, 0};
-            float[] colorCurrent = new float[3] {0, 0, emissionRangeBase};
+            float[] colorCurrent = new float[3];
 
-            int colorIndex = 0;
+            int signMultiplier = 1;
             float baseDurationMultiplier = emissionRangeBase / colorChangeDuration;
+
+            Vector3 normalizedEmission = new Vector3(emissionColor.r, emissionColor.g, emissionColor.b).normalized;
 
             while (true)
             {
@@ -99,10 +101,11 @@ namespace Main.Mimics
                     t = Mathf.Clamp(t + Time.deltaTime * durationMultiplier, 0, colorChangeDuration);
 
                     yield return null;
+                    float currentMultiplier = Time.deltaTime * signMultiplier * baseDurationMultiplier * durationMultiplier * emissionCurrentMultiplier;
 
-                    for(int i = 0; i < 3; i++)
+                    for (int i = 0; i < 3; i++)
                     {
-                        float correctedValue = colorCurrent[i] + Time.deltaTime * colorMult[i] * baseDurationMultiplier * durationMultiplier * emissionCurrentMultiplier;
+                        float correctedValue = colorCurrent[i] + normalizedEmission[i] * currentMultiplier;
                         colorCurrent[i] = Mathf.Clamp(correctedValue, 0, emissionRangeBase * emissionCurrentMultiplier);
                     }
 
@@ -111,25 +114,7 @@ namespace Main.Mimics
                     _materialCopy.SetColor("_EmissionColor", newEmissionColor);
                 }
 
-                if(colorMult.Any(c => c > 0))
-                {
-                    colorMult[colorIndex] = 0;
-                    colorIndex--;
-
-                    if (colorIndex < 0)
-                    {
-                        colorIndex = 2;
-                    }
-                    colorMult[colorIndex] = -1;
-                }
-                else
-                {
-                    colorMult[colorIndex] = 0;
-                    colorIndex = (colorIndex + 2) % 3;
-
-                    colorMult[colorIndex] = 1;
-                }
-
+                signMultiplier *= -1;
                 yield return null;
             }
         }
