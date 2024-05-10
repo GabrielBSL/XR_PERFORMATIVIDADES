@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class FMODAudioManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0, 8)] private int stage = 0;
+    [SerializeField] private Text stageText;
     [SerializeField] private InputAction stageInput;
 
 
@@ -52,13 +54,15 @@ public class FMODAudioManager : MonoBehaviour
     void Start()
     {
         // FMOD Setup
-        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music");
+        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_old");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
     }
 
     void Update()
     {
+        stageText.text = "Stage: " + stage;
+
         //Application.targetFrameRate = fps;
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("stage", stage);

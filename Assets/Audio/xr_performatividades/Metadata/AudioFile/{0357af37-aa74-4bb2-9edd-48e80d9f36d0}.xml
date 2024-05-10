@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{0357af37-aa74-4bb2-9edd-48e80d9f36d0}">
 		<property name="assetPath">
-			<value>325182__kentspublicdomain__river-stream-creek-sound-of-waves-moving-water.wav</value>
+			<value>old/325182__kentspublicdomain__river-stream-creek-sound-of-waves-moving-water.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

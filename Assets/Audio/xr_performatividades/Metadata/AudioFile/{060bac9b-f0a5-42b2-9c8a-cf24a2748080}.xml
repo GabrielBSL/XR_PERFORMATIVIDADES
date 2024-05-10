@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{060bac9b-f0a5-42b2-9c8a-cf24a2748080}">
+		<property name="assetPath">
+			<value>old/Corporalidades Futuras 27-Vintage Saw Keys.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>230.40000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{03fd89da-454e-4bf2-a55e-003f23da8aa6}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{adb93a7d-4334-4071-b9a7-b8d206da45d4}">
 		<property name="name">
-			<value>music</value>
+			<value>music_old</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -95,6 +95,7 @@
 		</relationship>
 		<relationship name="modules">
 			<destination>{d25f747c-da97-4bfa-b6be-bac41cda4178}</destination>
+			<destination>{320ca408-31dc-42c0-be1f-42417ec5f224}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{586c622b-53c3-4ff5-b246-fe59d769e0e9}</destination>
@@ -381,6 +382,7 @@
 			<destination>{430bd0a3-943e-4d82-b78e-806451e7aa55}</destination>
 			<destination>{a3a5a408-b21d-4bed-9946-ca4aba659ca4}</destination>
 			<destination>{4d49ac25-0f6f-4a0d-8be8-20f6b9b07d92}</destination>
+			<destination>{320ca408-31dc-42c0-be1f-42417ec5f224}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{abd52eb0-4343-40a5-a807-dd5e0f7b08ca}</destination>
@@ -484,6 +486,20 @@
 		</property>
 		<relationship name="audioFile">
 			<destination>{44fd833e-24bc-4374-8107-2da4b475e7dc}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{320ca408-31dc-42c0-be1f-42417ec5f224}">
+		<property name="start">
+			<value>26.853146853146853</value>
+		</property>
+		<property name="length">
+			<value>79.728317396888883</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>215.66433566433565</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{fb331c04-4bf9-4821-a13c-6d242f452cce}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{586c622b-53c3-4ff5-b246-fe59d769e0e9}">

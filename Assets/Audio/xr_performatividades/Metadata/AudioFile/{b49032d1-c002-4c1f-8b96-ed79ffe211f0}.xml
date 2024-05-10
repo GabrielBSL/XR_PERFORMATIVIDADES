@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{b49032d1-c002-4c1f-8b96-ed79ffe211f0}">
 		<property name="assetPath">
-			<value>water-splashing-brook-stream-little-creek-nature-sounds-8003.mp3</value>
+			<value>old/water-splashing-brook-stream-little-creek-nature-sounds-8003.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

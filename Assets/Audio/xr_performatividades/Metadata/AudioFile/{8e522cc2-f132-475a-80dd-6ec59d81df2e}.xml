@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{8e522cc2-f132-475a-80dd-6ec59d81df2e}">
 		<property name="assetPath">
-			<value>Corporalidades Futuras !Onírico.mp3</value>
+			<value>old/Corporalidades Futuras !Onírico.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

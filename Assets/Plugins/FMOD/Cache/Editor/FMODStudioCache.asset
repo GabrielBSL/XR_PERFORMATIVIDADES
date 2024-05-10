@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6101756247081364675
+--- !u!114 &-9004660568138860268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,16 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/crouch_stand
+  m_Name: parameter:/music_old/percussion
   m_EditorClassIdentifier: 
-  Name: crouch_stand
+  Name: percussion
+  StudioPath: 
+  Min: 0
+  Max: 6
+  Default: 0
+  ID:
+    data1: 3752549352
+    data2: 1789222794
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7364164092268104749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_old/rightVelocity
+  m_EditorClassIdentifier: 
+  Name: rightVelocity
   StudioPath: 
   Min: 0
   Max: 1
-  Default: 1
+  Default: 0
   ID:
-    data1: 3656428949
-    data2: 954841651
+    data1: 3483622295
+    data2: 3248620696
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -39,12 +63,12 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638507799239932642
+  lastModified: 638509528381018238
   FileSizes:
   - Name: Desktop
-    Value: 1252
+    Value: 1298
   Exists: 1
---- !u!114 &-5255685248800435003
+--- !u!114 &-4994036454282415490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,40 +78,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/leftVelocity
+  m_Name: parameter:/music_old/crouch_stand
   m_EditorClassIdentifier: 
-  Name: leftVelocity
+  Name: crouch_stand
   StudioPath: 
   Min: 0
   Max: 1
-  Default: 0
+  Default: 1
   ID:
-    data1: 918596575
-    data2: 4289079622
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-5055436541434546169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/handsHeight
-  m_EditorClassIdentifier: 
-  Name: handsHeight
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1759551463
-    data2: 780184973
+    data1: 3656428949
+    data2: 954841651
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -119,6 +119,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2625
+--- !u!114 &-3888715571634664686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_old/leftVelocity
+  m_EditorClassIdentifier: 
+  Name: leftVelocity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 918596575
+    data2: 4289079622
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-3522488434630274221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,50 +184,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/music
   Guid:
-    Data1: -1380369795
-    Data2: 1081164596
-    Data3: -759650375
-    Data4: -733619706
+    Data1: -296064400
+    Data2: 1094871868
+    Data3: -178765180
+    Data4: -949808111
   Banks:
   - {fileID: -1382486602530659167}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters:
-  - {fileID: 8389349989309787851}
-  - {fileID: -6101756247081364675}
-  - {fileID: 4314055591386483566}
-  - {fileID: -2305926095293008552}
-  - {fileID: 3627989481299429678}
-  - {fileID: -5255685248800435003}
-  - {fileID: -5055436541434546169}
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 104063
---- !u!114 &-2305926095293008552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/rightVelocity
-  m_EditorClassIdentifier: 
-  Name: rightVelocity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3483622295
-    data2: 3248620696
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  Length: 296000
 --- !u!114 &-2150042059723737653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,10 +239,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638507799239912103
+  lastModified: 638509528380971601
   FileSizes:
   - Name: Desktop
-    Value: 6952384
+    Value: 12332896
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -272,14 +265,15 @@ MonoBehaviour:
   - {fileID: 4513942066883863388}
   - {fileID: -3522488434630274221}
   - {fileID: -4754767336684330572}
+  - {fileID: 5003403426246821402}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638507799239932642
+  cacheTime: 638509528381018238
   cacheVersion: 131616
---- !u!114 &3627989481299429678
+--- !u!114 &1948079626057127613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,31 +283,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/west_east
-  m_EditorClassIdentifier: 
-  Name: west_east
-  StudioPath: 
-  Min: -1
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2280839306
-    data2: 3307584806
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &4314055591386483566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/stage
+  m_Name: parameter:/music_old/stage
   m_EditorClassIdentifier: 
   Name: stage
   StudioPath: 
@@ -324,6 +294,30 @@ MonoBehaviour:
     data1: 716799115
     data2: 506732331
   Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4384436817837796826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_old/handsHeight
+  m_EditorClassIdentifier: 
+  Name: handsHeight
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1759551463
+    data2: 780184973
+  Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
@@ -354,7 +348,41 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6248
---- !u!114 &8389349989309787851
+--- !u!114 &5003403426246821402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music_old
+  m_EditorClassIdentifier: 
+  Path: event:/music_old
+  Guid:
+    Data1: -1380369795
+    Data2: 1081164596
+    Data3: -759650375
+    Data4: -733619706
+  Banks:
+  - {fileID: -1382486602530659167}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -9004660568138860268}
+  - {fileID: -4994036454282415490}
+  - {fileID: 4384436817837796826}
+  - {fileID: 1948079626057127613}
+  - {fileID: -7364164092268104749}
+  - {fileID: 5014380178421187802}
+  - {fileID: -3888715571634664686}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 106581
+--- !u!114 &5014380178421187802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,16 +392,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/percussion
+  m_Name: parameter:/music_old/west_east
   m_EditorClassIdentifier: 
-  Name: percussion
+  Name: west_east
   StudioPath: 
-  Min: 0
-  Max: 6
+  Min: -1
+  Max: 1
   Default: 0
   ID:
-    data1: 3752549352
-    data2: 1789222794
+    data1: 2280839306
+    data2: 3307584806
   Type: 0
   IsGlobal: 0
   Labels: []
