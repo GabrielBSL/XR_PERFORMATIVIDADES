@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ac3fdf0f-748e-4d31-bb8e-3d2fff0d635f}">
+		<property name="assetPath">
+			<value>SFX/Untitled 11-Som de Capivara -  Sons de Capivaras [2024-05-02 021401].mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>24.946938775510205</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{03fd89da-454e-4bf2-a55e-003f23da8aa6}</destination>
+		</relationship>
+	</object>
+</objects>

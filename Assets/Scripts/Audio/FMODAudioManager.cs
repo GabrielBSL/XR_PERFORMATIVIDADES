@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class FMODAudioManager : MonoBehaviour
 {   
@@ -12,21 +12,42 @@ public class FMODAudioManager : MonoBehaviour
     private static FMODUnity.EventReference MusicEventReference;
     private static FMOD.Studio.EventInstance MusicEventInstance;
 
-    [SerializeField] private bool manualOverride;
-    [SerializeField] private int stage;
+    //[SerializeField] private int targetFPS = 30;
+    [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
-    [SerializeField] [Range(0f, 1f)] private float oneiric;
-    [SerializeField] [Range(0f, 2f)] private float height = 1f;
-    [SerializeField] [Range(0f, 1f)] private float flute;
-    [SerializeField] [Range(0f, 5f)] private float intensity;
-    [SerializeField] [Range(0f, 1f)] private float marimba;
-    [SerializeField] [Range(0f, 1f)] private float rainstick;
-    [SerializeField] [Range(0f, 1f)] private float shaker;
-    [SerializeField] [Range(0f, 1f)] private float fauna;
+    [SerializeField] [Range(0, 8)] private int stage = 0;
+    [SerializeField] private InputAction stageInput;
 
-    //[SerializeField] [Range(1f, 60f)] private int fps;
+
+    [Header("Gestures")]
+    [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
+    [SerializeField] [Range(-1f, 1f)] private float west_east = 1f;
+    [SerializeField] [Range(0f, 1f)] private float handsHeight;
+    [SerializeField] [Range(0f, 1f)] private float leftVelocity;
+    [SerializeField] [Range(0f, 1f)] private float rightVelocity;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
+
+    private void NextStage()
+    {
+        stage += 1;
+        Debug.Log($"stage: {stage}");
+    }
+
+    void Awake()
+    {
+        stageInput.performed += _ => NextStage();
+    }
+
+    private void OnEnable()
+    {
+        stageInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        stageInput.Disable();
+    }
 
     void Start()
     {
@@ -39,38 +60,34 @@ public class FMODAudioManager : MonoBehaviour
     void Update()
     {
         //Application.targetFrameRate = fps;
-
-        if (!manualOverride)
-        {
-            switch(stage)
-            {
-                case 0:
-                {
-                    height = this.GetComponent<Crouch>().GetValue();
-                    fauna = this.GetComponent<HeadTurn>().GetValue();
-                    rainstick = this.GetComponent<MotionSpeed>().GetValue();
-                    break;
-                }
-                case 1:
-                {
-                    height = this.GetComponent<Crouch>().GetValue();
-                    break;
-                }
-            }
-            
-        }
-
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("stage", stage);
 
-        MusicEventInstance.setParameterByName("oneiric", oneiric);
-        MusicEventInstance.setParameterByName("height", height);
-        MusicEventInstance.setParameterByName("flute", flute);
-        MusicEventInstance.setParameterByName("intensity", intensity);
-        MusicEventInstance.setParameterByName("marimba", marimba);
-        MusicEventInstance.setParameterByName("rainstick", rainstick);
-        MusicEventInstance.setParameterByName("shaker", shaker);
-        MusicEventInstance.setParameterByName("fauna", fauna);
+        MusicEventInstance.setParameterByName("crouch_stand", Mathf.Lerp(
+            this.GetComponent<Crouch_Stand>().value,
+            crouch_stand,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("west_east", Mathf.Lerp(
+            this.GetComponent<West_East>().value,
+            west_east,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("handsHeight", Mathf.Lerp(
+            this.GetComponent<HandsHeight>().value,
+            handsHeight,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("leftVelocity", Mathf.Lerp(
+            this.GetComponent<LeftVelocity>().value,
+            leftVelocity,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("rightVelocity", Mathf.Lerp(
+            this.GetComponent<RightVelocity>().value,
+            rightVelocity,
+            overrideInterpolation
+        ));
     }
 
     //================ FMOD Oneshots ================
@@ -80,14 +97,14 @@ public class FMODAudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
     }
 
-    public static void Kick()
+    public static void Splash()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/kick");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/splash");
     }
     
-    public static void Snare()
+    public static void Tap()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/snare");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/tap");
     }
 
     public static void Clap()

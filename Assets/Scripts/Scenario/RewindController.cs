@@ -34,6 +34,7 @@ namespace Main.Scenario
 
         [Header("Debug")]
         [SerializeField] private bool forceSaveClip;
+        [SerializeField] private bool forceRewind;
 
         private static List<List<PoseInfo>> movementClips = new List<List<PoseInfo>>();
         public static Action onStartRewind;
@@ -50,10 +51,18 @@ namespace Main.Scenario
         private bool _clipFull;
         private static PoseInfo _pose;
 
+        private float _saveClipPressTime = 0;
+        private float _startRewindPressTime = 0;
+
+        private bool _saveClipPressed;
+        private bool _startRewindPressed;
+
         private void Awake()
         {
-            saveClipAction.performed += _ => SaveClip();
-            triggerMimicRewind.performed += _ => { onStartRewind?.Invoke(); };
+            saveClipAction.performed += _ => ReceiveSaveClipButtonUpdate(true);
+            saveClipAction.canceled += _ => ReceiveSaveClipButtonUpdate(false);
+            triggerMimicRewind.performed += _ => ReceiveStartRewindButtonUpdate(true);
+            triggerMimicRewind.canceled += _ => ReceiveStartRewindButtonUpdate(false);
         }
 
         private void OnEnable()
@@ -108,12 +117,51 @@ namespace Main.Scenario
         {
             RecordPlayerPosition();
 
+            _startRewindPressTime = _startRewindPressed ? _startRewindPressTime + Time.deltaTime : 0;
+            _saveClipPressTime = _saveClipPressed ? _saveClipPressTime + Time.deltaTime : 0;
+
+            if(_startRewindPressTime > 1)
+            {
+                _startRewindPressed = false;
+                _startRewindPressTime = 0;
+                onStartRewind?.Invoke();
+            }
+            if(_saveClipPressTime > 1)
+            {
+                _saveClipPressTime = 0;
+                _saveClipPressed = false;
+                SaveClip();
+            }
+
+            if (_startRewindPressed)
+            {
+                _startRewindPressTime += Time.deltaTime;
+            }
+            if (_saveClipPressed)
+            {
+                _saveClipPressTime += Time.deltaTime;
+            }
+
             if (forceSaveClip)
             {
                 forceSaveClip = false;
                 SaveClip();
+            }
+
+            if (forceRewind)
+            {
+                forceRewind = false;
                 onStartRewind?.Invoke();
             }
+        }
+
+        private void ReceiveSaveClipButtonUpdate(bool isPressed)
+        {
+            _saveClipPressed = isPressed;
+        }
+        private void ReceiveStartRewindButtonUpdate(bool isPressed)
+        {
+            _startRewindPressed = isPressed;
         }
 
         private void SaveClip()

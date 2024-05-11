@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Main.Mimics
 {
+    [ExecuteInEditMode]
     public class MimicChar : MonoBehaviour
     {
         private struct HandInfo
@@ -30,6 +31,19 @@ namespace Main.Mimics
         [SerializeField, Range(.01f, 1f)] private float handMovementSmoothness = .033f;
         [SerializeField] private float movementDelay = .5f;
 
+        [Header("Ground")]
+        [SerializeField] private bool automaticallySnapToGround = true;
+        [SerializeField, Range(0f, 10f)] private float groundDetectionHeight = 1f;
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private bool enableBodyPosVariation = true;
+        [SerializeField] private Vector2 bodyPosVariation;
+        [SerializeField] private Vector2 bodyPosVariationDuration;
+
+        [Header("Walking")]
+        [SerializeField] private Transform[] destinations;
+        [SerializeField] private float walkVelocity = 3;
+        [SerializeField, Range(.01f, 1f)] private float pathSmoothness = .1f;
+
         [Header("Random")]
         [SerializeField] private float positionVariation = .05f;
         [SerializeField] private float variationDuration = .75f;
@@ -37,6 +51,7 @@ namespace Main.Mimics
 
         [Header("Correction")]
         [SerializeField] private float handsYCorrection;
+        [SerializeField] private float headYCorrection;
 
         [Header("Rewind")]
         [SerializeField] private bool allowClipRewind;
@@ -44,17 +59,25 @@ namespace Main.Mimics
 
         [Header("Debug")]
         [SerializeField] private bool showDebugMessages;
+        [SerializeField] private bool forceStartPath;
 
-        private Transform rightArmTargetReference;
-        private Transform leftArmTargetReference;
-        private Transform rightArmHintReference;
-        private Transform leftHandHintReference;
-        private Transform headReference;
-        private Transform bodyReference;
+        private Transform _rightArmTargetReference;
+        private Transform _leftArmTargetReference;
+        private Transform _rightArmHintReference;
+        private Transform _leftHandHintReference;
+        private Transform _headReference;
+        private Transform _bodyReference;
 
-        private float variationDurationTimer = 0;
-        private float _lastReferenceHeight;
+        private float _variationDurationTimer = 0;
+        private float _initialReferenceBodyHeight;
+        private float _bodyPositionVariationTimer = 0;
+        private float _bodyPosCurrentTimerLimit;
 
+        private int _currentPathDestination = 0;
+
+        private Vector3 _destinationPosition;
+        private Vector3 _destinationRandomVariation;
+        private Vector3 _destinationRandomVariationLerp;
         private Vector3 _leftHandFinalPositionVariation;
         private Vector3 _rightHandFinalPositionVariation;
         private Vector3 _leftHandCurrentPositionVariation;
@@ -62,6 +85,15 @@ namespace Main.Mimics
 
         private List<PoseInfo> _clipInfo;
         private bool _playingClip;
+        private bool _followHeadHeight;
+
+        private void Awake()
+        {
+            _destinationPosition = transform.position;
+            _bodyPosCurrentTimerLimit = UnityEngine.Random.Range(bodyPosVariationDuration.x, bodyPosVariationDuration.y);
+
+            _bodyPositionVariationTimer = _bodyPosCurrentTimerLimit;
+        }
 
         private void OnEnable()
         {
@@ -71,6 +103,7 @@ namespace Main.Mimics
             MainEventsManager.leftHandHintTransformUpdate += ReceiveLeftArmHint;
             MainEventsManager.headTransformUpdate += ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate += ReceiveBodyReference;
+            MainEventsManager.endOfPath += ReceiveEndOfPath;
             RewindController.onStartRewind += ReceiveRewindCommand;
         }
         private void OnDisable()
@@ -81,36 +114,41 @@ namespace Main.Mimics
             MainEventsManager.leftHandHintTransformUpdate -= ReceiveLeftArmHint;
             MainEventsManager.headTransformUpdate -= ReceiveHeadReference;
             MainEventsManager.bodyTransformUpdate -= ReceiveBodyReference;
+            MainEventsManager.endOfPath -= ReceiveEndOfPath;
             RewindController.onStartRewind -= ReceiveRewindCommand;
         }
         private void ReceiveRightArmTarget(Transform _rightArmTarget)
         {
-            rightArmTargetReference = _rightArmTarget;
+            _rightArmTargetReference = _rightArmTarget;
             rightArmTarget.localPosition = _rightArmTarget.localPosition;
             rightHandDestination.localPosition = _rightArmTarget.localPosition;
         }
         private void ReceiveLeftArmTarget(Transform _leftArmTarget)
         {
-            leftArmTargetReference = _leftArmTarget;
+            _leftArmTargetReference = _leftArmTarget;
             leftArmTarget.localPosition = _leftArmTarget.localPosition;
             leftHandDestination.localPosition = _leftArmTarget.localPosition;
         }
         private void ReceiveRightArmHint(Transform _rightArmHint)
         {
-            rightArmHintReference = _rightArmHint;
+            _rightArmHintReference = _rightArmHint;
         }
         private void ReceiveLeftArmHint(Transform _leftArmHint)
         {
-            leftHandHintReference = _leftArmHint;
+            _leftHandHintReference = _leftArmHint;
         }
         private void ReceiveBodyReference(Transform _bodyReference)
         {
-            bodyReference = _bodyReference;
-            _lastReferenceHeight = bodyReference.position.y;
+            this._bodyReference = _bodyReference;
+            _initialReferenceBodyHeight = this._bodyReference.position.y;
         }
         private void ReceiveHeadReference(Transform _headReference)
         {
-            headReference = _headReference;
+            this._headReference = _headReference;
+        }
+        private void ReceiveEndOfPath()
+        {
+            _followHeadHeight = false;
         }
 
         private void ReceiveRewindCommand()
@@ -122,7 +160,6 @@ namespace Main.Mimics
                 StartClipRewind();
             }
         }
-
         private void StartClipRewind()
         {
             if (!_playingClip)
@@ -140,15 +177,44 @@ namespace Main.Mimics
         // Update is called once per frame
         void Update()
         {
-            if(bodyReference == null || leftArmTarget == null || rightArmTarget == null)
+            if (!Application.isPlaying && automaticallySnapToGround)
+            {
+                SnapToGround();
+            }
+
+            if (_bodyReference == null || leftArmTarget == null || rightArmTarget == null)
             {
                 return;
             }
 
-            variationDurationTimer -= Time.deltaTime;
-            if(variationDurationTimer <= 0)
+            if (forceStartPath)
             {
-                variationDurationTimer = variationDuration;
+                forceStartPath = false;
+                GoToNextDestination();
+            }
+
+            if(enableBodyPosVariation)
+            {
+                _bodyPositionVariationTimer += Time.deltaTime;
+                if (_bodyPositionVariationTimer > _bodyPosCurrentTimerLimit)
+                {
+                    _bodyPositionVariationTimer = 0;
+                    _bodyPosCurrentTimerLimit = UnityEngine.Random.Range(bodyPosVariationDuration.x, bodyPosVariationDuration.y);
+
+                    float randomX = UnityEngine.Random.Range(-bodyPosVariation.x, bodyPosVariation.x);
+                    float randomZ = UnityEngine.Random.Range(-bodyPosVariation.y, bodyPosVariation.y);
+
+                    _destinationRandomVariation = new Vector3(randomX, 0, randomZ);
+                }
+
+                _destinationRandomVariationLerp = Vector3.Lerp(_destinationRandomVariationLerp, _destinationRandomVariation, pathSmoothness);
+                transform.position = Vector3.Lerp(transform.position, _destinationPosition + _destinationRandomVariationLerp, pathSmoothness);
+            }
+            
+            _variationDurationTimer -= Time.deltaTime;
+            if(_variationDurationTimer <= 0)
+            {
+                _variationDurationTimer = variationDuration;
                 SetRandomPositionVariation();
             }
 
@@ -157,6 +223,26 @@ namespace Main.Mimics
                 StartCoroutine(DelayMovementReading());
             }
             MoveToDestination();
+        }
+
+        private void SnapToGround(float correction = 0)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, groundDetectionHeight, 0), Vector3.down, out hit, float.MaxValue, groundLayer))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y - hit.distance + correction + groundDetectionHeight + headYCorrection, transform.position.z);
+            }
+        }
+
+        public void GoToNextDestination()
+        {
+            if(_currentPathDestination >= destinations.Length)
+            {
+                return;
+            }
+
+            StartCoroutine(MoveToDestinationCoroutine(destinations[_currentPathDestination]));
+            _currentPathDestination++;
         }
 
         private void SetRandomPositionVariation()
@@ -182,35 +268,69 @@ namespace Main.Mimics
             leftArmTarget.localPosition = Vector3.Lerp(leftArmTarget.localPosition, leftHandFinalPosition, handMovementSmoothness);
         }
 
+        private IEnumerator MoveToDestinationCoroutine(Transform destination)
+        {
+            Vector3 direction = (destination.position - _destinationPosition).normalized;
+
+            bool destinationXIsBigger = destination.position.x > _destinationPosition.x;
+
+            while (true)
+            {
+                _destinationPosition += direction * Time.deltaTime * walkVelocity;
+
+                if(destinationXIsBigger != destination.position.x > _destinationPosition.x) 
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+
+            _destinationPosition = destination.position;
+        }
+
         private IEnumerator DelayMovementReading()
         {
             HandInfo rightHandInfo = new HandInfo()
             {
-                up = rightArmTargetReference.up,
-                forward = rightArmTargetReference.forward,
-                localPosition = rightArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
+                up = _rightArmTargetReference.up,
+                forward = _rightArmTargetReference.forward,
+                localPosition = _rightArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
             };
             HandInfo leftHandInfo = new HandInfo()
             {
-                up = leftArmTargetReference.up,
-                forward = leftArmTargetReference.forward,
-                localPosition = leftArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
+                up = _leftArmTargetReference.up,
+                forward = _leftArmTargetReference.forward,
+                localPosition = _leftArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
             };
 
-            Vector3 bodyReferencePosition = bodyReference.position;
-            Vector3 bodyReferenceForward = bodyReference.forward;
+            Vector3 bodyReferencePosition = _bodyReference.position;
+            Vector3 bodyReferenceForward = _bodyReference.forward;
 
-            Vector3 rightArmHintPosition = rightArmHintReference.localPosition;
-            Vector3 leftArmHintPosition = leftHandHintReference.localPosition;
+            Vector3 rightArmHintPosition = _rightArmHintReference.localPosition;
+            Vector3 leftArmHintPosition = _leftHandHintReference.localPosition;
 
-            float headReferenceZTurn = headReference.localEulerAngles.z;
+            float headReferenceZTurn = _headReference.localEulerAngles.z;
 
             yield return new WaitForSeconds(movementDelay);
 
-            //body Height
-            float referenceBodyHeightDelta = bodyReferencePosition.y - _lastReferenceHeight;
-            transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
-            _lastReferenceHeight = bodyReferencePosition.y;
+            if (_followHeadHeight)
+            {
+                //body Height
+                float referenceBodyHeightDifference = bodyReferencePosition.y - _initialReferenceBodyHeight;
+                if (automaticallySnapToGround)
+                {
+                    SnapToGround(referenceBodyHeightDifference);
+                }
+                else
+                {
+                    transform.position += new Vector3(0, referenceBodyHeightDifference + headYCorrection, 0);
+                }
+            }
+            else
+            {
+                SnapToGround(0);
+            }
 
             //body Rotation
             Vector3 direction = bodyReferencePosition - transform.position;
@@ -247,12 +367,12 @@ namespace Main.Mimics
                 //Debug.Log(pose.leftTargetLocalPos);
 
                 //body Height
-                float referenceBodyHeightDelta = pose.bodyPosition.y - _lastReferenceHeight;
+                float referenceBodyHeightDelta = pose.bodyPosition.y - _initialReferenceBodyHeight;
                 transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
-                _lastReferenceHeight = pose.bodyPosition.y;
+                _initialReferenceBodyHeight = pose.bodyPosition.y;
 
                 //body Rotation
-                Vector3 direction = bodyReference.position - transform.position;
+                Vector3 direction = _bodyReference.position - transform.position;
                 Quaternion newRotation = Quaternion.LookRotation(direction, Vector3.up);
                 newRotation.x = transform.rotation.x;
                 newRotation.z = transform.rotation.z;
@@ -263,7 +383,7 @@ namespace Main.Mimics
 
                 headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, pose.headTargetLocalEulerAngles.z * -1);
 
-                SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, bodyReference.forward);
+                SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, _bodyReference.forward);
 
                 yield return null;
             }
@@ -287,14 +407,6 @@ namespace Main.Mimics
 
             leftHandDestination.localPosition = Vector3.Scale(rhiLp, new Vector3(-1, 1, 1));
             rightHandDestination.localPosition = Vector3.Scale(lhiLp, new Vector3(-1, 1, 1));
-        }
-
-        //Calculates the delta of the reference hand position and returns the expected current position
-        private Vector3 GetHandPositionDestination(Vector3 refHandPos, Vector3 handDest, Vector3 lastHandPos, float deltaMultiplier)
-        {
-            Vector3 handLocalDelta = refHandPos - lastHandPos;
-            handLocalDelta = new Vector3(-handLocalDelta.x, 0, handLocalDelta.z) * deltaMultiplier;
-            return new Vector3(handDest.x, refHandPos.y, handDest.z) + handLocalDelta;
         }
 
         //Calculates the hand "transform.up" and "transform.forward" based on the reference hand rotation

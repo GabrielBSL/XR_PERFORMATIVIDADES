@@ -111,7 +111,7 @@ namespace Main.IK
             {
                 SendCurrentHeadPosition();
             }
-            else if (correctRotation)
+            if (correctRotation)
             {
                 SendCurrentHeadRotation();
             }

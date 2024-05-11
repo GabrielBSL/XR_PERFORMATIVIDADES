@@ -230,9 +230,9 @@ MonoBehaviour:
   body: {fileID: 3451112194531562385}
   otherFoot: {fileID: 6644096568265311960}
   speed: 4
-  stepDistance: 0.15
+  stepDistance: 0.12
   stepLength: 0.1
-  sideStepLength: 0.1
+  sideStepLength: 0.09
   stepHeight: 0.2
   footOffset: {x: 0, y: 0, z: -0.1}
   footRotOffset: {x: -165, y: 180, z: 0}
@@ -328,7 +328,7 @@ Transform:
   m_GameObject: {fileID: 3687577350193726345}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5724816, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -377,6 +377,16 @@ MonoBehaviour:
   leftHandDestination: {fileID: 2207149222692226093}
   handMovementSmoothness: 0.033
   movementDelay: 0.5
+  automaticallySnapToGround: 1
+  groundDetectionHeight: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  bodyPosVariation: {x: 0.6, y: 0.6}
+  bodyPosVariationDuration: {x: 1, y: 3}
+  destinations: []
+  walkVelocity: 1
+  pathSmoothness: 0.033
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
@@ -384,6 +394,7 @@ MonoBehaviour:
   allowClipRewind: 1
   rewindChance: 1
   showDebugMessages: 0
+  forceStartPath: 0
 --- !u!114 &5435338684446330171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,14 +408,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mimicRenderer: {fileID: 0}
-  loopBaseDuration: 12
-  smoothnessLoopDuration: 6
+  emissionColor: {r: 0, g: 1, b: 0, a: 0}
+  loopBaseDuration: 4
+  smoothnessLoopDuration: 3
   smoothnessRange: 1
-  emissionRangeBase: 32
+  emissionRangeBase: 16
   loopDurationMultiplier: 3
-  smoothnessDurationMultiplier: 3
-  emissionMultiplier: 5
-  movementDeltaDuration: 3
+  smoothnessDurationMultiplier: 5
+  emissionMultiplier: 3
+  movementDeltaDuration: 2.5
   maxMultiplierMovementDelta: 30
 --- !u!114 &9179999803004194171
 MonoBehaviour:
@@ -697,9 +709,9 @@ MonoBehaviour:
   body: {fileID: 3451112194531562385}
   otherFoot: {fileID: 1279427313939143172}
   speed: 4
-  stepDistance: 0.15
+  stepDistance: 0.12
   stepLength: 0.1
-  sideStepLength: 0.1
+  sideStepLength: 0.09
   stepHeight: 0.2
   footOffset: {x: 0, y: 0, z: -0.1}
   footRotOffset: {x: -165, y: 180, z: 0}
