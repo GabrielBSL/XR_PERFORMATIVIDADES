@@ -41,7 +41,7 @@ namespace Main.XR
 
         private void ReceiveCurrentHeadPosition(Vector3 headPosition)
         {
-            if(!_allowCorrection)
+            if (!_allowCorrection)
             {
                 return;
             }
