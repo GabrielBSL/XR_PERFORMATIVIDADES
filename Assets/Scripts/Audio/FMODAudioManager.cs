@@ -15,7 +15,7 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0, 8)] private float aldeiaBlend;
-    [SerializeField] [Range(0, 8)] private bool jangadaMoving;
+    [SerializeField] private bool jangadaMoving;
     [SerializeField] private Text stageText;
 
     [Header("Gestures")]

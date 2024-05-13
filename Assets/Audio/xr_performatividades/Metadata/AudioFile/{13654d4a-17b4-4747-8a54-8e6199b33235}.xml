@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{13654d4a-17b4-4747-8a54-8e6199b33235}">
 		<property name="assetPath">
-			<value>SFX/kick.mp3</value>
+			<value>impulse/kick.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
