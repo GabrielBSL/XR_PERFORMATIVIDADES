@@ -12,20 +12,11 @@ public class FMODAudioManager : MonoBehaviour
     private static FMODUnity.EventReference MusicEventReference;
     private static FMOD.Studio.EventInstance MusicEventInstance;
 
-    //[SerializeField] private int targetFPS = 30;
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0, 8)] private float aldeiaBlend;
     [SerializeField] [Range(0, 8)] private bool jangadaMoving;
     [SerializeField] private Text stageText;
-    /*
-    [SerializeField] private Transform aldeia1;
-    [SerializeField] private Transform aldeia2;
-    [SerializeField] private Transform aldeia3;
-    [SerializeField] private float distance1;
-    [SerializeField] private float distance2;
-    [SerializeField] private float distance3;
-    */
 
     [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
@@ -63,7 +54,6 @@ public class FMODAudioManager : MonoBehaviour
     {
         stageText.text = $"jangadaMoving: {jangadaMoving}\n aldeiaBlend: {aldeiaBlend}";
 
-        //Application.targetFrameRate = fps;
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
         MusicEventInstance.setParameterByName("jangadaMoving", jangadaMoving? 1 : 0);
@@ -98,6 +88,7 @@ public class FMODAudioManager : MonoBehaviour
 
     //================ FMOD Oneshots ================
 
+    /*
     public static void Thunder()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/thunder");
@@ -122,4 +113,5 @@ public class FMODAudioManager : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/oneshot/shaker");
     }
+    */
 }
