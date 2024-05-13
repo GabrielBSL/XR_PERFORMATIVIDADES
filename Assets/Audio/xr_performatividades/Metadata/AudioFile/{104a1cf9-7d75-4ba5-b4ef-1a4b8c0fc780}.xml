@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{104a1cf9-7d75-4ba5-b4ef-1a4b8c0fc780}">
+		<property name="assetPath">
+			<value>old/XR_PERFORM 11-325182__kentspublicdomain__river-stream-creek-sound-of-waves-moving-water.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>268.53877551020406</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{03fd89da-454e-4bf2-a55e-003f23da8aa6}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{8293c833-dfce-4ec2-bb1e-f1d7f2be5db1}">
 		<property name="name">
-			<value>jangadaMovement</value>
+			<value>jangadaMoving</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>

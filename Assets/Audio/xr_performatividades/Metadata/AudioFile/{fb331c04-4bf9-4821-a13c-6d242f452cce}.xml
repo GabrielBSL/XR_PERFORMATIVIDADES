@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{fb331c04-4bf9-4821-a13c-6d242f452cce}">
 		<property name="assetPath">
-			<value>XR_PERFORM !Aldeia3.mp3</value>
+			<value>old/XR_PERFORM !Aldeia3.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

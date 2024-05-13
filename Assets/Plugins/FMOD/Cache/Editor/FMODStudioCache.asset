@@ -1,131 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9004660568138860268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/percussion
-  m_EditorClassIdentifier: 
-  Name: percussion
-  StudioPath: 
-  Min: 0
-  Max: 6
-  Default: 0
-  ID:
-    data1: 3752549352
-    data2: 1789222794
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-8132260693192747594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ambience
-  m_EditorClassIdentifier: 
-  Path: event:/ambience
-  Guid:
-    Data1: -904511979
-    Data2: 1158901081
-    Data3: -710434155
-    Data4: 1037969639
-  Banks:
-  - {fileID: -1382486602530659167}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -5917877103285902832}
-  - {fileID: -6249676673980177850}
-  - {fileID: 971452519248463459}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3369
---- !u!114 &-7364164092268104749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/rightVelocity
-  m_EditorClassIdentifier: 
-  Name: rightVelocity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3483622295
-    data2: 3248620696
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-6249676673980177850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ambience/distance3
-  m_EditorClassIdentifier: 
-  Name: distance3
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3356104153
-    data2: 4007593400
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-5917877103285902832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ambience/distance1
-  m_EditorClassIdentifier: 
-  Name: distance1
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1787272755
-    data2: 610488692
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-5901467129971656415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,34 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638509621052611295
+  lastModified: 638511561240082049
   FileSizes:
   - Name: Desktop
-    Value: 1462
-  Exists: 1
---- !u!114 &-4994036454282415490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/crouch_stand
-  m_EditorClassIdentifier: 
-  Name: crouch_stand
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 1
-  ID:
-    data1: 3656428949
-    data2: 954841651
-  Type: 0
-  IsGlobal: 0
-  Labels: []
+    Value: 1470
   Exists: 1
 --- !u!114 &-4754767336684330572
 MonoBehaviour:
@@ -197,30 +47,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2625
---- !u!114 &-3888715571634664686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/leftVelocity
-  m_EditorClassIdentifier: 
-  Name: leftVelocity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 918596575
-    data2: 4289079622
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-3522488434630274221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,10 +97,36 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -2420002289417163437}
+  - {fileID: 3271701428809410632}
   MinDistance: 1
   MaxDistance: 20
-  Length: 296000
+  Length: 87272
+--- !u!114 &-2420002289417163437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/aldeiaBlend
+  m_EditorClassIdentifier: 
+  Name: aldeiaBlend
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 2905741905
+    data2: 350332673
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-2150042059723737653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,10 +169,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638509621052533397
+  lastModified: 638511561240051862
   FileSizes:
   - Name: Desktop
-    Value: 12451808
+    Value: 11212000
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -343,16 +195,14 @@ MonoBehaviour:
   - {fileID: 4513942066883863388}
   - {fileID: -3522488434630274221}
   - {fileID: -4754767336684330572}
-  - {fileID: 5003403426246821402}
-  - {fileID: -8132260693192747594}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638509621052611295
+  cacheTime: 638511561240082049
   cacheVersion: 131616
---- !u!114 &971452519248463459
+--- !u!114 &3271701428809410632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,67 +212,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ambience/distance2
+  m_Name: parameter:/music/jangadaMovement
   m_EditorClassIdentifier: 
-  Name: distance2
+  Name: jangadaMovement
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3861054505
-    data2: 1096034670
-  Type: 0
+    data1: 4126225507
+    data2: 1135566270
+  Type: 2
   IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &1948079626057127613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/stage
-  m_EditorClassIdentifier: 
-  Name: stage
-  StudioPath: 
-  Min: 0
-  Max: 3
-  Default: 0
-  ID:
-    data1: 716799115
-    data2: 506732331
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &4384436817837796826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/handsHeight
-  m_EditorClassIdentifier: 
-  Name: handsHeight
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1759551463
-    data2: 780184973
-  Type: 0
-  IsGlobal: 0
-  Labels: []
+  Labels:
+  - stopped
+  - moving
   Exists: 1
 --- !u!114 &4513942066883863388
 MonoBehaviour:
@@ -451,61 +255,3 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6248
---- !u!114 &5003403426246821402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music_old
-  m_EditorClassIdentifier: 
-  Path: event:/music_old
-  Guid:
-    Data1: -1380369795
-    Data2: 1081164596
-    Data3: -759650375
-    Data4: -733619706
-  Banks:
-  - {fileID: -1382486602530659167}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -9004660568138860268}
-  - {fileID: -4994036454282415490}
-  - {fileID: 4384436817837796826}
-  - {fileID: 1948079626057127613}
-  - {fileID: -7364164092268104749}
-  - {fileID: 5014380178421187802}
-  - {fileID: -3888715571634664686}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 106581
---- !u!114 &5014380178421187802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_old/west_east
-  m_EditorClassIdentifier: 
-  Name: west_east
-  StudioPath: 
-  Min: -1
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2280839306
-    data2: 3307584806
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1

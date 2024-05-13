@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{b9827434-24ba-47a1-aa6d-66d35a20aee0}">
 		<property name="name">
-			<value>blend</value>
+			<value>aldeiaBlend</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
