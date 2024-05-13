@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{b9827434-24ba-47a1-aa6d-66d35a20aee0}">
+		<property name="name">
+			<value>blend</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0b20bbab-c59a-420d-aa6e-bff453beb28a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0b20bbab-c59a-420d-aa6e-bff453beb28a}">
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
