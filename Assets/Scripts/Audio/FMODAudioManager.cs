@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class FMODAudioManager : MonoBehaviour
 {   
@@ -16,10 +15,17 @@ public class FMODAudioManager : MonoBehaviour
     //[SerializeField] private int targetFPS = 30;
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
-    [SerializeField] [Range(0, 8)] private int stage = 0;
+    [SerializeField] [Range(0, 8)] private float aldeiaBlend;
+    [SerializeField] [Range(0, 8)] private bool jangadaMoving;
     [SerializeField] private Text stageText;
-    [SerializeField] private InputAction stageInput;
-
+    /*
+    [SerializeField] private Transform aldeia1;
+    [SerializeField] private Transform aldeia2;
+    [SerializeField] private Transform aldeia3;
+    [SerializeField] private float distance1;
+    [SerializeField] private float distance2;
+    [SerializeField] private float distance3;
+    */
 
     [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
@@ -30,43 +36,39 @@ public class FMODAudioManager : MonoBehaviour
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
-    private void NextStage()
-    {
-        stage += 1;
-        Debug.Log($"stage: {stage}");
-    }
-
-    void Awake()
-    {
-        stageInput.performed += _ => NextStage();
-    }
+    void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
+    void GetJangadaMoving(bool _jangadaMoving){jangadaMoving = _jangadaMoving;}
 
     private void OnEnable()
     {
-        stageInput.Enable();
+        GestureReferenceEvents.aldeiaBlend += GetAldeiaBlend;
+        GestureReferenceEvents.jangadaMoving += GetJangadaMoving;
     }
 
     private void OnDisable()
     {
-        stageInput.Disable();
+        GestureReferenceEvents.aldeiaBlend -= GetAldeiaBlend;
+        GestureReferenceEvents.jangadaMoving -= GetJangadaMoving;
     }
 
     void Start()
     {
         // FMOD Setup
-        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_old");
+        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
     }
 
     void Update()
     {
-        stageText.text = "Stage: " + stage;
+        stageText.text = $"jangadaMoving: {jangadaMoving}\n aldeiaBlend: {aldeiaBlend}";
 
         //Application.targetFrameRate = fps;
         MusicEventInstance.setVolume(volume);
-        MusicEventInstance.setParameterByName("stage", stage);
+        MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
+        MusicEventInstance.setParameterByName("jangadaMoving", jangadaMoving? 1 : 0);
 
+        //Gestures
         MusicEventInstance.setParameterByName("crouch_stand", Mathf.Lerp(
             this.GetComponent<Crouch_Stand>().value,
             crouch_stand,

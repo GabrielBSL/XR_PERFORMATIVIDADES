@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638511561240082049
+  lastModified: 638511588436806971
   FileSizes:
   - Name: Desktop
-    Value: 1470
+    Value: 1468
   Exists: 1
 --- !u!114 &-4754767336684330572
 MonoBehaviour:
@@ -169,7 +169,7 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638511561240051862
+  lastModified: 638511588436761506
   FileSizes:
   - Name: Desktop
     Value: 11212000
@@ -200,7 +200,7 @@ MonoBehaviour:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638511561240082049
+  cacheTime: 638511588436806971
   cacheVersion: 131616
 --- !u!114 &3271701428809410632
 MonoBehaviour:
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/jangadaMovement
+  m_Name: parameter:/music/jangadaMoving
   m_EditorClassIdentifier: 
-  Name: jangadaMovement
+  Name: jangadaMoving
   StudioPath: 
   Min: 0
   Max: 1

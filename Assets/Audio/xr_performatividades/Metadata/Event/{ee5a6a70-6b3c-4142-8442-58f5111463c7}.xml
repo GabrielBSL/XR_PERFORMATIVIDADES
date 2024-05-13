@@ -599,7 +599,7 @@
 			<destination>{60616c29-c825-409e-831c-7a1615e9b6b2}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ba7b2c24-8ab5-413a-acbc-639558137355}</destination>
+			<destination>{11e882f5-5c4e-45b6-846b-f1d792c69a0b}</destination>
 		</relationship>
 	</object>
 	<object class="AutomationTrack" id="{142144ef-bf2c-4d97-b4eb-a66c247b0d92}">
@@ -673,9 +673,6 @@
 		<property name="length">
 			<value>53.706293706293707</value>
 		</property>
-		<property name="quantizationInterval">
-			<value>8</value>
-		</property>
 		<property name="looping">
 			<value>2</value>
 		</property>
@@ -695,9 +692,6 @@
 		</property>
 		<property name="length">
 			<value>26.853146853146846</value>
-		</property>
-		<property name="quantizationInterval">
-			<value>8</value>
 		</property>
 		<property name="looping">
 			<value>2</value>

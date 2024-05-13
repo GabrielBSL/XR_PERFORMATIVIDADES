@@ -162,6 +162,9 @@ namespace Main.IK
 
             Debug.Log("height: " + _currentYRatio);
             Debug.Log("width: " + _currentXRatio);
+
+            GestureReferenceEvents.userHeight?.Invoke(_currentYRatio);
+            GestureReferenceEvents.userWingspan?.Invoke(_currentXRatio);
         }
 
         private void SendCurrentHeadPosition()

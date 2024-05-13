@@ -45,6 +45,7 @@ namespace Main.Scenario
                 startMove = false;
                 StartCoroutine(moveAlongPath());
             }
+            GestureReferenceEvents.jangadaMoving?.Invoke(_traveling);
         }
 
         private void StartPathTraveling()
@@ -82,6 +83,8 @@ namespace Main.Scenario
                     Vector3 bezier5 = Vector3.Lerp(bezier2, bezier3, t);
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
+
+                    GestureReferenceEvents.aldeiaBlend?.Invoke(_pathIndex + (i + 1 + t)/pathSize);
 
                     transform.position = curPosition;
 

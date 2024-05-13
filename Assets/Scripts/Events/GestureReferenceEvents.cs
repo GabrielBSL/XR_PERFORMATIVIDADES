@@ -3,6 +3,11 @@ using UnityEngine;
 
 public static class GestureReferenceEvents
 {
+    public static Action<float> userHeight;
+    public static Action<float> userWingspan;
+    public static Action<float> aldeiaBlend;
+    public static Action<bool> jangadaMoving;
+
     public static Action<Transform> rightTransform;
     public static Action<TransformSampler> rightTransformSampler;
 
