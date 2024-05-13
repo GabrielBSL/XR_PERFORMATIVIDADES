@@ -1,3 +1,4 @@
+using Main.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,11 +23,15 @@ namespace Main.Scenario
         [SerializeField] private bool startMove;
 
         private bool _traveling = false;
+        private bool _startPathButtonPressed;
+
         private int _pathIndex = 0;
+        private float _startPathTimePressed = 0;
 
         private void Awake()
         {
-            startInput.performed += _ => StartPathTraveling();
+            startInput.performed += _ => ReceiveStartPathButtonUpdate(true);
+            startInput.canceled += _ => ReceiveStartPathButtonUpdate(false);
         }
 
         private void OnEnable()
@@ -40,6 +45,15 @@ namespace Main.Scenario
 
         private void Update()
         {
+            _startPathTimePressed = _startPathButtonPressed ? _startPathTimePressed + Time.deltaTime : 0;
+
+            if(_startPathTimePressed > 1)
+            {
+                _startPathButtonPressed = false;
+                _startPathTimePressed = 0;
+                StartCoroutine(moveAlongPath());
+            }
+
             if(startMove)
             {
                 startMove = false;
@@ -48,14 +62,14 @@ namespace Main.Scenario
             GestureReferenceEvents.jangadaMoving?.Invoke(_traveling);
         }
 
-        private void StartPathTraveling()
-        {
-            StartCoroutine(moveAlongPath());
-        }
-
         private IEnumerator moveAlongPath()
         {
-            if(_pathIndex >= paths.Count || _traveling)
+            if(_pathIndex >= paths.Count)
+            {
+                MainEventsManager.endOfPath?.Invoke();
+                yield break;
+            }
+            if (_traveling)
             {
                 yield break;
             }
@@ -101,6 +115,11 @@ namespace Main.Scenario
 
             _traveling = false;
             _pathIndex++;
+        }
+
+        private void ReceiveStartPathButtonUpdate(bool isPressed)
+        {
+            _startPathButtonPressed = isPressed;
         }
     }
 }

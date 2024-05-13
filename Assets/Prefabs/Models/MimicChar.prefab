@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5555894858897874871}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -1135,10 +1135,26 @@ MonoBehaviour:
   leftHandDestination: {fileID: 5490817168096785050}
   handMovementSmoothness: 0.033
   movementDelay: 0.5
+  automaticallySnapToGround: 1
+  groundDetectionHeight: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  enableBodyPosVariation: 0
+  bodyPosVariation: {x: 0, y: 0}
+  bodyPosVariationDuration: {x: 0, y: 0}
+  destinations: []
+  walkVelocity: 3
+  pathSmoothness: 0.1
   positionVariation: 0.05
   variationDuration: 0.75
   variationSmoothness: 0.033
+  handsYCorrection: 0
+  headYCorrection: 1
+  allowClipRewind: 0
+  rewindChance: 0.5
   showDebugMessages: 0
+  forceStartPath: 0
 --- !u!1 &5835379486965343082
 GameObject:
   m_ObjectHideFlags: 0

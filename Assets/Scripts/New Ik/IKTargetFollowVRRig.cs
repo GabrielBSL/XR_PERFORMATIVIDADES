@@ -23,11 +23,6 @@ namespace Main.IK
                 ikTarget.position = vrTarget.TransformPoint(trackingPositionOffset);
                 vrTarget.position = originalVrPosition;
 
-                if (debugPrint)
-                {
-                    //print("Original: " + originalVrPosition + " - corrected: " + vrTargetPosCorrected + " - ratio: " + positionRatio);
-                }
-
                 ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
                 return ikTarget.position;
             }
@@ -56,6 +51,7 @@ namespace Main.IK
 
         [Header("Config")]
         [SerializeField] private bool allowRatioCalculation;
+        [SerializeField] private bool allowInitialPositionCorrection = true;
         [SerializeField] private InputAction ratioAction;
 
         [Header("Origin Correction")]
@@ -67,6 +63,8 @@ namespace Main.IK
         [SerializeField] private bool forceRatioCalculation;
         [SerializeField] private bool forceBodyPositionCorrection;
 
+        private float _vrikRatioTimer = 0;
+        private float _correctBodyPosTimer = 0;
         private float _xAxisRatioBase = .76f;
         private float _yAxisRatioBase = 1.93f;
         private float _currentXRatio = 1;
@@ -75,11 +73,15 @@ namespace Main.IK
         private Vector3 _currentHeadPosition;
 
         private bool _firstHeightCalculated = false;
+        private bool _vrikRatioButtonPressed;
+        private bool _correctBodyPosButtonPressed;
 
         private void Awake()
         {
-            ratioAction.performed += _ => SetVRAndIKTargetPositionRation();
-            originCorrectionAction.performed += _ => CorrectBodyPosition();
+            ratioAction.performed += _ => ReceiveVRIKButtonUpdate(true);
+            ratioAction.canceled += _ => ReceiveVRIKButtonUpdate(false);
+            originCorrectionAction.performed += _ => ReceiveCorrectBodyPositionButtonUpdate(true);
+            originCorrectionAction.canceled += _ => ReceiveCorrectBodyPositionButtonUpdate(false);
 
             _currentXRatio = _xAxisRatioBase;
             _currentYRatio = _yAxisRatioBase;
@@ -96,6 +98,15 @@ namespace Main.IK
             originCorrectionAction.Disable();
         }
 
+        private void ReceiveVRIKButtonUpdate(bool isPressed)
+        {
+            _vrikRatioButtonPressed = isPressed;
+        }
+        private void ReceiveCorrectBodyPositionButtonUpdate(bool isPressed)
+        {
+            _correctBodyPosButtonPressed = isPressed;
+        }
+
         private void Update()
         {
             if (forceBodyPositionCorrection)
@@ -103,22 +114,24 @@ namespace Main.IK
                 forceBodyPositionCorrection = false;
                 CorrectBodyPosition();
             }
-        }
-        
-        private void CorrectBodyPosition()
-        {
-            if (correctPosition)
+
+            _correctBodyPosTimer = _correctBodyPosButtonPressed ? _correctBodyPosTimer + Time.deltaTime : 0;
+            _vrikRatioTimer = _vrikRatioButtonPressed ? _vrikRatioTimer + Time.deltaTime : 0;
+
+            if( _correctBodyPosTimer > 1) 
             {
-                SendCurrentHeadPosition();
+                _correctBodyPosButtonPressed = false;
+                _correctBodyPosTimer = 0;
+                CorrectBodyPosition();
             }
-            if (correctRotation)
+            if (_vrikRatioTimer > 1)
             {
-                SendCurrentHeadRotation();
+                _vrikRatioButtonPressed = false;
+                _vrikRatioTimer = 0;
+                SetVRAndIKTargetPositionRation();
             }
-            MainEventsManager.activateMimic?.Invoke();
         }
 
-        // Update is called once per frame
         void LateUpdate()
         {
             if (forceRatioCalculation)
@@ -139,7 +152,7 @@ namespace Main.IK
             {
                 _firstHeightValue = headPosition.y;
             }
-            else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated) //_firstHeightValue != headPosition.y
+            else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated && allowInitialPositionCorrection)
             {
                 _firstHeightCalculated = true;
                 MainEventsManager.currentHeadPosition?.Invoke(headPosition);
@@ -147,6 +160,19 @@ namespace Main.IK
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
             rightHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
+        }
+
+        private void CorrectBodyPosition()
+        {
+            if (correctPosition)
+            {
+                SendCurrentHeadPosition();
+            }
+            if (correctRotation)
+            {
+                SendCurrentHeadRotation();
+            }
+            MainEventsManager.activateMimic?.Invoke();
         }
 
         private void SetVRAndIKTargetPositionRation()
