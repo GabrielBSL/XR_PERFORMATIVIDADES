@@ -98,8 +98,8 @@ namespace Main.Scenario
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
 
-                    GestureReferenceEvents.aldeiaBlend?.Invoke((i + t)/(pathSize - 1));
-
+                    GestureReferenceEvents.aldeiaBlend?.Invoke(_pathIndex + (i + t)/(pathSize - 1));
+                
                     transform.position = curPosition;
 
                     if (rotateAlongsidePath)

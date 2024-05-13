@@ -39,7 +39,7 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638511711446355507
+  lastModified: 638511754621333395
   FileSizes:
   - Name: Desktop
     Value: 1462
@@ -123,7 +123,6 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -2420002289417163437}
-  - {fileID: 3271701428809410632}
   - {fileID: -2658260922803028193}
   - {fileID: -660996342442158649}
   - {fileID: 2271071228982693332}
@@ -170,7 +169,7 @@ MonoBehaviour:
   Name: aldeiaBlend
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 3
   Default: 0
   ID:
     data1: 2905741905
@@ -221,10 +220,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638511711446319026
+  lastModified: 638511754621293077
   FileSizes:
   - Name: Desktop
-    Value: 12474656
+    Value: 12470912
   Exists: 1
 --- !u!114 &-660996342442158649
 MonoBehaviour:
@@ -276,7 +275,7 @@ MonoBehaviour:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638511711446355507
+  cacheTime: 638511754621333395
   cacheVersion: 131616
 --- !u!114 &2271071228982693332
 MonoBehaviour:
@@ -301,32 +300,6 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 0
   Labels: []
-  Exists: 1
---- !u!114 &3271701428809410632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/jangadaMoving
-  m_EditorClassIdentifier: 
-  Name: jangadaMoving
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 4126225507
-    data2: 1135566270
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - stopped
-  - moving
   Exists: 1
 --- !u!114 &4513942066883863388
 MonoBehaviour:

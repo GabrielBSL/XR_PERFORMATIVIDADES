@@ -800,7 +800,7 @@ MonoBehaviour:
       m_Action: Start Input
       m_Flags: 0
     m_Flags: 0
-  startMove: 1
+  startMove: 0
 --- !u!1001 &118672393
 PrefabInstance:
   m_ObjectHideFlags: 0
