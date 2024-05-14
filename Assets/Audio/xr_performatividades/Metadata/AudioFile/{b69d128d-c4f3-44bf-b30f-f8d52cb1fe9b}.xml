@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{b69d128d-c4f3-44bf-b30f-f8d52cb1fe9b}">
 		<property name="assetPath">
-			<value>XR_PERFORM !Capivaras.mp3</value>
+			<value>old/XR_PERFORM !Capivaras.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

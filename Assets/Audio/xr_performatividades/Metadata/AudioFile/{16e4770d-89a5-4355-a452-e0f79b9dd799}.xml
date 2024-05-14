@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{16e4770d-89a5-4355-a452-e0f79b9dd799}">
 		<property name="assetPath">
-			<value>XR_PERFORM !Percussion3.mp3</value>
+			<value>old/XR_PERFORM !Percussion3.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

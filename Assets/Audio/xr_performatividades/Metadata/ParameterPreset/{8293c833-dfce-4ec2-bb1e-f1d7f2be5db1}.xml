@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8293c833-dfce-4ec2-bb1e-f1d7f2be5db1}">
+		<property name="name">
+			<value>jangadaMoving</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{428f0c85-12e2-44e7-8d77-96c3b81378f4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{428f0c85-12e2-44e7-8d77-96c3b81378f4}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>stopped</value>
+			<value>moving</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

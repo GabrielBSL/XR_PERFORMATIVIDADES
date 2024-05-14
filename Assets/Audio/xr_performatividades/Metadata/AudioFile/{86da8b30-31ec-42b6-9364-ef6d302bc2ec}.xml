@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{86da8b30-31ec-42b6-9364-ef6d302bc2ec}">
 		<property name="assetPath">
-			<value>XR_PERFORM !Passaros.mp3</value>
+			<value>old/XR_PERFORM !Passaros.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
