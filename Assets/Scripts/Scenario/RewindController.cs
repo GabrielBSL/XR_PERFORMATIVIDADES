@@ -62,6 +62,7 @@ namespace Main.Scenario
     public class RewindController : MonoBehaviour
     {
         [SerializeField, Range(1, 30)] private float clipTimeFrame = 1f;
+        [SerializeField] private bool allowClipSaving;
         [SerializeField] private bool allowClipOverlap;
         [SerializeField] private InputAction saveClipAction;
         [SerializeField] private InputAction triggerMimicRewind;
@@ -200,6 +201,11 @@ namespace Main.Scenario
 
         private void ReceiveSaveClipButtonUpdate(bool isPressed)
         {
+            if (!allowClipSaving)
+            {
+                return;
+            }
+
             _saveClipPressed = isPressed;
         }
         private void ReceiveStartRewindButtonUpdate(bool isPressed)

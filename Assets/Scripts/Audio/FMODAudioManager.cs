@@ -15,7 +15,6 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0, 8)] private float aldeiaBlend;
-    [SerializeField] [Range(0, 8)] private bool jangadaMoving;
     [SerializeField] private Text stageText;
 
     [Header("Gestures")]
@@ -28,18 +27,15 @@ public class FMODAudioManager : MonoBehaviour
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
     void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
-    void GetJangadaMoving(bool _jangadaMoving){jangadaMoving = _jangadaMoving;}
 
     private void OnEnable()
     {
         GestureReferenceEvents.aldeiaBlend += GetAldeiaBlend;
-        GestureReferenceEvents.jangadaMoving += GetJangadaMoving;
     }
 
     private void OnDisable()
     {
         GestureReferenceEvents.aldeiaBlend -= GetAldeiaBlend;
-        GestureReferenceEvents.jangadaMoving -= GetJangadaMoving;
     }
 
     void Start()
@@ -52,11 +48,8 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
-        stageText.text = $"jangadaMoving: {jangadaMoving}\n aldeiaBlend: {aldeiaBlend}";
-
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
-        MusicEventInstance.setParameterByName("jangadaMoving", jangadaMoving? 1 : 0);
 
         //Gestures
         MusicEventInstance.setParameterByName("crouch_stand", Mathf.Lerp(
