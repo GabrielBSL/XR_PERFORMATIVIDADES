@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +20,12 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] private Text stageText;
 
     [Header("Gestures")]
-    [SerializeField] [Range(0f, 1f)] private float crouch_stand = 0.5f;
-    [SerializeField] [Range(-1f, 1f)] private float west_east = 1f;
-    [SerializeField] [Range(0f, 1f)] private float handsHeight;
+    [SerializeField] [Range(0f, 1f)] private float crouch = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float handsUp;
+    [SerializeField] [Range(-1f, 1f)] private float lookLeftRight = 1f;
+    [SerializeField] [Range(-1f, 1f)] private float lookUpDown = 1f;
+    [SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
+    [SerializeField] [Range(-1f, 1f)] private float rightConduct = 0f;
     [SerializeField] [Range(0f, 1f)] private float leftVelocity;
     [SerializeField] [Range(0f, 1f)] private float rightVelocity;
 
@@ -56,24 +60,40 @@ public class FMODAudioManager : MonoBehaviour
 
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
-        MusicEventInstance.setParameterByName("jangadaMoving", jangadaMoving? 1 : 0);
 
         //Gestures
-        MusicEventInstance.setParameterByName("crouch_stand", Mathf.Lerp(
-            this.GetComponent<Crouch_Stand>().value,
-            crouch_stand,
+        MusicEventInstance.setParameterByName("crouch", Mathf.Lerp(
+            this.GetComponent<Crouch>().value,
+            crouch,
             overrideInterpolation
         ));
-        MusicEventInstance.setParameterByName("west_east", Mathf.Lerp(
-            this.GetComponent<West_East>().value,
-            west_east,
+        MusicEventInstance.setParameterByName("lookLeftRight", Mathf.Lerp(
+            this.GetComponent<LookLeftRight>().value,
+            lookLeftRight,
             overrideInterpolation
         ));
-        MusicEventInstance.setParameterByName("handsHeight", Mathf.Lerp(
-            this.GetComponent<HandsHeight>().value,
-            handsHeight,
+        MusicEventInstance.setParameterByName("lookUpDown", Mathf.Lerp(
+            this.GetComponent<LookUpDown>().value,
+            lookUpDown,
             overrideInterpolation
         ));
+        MusicEventInstance.setParameterByName("handsUp", Mathf.Lerp(
+            this.GetComponent<HandsUp>().value,
+            handsUp,
+            overrideInterpolation
+        ));
+        /*
+        MusicEventInstance.setParameterByName("leftConduct", Mathf.Lerp(
+            this.GetComponent<LeftVelocity>().value,
+            leftConduct,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("rightConduct", Mathf.Lerp(
+            this.GetComponent<RightVelocity>().value,
+            rightConduct,
+            overrideInterpolation
+        ));
+        */
         MusicEventInstance.setParameterByName("leftVelocity", Mathf.Lerp(
             this.GetComponent<LeftVelocity>().value,
             leftVelocity,

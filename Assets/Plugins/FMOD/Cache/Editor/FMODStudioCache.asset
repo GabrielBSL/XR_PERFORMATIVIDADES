@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638511995843653921
+  lastModified: 638512013271976734
   FileSizes:
   - Name: Desktop
-    Value: 1462
+    Value: 1474
   Exists: 1
 --- !u!114 &-5433791000093825314
 MonoBehaviour:
@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/handsHeight
+  m_Name: parameter:/music/handsUp
   m_EditorClassIdentifier: 
-  Name: handsHeight
+  Name: handsUp
   StudioPath: 
   Min: 0
   Max: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638511995843627467
+  lastModified: 638512013271942564
   FileSizes:
   - Name: Desktop
     Value: 15803872
@@ -224,7 +224,7 @@ MonoBehaviour:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638511995843653921
+  cacheTime: 638512013271976734
   cacheVersion: 131616
 --- !u!114 &387802937843267455
 MonoBehaviour:
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/west_east
+  m_Name: parameter:/music/lookLeftRight
   m_EditorClassIdentifier: 
-  Name: west_east
+  Name: lookLeftRight
   StudioPath: 
   Min: -1
   Max: 1

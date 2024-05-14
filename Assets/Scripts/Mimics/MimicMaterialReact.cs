@@ -87,8 +87,6 @@ namespace Main.Mimics
             int signMultiplier = 1;
             float baseDurationMultiplier = emissionRangeBase / colorChangeDuration;
 
-            Vector3 normalizedEmission = new Vector3(emissionColor.r, emissionColor.g, emissionColor.b).normalized;
-
             while (true)
             {
                 float t = 0;
@@ -101,6 +99,7 @@ namespace Main.Mimics
                     t = Mathf.Clamp(t + Time.deltaTime * durationMultiplier, 0, colorChangeDuration);
 
                     yield return null;
+                    Vector3 normalizedEmission = new Vector3(emissionColor.r, emissionColor.g, emissionColor.b).normalized;
                     float currentMultiplier = Time.deltaTime * signMultiplier * baseDurationMultiplier * durationMultiplier * emissionCurrentMultiplier;
 
                     for (int i = 0; i < 3; i++)

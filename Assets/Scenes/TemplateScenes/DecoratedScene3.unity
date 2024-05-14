@@ -1293,6 +1293,8 @@ GameObject:
   - component: {fileID: 196829850}
   - component: {fileID: 196829844}
   - component: {fileID: 196829843}
+  - component: {fileID: 196829851}
+  - component: {fileID: 196829852}
   m_Layer: 0
   m_Name: FMODAudioManager
   m_TagString: Untagged
@@ -1357,7 +1359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   userHeight: 0
-  crouchHeight: 1
+  crouchRatio: 0.5
 --- !u!114 &196829847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1371,13 +1373,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overrideInterpolation: 0
-  volume: 0.5
+  volume: 0.697
   aldeiaBlend: 0
   jangadaMoving: 0
   stageText: {fileID: 479509717}
-  crouch_stand: 0.5
-  west_east: 1
-  handsHeight: 0
+  crouch: 0.5
+  handsUp: 0
+  lookLeftRight: 1
+  lookUpDown: 1
+  leftConduct: 0
+  rightConduct: 0
   leftVelocity: 0
   rightVelocity: 0
 --- !u!114 &196829848
@@ -1429,6 +1434,34 @@ MonoBehaviour:
   value: 0
   scale: 1
   threshold: 0
+--- !u!114 &196829851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196829842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631c0799c1faec14493f2e570700c97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  userWingspan: 0
+--- !u!114 &196829852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196829842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c27f3045c249b54e8fa0b63b1f69cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  userWingspan: 0
 --- !u!1001 &204408275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1970,7 +2003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6503089616950510510, guid: 40a6e9bbd915b7f4181a7c9445ac4d19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3918118
+      value: 3.3918123
       objectReference: {fileID: 0}
     - target: {fileID: 6503089616950510510, guid: 40a6e9bbd915b7f4181a7c9445ac4d19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3109,7 +3142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7186258468603610299, guid: 5b0ceb6fbd09d9944b42e4f39f29def1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.1087627
+      value: 4.108763
       objectReference: {fileID: 0}
     - target: {fileID: 7186258468603610299, guid: 5b0ceb6fbd09d9944b42e4f39f29def1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7746,7 +7779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6503089616950510510, guid: 40a6e9bbd915b7f4181a7c9445ac4d19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5147276
+      value: 3.514727
       objectReference: {fileID: 0}
     - target: {fileID: 6503089616950510510, guid: 40a6e9bbd915b7f4181a7c9445ac4d19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11023,7 +11056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6683396560784618001, guid: 75a2237d08719ba4892c0bbf68a902b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1535358
+      value: 3.1535354
       objectReference: {fileID: 0}
     - target: {fileID: 6683396560784618001, guid: 75a2237d08719ba4892c0bbf68a902b7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12138,6 +12171,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 110342383}
     m_Modifications:
+    - target: {fileID: 3398222562687839290, guid: dcf45ec2d4d2a6b4ba73542cd7fa46f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3681153762549910353, guid: dcf45ec2d4d2a6b4ba73542cd7fa46f2, type: 3}
       propertyPath: groundPoint
       value: 

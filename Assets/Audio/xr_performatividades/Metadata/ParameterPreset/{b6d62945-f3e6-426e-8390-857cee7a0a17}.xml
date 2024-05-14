@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{b6d62945-f3e6-426e-8390-857cee7a0a17}">
 		<property name="name">
-			<value>west_east</value>
+			<value>lookLeftRight</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
