@@ -384,7 +384,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.291}
-  m_LocalScale: {x: 0.062017903, y: 0.036305998, z: 0.036305998}
+  m_LocalScale: {x: 0.124, y: 0.07259104, z: 0.12696564}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7656311494222530340}
@@ -552,17 +552,17 @@ MonoBehaviour:
   head:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 7303459879344704865}
-    trackingPositionOffset: {x: 0, y: 0.05, z: 0.22}
+    trackingPositionOffset: {x: 0, y: 0.25, z: 0.22}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   leftHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 1546748295286146913}
-    trackingPositionOffset: {x: 0.04, y: 0.1, z: 0.04}
+    trackingPositionOffset: {x: 0.04, y: 0, z: 0.04}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   rightHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 2627493693785655464}
-    trackingPositionOffset: {x: -0.04, y: 0.1, z: 0.04}
+    trackingPositionOffset: {x: -0.04, y: 0, z: 0.04}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.5, z: 0}
   headBodyYawOffset: 0
@@ -591,6 +591,9 @@ MonoBehaviour:
       m_Action: Ratio
       m_Flags: 0
     m_Flags: 0
+  footSolver:
+  - {fileID: 3378048203853996047}
+  - {fileID: 958727480238007556}
   correctPosition: 0
   correctRotation: 1
   originCorrectionAction:
@@ -817,7 +820,7 @@ Transform:
   m_GameObject: {fileID: 6691690518400685803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.38, z: 0.06}
+  m_LocalPosition: {x: -0, y: 0.38, z: 0.183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

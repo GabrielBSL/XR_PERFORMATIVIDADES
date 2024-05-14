@@ -73,6 +73,7 @@ namespace Main.Scenario
                 yield break;
             }
 
+            MainEventsManager.pathStartMoving?.Invoke();
             _traveling = true;
             int pathSize = paths[_pathIndex].points.Length;
 
@@ -110,6 +111,7 @@ namespace Main.Scenario
                 }
             }
 
+            MainEventsManager.pathStopped?.Invoke();
             _traveling = false;
             _pathIndex++;
         }

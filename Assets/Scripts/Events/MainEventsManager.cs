@@ -17,5 +17,11 @@ namespace Main.Events
 
         public static Action activateMimic;
         public static Action endOfPath;
+
+        public static Action pathStartMoving;
+        public static Action pathStopped;
+
+        public static Action clipSaved;
+        public static Action<bool> clipReady;
     }
 }

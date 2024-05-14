@@ -28,6 +28,7 @@ namespace Main.Scenario
 
             instance = this;
             DontDestroyOnLoad(gameObject);
+            cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, 0));
         }
 
         private void OnEnable()
@@ -59,13 +60,13 @@ namespace Main.Scenario
             yield return new WaitForSeconds(floatingToFadeDelay);
             float timePassed = 0;
 
-            while(timePassed < fadeDuration) 
+            while (timePassed < fadeDuration) 
             {
                 yield return null;
 
                 timePassed += Time.deltaTime;
                 float t = Mathf.Lerp(0, 1, timePassed / fadeDuration);
-                cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, reverse ? 1 - t : t));
+                cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, reverse ? 1 - t : t));
             }
 
             if(!reverse)

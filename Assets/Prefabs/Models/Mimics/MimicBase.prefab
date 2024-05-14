@@ -382,6 +382,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  enableBodyPosVariation: 1
   bodyPosVariation: {x: 0.6, y: 0.6}
   bodyPosVariationDuration: {x: 1, y: 3}
   destinations: []
@@ -391,6 +392,8 @@ MonoBehaviour:
   variationDuration: 0.75
   variationSmoothness: 0.033
   handsYCorrection: 0.5
+  handsXCorreciton: 0.3
+  headYCorrection: 0
   allowClipRewind: 1
   rewindChance: 1
   showDebugMessages: 0
@@ -415,7 +418,7 @@ MonoBehaviour:
   emissionRangeBase: 16
   loopDurationMultiplier: 3
   smoothnessDurationMultiplier: 5
-  emissionMultiplier: 3
+  emissionMultiplier: 10
   movementDeltaDuration: 2.5
   maxMultiplierMovementDelta: 30
 --- !u!114 &9179999803004194171

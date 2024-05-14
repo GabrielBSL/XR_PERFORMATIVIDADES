@@ -53,6 +53,7 @@ namespace Main.IK
         [SerializeField] private bool allowRatioCalculation;
         [SerializeField] private bool allowInitialPositionCorrection = true;
         [SerializeField] private InputAction ratioAction;
+        [SerializeField] private IKFootSolver[] footSolver;
 
         [Header("Origin Correction")]
         [SerializeField] private bool correctPosition;
@@ -91,20 +92,40 @@ namespace Main.IK
         {
             ratioAction.Enable();
             originCorrectionAction.Enable();
+
+            MainEventsManager.pathStartMoving += ReceivePathMoving;
+            MainEventsManager.pathStopped += ReceivePathStop;
         }
         private void OnDisable()
         {
             ratioAction.Disable();
             originCorrectionAction.Disable();
+
+            MainEventsManager.pathStartMoving -= ReceivePathMoving;
+            MainEventsManager.pathStopped -= ReceivePathStop;
         }
 
         private void ReceiveVRIKButtonUpdate(bool isPressed)
         {
-            _vrikRatioButtonPressed = isPressed;
+            //_vrikRatioButtonPressed = isPressed;
         }
         private void ReceiveCorrectBodyPositionButtonUpdate(bool isPressed)
         {
             _correctBodyPosButtonPressed = isPressed;
+        }
+        private void ReceivePathMoving()
+        {
+            for (int i = 0; i < footSolver.Length; i++)
+            {
+                footSolver[i].enabled = false;
+            }
+        }
+        private void ReceivePathStop()
+        {
+            for (int i = 0; i < footSolver.Length; i++)
+            {
+                footSolver[i].enabled = true;
+            }
         }
 
         private void Update()
