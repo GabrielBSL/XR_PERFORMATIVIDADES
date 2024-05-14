@@ -16,34 +16,34 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
     [SerializeField] [Range(0, 8)] private float aldeiaBlend;
-    [SerializeField] private bool jangadaMoving;
-    [SerializeField] private Text stageText;
+    //[SerializeField] private bool jangadaMoving;
+    //[SerializeField] private Text stageText;
 
     [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch = 0.5f;
     [SerializeField] [Range(0f, 1f)] private float handsUp;
     [SerializeField] [Range(-1f, 1f)] private float lookLeftRight = 1f;
     [SerializeField] [Range(-1f, 1f)] private float lookUpDown = 1f;
-    [SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
-    [SerializeField] [Range(-1f, 1f)] private float rightConduct = 0f;
+    //[SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
+    //[SerializeField] [Range(-1f, 1f)] private float rightConduct = 0f;
     [SerializeField] [Range(0f, 1f)] private float leftVelocity;
     [SerializeField] [Range(0f, 1f)] private float rightVelocity;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
     void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
-    void GetJangadaMoving(bool _jangadaMoving){jangadaMoving = _jangadaMoving;}
+    //void GetJangadaMoving(bool _jangadaMoving){jangadaMoving = _jangadaMoving;}
 
     private void OnEnable()
     {
         GestureReferenceEvents.aldeiaBlend += GetAldeiaBlend;
-        GestureReferenceEvents.jangadaMoving += GetJangadaMoving;
+        //GestureReferenceEvents.jangadaMoving += GetJangadaMoving;
     }
 
     private void OnDisable()
     {
         GestureReferenceEvents.aldeiaBlend -= GetAldeiaBlend;
-        GestureReferenceEvents.jangadaMoving -= GetJangadaMoving;
+        //GestureReferenceEvents.jangadaMoving -= GetJangadaMoving;
     }
 
     void Start()
@@ -56,7 +56,7 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
-        stageText.text = $"jangadaMoving: {jangadaMoving}\n aldeiaBlend: {aldeiaBlend}";
+        //stageText.text = $"jangadaMoving: {jangadaMoving}\n aldeiaBlend: {aldeiaBlend}";
 
         MusicEventInstance.setVolume(volume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);

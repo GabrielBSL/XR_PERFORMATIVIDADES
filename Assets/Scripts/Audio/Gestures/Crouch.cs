@@ -9,12 +9,17 @@ public class Crouch : MonoBehaviour
     private Transform headTransform;
     private Transform jangadaTransform;
 
-    [SerializeField] private float userHeight;
     [SerializeField] private float crouchRatio = 0.5f;
+    private float userHeight;    
+    private float crouchHeight;
 
     void GetHeadTransform(Transform _headTransform){headTransform = _headTransform;}
     void GetJangadaTransform(Transform _jangadaTransform){jangadaTransform = _jangadaTransform;}
-    void GetUserHeight(float _userHeight){userHeight = _userHeight;}
+    void GetUserHeight(float _userHeight)
+    {
+        userHeight = _userHeight;
+        crouchHeight = crouchRatio * userHeight; 
+    }
 
     void OnEnable()
     {
@@ -30,8 +35,6 @@ public class Crouch : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"_userHeight = {userHeight}, currentHeight = {headTransform.position.y - jangadaTransform.position.y}");
-        value = (headTransform.position.y - jangadaTransform.position.y - (crouchRatio * userHeight))/ ((1 - crouchRatio) * userHeight);
+        value = (headTransform.position.y - jangadaTransform.position.y - crouchHeight) / (userHeight - crouchHeight);
     }
 }
-
