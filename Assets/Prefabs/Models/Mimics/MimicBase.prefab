@@ -375,13 +375,14 @@ MonoBehaviour:
   headTarget: {fileID: 6576618641796453239}
   rightHandDestination: {fileID: 1514609218183651363}
   leftHandDestination: {fileID: 2207149222692226093}
-  handMovementSmoothness: 0.033
+  handMovementSmoothness: 0.3
   movementDelay: 0.5
   automaticallySnapToGround: 1
   groundDetectionHeight: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  enableBodyPosVariation: 1
   bodyPosVariation: {x: 0.6, y: 0.6}
   bodyPosVariationDuration: {x: 1, y: 3}
   destinations: []
@@ -391,6 +392,10 @@ MonoBehaviour:
   variationDuration: 0.75
   variationSmoothness: 0.033
   handsYCorrection: 0.5
+  handsXCorreciton: 0.3
+  headYCorrection: 0
+  autoRewind: 0
+  autoRewindTweenTime: 1
   allowClipRewind: 1
   rewindChance: 1
   showDebugMessages: 0
@@ -415,9 +420,9 @@ MonoBehaviour:
   emissionRangeBase: 16
   loopDurationMultiplier: 3
   smoothnessDurationMultiplier: 5
-  emissionMultiplier: 3
+  emissionMultiplier: 10
   movementDeltaDuration: 2.5
-  maxMultiplierMovementDelta: 30
+  maxMultiplierMovementDelta: 15
 --- !u!114 &9179999803004194171
 MonoBehaviour:
   m_ObjectHideFlags: 0

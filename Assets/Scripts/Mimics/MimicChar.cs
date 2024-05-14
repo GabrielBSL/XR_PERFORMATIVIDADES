@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR.OpenXR.Input;
 
 namespace Main.Mimics
 {
@@ -51,9 +52,12 @@ namespace Main.Mimics
 
         [Header("Correction")]
         [SerializeField] private float handsYCorrection;
+        [SerializeField] private float handsXCorreciton;
         [SerializeField] private float headYCorrection;
 
         [Header("Rewind")]
+        [SerializeField] private bool autoRewind;
+        [SerializeField, Range(0, 5)] private float autoRewindTweenTime = 1f;
         [SerializeField] private bool allowClipRewind;
         [SerializeField, Range(0, 1)] private float rewindChance = .5f;
 
@@ -85,6 +89,7 @@ namespace Main.Mimics
 
         private List<PoseInfo> _clipInfo;
         private bool _playingClip;
+        private bool _inRewind;
         private bool _followHeadHeight;
 
         private void Awake()
@@ -162,15 +167,70 @@ namespace Main.Mimics
         }
         private void StartClipRewind()
         {
-            if (!_playingClip)
+            if (!_inRewind)
             {
-                _clipInfo = RewindController.GetRandomClip();
+                float randomChance = UnityEngine.Random.Range(0, 1f);
 
-                if (_clipInfo != null)
+                if (allowClipRewind && randomChance <= rewindChance)
                 {
-                    _playingClip = true;
-                    StartCoroutine(ClipReadingCoroutine());
+                    StartClipRewind();
                 }
+            }
+        }
+
+        private void Start()
+        {
+            float randomChance = UnityEngine.Random.Range(0, 1f);
+
+            if (allowClipRewind && randomChance <= rewindChance)
+            {
+                StartCoroutine(AutoRewindCoroutine());
+            }
+        }
+
+        private IEnumerator AutoRewindCoroutine()
+        {
+            _inRewind = true;
+
+            while (true)
+            {
+                yield return null;
+                if (_playingClip)
+                {
+                    continue;
+                }
+
+                if(_clipInfo == null)
+                {
+                    _clipInfo = RewindController.GetRandomClip();
+
+                    if (_clipInfo == null)
+                    {
+                        autoRewind = false;
+                        yield break;
+                    }
+
+                    continue;
+                }
+
+                yield return StartCoroutine(ClipReadingCoroutine());
+
+                float tweenTimer = 0;
+                List<PoseInfo> newClip = RewindController.GetRandomClip();
+
+                while (tweenTimer < autoRewindTweenTime)
+                {
+                    yield return null;
+
+                    tweenTimer += Time.deltaTime;
+                    float t = tweenTimer / autoRewindTweenTime;
+
+                    PoseInfo tweenPose = RewindController.PoseLerp(_clipInfo[_clipInfo.Count - 1], newClip[0], t);
+                    SetMimicPose(tweenPose);
+                }
+
+                _clipInfo = newClip;
+                StartCoroutine(ClipReadingCoroutine());
             }
         }
 
@@ -218,7 +278,7 @@ namespace Main.Mimics
                 SetRandomPositionVariation();
             }
 
-            if(!_playingClip)
+            if(!_playingClip && !_inRewind)
             {
                 StartCoroutine(DelayMovementReading());
             }
@@ -295,13 +355,13 @@ namespace Main.Mimics
             {
                 up = _rightArmTargetReference.up,
                 forward = _rightArmTargetReference.forward,
-                localPosition = _rightArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
+                localPosition = _rightArmTargetReference.localPosition + new Vector3(handsXCorreciton, handsYCorrection, 0),
             };
             HandInfo leftHandInfo = new HandInfo()
             {
                 up = _leftArmTargetReference.up,
                 forward = _leftArmTargetReference.forward,
-                localPosition = _leftArmTargetReference.localPosition + new Vector3(0, handsYCorrection, 0),
+                localPosition = _leftArmTargetReference.localPosition + new Vector3(-handsXCorreciton, handsYCorrection, 0),
             };
 
             Vector3 bodyReferencePosition = _bodyReference.position;
@@ -349,46 +409,55 @@ namespace Main.Mimics
 
         private IEnumerator ClipReadingCoroutine()
         {
+            _playingClip = true;
+
             foreach (PoseInfo pose in _clipInfo.ToList())
             {
-                HandInfo rightHandInfo = new HandInfo()
-                {
-                    up = pose.rightTargetUp,
-                    forward = pose.rightTargetForward,
-                    localPosition = pose.rightTargetLocalPos + new Vector3(0, handsYCorrection, 0),
-                };
-                HandInfo leftHandInfo = new HandInfo()
-                {
-                    up = pose.leftTargetUp,
-                    forward = pose.leftTargetForward,
-                    localPosition = pose.leftTargetLocalPos + new Vector3(0, handsYCorrection, 0),
-                };
+                SetMimicPose(pose);
+                yield return null;
+            }
 
-                //Debug.Log(pose.leftTargetLocalPos);
+            _playingClip = false;
+        }
 
-                //body Height
-                float referenceBodyHeightDelta = pose.bodyPosition.y - _initialReferenceBodyHeight;
-                transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
-                _initialReferenceBodyHeight = pose.bodyPosition.y;
+        private void SetMimicPose(PoseInfo pose)
+        {
+            HandInfo rightHandInfo = new HandInfo()
+            {
+                up = pose.rightTargetUp,
+                forward = pose.rightTargetForward,
+                localPosition = pose.rightTargetLocalPos + new Vector3(handsXCorreciton, handsYCorrection, 0),
+            };
+            HandInfo leftHandInfo = new HandInfo()
+            {
+                up = pose.leftTargetUp,
+                forward = pose.leftTargetForward,
+                localPosition = pose.leftTargetLocalPos + new Vector3(-handsXCorreciton, handsYCorrection, 0),
+            };
 
-                //body Rotation
+            //Debug.Log(pose.leftTargetLocalPos);
+
+            //body Height
+            float referenceBodyHeightDelta = pose.bodyPosition.y - _initialReferenceBodyHeight;
+            transform.position += new Vector3(0, referenceBodyHeightDelta, 0);
+            _initialReferenceBodyHeight = pose.bodyPosition.y;
+
+            //body Rotation
+            if(_bodyReference != null)
+            {
                 Vector3 direction = _bodyReference.position - transform.position;
                 Quaternion newRotation = Quaternion.LookRotation(direction, Vector3.up);
                 newRotation.x = transform.rotation.x;
                 newRotation.z = transform.rotation.z;
                 transform.rotation = newRotation;
-
-                leftArmHint.localPosition = Vector3.Scale(pose.rightHintLocalPos, new Vector3(-1, 1, 1));
-                rightArmHint.localPosition = Vector3.Scale(pose.leftHintLocalPos, new Vector3(-1, 1, 1));
-
-                headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, pose.headTargetLocalEulerAngles.z * -1);
-
-                SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, _bodyReference.forward);
-
-                yield return null;
             }
 
-            _playingClip = false;
+            leftArmHint.localPosition = Vector3.Scale(pose.rightHintLocalPos, new Vector3(-1, 1, 1));
+            rightArmHint.localPosition = Vector3.Scale(pose.leftHintLocalPos, new Vector3(-1, 1, 1));
+
+            headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, pose.headTargetLocalEulerAngles.z * -1);
+
+            SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, _bodyReference.forward);
         }
 
         private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)
