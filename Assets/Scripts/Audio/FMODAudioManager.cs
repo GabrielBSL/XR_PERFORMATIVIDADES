@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +20,7 @@ public class FMODAudioManager : MonoBehaviour
 
     [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch = 0.5f;
-    [SerializeField] [Range(0f, 1f)] private float handsUp;
+    [SerializeField] [Range(0f, 1f)] private float handsHeight;
     [SerializeField] [Range(-1f, 1f)] private float lookLeftRight = 1f;
     [SerializeField] [Range(-1f, 1f)] private float lookUpDown = 1f;
     //[SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
@@ -77,9 +76,9 @@ public class FMODAudioManager : MonoBehaviour
             lookUpDown,
             overrideInterpolation
         ));
-        MusicEventInstance.setParameterByName("handsUp", Mathf.Lerp(
-            this.GetComponent<HandsUp>().value,
-            handsUp,
+        MusicEventInstance.setParameterByName("handsHeight", Mathf.Lerp(
+            this.GetComponent<HandsHeight>().value,
+            handsHeight,
             overrideInterpolation
         ));
         /*

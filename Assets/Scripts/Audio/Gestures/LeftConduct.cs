@@ -7,12 +7,12 @@ public class LeftConduct : MonoBehaviour
 {
     public float value;
     private Transform leftTransform;
-    private Transform headTransform;
+    [SerializeField] private Transform headTransform;
     public float userWingspan;
 
     void GetLeftTransform(Transform _leftTransform){leftTransform = _leftTransform;}
     void GetHeadTransform(Transform _headTransform){headTransform = _headTransform;}
-    void GetUserWingspan(float _userWingspan){userWingspan = _userWingspan;}
+    //void GetUserWingspan(float _userWingspan){userWingspan = _userWingspan;}
 
     void OnEnable()
     {
@@ -27,10 +27,18 @@ public class LeftConduct : MonoBehaviour
 
     void Update()
     {
-        value = Vector3.Dot(leftTransform.forward, Vector3.up) * 
-                Mathf.Abs(leftTransform.position.y - headTransform.position.y) / (userWingspan / 2);
+        value = Mathf.Clamp01(Vector3.Dot(leftTransform.forward, Vector3.up)) * 
+                Mathf.Max(leftTransform.position.y - headTransform.position.y, 0)
+                +
+                Mathf.Clamp01(Vector3.Dot(leftTransform.forward, Vector3.down)) * 
+                Mathf.Min(leftTransform.position.y - headTransform.position.y, 0);
 
         Debug.Log($"maestro left = {value}");
-
+    }
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(headTransform.position, 0.05f);
     }
 }

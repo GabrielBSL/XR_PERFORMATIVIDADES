@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandsUp : MonoBehaviour
+public class HandsHeight : MonoBehaviour
 {
     public float value;
     private Transform leftTransform;

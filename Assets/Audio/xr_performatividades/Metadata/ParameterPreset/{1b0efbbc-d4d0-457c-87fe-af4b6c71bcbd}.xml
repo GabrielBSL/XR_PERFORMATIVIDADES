@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="ParameterPreset" id="{ebc8bb49-975f-4651-a523-182280b5667c}">
+	<object class="ParameterPreset" id="{1b0efbbc-d4d0-457c-87fe-af4b6c71bcbd}">
 		<property name="name">
-			<value>stage</value>
+			<value>foda</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
 		</relationship>
 		<relationship name="parameter">
-			<destination>{1ff9cb30-37e0-4c18-8cdf-fd7537f6fa47}</destination>
+			<destination>{f320ceb6-80fa-4bbe-84f1-2f5e75fffa26}</destination>
 		</relationship>
 	</object>
-	<object class="GameParameter" id="{1ff9cb30-37e0-4c18-8cdf-fd7537f6fa47}">
-		<property name="parameterType">
-			<value>1</value>
-		</property>
-		<property name="maximum">
-			<value>4</value>
-		</property>
+	<object class="GameParameter" id="{f320ceb6-80fa-4bbe-84f1-2f5e75fffa26}">
 		<property name="initialValue">
 			<value>0</value>
 		</property>
