@@ -12,6 +12,9 @@ public class GestureReferenceEventsInvoker : MonoBehaviour
     [SerializeField] private TransformSampler headTransformSampler;
     
     [SerializeField] private Transform jangadaTransform;
+    [SerializeField] private Transform aldeia1Transform;
+    [SerializeField] private Transform aldeia2Transform;
+    [SerializeField] private Transform aldeia3Transform;
 
     void Start()
     {
@@ -25,5 +28,9 @@ public class GestureReferenceEventsInvoker : MonoBehaviour
         GestureReferenceEvents.headTransformSampler?.Invoke(headTransformSampler);
         
         GestureReferenceEvents.jangadaTransform?.Invoke(jangadaTransform);
+        GestureReferenceEvents.aldeia1Transform?.Invoke(aldeia1Transform);
+        GestureReferenceEvents.aldeia2Transform?.Invoke(aldeia2Transform);
+        GestureReferenceEvents.aldeia3Transform?.Invoke(aldeia3Transform);
+
     }
 }

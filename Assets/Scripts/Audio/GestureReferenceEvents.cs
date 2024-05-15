@@ -19,4 +19,7 @@ public static class GestureReferenceEvents
     public static Action<TransformSampler> headTransformSampler;
     
     public static Action<Transform> jangadaTransform;
+    public static Action<Transform> aldeia1Transform;
+    public static Action<Transform> aldeia2Transform;
+    public static Action<Transform> aldeia3Transform;
 }

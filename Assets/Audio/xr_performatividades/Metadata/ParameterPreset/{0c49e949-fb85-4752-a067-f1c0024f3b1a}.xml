@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{0c49e949-fb85-4752-a067-f1c0024f3b1a}">
+		<property name="name">
+			<value>aldeia3Angle</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7588db16-c71e-46bc-b300-573e54a95a0e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7588db16-c71e-46bc-b300-573e54a95a0e}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

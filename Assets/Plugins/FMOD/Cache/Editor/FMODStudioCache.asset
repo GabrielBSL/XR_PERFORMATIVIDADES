@@ -24,6 +24,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6188418079224024764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/aldeia1Angle
+  m_EditorClassIdentifier: 
+  Name: aldeia1Angle
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: -1
+  ID:
+    data1: 2366635616
+    data2: 1583588172
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5901467129971656415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,10 +63,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638512987461084736
+  lastModified: 638513918884054295
   FileSizes:
   - Name: Desktop
-    Value: 1124
+    Value: 1262
   Exists: 1
 --- !u!114 &-4845437719543542833
 MonoBehaviour:
@@ -64,30 +88,6 @@ MonoBehaviour:
   ID:
     data1: 1759551463
     data2: 780184973
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-4607769674025079686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music/foda
-  m_EditorClassIdentifier: 
-  Name: foda
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3468120321
-    data2: 3793848612
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -171,7 +171,10 @@ MonoBehaviour:
   - {fileID: -3043608471659784837}
   - {fileID: -7723783918160151080}
   - {fileID: -1603280666140632036}
-  - {fileID: -4607769674025079686}
+  - {fileID: 4691358912043772787}
+  - {fileID: -6188418079224024764}
+  - {fileID: 1286755857492226627}
+  - {fileID: 745146586268995428}
   MinDistance: 1
   MaxDistance: 20
   Length: 335673
@@ -214,10 +217,10 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638512987461039338
+  lastModified: 638513918883978641
   FileSizes:
   - Name: Desktop
-    Value: 16165376
+    Value: 17517568
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -241,7 +244,7 @@ MonoBehaviour:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638512987461084736
+  cacheTime: 638513918884054295
   cacheVersion: 131616
 --- !u!114 &387802937843267455
 MonoBehaviour:
@@ -267,6 +270,54 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &745146586268995428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/leftConduct
+  m_EditorClassIdentifier: 
+  Name: leftConduct
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3767488954
+    data2: 447126141
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1286755857492226627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/aldeia2Angle
+  m_EditorClassIdentifier: 
+  Name: aldeia2Angle
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2660637593
+    data2: 2481795071
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &1722585109832526422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +338,30 @@ MonoBehaviour:
   ID:
     data1: 3656428949
     data2: 954841651
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4691358912043772787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/aldeia3Angle
+  m_EditorClassIdentifier: 
+  Name: aldeia3Angle
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: 0
+  ID:
+    data1: 433104331
+    data2: 3882643625
   Type: 0
   IsGlobal: 0
   Labels: []

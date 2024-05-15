@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class LookUpDown : MonoBehaviour
 {
     public float value;
+    [SerializeField] private float maxAngle = Mathf.PI/4;
     private Transform headTransform;
 
     void GetHeadTransform(Transform _headTransform){headTransform = _headTransform;}
@@ -20,7 +22,7 @@ public class LookUpDown : MonoBehaviour
 
     void Update()
     {
-        value = Vector3.Dot(headTransform.rotation * Vector3.forward, Vector3.up) / 0.5f;  
+        value = Vector3.Dot(headTransform.forward, Vector3.up) / Mathf.Sin(maxAngle);
+        //Debug.Log($"lookUpDown = {value}");
     }
 }
-

@@ -21,12 +21,14 @@ public class FMODAudioManager : MonoBehaviour
     [Header("Gestures")]
     [SerializeField] [Range(0f, 1f)] private float crouch = 0.5f;
     [SerializeField] [Range(0f, 1f)] private float handsHeight;
-    [SerializeField] [Range(-1f, 1f)] private float lookLeftRight = 1f;
     [SerializeField] [Range(-1f, 1f)] private float lookUpDown = 1f;
-    //[SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
-    //[SerializeField] [Range(-1f, 1f)] private float rightConduct = 0f;
+    [SerializeField] [Range(-1f, 1f)] private float lookLeftRight = 1f;
     [SerializeField] [Range(0f, 1f)] private float leftVelocity;
     [SerializeField] [Range(0f, 1f)] private float rightVelocity;
+    [SerializeField] [Range(-1f, 1f)] private float aldeia1Angle;
+    [SerializeField] [Range(-1f, 1f)] private float aldeia2Angle;
+    [SerializeField] [Range(-1f, 1f)] private float aldeia3Angle;
+    [SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
@@ -66,9 +68,9 @@ public class FMODAudioManager : MonoBehaviour
             crouch,
             overrideInterpolation
         ));
-        MusicEventInstance.setParameterByName("lookLeftRight", Mathf.Lerp(
-            this.GetComponent<LookLeftRight>().value,
-            lookLeftRight,
+        MusicEventInstance.setParameterByName("handsHeight", Mathf.Lerp(
+            this.GetComponent<HandsHeight>().value,
+            handsHeight,
             overrideInterpolation
         ));
         MusicEventInstance.setParameterByName("lookUpDown", Mathf.Lerp(
@@ -76,23 +78,11 @@ public class FMODAudioManager : MonoBehaviour
             lookUpDown,
             overrideInterpolation
         ));
-        MusicEventInstance.setParameterByName("handsHeight", Mathf.Lerp(
-            this.GetComponent<HandsHeight>().value,
-            handsHeight,
+        MusicEventInstance.setParameterByName("lookLeftRight", Mathf.Lerp(
+            this.GetComponent<LookLeftRight>().value,
+            lookLeftRight,
             overrideInterpolation
-        ));
-        /*
-        MusicEventInstance.setParameterByName("leftConduct", Mathf.Lerp(
-            this.GetComponent<LeftVelocity>().value,
-            leftConduct,
-            overrideInterpolation
-        ));
-        MusicEventInstance.setParameterByName("rightConduct", Mathf.Lerp(
-            this.GetComponent<RightVelocity>().value,
-            rightConduct,
-            overrideInterpolation
-        ));
-        */
+        ));        
         MusicEventInstance.setParameterByName("leftVelocity", Mathf.Lerp(
             this.GetComponent<LeftVelocity>().value,
             leftVelocity,
@@ -101,6 +91,28 @@ public class FMODAudioManager : MonoBehaviour
         MusicEventInstance.setParameterByName("rightVelocity", Mathf.Lerp(
             this.GetComponent<RightVelocity>().value,
             rightVelocity,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("aldeia1Angle", Mathf.Lerp(
+            this.GetComponent<Aldeia1Angle>().value,
+            aldeia1Angle,
+            overrideInterpolation
+        ));
+        /*
+        MusicEventInstance.setParameterByName("aldeia2Angle", Mathf.Lerp(
+            this.GetComponent<Aldeia2Angle>().value,
+            aldeia2Angle,
+            overrideInterpolation
+        ));
+        MusicEventInstance.setParameterByName("aldeia3Angle", Mathf.Lerp(
+            this.GetComponent<Aldeia3Angle>().value,
+            aldeia3Angle,
+            overrideInterpolation
+        ));
+        */
+        MusicEventInstance.setParameterByName("leftConduct", Mathf.Lerp(
+            this.GetComponent<LeftConduct>().value,
+            leftConduct,
             overrideInterpolation
         ));
     }
