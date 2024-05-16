@@ -4,9 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR.OpenXR.Input;
 
 namespace Main.Mimics
 {
@@ -45,6 +43,9 @@ namespace Main.Mimics
         [SerializeField] private float walkVelocity = 3;
         [SerializeField, Range(.01f, 1f)] private float pathSmoothness = .1f;
 
+        [Header("Hands")]
+        [SerializeField, Range(0f, 180f)] private float handMaxRotation;
+
         [Header("Random")]
         [SerializeField] private float positionVariation = .05f;
         [SerializeField] private float variationDuration = .75f;
@@ -64,6 +65,8 @@ namespace Main.Mimics
         [Header("Debug")]
         [SerializeField] private bool showDebugMessages;
         [SerializeField] private bool forceStartPath;
+
+        public SkinnedMeshRenderer MeshRenderer { get; private set; }
 
         private Transform _rightArmTargetReference;
         private Transform _leftArmTargetReference;
@@ -98,6 +101,7 @@ namespace Main.Mimics
             _bodyPosCurrentTimerLimit = UnityEngine.Random.Range(bodyPosVariationDuration.x, bodyPosVariationDuration.y);
 
             _bodyPositionVariationTimer = _bodyPosCurrentTimerLimit;
+            MeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         }
 
         private void OnEnable()
@@ -180,6 +184,11 @@ namespace Main.Mimics
 
         private void Start()
         {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
             float randomChance = UnityEngine.Random.Range(0, 1f);
 
             if (allowClipRewind && randomChance <= rewindChance)
@@ -457,7 +466,10 @@ namespace Main.Mimics
 
             headTarget.localEulerAngles = new Vector3(headTarget.localEulerAngles.x, headTarget.localEulerAngles.y, pose.headTargetLocalEulerAngles.z * -1);
 
-            SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, _bodyReference.forward);
+            if(_bodyReference != null)
+            {
+                SetHandsRotationAndPosition(rightHandInfo, leftHandInfo, _bodyReference.forward);
+            }
         }
 
         private void SetHandsRotationAndPosition(HandInfo rightHandInfo, HandInfo leftHandInfo, Vector3 bodyReferenceForward)
@@ -468,8 +480,8 @@ namespace Main.Mimics
             bodyReferenceAngle = bodyReferenceForward.x > .001f ? 360 - bodyReferenceAngle : bodyReferenceAngle;
             bodyMimicAngle = transform.forward.x > .001f ? 360 - bodyMimicAngle : bodyMimicAngle;
 
-            SetUpHandRotation(rightArmTarget, bodyMimicAngle, bodyReferenceAngle, leftHandInfo.up, leftHandInfo.forward);
-            SetUpHandRotation(leftArmTarget, bodyMimicAngle, bodyReferenceAngle, rightHandInfo.up, rightHandInfo.forward);
+            SetUpHandRotation(rightArmTarget, rightArmHint, bodyMimicAngle, bodyReferenceAngle, leftHandInfo.up, leftHandInfo.forward, true);
+            SetUpHandRotation(leftArmTarget, leftArmHint, bodyMimicAngle, bodyReferenceAngle, rightHandInfo.up, rightHandInfo.forward);
 
             Vector3 rhiLp = rightHandInfo.localPosition;
             Vector3 lhiLp = leftHandInfo.localPosition;
@@ -479,7 +491,7 @@ namespace Main.Mimics
         }
 
         //Calculates the hand "transform.up" and "transform.forward" based on the reference hand rotation
-        private void SetUpHandRotation(Transform handTransform, float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceUp, Vector3 handReferenceForward)
+        private void SetUpHandRotation(Transform handTransform, Transform handHint, float bodyAngle, float bodyReferenceAngle, Vector3 handReferenceUp, Vector3 handReferenceForward, bool debugLog = false)
         {
             Vector3 handTransformUp = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceUp);
             Vector3 handTransformForward = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceForward);

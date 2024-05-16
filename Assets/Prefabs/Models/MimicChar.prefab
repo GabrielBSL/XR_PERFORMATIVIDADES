@@ -1136,7 +1136,7 @@ MonoBehaviour:
   handMovementSmoothness: 0.033
   movementDelay: 0.5
   automaticallySnapToGround: 1
-  groundDetectionHeight: 1
+  groundDetectionHeight: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -1150,7 +1150,10 @@ MonoBehaviour:
   variationDuration: 0.75
   variationSmoothness: 0.033
   handsYCorrection: 0
+  handsXCorreciton: 0
   headYCorrection: 1
+  autoRewind: 0
+  autoRewindTweenTime: 1
   allowClipRewind: 0
   rewindChance: 0.5
   showDebugMessages: 0
