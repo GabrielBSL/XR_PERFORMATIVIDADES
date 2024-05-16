@@ -10,7 +10,8 @@ public class FMODAudioManager : MonoBehaviour
 
     // FMOD
     private static FMODUnity.EventReference MusicEventReference;
-    private static FMOD.Studio.EventInstance MusicEventInstance;
+    public static FMOD.Studio.EventInstance MusicEventInstance;
+    public static float fadeVolume = 1f;
 
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
@@ -29,6 +30,8 @@ public class FMODAudioManager : MonoBehaviour
     [SerializeField] [Range(-1f, 1f)] private float leftConduct = 0f;
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
+
+    public static void SetFadeVolume(float _fadeVolume){fadeVolume = _fadeVolume;}
 
     void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
 
@@ -52,7 +55,7 @@ public class FMODAudioManager : MonoBehaviour
 
     void Update()
     {
-        MusicEventInstance.setVolume(volume);
+        MusicEventInstance.setVolume(volume * fadeVolume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
 
         //Gestures

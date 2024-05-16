@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using Main.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,10 +68,12 @@ namespace Main.Scenario
                 timePassed += Time.deltaTime;
                 float t = Mathf.Lerp(0, 1, timePassed / fadeDuration);
                 cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, reverse ? 1 - t : t));
+                FMODAudioManager.SetFadeVolume(1-t);
             }
 
             if(!reverse)
             {
+                FMODAudioManager.MusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
