@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using Main.Mimics;
 using UnityEngine;
 
 namespace Main.Scenario.Triggers
 {
     public class RendererTrigger : MonoBehaviour
     {
-        [SerializeField] private Renderer[] renderers;
+        [SerializeField] private MimicChar[] mimics;
         [SerializeField] private bool setEnabled = true;
 
         private bool _triggered;
@@ -20,9 +19,9 @@ namespace Main.Scenario.Triggers
 
             _triggered = true;
 
-            for (int i = 0; i < renderers.Length; i++)
+            for (int i = 0; i < mimics.Length; i++)
             {
-                renderers[i].enabled = setEnabled;
+                mimics[i].MeshRenderer.enabled = setEnabled;
             }
         }
     }
