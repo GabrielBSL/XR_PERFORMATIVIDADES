@@ -41,13 +41,18 @@ namespace Main.XR
 
         private void ReceiveCurrentHeadPosition(Vector3 headPosition)
         {
+            Debug.Log("test 2");
             if (!_allowCorrection)
             {
+                Debug.Log("test fail");
                 return;
             }
 
+            Debug.Log("test 3");
             Vector3 positionDifference = headSpawn.position - headPosition;
+            Debug.Log("head: " + headPosition + " - spawn: " + headSpawn.position + " - difference: " + positionDifference + " xr initial: " + transform.position);
             transform.position = _initialPosition + offset + positionDifference;
+            Debug.Log("xr final: " + transform.position);
         }
         private void ReceiveCurrentHeadEulerAngles(Vector3 headEulerAngles)
         {

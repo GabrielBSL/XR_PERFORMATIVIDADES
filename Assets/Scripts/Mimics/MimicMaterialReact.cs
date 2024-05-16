@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Main.Mimics
 {
@@ -13,6 +14,7 @@ namespace Main.Mimics
         [SerializeField] private Color emissionColor;
         [SerializeField] private float loopBaseDuration = 12;
         [SerializeField] private float smoothnessLoopDuration = 6;
+        [SerializeField, Range(1, 10)] private float deltaRandomness = 3;
         [SerializeField, Range(0, 1)] private float smoothnessRange = 1;
         [SerializeField, Range(0, 255)] private float emissionRangeBase = 32;
         [SerializeField, Range(1, 10)] private float loopDurationMultiplier = 3;
@@ -26,6 +28,7 @@ namespace Main.Mimics
         private float _currentDelta;
         private float _currentDuration;
         private float _finalDeltaLerp;
+        private float _baseRandomness;
 
         // Start is called before the first frame update
         void Start()
@@ -35,6 +38,8 @@ namespace Main.Mimics
                 enabled = false;
                 return;
             }
+
+            _baseRandomness = Random.Range(1, deltaRandomness);
 
             _materialCopy = new Material(mimicRenderer.material);
             mimicRenderer.material = _materialCopy;
@@ -75,7 +80,9 @@ namespace Main.Mimics
             }
 
             _currentDelta = Vector3.Distance(Vector3.zero, deltaVector);
-            _finalDeltaLerp = _currentDelta / maxMultiplierMovementDelta;
+            float currentRandom = Random.Range(1, _baseRandomness);
+
+            _finalDeltaLerp = _currentDelta * currentRandom / maxMultiplierMovementDelta;
         }
 
         private IEnumerator materialEmissionCoroutine()
@@ -93,6 +100,7 @@ namespace Main.Mimics
 
                 while (t < colorChangeDuration)
                 {
+
                     float emissionCurrentMultiplier = Mathf.Lerp(1, emissionMultiplier, _finalDeltaLerp);
                     float durationMultiplier = Mathf.Lerp(1, loopDurationMultiplier, _finalDeltaLerp);
 

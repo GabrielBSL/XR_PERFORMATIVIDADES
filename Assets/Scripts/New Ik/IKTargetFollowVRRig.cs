@@ -176,7 +176,7 @@ namespace Main.IK
             else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated && allowInitialPositionCorrection)
             {
                 _firstHeightCalculated = true;
-                MainEventsManager.currentHeadPosition?.Invoke(headPosition);
+                //MainEventsManager.currentHeadPosition?.Invoke(headPosition);
             }
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));
@@ -187,6 +187,7 @@ namespace Main.IK
         {
             if (correctPosition)
             {
+                Debug.Log("test 4");
                 SendCurrentHeadPosition();
             }
             if (correctRotation)
@@ -216,6 +217,7 @@ namespace Main.IK
 
         private void SendCurrentHeadPosition()
         {
+            Debug.Log("test 1");
             MainEventsManager.currentHeadPosition?.Invoke(_currentHeadPosition);
         }
         private void SendCurrentHeadRotation()

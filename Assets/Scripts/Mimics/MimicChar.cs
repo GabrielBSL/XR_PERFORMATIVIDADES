@@ -57,7 +57,6 @@ namespace Main.Mimics
         [SerializeField] private float headYCorrection;
 
         [Header("Rewind")]
-        [SerializeField] private bool autoRewind;
         [SerializeField, Range(0, 5)] private float autoRewindTweenTime = 1f;
         [SerializeField] private bool allowClipRewind;
         [SerializeField, Range(0, 1)] private float rewindChance = .5f;
@@ -215,7 +214,6 @@ namespace Main.Mimics
 
                     if (_clipInfo == null)
                     {
-                        autoRewind = false;
                         yield break;
                     }
 
@@ -495,6 +493,27 @@ namespace Main.Mimics
         {
             Vector3 handTransformUp = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceUp);
             Vector3 handTransformForward = FindLocalAngleByDirection(bodyAngle, bodyReferenceAngle, handReferenceForward);
+
+            handTransform.rotation = Quaternion.LookRotation(handTransformForward, handTransformUp);
+
+            return;
+
+            Vector3 handHintVector = (handTransform.position - handHint.position).normalized;
+            float handHintAngle = Vector3.Angle(handHintVector, handTransformUp);
+
+            if(handHintAngle > handMaxRotation)
+            {
+                Vector3 axis = Vector3.Cross(handHintVector, handTransformUp);
+                float rotationAngle = Mathf.Min(handMaxRotation - handHintAngle, 180f);
+
+                Quaternion rotation = Quaternion.AngleAxis(rotationAngle, axis);
+                handTransformUp = rotation * handTransformUp;
+
+                if (debugLog && showDebugMessages)
+                {
+                    Debug.Log(axis);
+                }
+            }
 
             handTransform.rotation = Quaternion.LookRotation(handTransformForward, handTransformUp);
         }
