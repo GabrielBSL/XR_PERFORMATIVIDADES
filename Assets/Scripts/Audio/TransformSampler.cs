@@ -53,7 +53,7 @@ public class TransformSampler : MonoBehaviour
 
     public float GetDeltaTime() {return currentSample.Item3 - oldestSample.Item3;}
 
-    public Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;}
+    private Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;}
     public Vector3 GetVelocity() {return GetDisplacement() / GetDeltaTime();}
     public float GetSpeed() {return GetDisplacement().magnitude / GetDeltaTime();}
     

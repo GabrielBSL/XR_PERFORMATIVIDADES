@@ -7,7 +7,7 @@ public class LeftConduct : MonoBehaviour
 {
     public float value;
     private Transform leftTransform;
-    [SerializeField] private Transform headTransform;
+    private Transform headTransform;
     public float userWingspan;
 
     void GetLeftTransform(Transform _leftTransform){leftTransform = _leftTransform;}
@@ -33,7 +33,7 @@ public class LeftConduct : MonoBehaviour
                 Mathf.Clamp01(Vector3.Dot(leftTransform.forward, Vector3.down)) * 
                 Mathf.Min(leftTransform.position.y - headTransform.position.y, 0);
 
-        Debug.Log($"maestro left = {value}");
+        //Debug.Log($"maestro left = {value}");
     }
     void OnDrawGizmos()
     {
