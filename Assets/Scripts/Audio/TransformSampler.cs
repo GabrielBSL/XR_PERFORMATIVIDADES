@@ -25,6 +25,18 @@ public class TransformSampler : MonoBehaviour
 
     //================ MONOBEHAVIOUR FUNCTIONS ================
 
+    private void Awake()
+    {
+        currentSample = new Tuple<Vector3, Quaternion, float>
+        (
+            this.transform.position - referenceTransform.position,
+            this.transform.rotation,
+            Time.time
+        );
+
+        oldestSample = currentSample;
+    }
+
     void Update()
     {
         currentSample = new Tuple<Vector3, Quaternion, float>

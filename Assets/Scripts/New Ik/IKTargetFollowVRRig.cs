@@ -93,16 +93,16 @@ namespace Main.IK
             ratioAction.Enable();
             originCorrectionAction.Enable();
 
-            MainEventsManager.pathStartMoving += ReceivePathMoving;
-            MainEventsManager.pathStopped += ReceivePathStop;
+            //MainEventsManager.pathStartMoving += ReceivePathMoving;
+            //MainEventsManager.pathStopped += ReceivePathStop;
         }
         private void OnDisable()
         {
             ratioAction.Disable();
             originCorrectionAction.Disable();
 
-            MainEventsManager.pathStartMoving -= ReceivePathMoving;
-            MainEventsManager.pathStopped -= ReceivePathStop;
+            //MainEventsManager.pathStartMoving -= ReceivePathMoving;
+            //MainEventsManager.pathStopped -= ReceivePathStop;
         }
 
         private void ReceiveVRIKButtonUpdate(bool isPressed)

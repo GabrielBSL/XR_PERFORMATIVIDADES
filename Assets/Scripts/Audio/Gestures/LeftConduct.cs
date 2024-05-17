@@ -37,6 +37,11 @@ public class LeftConduct : MonoBehaviour
     }
     void OnDrawGizmos()
     {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(headTransform.position, 0.05f);

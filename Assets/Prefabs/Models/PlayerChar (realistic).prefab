@@ -557,12 +557,12 @@ MonoBehaviour:
   leftHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 1546748295286146913}
-    trackingPositionOffset: {x: 0.04, y: 0, z: 0.04}
+    trackingPositionOffset: {x: 0.04, y: 0, z: -0.1}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   rightHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 2627493693785655464}
-    trackingPositionOffset: {x: -0.04, y: 0, z: 0.04}
+    trackingPositionOffset: {x: -0.04, y: 0, z: -0.1}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.5, z: 0}
   headBodyYawOffset: 0
@@ -594,7 +594,7 @@ MonoBehaviour:
   footSolver:
   - {fileID: 3378048203853996047}
   - {fileID: 958727480238007556}
-  correctPosition: 0
+  correctPosition: 1
   correctRotation: 1
   originCorrectionAction:
     m_Name: Origin Correction
@@ -802,8 +802,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7656311494222530340}
   - component: {fileID: 575174138833001422}
-  - component: {fileID: 1944348401564234765}
   - component: {fileID: 1016958432711324648}
+  - component: {fileID: 5034267186768071338}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -878,14 +878,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1944348401564234765
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6691690518400685803}
-  m_Enabled: 1
 --- !u!114 &1016958432711324648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,6 +922,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &5034267186768071338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691690518400685803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &7651195186652434679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1646,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357388720776768820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
