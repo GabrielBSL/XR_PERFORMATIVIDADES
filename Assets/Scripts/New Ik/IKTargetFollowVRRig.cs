@@ -187,7 +187,6 @@ namespace Main.IK
         {
             if (correctPosition)
             {
-                Debug.Log("test 4");
                 SendCurrentHeadPosition();
             }
             if (correctRotation)
@@ -217,7 +216,6 @@ namespace Main.IK
 
         private void SendCurrentHeadPosition()
         {
-            Debug.Log("test 1");
             MainEventsManager.currentHeadPosition?.Invoke(_currentHeadPosition);
         }
         private void SendCurrentHeadRotation()
