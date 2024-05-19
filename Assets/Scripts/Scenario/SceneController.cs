@@ -73,7 +73,7 @@ namespace Main.Scenario
 
             if(!reverse)
             {
-                FMODAudioManager.MusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
+                FMODAudioManager.Reset();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
