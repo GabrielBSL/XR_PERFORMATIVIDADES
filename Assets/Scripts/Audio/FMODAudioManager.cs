@@ -61,7 +61,7 @@ public class FMODAudioManager : MonoBehaviour
     void Start()
     {
         // FMOD Setup
-        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music");
+        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_experimental");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
     }

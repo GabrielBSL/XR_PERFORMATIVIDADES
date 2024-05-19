@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{4d17f8f8-63d5-48db-8432-75a50714e43e}">
 		<property name="assetPath">
-			<value>Xawara !aldeia1_up.mp3</value>
+			<value>experimental/Xawara !aldeia1_up.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
