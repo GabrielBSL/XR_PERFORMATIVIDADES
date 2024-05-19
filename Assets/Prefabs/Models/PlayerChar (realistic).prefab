@@ -650,9 +650,9 @@ MonoBehaviour:
   leftArmHint: {fileID: 851447703710498552}
   distanceTargetHint: 1
   hintMoveRatioPerFrame: 0.2
-  maxAbsValueXAxis: 1
+  maxAbsValueXAxis: 1.5
   maxYValueAxis: 3.2
-  maxZValueAxis: -0.75
+  maxZValueAxis: -2
 --- !u!65 &3816399683164391383
 BoxCollider:
   m_ObjectHideFlags: 0
