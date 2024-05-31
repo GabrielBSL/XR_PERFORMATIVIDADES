@@ -11,11 +11,13 @@ namespace Main.Scenario
         [System.Serializable]
         private struct Path
         {
+            public float timeFromOnePointToAnother; 
+            public float deltaToStartMove;
+            public float minimalTimeToMove;
             public Transform[] points;
         }
 
         [SerializeField] private List<Path> paths;
-        [SerializeField] private float timeFromOnePointToAnother = 5;
         [SerializeField] private bool rotateAlongsidePath = true;
         [SerializeField] private InputAction startInput;
 
@@ -23,34 +25,29 @@ namespace Main.Scenario
         [SerializeField] private bool startMove;
 
         private bool _traveling = false;
-        private bool _startPathButtonPressed;
 
         private int _pathIndex = 0;
-        private float _startPathTimePressed = 0;
+        private static float _totalDelta = 0;
+        private float _timeToMoveTimer = 0;
+        private PoseInfo _lastPose;
 
-        private void Awake()
-        {
-            startInput.performed += _ => ReceiveStartPathButtonUpdate(true);
-            startInput.canceled += _ => ReceiveStartPathButtonUpdate(false);
-        }
+        public static float TotalDelta { get { return _totalDelta; } private set { _totalDelta = value; } }
 
-        private void OnEnable()
+        private void Start()
         {
-            startInput.Enable();
-        }
-        private void OnDisable()
-        {
-            startInput.Disable();
+            _lastPose = RewindController.GetLastPose();
         }
 
         private void Update()
         {
-            _startPathTimePressed = _startPathButtonPressed ? _startPathTimePressed + Time.deltaTime : 0;
+            CalculatePlayerMovement();
 
-            if(_startPathTimePressed > 1)
+            if(_pathIndex < paths.Count &&
+                TotalDelta > paths[_pathIndex].deltaToStartMove && 
+                _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
             {
-                _startPathButtonPressed = false;
-                _startPathTimePressed = 0;
+                _timeToMoveTimer = 0;
+                TotalDelta = 0;
                 StartCoroutine(moveAlongPath());
             }
 
@@ -60,6 +57,27 @@ namespace Main.Scenario
                 StartCoroutine(moveAlongPath());
             }
             GestureReferenceEvents.jangadaMoving?.Invoke(_traveling);
+        }
+
+        private void CalculatePlayerMovement()
+        {
+            if(_traveling)
+            {
+                return;
+            }
+
+            _timeToMoveTimer += Time.deltaTime;
+            PoseInfo pose = RewindController.GetLastPose();
+            Vector3 deltaVector = new Vector3(Mathf.Abs(pose.rightTargetLocalPos.x - _lastPose.rightTargetLocalPos.x),
+                                           Mathf.Abs(pose.rightTargetLocalPos.y - _lastPose.rightTargetLocalPos.y),
+                                           Mathf.Abs(pose.rightTargetLocalPos.z - _lastPose.rightTargetLocalPos.z));
+
+            deltaVector += new Vector3(Mathf.Abs(pose.leftTargetLocalPos.x - _lastPose.leftTargetLocalPos.x),
+                                       Mathf.Abs(pose.leftTargetLocalPos.y - _lastPose.leftTargetLocalPos.y),
+                                       Mathf.Abs(pose.leftTargetLocalPos.z - _lastPose.leftTargetLocalPos.z));
+
+            TotalDelta += Vector3.Distance(Vector3.zero, deltaVector);
+            _lastPose = pose;
         }
 
         private IEnumerator moveAlongPath()
@@ -85,7 +103,7 @@ namespace Main.Scenario
 
                 while (t < 1)
                 {
-                    t = Mathf.Clamp01(t + Time.deltaTime / timeFromOnePointToAnother);
+                    t = Mathf.Clamp01(t + Time.deltaTime / paths[_pathIndex].timeFromOnePointToAnother);
 
                     Transform bezierTrasform1 = paths[_pathIndex].points[i].GetChild(0);
                     Transform bezierTrasform2 = paths[_pathIndex].points[i + 1].GetChild(0);
@@ -114,14 +132,10 @@ namespace Main.Scenario
                 }
             }
 
+            _lastPose = RewindController.GetLastPose();
             MainEventsManager.pathStopped?.Invoke();
             _traveling = false;
             _pathIndex++;
-        }
-
-        private void ReceiveStartPathButtonUpdate(bool isPressed)
-        {
-            _startPathButtonPressed = isPressed;
         }
     }
 }

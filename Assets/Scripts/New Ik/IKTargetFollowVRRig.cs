@@ -52,6 +52,7 @@ namespace Main.IK
         [Header("Config")]
         [SerializeField] private bool allowRatioCalculation;
         [SerializeField] private bool allowInitialPositionCorrection = true;
+        [SerializeField] private float minimalHeadDistanceToAutoPosCorrect = .5f;
         [SerializeField] private InputAction ratioAction;
         [SerializeField] private IKFootSolver[] footSolver;
 
@@ -66,8 +67,8 @@ namespace Main.IK
 
         private float _vrikRatioTimer = 0;
         private float _correctBodyPosTimer = 0;
-        private float _xAxisRatioBase = .76f;
-        private float _yAxisRatioBase = 1.93f;
+        private float _xAxisRatioBase = .63f;
+        private float _yAxisRatioBase = 2.18f;
         private float _currentXRatio = 1;
         private float _currentYRatio = 1;
         private float _firstHeightValue = float.NegativeInfinity;
@@ -83,49 +84,36 @@ namespace Main.IK
             ratioAction.canceled += _ => ReceiveVRIKButtonUpdate(false);
             originCorrectionAction.performed += _ => ReceiveCorrectBodyPositionButtonUpdate(true);
             originCorrectionAction.canceled += _ => ReceiveCorrectBodyPositionButtonUpdate(false);
-
-            _currentXRatio = _xAxisRatioBase;
-            _currentYRatio = _yAxisRatioBase;
         }
 
         private void OnEnable()
         {
             ratioAction.Enable();
             originCorrectionAction.Enable();
-
-            //MainEventsManager.pathStartMoving += ReceivePathMoving;
-            //MainEventsManager.pathStopped += ReceivePathStop;
         }
         private void OnDisable()
         {
             ratioAction.Disable();
             originCorrectionAction.Disable();
+        }
 
-            //MainEventsManager.pathStartMoving -= ReceivePathMoving;
-            //MainEventsManager.pathStopped -= ReceivePathStop;
+        private void Start()
+        {
+            _currentXRatio = _xAxisRatioBase;
+            _currentYRatio = _yAxisRatioBase;
+
+            Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
+            Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
+            _currentHeadPosition = headPosition;
         }
 
         private void ReceiveVRIKButtonUpdate(bool isPressed)
         {
-            //_vrikRatioButtonPressed = isPressed;
+            _vrikRatioButtonPressed = isPressed;
         }
         private void ReceiveCorrectBodyPositionButtonUpdate(bool isPressed)
         {
             _correctBodyPosButtonPressed = isPressed;
-        }
-        private void ReceivePathMoving()
-        {
-            for (int i = 0; i < footSolver.Length; i++)
-            {
-                footSolver[i].enabled = false;
-            }
-        }
-        private void ReceivePathStop()
-        {
-            for (int i = 0; i < footSolver.Length; i++)
-            {
-                footSolver[i].enabled = true;
-            }
         }
 
         private void Update()
@@ -139,13 +127,13 @@ namespace Main.IK
             _correctBodyPosTimer = _correctBodyPosButtonPressed ? _correctBodyPosTimer + Time.deltaTime : 0;
             _vrikRatioTimer = _vrikRatioButtonPressed ? _vrikRatioTimer + Time.deltaTime : 0;
 
-            if( _correctBodyPosTimer > 1) 
+            if( _correctBodyPosTimer > 2) 
             {
                 _correctBodyPosButtonPressed = false;
                 _correctBodyPosTimer = 0;
                 CorrectBodyPosition();
             }
-            if (_vrikRatioTimer > 1)
+            if (_vrikRatioTimer > 2)
             {
                 _vrikRatioButtonPressed = false;
                 _vrikRatioTimer = 0;
@@ -167,6 +155,12 @@ namespace Main.IK
 
             Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
             Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
+
+            if((headPosition - _currentHeadPosition).sqrMagnitude > Mathf.Pow(minimalHeadDistanceToAutoPosCorrect, 2))
+            {
+                MainEventsManager.currentHeadPosition?.Invoke(headPosition);
+            }
+
             _currentHeadPosition = headPosition;
 
             if (_firstHeightValue == float.NegativeInfinity)
@@ -176,7 +170,7 @@ namespace Main.IK
             else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated && allowInitialPositionCorrection)
             {
                 _firstHeightCalculated = true;
-                //MainEventsManager.currentHeadPosition?.Invoke(headPosition);
+                MainEventsManager.currentHeadPosition?.Invoke(headPosition);
             }
 
             leftHand.Map(positionRatio, new Vector3(head.vrTarget.position.x, 0, 0));

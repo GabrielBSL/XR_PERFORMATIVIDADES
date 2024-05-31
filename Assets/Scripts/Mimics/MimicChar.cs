@@ -46,6 +46,13 @@ namespace Main.Mimics
         [Header("Hands")]
         [SerializeField, Range(0f, 180f)] private float handMaxRotation;
 
+        [Header("Torso")]
+        [SerializeField] private Transform[] spinalCord;
+        [SerializeField] private float minimalTargetDistanteToStartRotating = .2f;
+        [SerializeField] private float maximalTargetDistanteToStartRotating = 1f;
+        [SerializeField, Range(0, 30)] private float maxBodyRotation = 20f;
+        [SerializeField] private float zBodyRotationCorrection;
+
         [Header("Random")]
         [SerializeField] private float positionVariation = .05f;
         [SerializeField] private float variationDuration = .75f;
@@ -290,6 +297,44 @@ namespace Main.Mimics
                 StartCoroutine(DelayMovementReading());
             }
             MoveToDestination();
+            SetBodyRotation();
+        }
+
+        private void SetBodyRotation()
+        {
+            Vector3 rightTarPos = rightArmTarget.localPosition;
+            Vector3 leftTarPos = leftArmTarget.localPosition;
+
+            float targetXSqrDistance = rightTarPos.x + leftTarPos.x;
+            float targetZSqrDistance = rightTarPos.z + leftTarPos.z + zBodyRotationCorrection;
+
+            float minimalDistanceSqr = Mathf.Pow(minimalTargetDistanteToStartRotating, 2);
+            float distanteLerpDivider = maximalTargetDistanteToStartRotating - minimalDistanceSqr;
+            int sigmaSpinalCordLenght = SigmaAdd(spinalCord.Length);
+
+            float xRotation = Mathf.Lerp(0, maxBodyRotation, Mathf.Abs(targetXSqrDistance) - minimalDistanceSqr / distanteLerpDivider) / sigmaSpinalCordLenght;
+            float zRotation = Mathf.Lerp(0, maxBodyRotation, Mathf.Abs(targetZSqrDistance) - minimalDistanceSqr / distanteLerpDivider) / sigmaSpinalCordLenght;
+            
+            if (showDebugMessages)
+            {
+                Debug.Log("sigmaSpinalCordLenght: " + sigmaSpinalCordLenght);
+            }
+
+            for (int i = 0; i < spinalCord.Length; i++)
+            {
+                spinalCord[i].localEulerAngles = new Vector3(zRotation * Mathf.Sign(targetZSqrDistance), 0, xRotation * Mathf.Sign(targetXSqrDistance) * -1) * (i + 1); 
+            }
+        }
+
+        private int SigmaAdd(int value)
+        {
+            int total = 0;
+
+            for (int i = 1; i <= value; i++)
+            {
+                total += i;
+            }
+            return total;
         }
 
         private void SnapToGround(float correction = 0)
@@ -441,8 +486,6 @@ namespace Main.Mimics
                 forward = pose.leftTargetForward,
                 localPosition = pose.leftTargetLocalPos + new Vector3(-handsXCorreciton, handsYCorrection, 0),
             };
-
-            //Debug.Log(pose.leftTargetLocalPos);
 
             //body Height
             float referenceBodyHeightDelta = pose.bodyPosition.y - _initialReferenceBodyHeight;

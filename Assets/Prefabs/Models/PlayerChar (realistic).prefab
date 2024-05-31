@@ -557,12 +557,12 @@ MonoBehaviour:
   leftHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 1546748295286146913}
-    trackingPositionOffset: {x: 0.04, y: 0, z: -0.1}
+    trackingPositionOffset: {x: 0.07, y: 0.15, z: -0.1}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   rightHand:
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 2627493693785655464}
-    trackingPositionOffset: {x: -0.04, y: 0, z: -0.1}
+    trackingPositionOffset: {x: -0.07, y: 0.15, z: -0.1}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   headBodyPositionOffset: {x: 0, y: -0.5, z: 0}
   headBodyYawOffset: 0
@@ -574,6 +574,7 @@ MonoBehaviour:
   groundPoint: {fileID: 0}
   allowRatioCalculation: 1
   allowInitialPositionCorrection: 1
+  minimalHeadDistanceToAutoPosCorrect: 0.1
   ratioAction:
     m_Name: Ratio
     m_Type: 0

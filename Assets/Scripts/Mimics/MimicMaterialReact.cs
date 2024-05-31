@@ -22,6 +22,7 @@ namespace Main.Mimics
         [SerializeField, Range(1, 10)] private float emissionMultiplier = 5;
         [SerializeField, Range(.1f, 5)] private float movementDeltaDuration = 3;
         [SerializeField] private float maxMultiplierMovementDelta = 30f;
+        [SerializeField] private float totalDeltaThreshold = 0;
 
         private Material _materialCopy;
         private List<PoseInfo> _poses = new List<PoseInfo>();
@@ -96,11 +97,15 @@ namespace Main.Mimics
 
             while (true)
             {
-                float t = 0;
+                yield return null;
+                if(JangadaMovement.TotalDelta < totalDeltaThreshold)
+                {
+                    continue;
+                }
 
+                float t = 0;
                 while (t < colorChangeDuration)
                 {
-
                     float emissionCurrentMultiplier = Mathf.Lerp(1, emissionMultiplier, _finalDeltaLerp);
                     float durationMultiplier = Mathf.Lerp(1, loopDurationMultiplier, _finalDeltaLerp);
 
@@ -122,7 +127,6 @@ namespace Main.Mimics
                 }
 
                 signMultiplier *= -1;
-                yield return null;
             }
         }
         private IEnumerator materialSmoothnessCoroutine()

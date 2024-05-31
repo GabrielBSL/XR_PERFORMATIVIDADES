@@ -10,8 +10,6 @@ namespace Main.Scenario
 {
     public class SceneController : MonoBehaviour
     {
-        [SerializeField] private SkinnedMeshRenderer meshToRender;
-
         [Header("Scene transition")]
         [SerializeField] private Material cameraPlaneMaterial;
         [SerializeField] private InputAction startFade;
@@ -50,14 +48,12 @@ namespace Main.Scenario
 
         private void OnEnable()
         {
-            MainEventsManager.activateMimic += ActivateMimic;
             MainEventsManager.endOfPath += ReceiveEndOfPath;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-            MainEventsManager.activateMimic -= ActivateMimic;
             MainEventsManager.endOfPath -= ReceiveEndOfPath;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
@@ -70,11 +66,6 @@ namespace Main.Scenario
         private void ReceiveEndOfPath()
         {
             StartCoroutine(CanFadeCoroutine());
-        }
-
-        private void ActivateMimic()
-        {
-            meshToRender.enabled = true;
         }
 
         private void Update()
@@ -112,7 +103,6 @@ namespace Main.Scenario
                 yield break;
             }
 
-            yield return new WaitForSeconds(floatingToFadeDelay);
             _fading = true;
             float timePassed = 0;
 
@@ -145,6 +135,11 @@ namespace Main.Scenario
 
             _canFade = false;
             StartCoroutine(FadeCoroutine(true));
+        }
+
+        private void OnApplicationQuit()
+        {
+            cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, 0));
         }
     }
 }
