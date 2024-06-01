@@ -10,6 +10,11 @@ namespace Main.Scenario
 {
     public class SceneController : MonoBehaviour
     {
+        [Header("Journey")]
+        [SerializeField] private InputAction startJourney;
+        [SerializeField] private JangadaMovement jangada;
+        [SerializeField] private GameObject menuObject;
+
         [Header("Scene transition")]
         [SerializeField] private Material cameraPlaneMaterial;
         [SerializeField] private InputAction startFade;
@@ -22,10 +27,13 @@ namespace Main.Scenario
 
         private bool _canFade;
         private bool _fading;
+        private bool _journeyButtonPressed;
+        private bool _journeyStarted = false;
         private bool _fadeButtonPressed;
         private bool _antiFirstLoadTransition = true;
 
         private float _fadePressedTimer;
+        private float _journeyPressedTimer;
 
         private static SceneController instance;
 
@@ -40,6 +48,8 @@ namespace Main.Scenario
             startFade.performed += _ => ReceiveFadeInput(true);
             startFade.canceled += _ => ReceiveFadeInput(false);
 
+            startJourney.performed += _ => ReceiveJourneyInput(true);
+            startJourney.canceled += _ => ReceiveJourneyInput(false);
 
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -50,17 +60,24 @@ namespace Main.Scenario
         {
             MainEventsManager.endOfPath += ReceiveEndOfPath;
             SceneManager.sceneLoaded += OnSceneLoaded;
+            startJourney.Enable();
         }
 
         private void OnDisable()
         {
             MainEventsManager.endOfPath -= ReceiveEndOfPath;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            startJourney.Disable();
         }
 
         private void ReceiveFadeInput(bool context)
         {
             _fadeButtonPressed = context;
+        }
+
+        private void ReceiveJourneyInput(bool context)
+        {
+            _journeyButtonPressed = context;
         }
 
         private void ReceiveEndOfPath()
@@ -78,7 +95,18 @@ namespace Main.Scenario
                 StartCoroutine(FadeCoroutine());
             }
 
-            if(tryStartFading)
+            _journeyPressedTimer = _journeyButtonPressed ? _journeyPressedTimer + Time.deltaTime : 0;
+
+            if (_journeyPressedTimer > 2)
+            {
+                _journeyButtonPressed = false;
+                _journeyPressedTimer = 0;
+                _journeyStarted = true;
+                jangada.StartCalculation();
+                menuObject.SetActive(false);
+            }
+
+            if (tryStartFading)
             {
                 tryStartFading = false;
                 StartCoroutine(FadeCoroutine());
@@ -134,6 +162,7 @@ namespace Main.Scenario
             }
 
             _canFade = false;
+            _journeyStarted = false;
             StartCoroutine(FadeCoroutine(true));
         }
 

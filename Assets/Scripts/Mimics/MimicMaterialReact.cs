@@ -100,6 +100,7 @@ namespace Main.Mimics
                 yield return null;
                 if(JangadaMovement.TotalDelta < totalDeltaThreshold)
                 {
+                    _materialCopy.SetColor("_EmissionColor", new Color(0, 0, 0, 1));
                     continue;
                 }
 
@@ -121,7 +122,7 @@ namespace Main.Mimics
                         colorCurrent[i] = Mathf.Clamp(correctedValue, 0, emissionRangeBase * emissionCurrentMultiplier);
                     }
 
-                    Color32 newEmissionColor = new Color32((byte)colorCurrent[0], (byte)colorCurrent[1], (byte)colorCurrent[2], 0);
+                    Color32 newEmissionColor = new Color32((byte)colorCurrent[0], (byte)colorCurrent[1], (byte)colorCurrent[2], 1);
 
                     _materialCopy.SetColor("_EmissionColor", newEmissionColor);
                 }
