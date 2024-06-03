@@ -95,6 +95,7 @@ public class FMODAudioManager : MonoBehaviour
             rightVelocity,
             overrideInterpolation
         ));
+        /*
         MusicEventInstance.setParameterByName("aldeia1Angle", Mathf.Lerp(
             this.GetComponent<Aldeia1Angle>().value,
             aldeia1Angle,
@@ -105,7 +106,6 @@ public class FMODAudioManager : MonoBehaviour
             aldeia2Angle,
             overrideInterpolation
         ));
-        /*
         MusicEventInstance.setParameterByName("aldeia3Angle", Mathf.Lerp(
             this.GetComponent<Aldeia3Angle>().value,
             aldeia3Angle,
