@@ -21,6 +21,10 @@ namespace Main.Scenario
         [SerializeField] private bool rotateAlongsidePath = true;
         [SerializeField] private InputAction startInput;
 
+        [Header("End of path")]
+        [SerializeField] private float endOfPathDelta;
+        [SerializeField] private float endOfPathDuration;
+
         [Header("Debug")]
         [SerializeField] private bool startMove;
 
@@ -31,23 +35,39 @@ namespace Main.Scenario
         private float _timeToMoveTimer = 0;
         private PoseInfo _lastPose;
 
+        private bool _toCalculate = false;
+
         public static float TotalDelta { get { return _totalDelta; } private set { _totalDelta = value; } }
 
         private void Start()
         {
             _lastPose = RewindController.GetLastPose();
+            MainEventsManager.onJangada?.Invoke(this);
+        }
+
+        public void StartCalculation()
+        {
+            _toCalculate = true;
         }
 
         private void Update()
         {
+            if (!_toCalculate)
+            {
+                return;
+            }
+
             CalculatePlayerMovement();
 
-            if(_pathIndex < paths.Count &&
-                TotalDelta > paths[_pathIndex].deltaToStartMove && 
-                _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
+            if(_pathIndex < paths.Count)
             {
-                _timeToMoveTimer = 0;
-                TotalDelta = 0;
+                if(TotalDelta > paths[_pathIndex].deltaToStartMove && _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
+                {
+                    StartCoroutine(moveAlongPath());
+                }
+            }
+            else if(TotalDelta > endOfPathDelta && _timeToMoveTimer > endOfPathDuration)
+            {
                 StartCoroutine(moveAlongPath());
             }
 
@@ -82,7 +102,10 @@ namespace Main.Scenario
 
         private IEnumerator moveAlongPath()
         {
-            if(_pathIndex >= paths.Count)
+            _timeToMoveTimer = 0;
+            TotalDelta = 0;
+
+            if (_pathIndex >= paths.Count)
             {
                 MainEventsManager.endOfPath?.Invoke();
                 yield break;
