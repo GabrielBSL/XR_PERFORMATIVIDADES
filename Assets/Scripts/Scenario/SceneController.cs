@@ -182,7 +182,7 @@ namespace Main.Scenario
                 timePassed += Time.deltaTime;
                 float t = Mathf.Lerp(0, 1, timePassed / fadeDuration);
                 cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, reverse ? 1 - t : t));
-                FMODAudioManager.SetFadeVolume(1 - t);
+                FMODAudioManager.SetFadeVolume(reverse ? t : 1 - t);
             }
 
             if (!reverse)
@@ -231,6 +231,7 @@ namespace Main.Scenario
                 return;
             }
 
+            FMODAudioManager.Play();
             StartCoroutine(FadeCoroutine(true));
             _canFade = false;
         }
