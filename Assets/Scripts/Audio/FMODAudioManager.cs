@@ -39,6 +39,11 @@ public class FMODAudioManager : MonoBehaviour
         FMODAudioManager.MusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
+    public static void Play()
+    {
+        FMODAudioManager.MusicEventInstance.start();
+    }
+
     private void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
 
     private void OnEnable()
