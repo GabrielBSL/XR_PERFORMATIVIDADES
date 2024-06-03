@@ -13,13 +13,8 @@ public class FMODAudioManager : MonoBehaviour
     private static FMODUnity.EventReference MusicEventReference;
     public static FMOD.Studio.EventInstance MusicEventInstance;
     public static float fadeVolume = 1f;
-    
-    [Header("Controle")]
-    [SerializeField] [Range(0f, 1f)] private float prologo = 0f;
-    [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
 
     [Header("Debug")]
-    [SerializeField] [Range(0, 1)] private int skip = 0;
     [SerializeField] [Range(0f, 1f)] private float overrideInterpolation = 0f;
     [SerializeField] [Range(0, 8)] private float aldeiaBlend;
 
@@ -41,12 +36,10 @@ public class FMODAudioManager : MonoBehaviour
 
     public static void Reset()
     {
-        MusicEventInstance.setParameterByName("skip", 0);
-        MusicEventInstance.setParameterByName("prologo", 0f);
         FMODAudioManager.MusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
-    void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
+    private void GetAldeiaBlend(float _aldeiaBlend){aldeiaBlend = _aldeiaBlend;}
 
     private void OnEnable()
     {
@@ -61,16 +54,14 @@ public class FMODAudioManager : MonoBehaviour
     void Start()
     {
         // FMOD Setup
-        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_experimental");
+        MusicEventReference = FMODUnity.RuntimeManager.PathToEventReference("event:/music_standalone");
         MusicEventInstance = FMODUnity.RuntimeManager.CreateInstance(MusicEventReference);
         MusicEventInstance.start();
     }
 
     void Update()
     {
-        MusicEventInstance.setVolume(volume * fadeVolume);
-        MusicEventInstance.setParameterByName("skip", skip);
-        MusicEventInstance.setParameterByName("prologo", prologo);
+        MusicEventInstance.setVolume(fadeVolume);
         MusicEventInstance.setParameterByName("aldeiaBlend", aldeiaBlend);
 
         //Gestures
