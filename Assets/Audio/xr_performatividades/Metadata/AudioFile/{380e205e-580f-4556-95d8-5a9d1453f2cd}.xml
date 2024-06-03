@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{380e205e-580f-4556-95d8-5a9d1453f2cd}">
 		<property name="assetPath">
-			<value>experimental/Xawara !intro_uirapuru.mp3</value>
+			<value>Xawara !intro_uirapuru.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
