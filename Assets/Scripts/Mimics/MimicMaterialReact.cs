@@ -24,6 +24,9 @@ namespace Main.Mimics
         [SerializeField] private float maxMultiplierMovementDelta = 30f;
         [SerializeField] private float totalDeltaThreshold = 0;
 
+        [Header("Debug")]
+        [SerializeField] private bool showDebugMessages;
+
         private Material _materialCopy;
         private List<PoseInfo> _poses = new List<PoseInfo>();
         private float _currentDelta;
@@ -100,6 +103,11 @@ namespace Main.Mimics
                 yield return null;
                 if(JangadaMovement.TotalDelta < totalDeltaThreshold)
                 {
+                    if(showDebugMessages)
+                    {
+                        Debug.Log(JangadaMovement.TotalDelta + " < " + totalDeltaThreshold);
+                    }
+
                     _materialCopy.SetColor("_EmissionColor", new Color(0, 0, 0, 1));
                     continue;
                 }

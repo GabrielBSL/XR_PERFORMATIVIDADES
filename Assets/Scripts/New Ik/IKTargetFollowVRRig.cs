@@ -55,6 +55,7 @@ namespace Main.IK
         [SerializeField] private float minimalHeadDistanceToAutoPosCorrect = .5f;
         [SerializeField] private InputAction ratioAction;
         [SerializeField] private IKFootSolver[] footSolver;
+        [SerializeField] private Camera playerCamera;
 
         [Header("Origin Correction")]
         [SerializeField] private bool correctPosition;
@@ -105,6 +106,8 @@ namespace Main.IK
             Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
             Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
             _currentHeadPosition = headPosition;
+
+            MainEventsManager.onPlayerCamera?.Invoke(playerCamera);
         }
 
         private void ReceiveVRIKButtonUpdate(bool isPressed)

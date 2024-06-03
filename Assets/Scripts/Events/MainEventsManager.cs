@@ -1,3 +1,5 @@
+using Main.Scenario;
+using Main.UI;
 using System;
 using UnityEngine;
 
@@ -14,6 +16,10 @@ namespace Main.Events
 
         public static Action<Vector3> currentHeadPosition;
         public static Action<Vector3> currentHeadEulerAngles;
+
+        public static Action<Camera> onPlayerCamera;
+        public static Action<JangadaMovement> onJangada;
+        public static Action<IntroductionUI> onIntroUI;
 
         public static Action activateMimic;
         public static Action endOfPath;

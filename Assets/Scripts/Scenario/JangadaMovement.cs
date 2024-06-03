@@ -42,6 +42,7 @@ namespace Main.Scenario
         private void Start()
         {
             _lastPose = RewindController.GetLastPose();
+            MainEventsManager.onJangada?.Invoke(this);
         }
 
         public void StartCalculation()

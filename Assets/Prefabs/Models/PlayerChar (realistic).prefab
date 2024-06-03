@@ -595,6 +595,7 @@ MonoBehaviour:
   footSolver:
   - {fileID: 3378048203853996047}
   - {fileID: 958727480238007556}
+  playerCamera: {fileID: 575174138833001422}
   correctPosition: 1
   correctRotation: 1
   originCorrectionAction:
@@ -867,7 +868,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
