@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 using Main.Events;
 using Main.Mimics;
+using System;
 
 namespace Main.IK
 {
@@ -42,7 +43,8 @@ namespace Main.IK
         [SerializeField] private Transform leftControllerTransform;
         [SerializeField] private Transform rightControllerTransform;
 
-        [Header("Knee Target Tranforms")]
+        [Header("Legs Tranforms")]
+        [SerializeField] private IKFootSolver[] footSolvers;
         [SerializeField] private Transform leftKneeTargetTransform;
         [SerializeField] private Transform rightKneeTargetTransform;
 
@@ -91,11 +93,31 @@ namespace Main.IK
         {
             ratioAction.Enable();
             originCorrectionAction.Enable();
+            MainEventsManager.pathStartMoving += ReceiveStartPath;
+            MainEventsManager.pathReachingEnd += ReceivePathEnding;
         }
+
         private void OnDisable()
         {
             ratioAction.Disable();
             originCorrectionAction.Disable();
+            MainEventsManager.pathStartMoving -= ReceiveStartPath;
+            MainEventsManager.pathReachingEnd -= ReceivePathEnding;
+        }
+
+        private void ReceiveStartPath()
+        {
+            for (int i = 0; i < footSolver.Length; i++)
+            {
+                footSolver[i].enabled = false;
+            }
+        }
+        private void ReceivePathEnding()
+        {
+            for (int i = 0; i < footSolver.Length; i++)
+            {
+                footSolver[i].enabled = true;
+            }
         }
 
         private void Start()
@@ -221,3 +243,13 @@ namespace Main.IK
         }
     }
 }
+
+/*
+ * Eu estou trabalhando em um projeto 3D para Unity e estou precisando de ajuda.
+
+Eu tenho uma tabela com 100 entradas, cada entrada possui os valores de posição e rotação da cabeça e das mãos de um modelo, cada posição e rotação possui valore x, y e z, e cada entrada possui esses valores para cada segundo por 10 segundos e, ao final, teria um valor que classificaria o tal movimento. Ou seja, cada entrada possui a posição e rotação da cabeça e das duas mãos em 10 tempos distintos para uma classificação (6 x 3 x 10 + 1), contabilizando 181 entradas.
+
+Essa tabela está sendo representada em um array bidimensional [100][181] de floats. Minha ideia é que esses valores sejam usados por um algoritmo de aprendizado de máquina para que, quando uma nova entrada chegar (um novo modelo fazendo movimentos distintos), eu possa identificar qual classificação dar para esse movimento.
+
+Qual seria o melhor algoritmo para esse caso em específico? Considere que o valor classificador, por mais que seja float, terá apenas valores inteiros maiores ou iguais a 0.
+*/

@@ -25,6 +25,7 @@ namespace Main.Events
         public static Action endOfPath;
 
         public static Action pathStartMoving;
+        public static Action pathReachingEnd;
         public static Action pathStopped;
 
         public static Action clipSaved;

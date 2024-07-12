@@ -121,6 +121,11 @@ namespace Main.Scenario
 
             for(int i = 0; i < pathSize - 1; i++)
             {
+                if(i == pathSize - 2)
+                {
+                    MainEventsManager.pathReachingEnd?.Invoke();
+                }
+
                 float t = 0;
                 Vector3 lastPosition = paths[_pathIndex].points[i].position;
 

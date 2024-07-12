@@ -569,6 +569,9 @@ MonoBehaviour:
   mainCameraTransform: {fileID: 0}
   leftControllerTransform: {fileID: 0}
   rightControllerTransform: {fileID: 0}
+  footSolvers:
+  - {fileID: 3378048203853996047}
+  - {fileID: 958727480238007556}
   leftKneeTargetTransform: {fileID: 8296143074264140942}
   rightKneeTargetTransform: {fileID: 7207014943355894847}
   groundPoint: {fileID: 0}
