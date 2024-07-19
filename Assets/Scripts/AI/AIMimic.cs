@@ -34,7 +34,7 @@ namespace Main.AI
 
             while (true)
             {
-                var predict = ForestDecisionMaker.GetCurrentResult();
+                var predict = ForestAnimationDecisionMaker.GetCurrentResult();
                 animator.transform.position = resetPosition.position;
                 Debug.Log("play: " + predict.results[0].Item1);
                 animator.Play(predict.results[0].Item1.ToString(), -1, 0f);

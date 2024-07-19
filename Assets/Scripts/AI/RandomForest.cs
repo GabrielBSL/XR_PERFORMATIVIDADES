@@ -25,7 +25,7 @@ namespace Main.AI
                 trees.Add(root);
             }
 
-            ForestDecisionMaker.PrintValue("random forest trained");
+            ForestAnimationDecisionMaker.PrintValue("random forest trained");
         }
 
         public ForestResult Predict(DataPoint sample)

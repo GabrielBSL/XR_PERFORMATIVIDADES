@@ -1,4 +1,5 @@
 using Main.Events;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Main.AI
 {
-    public class ForestDecisionMaker : MonoBehaviour
+    public class ForestAnimationDecisionMaker : MonoBehaviour
     {
         [SerializeField] private Transform headOriginReferenceTransform;
 
@@ -20,6 +21,7 @@ namespace Main.AI
         private int _loadAmount = 0;
 
         private static float[] _playerMoveData = new float[180];
+        private static AnimationClip[] _clips;
 
         private Transform _playerLeftHand;
         private Transform _playerRightHand;
@@ -54,6 +56,13 @@ namespace Main.AI
         private void ReceiveRightArmTarget(Transform playerRightHandTransform)
         {
             _playerRightHand = playerRightHandTransform;
+        }
+
+        private void Awake()
+        {
+            List<AnimationClip> clipsList = Resources.LoadAll<AnimationClip>("Animations/Muse").ToList();
+            clipsList.RemoveAt(0);
+            _clips = clipsList.ToArray();
         }
 
         void Start()
@@ -121,7 +130,7 @@ namespace Main.AI
             }
         }
 
-        public int GetAnimationIndex()
+        public int GetAnimationClip()
         {
             if(_loadAmount >= 10)
             {
@@ -155,7 +164,7 @@ namespace Main.AI
 
             for (int i = 0; i < 100; i++)
             {
-                int randClass = Random.Range(0, 14);
+                int randClass = Random.Range(0, _clips.Length);
                 List<float> accumulatedValues = new List<float>();
 
                 for (int j = 0; j < 10; j++)
@@ -210,7 +219,15 @@ namespace Main.AI
 
         public static ForestResult GetCurrentResult()
         {
-            return forest.Predict(new DataPoint() { Attributes = _playerMoveData});
+            ForestResult forestPredict = forest.Predict(new DataPoint() { Attributes = _playerMoveData });
+            forestPredict.clips = new AnimationClip[forestPredict.results.Count];
+
+            for (int i = 0; i < forestPredict.clips.Length; i++)
+            {
+                forestPredict.clips[i] = _clips[forestPredict.results[i].Item1];
+            }
+
+            return forestPredict;
         }
     }
 }
