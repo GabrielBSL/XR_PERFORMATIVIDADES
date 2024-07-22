@@ -39,7 +39,7 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638530064143726574
+  lastModified: 638570411135546287
   FileSizes:
   - Name: Desktop
     Value: 1274
@@ -83,7 +83,7 @@ MonoBehaviour:
   Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638530064143680615
+  lastModified: 638570411135546287
   FileSizes:
   - Name: Desktop
     Value: 23895104
@@ -148,7 +148,7 @@ MonoBehaviour:
   - {fileID: -1382486602530659167}
   StringsBanks:
   - {fileID: -5901467129971656415}
-  cacheTime: 638530064143726574
+  cacheTime: 638570411135546287
   cacheVersion: 131616
 --- !u!114 &2510263918058029974
 MonoBehaviour:
