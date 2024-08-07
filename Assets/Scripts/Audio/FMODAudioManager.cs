@@ -7,6 +7,20 @@ using FMOD.Studio;
 
 public class FMODAudioManager : MonoBehaviour
 {   
+    //================ SINGLETON LOGIC ================
+    public static FMODAudioManager instance = null;
+    private void Awake()
+    {
+        if(instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     //================ VARIABLE DECLARATIONS ================
 
     // FMOD
