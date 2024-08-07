@@ -62,7 +62,7 @@ public class BubblePopper : MonoBehaviour
         }
         else
         {
-            Debug.Log("not a bubble");
+            //Debug.Log("not a bubble");
         }
     }
 }

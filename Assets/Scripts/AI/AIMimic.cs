@@ -24,7 +24,7 @@ namespace Main.AI
             while (true)
             {
                 yield return new WaitForSeconds(1);
-                Debug.Log(i++);
+                //Debug.Log(i++);
             }
         }
 
