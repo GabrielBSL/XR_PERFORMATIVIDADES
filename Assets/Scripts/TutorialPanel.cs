@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class TutorialPanel : MonoBehaviour
 {
-    private CanvasGroup canvasGroup;
+    //private CanvasGroup canvasGroup;
     [SerializeField] private CenteredProgressBar centeredProgressBar;
+    [SerializeField] private Image panel;
     [SerializeField] private float fadeInDuration;
     [SerializeField] private float holdDuration;
     [SerializeField] private float fadeOutDuration;
@@ -14,8 +15,9 @@ public class TutorialPanel : MonoBehaviour
     private bool isCoroutineRunning = false;
     private void Awake()
     {
-        canvasGroup = this.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0f;
+        //canvasGroup = this.GetComponent<CanvasGroup>();
+        //canvasGroup.alpha = 0f;
+        //canvasGroup.alpha = 1f;
     }
     private void Trigger()
     {
@@ -33,7 +35,8 @@ public class TutorialPanel : MonoBehaviour
         //canvasGroup.interactable = true;
         for(float f = 0f; f <= 1f; f += Time.deltaTime/fadeInDuration)
         {
-            canvasGroup.alpha = f;
+            //canvasGroup.alpha = f;
+            panel.material.SetFloat("_dissolve", f);
             yield return null;
         }
 
@@ -45,7 +48,8 @@ public class TutorialPanel : MonoBehaviour
 
         for(float f = 1f; f >= 0f; f -= Time.deltaTime/fadeOutDuration)
         {
-            canvasGroup.alpha = f;
+            //canvasGroup.alpha = f;
+            panel.material.SetFloat("_dissolve", f);
             yield return null;
         }
         //canvasGroup.interactable = false;
