@@ -11,14 +11,5 @@ public class TutorialManager : MonoBehaviour
             toggle = false;
             TutorialEvents.onTriggerTutorial?.Invoke();
         }
-    }
-
-    private IEnumerator Coroutine()
-    {
-        for(int i = 0; i < 10; i += 1)
-        {
-            Debug.Log("Do something");
-            yield return null;
-        }
-    }
+    }    
 }

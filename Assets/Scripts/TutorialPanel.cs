@@ -1,51 +1,63 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TutorialPanel : MonoBehaviour
 {
-    private bool isVisible = true; 
     private CanvasGroup canvasGroup;
+    [SerializeField] private CenteredProgressBar centeredProgressBar;
+    [SerializeField] private float fadeInDuration;
+    [SerializeField] private float holdDuration;
+    [SerializeField] private float fadeOutDuration;
     private void Awake()
     {
         canvasGroup = this.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0f;
     }
-    private void ToggleVisibility()
+    private void Trigger()
     {
-        //Debug.Log($"Trigger called by event");
-        StartCoroutine(isVisible? FadeOut() : FadeIn());
+        StartCoroutine(TriggerCoroutine());
     }
-    private IEnumerator FadeOut()
+    
+    private IEnumerator TriggerCoroutine()
     {
-        for(float f = 1f; f >= 0f; f -= 0.125f)
+        //Debug.Log("FadeIn");
+
+        centeredProgressBar.value = 1f;
+        //canvasGroup.interactable = true;
+        for(float f = 0f; f <= 1f; f += Time.deltaTime/fadeInDuration)
         {
-            //Debug.Log($"fade = {f}");
-            this.GetComponent<CanvasGroup>().alpha = f;
+            canvasGroup.alpha = f;
             yield return null;
         }
-        isVisible = false;
-        canvasGroup.interactable = false;
-    }
-    private IEnumerator FadeIn()
-    {
-        isVisible = true;
-        canvasGroup.interactable = true;
-        for(float f = 0f; f <= 1f; f += 0.125f)
+
+        //Debug.Log("Hold");
+
+        for(float f = 1f; f >= 0f; f -= Time.deltaTime/holdDuration)
         {
-            //Debug.Log($"fade = {f}");
-            this.GetComponent<CanvasGroup>().alpha = f;
+            centeredProgressBar.value = f;
             yield return null;
         }
+
+        //Debug.Log("FadeOut");
+
+        for(float f = 1f; f >= 0f; f -= Time.deltaTime/fadeOutDuration)
+        {
+            canvasGroup.alpha = f;
+            yield return null;
+        }
+        //canvasGroup.interactable = false;
     }
+    //---------------------------------------------------
     private void OnEnable()
     {
-        TutorialEvents.onTriggerTutorial += ToggleVisibility;
+        TutorialEvents.onTriggerTutorial += Trigger;
         //Debug.Log($"enabled at {System.DateTime.Now.ToString()}");
     }
     private void OnDisable()
     {
-        TutorialEvents.onTriggerTutorial -= ToggleVisibility;
+        TutorialEvents.onTriggerTutorial -= Trigger;
         //Debug.Log($"disabled at {System.DateTime.Now.ToString()}");       
     }
 }
