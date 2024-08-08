@@ -4099,6 +4099,8 @@ GameObject:
   m_Component:
   - component: {fileID: 556985218}
   - component: {fileID: 556985217}
+  - component: {fileID: 556985220}
+  - component: {fileID: 556985219}
   m_Layer: 0
   m_Name: TutorialTester
   m_TagString: Untagged
@@ -4129,12 +4131,60 @@ Transform:
   m_GameObject: {fileID: 556985216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 177.17104, y: -170.77872, z: 501.53592}
+  m_LocalPosition: {x: -4.411, y: 3.31, z: 6.917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &556985219
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556985216}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &556985220
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556985216}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &577292116
 GameObject:
   m_ObjectHideFlags: 0
@@ -7057,11 +7107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d8e85a95be199418bd98883a71036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centeredProgressBar: {fileID: 5700228}
   panel: {fileID: 221827371}
+  canvasGroup: {fileID: 0}
   fadeInDuration: 1
-  holdDuration: 5
   fadeOutDuration: 1
+  fadeAfterTimeout: 0
+  centeredProgressBar: {fileID: 5700228}
+  timeoutDuration: 0
 --- !u!225 &822683771
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9976,11 +10028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d8e85a95be199418bd98883a71036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centeredProgressBar: {fileID: 1442067266}
   panel: {fileID: 913024305}
+  canvasGroup: {fileID: 1123155604}
   fadeInDuration: 1
-  holdDuration: 5
   fadeOutDuration: 1
+  fadeAfterTimeout: 1
+  centeredProgressBar: {fileID: 1442067266}
+  timeoutDuration: 5
 --- !u!225 &1123155604
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9988,8 +10042,8 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123155601}
-  m_Enabled: 0
-  m_Alpha: 1
+  m_Enabled: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -10094,7 +10148,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 0.5, z: 0.125}
+  m_Size: {x: 2.25, y: 0.75, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1139193028
 GameObject:
@@ -12266,7 +12320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1442067265
 RectTransform:
   m_ObjectHideFlags: 0

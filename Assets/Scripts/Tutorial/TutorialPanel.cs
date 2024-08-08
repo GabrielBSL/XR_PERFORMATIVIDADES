@@ -2,68 +2,85 @@ using System;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Rendering;
+using System.ComponentModel;
 
 public class TutorialPanel : MonoBehaviour
 {
-    //private CanvasGroup canvasGroup;
-    [SerializeField] private CenteredProgressBar centeredProgressBar;
     [SerializeField] private Image panel;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeInDuration;
-    [SerializeField] private float holdDuration;
     [SerializeField] private float fadeOutDuration;
 
-    private bool isCoroutineRunning = false;
-    private void Awake()
+    [Category("Fade After timeout")]
+    [SerializeField] private bool fadeAfterTimeout;
+    [SerializeField] private CenteredProgressBar centeredProgressBar;
+    [SerializeField] private float timeoutDuration;
+
+    private bool isVisible = false;
+    private bool isFadeCoroutineRunning = false;
+   
+    private IEnumerator FadeInCoroutine()
     {
-        //canvasGroup = this.GetComponent<CanvasGroup>();
-        //canvasGroup.alpha = 0f;
-        //canvasGroup.alpha = 1f;
-    }
-    private void Trigger()
-    {
-        if(isCoroutineRunning)
-        {
-            Debug.Log("Coroutine is already in progress");
-        }
-        else StartCoroutine(TriggerCoroutine());
-    }
-    
-    private IEnumerator TriggerCoroutine()
-    {
-        isCoroutineRunning = true;
+        isFadeCoroutineRunning = true;
+        centeredProgressBar.gameObject.SetActive(false);
         centeredProgressBar.value = 1f;
-        //canvasGroup.interactable = true;
         for(float f = 0f; f <= 1f; f += Time.deltaTime/fadeInDuration)
         {
-            //canvasGroup.alpha = f;
             panel.material.SetFloat("_dissolve", f);
+            canvasGroup.alpha = f;
             yield return null;
         }
+        canvasGroup.alpha = 1f; //Para corrigir erros de arredondamento
+        isVisible = true;
+        isFadeCoroutineRunning = false;
 
-        for(float f = 1f; f >= 0f; f -= Time.deltaTime/holdDuration)
+        if(fadeAfterTimeout) StartCoroutine(TimeoutCoroutine());
+    }
+    private IEnumerator TimeoutCoroutine()
+    {
+        centeredProgressBar.gameObject.SetActive(true);
+        for(float f = 1f; f >= 0f; f -= Time.deltaTime/timeoutDuration)
         {
             centeredProgressBar.value = f;
             yield return null;
         }
-
+        if(isVisible) StartCoroutine(FadeOutCoroutine());
+    }
+    private IEnumerator FadeOutCoroutine()
+    {
+        isFadeCoroutineRunning = true;
+        centeredProgressBar.gameObject.SetActive(false);
         for(float f = 1f; f >= 0f; f -= Time.deltaTime/fadeOutDuration)
         {
-            //canvasGroup.alpha = f;
             panel.material.SetFloat("_dissolve", f);
+            canvasGroup.alpha = f;
             yield return null;
         }
-        //canvasGroup.interactable = false;
-        isCoroutineRunning = false;
+        canvasGroup.alpha = 0f; //Para corrigir erros de arredondamento
+        isVisible = false;
+        isFadeCoroutineRunning = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //other.gameObject.CompareTag("") && 
+        if(isVisible) StartCoroutine(FadeOutCoroutine());
+    }
+    private void FadeIn()
+    {
+        if(!isFadeCoroutineRunning)
+        {
+            StartCoroutine(FadeInCoroutine());
+        }
+        else Debug.Log("Fade Coroutine already in progress!");
     }
     //---------------------------------------------------
     private void OnEnable()
     {
-        TutorialEvents.onTriggerTutorial += Trigger;
-        //Debug.Log($"enabled at {System.DateTime.Now.ToString()}");
+        TutorialEvents.onTriggerTutorial += FadeIn;
     }
     private void OnDisable()
     {
-        TutorialEvents.onTriggerTutorial -= Trigger;
-        //Debug.Log($"disabled at {System.DateTime.Now.ToString()}");       
+        TutorialEvents.onTriggerTutorial -= FadeIn;  
     }
 }
