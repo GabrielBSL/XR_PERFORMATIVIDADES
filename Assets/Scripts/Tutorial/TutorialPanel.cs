@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Rendering;
 using System.ComponentModel;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 
 public class TutorialPanel : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class TutorialPanel : MonoBehaviour
         //other.gameObject.CompareTag("") && 
         if(isVisible) StartCoroutine(FadeOutCoroutine());
     }
-    private void FadeIn()
+    public void FadeIn()
     {
         if(!isFadeCoroutineRunning)
         {
@@ -77,10 +78,10 @@ public class TutorialPanel : MonoBehaviour
     //---------------------------------------------------
     private void OnEnable()
     {
-        TutorialEvents.onTriggerTutorial += FadeIn;
+        TutorialEvents.onTest += FadeIn;
     }
     private void OnDisable()
     {
-        TutorialEvents.onTriggerTutorial -= FadeIn;  
+        TutorialEvents.onTest -= FadeIn;  
     }
 }
