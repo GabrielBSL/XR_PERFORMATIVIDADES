@@ -10,6 +10,8 @@ public class TutorialPanel : MonoBehaviour
     [SerializeField] private float fadeInDuration;
     [SerializeField] private float holdDuration;
     [SerializeField] private float fadeOutDuration;
+
+    private bool isCoroutineRunning = false;
     private void Awake()
     {
         canvasGroup = this.GetComponent<CanvasGroup>();
@@ -17,13 +19,16 @@ public class TutorialPanel : MonoBehaviour
     }
     private void Trigger()
     {
-        StartCoroutine(TriggerCoroutine());
+        if(isCoroutineRunning)
+        {
+            Debug.Log("Coroutine is already in progress");
+        }
+        else StartCoroutine(TriggerCoroutine());
     }
     
     private IEnumerator TriggerCoroutine()
     {
-        //Debug.Log("FadeIn");
-
+        isCoroutineRunning = true;
         centeredProgressBar.value = 1f;
         //canvasGroup.interactable = true;
         for(float f = 0f; f <= 1f; f += Time.deltaTime/fadeInDuration)
@@ -32,15 +37,11 @@ public class TutorialPanel : MonoBehaviour
             yield return null;
         }
 
-        //Debug.Log("Hold");
-
         for(float f = 1f; f >= 0f; f -= Time.deltaTime/holdDuration)
         {
             centeredProgressBar.value = f;
             yield return null;
         }
-
-        //Debug.Log("FadeOut");
 
         for(float f = 1f; f >= 0f; f -= Time.deltaTime/fadeOutDuration)
         {
@@ -48,6 +49,7 @@ public class TutorialPanel : MonoBehaviour
             yield return null;
         }
         //canvasGroup.interactable = false;
+        isCoroutineRunning = false;
     }
     //---------------------------------------------------
     private void OnEnable()
