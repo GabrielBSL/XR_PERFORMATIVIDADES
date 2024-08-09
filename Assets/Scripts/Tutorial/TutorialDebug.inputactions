@@ -36,8 +36,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "1c9dfdd3-d5fd-4bc5-81b7-48fbd57dac6a",
-                    "path": "<XRController>{RightHand}/primaryButton",
+                    "id": "3264ec5a-f9ec-40e0-bd9f-2b3015e4cb01",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -47,8 +47,8 @@
                 },
                 {
                     "name": "",
-                    "id": "059ba9fa-68f9-4bb5-aff7-c5ceaff1bd57",
-                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "id": "256829ec-415f-4bbd-a122-4aec6cc5c4f0",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -58,8 +58,8 @@
                 },
                 {
                     "name": "",
-                    "id": "dfb36b67-45c4-4fc8-8fc2-352c40749d77",
-                    "path": "<XRController>{RightHand}/joystickClicked",
+                    "id": "84a9284d-1156-418d-af97-f00fed9e2749",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

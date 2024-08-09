@@ -43,7 +43,7 @@ public class TutorialPanel : MonoBehaviour
             centeredProgressBar.value = f;
             yield return null;
         }
-        if(isVisible) StartCoroutine(FadeOutCoroutine());
+        if(isVisible && !isFadeCoroutineRunning) StartCoroutine(FadeOutCoroutine());
     }
     private IEnumerator FadeOutCoroutine()
     {
