@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.Rendering;
-using System.ComponentModel;
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 
 public class TutorialPanel : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class TutorialPanel : MonoBehaviour
     [SerializeField] private float fadeInDuration;
     [SerializeField] private float fadeOutDuration;
 
-    [Category("Fade After timeout")]
+    [Header("Fade After timeout")]
     [SerializeField] private bool fadeAfterTimeout;
     [SerializeField] private CenteredProgressBar centeredProgressBar;
     [SerializeField] private float timeoutDuration;
@@ -76,12 +73,4 @@ public class TutorialPanel : MonoBehaviour
         else Debug.Log("Fade Coroutine already in progress!");
     }
     //---------------------------------------------------
-    private void OnEnable()
-    {
-        TutorialEvents.onTest += FadeIn;
-    }
-    private void OnDisable()
-    {
-        TutorialEvents.onTest -= FadeIn;  
-    }
 }
