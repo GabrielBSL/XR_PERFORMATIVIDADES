@@ -9,8 +9,6 @@ public class TutorialPanel : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeInDuration;
     [SerializeField] private float fadeOutDuration;
-
-    [Header("Fade After timeout")]
     [SerializeField] private bool fadeAfterTimeout;
     [SerializeField] private CenteredProgressBar centeredProgressBar;
     [SerializeField] private float timeoutDuration;
@@ -59,11 +57,7 @@ public class TutorialPanel : MonoBehaviour
         isVisible = false;
         isFadeCoroutineRunning = false;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        //other.gameObject.CompareTag("") && 
-        if(isVisible) StartCoroutine(FadeOutCoroutine());
-    }
+
     public void FadeIn()
     {
         if(!isFadeCoroutineRunning)
@@ -71,6 +65,10 @@ public class TutorialPanel : MonoBehaviour
             StartCoroutine(FadeInCoroutine());
         }
         else Debug.Log("Fade Coroutine already in progress!");
+    }
+    public void FadeOut()
+    {
+        if(isVisible) StartCoroutine(FadeOutCoroutine());
     }
     //---------------------------------------------------
 }
