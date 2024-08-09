@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
-  m_FogColor: {r: 0.5947846, g: 0.7649252, b: 0.7735849, a: 1}
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.30042717, g: 0.3702599, b: 0.5471698, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: e042e3a075d43734cb2151822f3efb89, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: abf35ad20d35a7148989cece3d7dff25, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0.6
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 859832189}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.2987337, g: 0.33272874, b: 0.4092618, a: 0.6}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -3034,7 +3034,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_text
-      value: TEXTO TUTORIAL MUSICA
+      value: "SEUS MOVIMENTOS ALTERAM A M\xDASICA\nExperimente olhar para as margens,\npara
+        o c\xE9u, para o rio..."
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_fontStyle
@@ -3884,7 +3885,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_text
-      value: TEXTO TUTORIAL BOLHA
+      value: "SEUS MOVIMENTOS ALTERAM A M\xDASICA\nExperimente olhar para as margens,\npara
+        o c\xE9u, para o rio..."
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_fontStyle
@@ -6033,7 +6035,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_text
-      value: "TEXTO TUTORIAL DAN\xC7A"
+      value: "SEUS MOVIMENTOS ALTERAM A M\xDASICA\nExperimente olhar para as margens,\npara
+        o c\xE9u, para o rio..."
       objectReference: {fileID: 0}
     - target: {fileID: 3558808111987745159, guid: e31c8574cf5c1cd4bbfff19e7f1e530e, type: 3}
       propertyPath: m_fontStyle
@@ -11654,7 +11657,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.2774639, g: 0.4745098, b: 0.19215688, a: 0}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -11662,7 +11665,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 20.78461
+  m_FocalLength: 50
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -11677,7 +11680,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
