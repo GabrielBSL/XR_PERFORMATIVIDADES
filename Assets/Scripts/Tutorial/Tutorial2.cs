@@ -11,7 +11,7 @@ public class Tutorial2 : MonoBehaviour
     [SerializeField] private List<GameObject> bubbles;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Jangada"))
         {
             bubbles = new List<GameObject>();
             for(int i = 0; i < bubbleCount; i += 1) 

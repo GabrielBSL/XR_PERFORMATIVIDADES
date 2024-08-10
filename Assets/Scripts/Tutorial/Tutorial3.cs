@@ -18,7 +18,7 @@ public class Tutorial3 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Jangada"))
         {
             avatar.SetActive(true);
             totalMovement = 0f;            
