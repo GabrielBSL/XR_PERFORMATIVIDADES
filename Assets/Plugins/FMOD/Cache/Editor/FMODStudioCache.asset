@@ -24,7 +24,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-5901467129971656415
+--- !u!114 &-7458557293458484265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,15 +34,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638579381884235150
+  Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638588855014357122
   FileSizes:
   - Name: Desktop
-    Value: 1274
+    Value: 23895104
   Exists: 1
 --- !u!114 &-4133336683539551429
 MonoBehaviour:
@@ -68,26 +68,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-1382486602530659167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/xr_performatividades/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638579381884209955
-  FileSizes:
-  - Name: Desktop
-    Value: 23895104
-  Exists: 1
 --- !u!114 &-488526092126751948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +87,7 @@ MonoBehaviour:
     Data3: 2045662604
     Data4: 769999453
   Banks:
-  - {fileID: -1382486602530659167}
+  - {fileID: -7458557293458484265}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -139,16 +119,16 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -5901467129971656415}
-  - {fileID: -1382486602530659167}
+  - {fileID: 8425338897579817857}
+  - {fileID: -7458557293458484265}
   EditorEvents:
   - {fileID: -488526092126751948}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1382486602530659167}
+  - {fileID: -7458557293458484265}
   StringsBanks:
-  - {fileID: -5901467129971656415}
-  cacheTime: 638579381884235150
+  - {fileID: 8425338897579817857}
+  cacheTime: 638588855014382289
   cacheVersion: 131616
 --- !u!114 &2510263918058029974
 MonoBehaviour:
@@ -341,6 +321,26 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 0
   Labels: []
+  Exists: 1
+--- !u!114 &8425338897579817857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638588855014382289
+  FileSizes:
+  - Name: Desktop
+    Value: 1274
   Exists: 1
 --- !u!114 &8551790805158306142
 MonoBehaviour:
