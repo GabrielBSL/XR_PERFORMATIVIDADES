@@ -60,7 +60,7 @@ namespace Main.AI
 
         private void Awake()
         {
-            List<AnimationClip> clipsList = Resources.LoadAll<AnimationClip>("Animations/Muse").ToList();
+            List<AnimationClip> clipsList = Resources.LoadAll<AnimationClip>("Animations/Muse/Clips").ToList();
             clipsList.RemoveAt(0);
             _clips = clipsList.ToArray();
         }
@@ -158,9 +158,6 @@ namespace Main.AI
             Vector2 xzHeadPosLimits = new Vector2(-2, 2);
             Vector2 yHeadPosLimits = new Vector2(1f, 2f);
             Vector2 zHeadAngleLimit = new Vector2(-90, 25);
-
-            Vector2 randomPosVariation = new Vector2 (0, .75f);
-            Vector2 randomAngleVariation = new Vector2 (0, 45);
 
             for (int i = 0; i < 100; i++)
             {
