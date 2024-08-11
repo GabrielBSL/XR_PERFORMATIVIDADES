@@ -32,9 +32,9 @@ public class Tutorial3 : MonoBehaviour
     }
     void Update()
     {
-        totalMovement += leftTransformSampler.GetSpeed();
-        totalMovement += rightTransformSampler.GetSpeed();
-        totalMovement += headTransformSampler.GetSpeed();
+        totalMovement += leftTransformSampler.GetDisplacement().magnitude;
+        totalMovement += rightTransformSampler.GetDisplacement().magnitude;
+        totalMovement += headTransformSampler.GetDisplacement().magnitude;
         progressBar.value = totalMovement / requiredMovement;
         material.SetFloat("_completion", totalMovement / requiredMovement);
         if(!isComplete && totalMovement >= requiredMovement)

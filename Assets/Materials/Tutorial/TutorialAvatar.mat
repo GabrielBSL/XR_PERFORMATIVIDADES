@@ -120,10 +120,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     - _amplitude: 0.005
-    - _bubbleDensity: 20
+    - _bubbleDensity: 16
     - _colorDistortion: 0.00390625
-    - _completion: 1.1135687
-    - _dissolve: 0.013061273
+    - _completion: 0
+    - _dissolve: 0.9970193
     - _frequency: 4
     - _normalStrength: 8
     - _normalTiling: 1
@@ -136,12 +136,12 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _baseColor: {r: 0.27999288, g: 0.32396707, b: 0.41509432, a: 1}
-    - _bubbleColor: {r: 0.16456035, g: 0.7833927, b: 0.8113208, a: 0}
+    - _bubbleColor: {r: 1, g: 1, b: 1, a: 1}
     - _bubbleTiling: {r: 1, g: 3, b: 0, a: 0}
-    - _bubbleVelocity: {r: 0, g: -0.25, b: 0, a: 0}
+    - _bubbleVelocity: {r: 0, g: -0.2, b: 0, a: 0}
     - _color: {r: 0, g: 0.7461715, b: 1, a: 1}
     - _color1: {r: 0, g: 0.87161016, b: 1, a: 0}
-    - _color2: {r: 0, g: 0.38297844, b: 1, a: 0}
+    - _color2: {r: 0.16747332, g: 0, b: 1, a: 0}
     - _specularColor: {r: 0.5647059, g: 0.7568628, b: 0.909804, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &168852626814361104
