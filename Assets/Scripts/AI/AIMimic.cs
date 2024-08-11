@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Main.AI
 {
+    /*
     public class AIMimic : MonoBehaviour
     {
         [SerializeField] private Animator animator;
@@ -60,4 +61,5 @@ namespace Main.AI
             }
         }
     }
+    */
 }

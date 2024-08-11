@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TutorialAvatar
-  m_Shader: {fileID: -6465566751694194690, guid: a4ccb6baeb0eaf24cb6ea09e0695a6fe, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9d80cee6ef55cdb45b3853f9991aa4b3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -32,7 +32,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -119,17 +119,29 @@ Material:
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 0
-    - _colorDistortion: 0.02
-    - _normalStrength: 2
-    - _normalTiling: 5
+    - _amplitude: 0.005
+    - _bubbleDensity: 20
+    - _colorDistortion: 0.00390625
+    - _completion: 1.1135687
+    - _dissolve: 0.013061273
+    - _frequency: 4
+    - _normalStrength: 8
+    - _normalTiling: 1
     - _smoothness: 0.43
-    - _vertexDistortion: 0.05
+    - _speed: 2
+    - _vertexDistortion: 0.03125
     m_Colors:
     - Color_4036F87A: {r: 0.21293166, g: 0.25228733, b: 0.31132078, a: 0}
     - Color_89B8B254: {r: 0.23375759, g: 0.4811321, b: 0.4811321, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _baseColor: {r: 0.27999288, g: 0.32396707, b: 0.41509432, a: 1}
+    - _bubbleColor: {r: 0.16456035, g: 0.7833927, b: 0.8113208, a: 0}
+    - _bubbleTiling: {r: 1, g: 3, b: 0, a: 0}
+    - _bubbleVelocity: {r: 0, g: -0.25, b: 0, a: 0}
+    - _color: {r: 0, g: 0.7461715, b: 1, a: 1}
+    - _color1: {r: 0, g: 0.87161016, b: 1, a: 0}
+    - _color2: {r: 0, g: 0.38297844, b: 1, a: 0}
     - _specularColor: {r: 0.5647059, g: 0.7568628, b: 0.909804, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &168852626814361104
