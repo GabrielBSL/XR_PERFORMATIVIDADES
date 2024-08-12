@@ -121,3 +121,6 @@ MonoBehaviour:
   isStatic: 0
   drift: {x: -0.1, y: -0.05, z: -0.15}
   bounce: 0.35
+  baseScale: {x: 0.15, y: 0.15, z: 0.15}
+  minScaleMultiplier: 0.75
+  maxScaleMultiplier: 1.25
