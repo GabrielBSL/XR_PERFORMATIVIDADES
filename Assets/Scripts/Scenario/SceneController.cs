@@ -16,6 +16,7 @@ namespace Main.Scenario
         [SerializeField] private InputAction startJourney;
 
         [Header("Scene transition")]
+        [SerializeField] private GameObject cameraPlane;
         [SerializeField] private Material cameraPlaneMaterial;
         [SerializeField] private InputAction startFade;
         [SerializeField] private float fadeDuration = 8;
@@ -89,7 +90,7 @@ namespace Main.Scenario
         private void ReceivePlayerCamera(Camera camera)
         {
             _playerCamera = camera;
-            _playerCameraPlane = camera.transform.GetChild(0).gameObject;
+            //_playerCameraPlane = camera.transform.GetChild(0).gameObject;
         }
 
         private void ReceiveJangada(JangadaMovement sceneJangada)
