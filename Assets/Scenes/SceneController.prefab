@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5497718146554048973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052818835303465582}
+  - component: {fileID: 2894604298964071255}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052818835303465582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497718146554048973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2894604298964071255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497718146554048973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed65c9d072d65d540a167afc34df46af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startJourney:
+    m_Name: Start Journey
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 677400e9-8acb-4d5c-b332-4e2c26b83202
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c658495c-132b-48ca-aa10-401bce2517ed
+      m_Path: <XRController>{LeftHand}/{Grip}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Start Journey
+      m_Flags: 0
+    m_Flags: 0
+  cameraPlaneMaterial: {fileID: 2100000, guid: 17ec17a5df900e0499579ee5805b5655, type: 2}
+  startFade:
+    m_Name: Start Fade
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b655d851-d33b-428e-b509-8cbb939e60f2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  fadeDuration: 10
+  floatingToFadeDelay: 20
+  autoFade: 1
+  creditsFadeDuration: 5
+  creditsDuration: 20
+  cameraLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  forceStartJourney: 0
+  tryStartFading: 0
