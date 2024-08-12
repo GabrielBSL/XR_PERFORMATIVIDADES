@@ -1,11 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
     private static Vector3 globalDrift;
-
-    [SerializeField] private bool isStatic;
+    [SerializeField] private bool isTutorial;
     [SerializeField] private float lifetime;
 
     [Header("Movement")]
@@ -29,17 +29,22 @@ public class Bubble : MonoBehaviour
     
     private void Update()
     {
-        if(!isStatic)
+        if(!isTutorial)
         {
-            if(Time.time - spawnTime >= lifetime) Pop();
+            if(Time.time - spawnTime >= lifetime) Destroy(this.gameObject);
             Vector3 bounceVector = new Vector3(0, bounce * Mathf.Sin(Time.time - spawnTime + timeOffset), 0);
             this.transform.position += Time.deltaTime * bounceVector + globalDrift;
             globalDrift = drift;
         }
     }
 
-    public void Pop()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject.CompareTag("Player"))
+        {            
+            other.gameObject.GetComponent<BubblePopper>().Pop(isTutorial);
+            FMODAudioManager.BubblePop();
+            Destroy(this.gameObject);
+        }
     }
 }

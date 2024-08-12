@@ -45,24 +45,14 @@ public class BubblePopper : MonoBehaviour
         GetComponent<Renderer>().material.SetColor("Color", countdown / streakDuration * Color.black);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Pop(bool isTutorial)
     {
-        if(other.gameObject.CompareTag("Bubble"))
+        controller.SendHapticImpulse(popHapticIntensity, popHapticDuration);
+        this.GetComponent<ParticleSystem>().Play();
+        if(!isTutorial)
         {
-            Destroy(other.gameObject);
-
             streak += 1;
             timeOfPreviousPop = Time.time;
-
-            //this.GetComponent<Oscillator>().PlayNote(streak);
-
-            controller.SendHapticImpulse(popHapticIntensity, popHapticDuration);
-
-            Debug.Log($"bubble destroyed, interval = {streak}");
-        }
-        else
-        {
-            //Debug.Log("not a bubble");
         }
     }
 }

@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07edb85a091a80c4985d79b15e75035d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStatic: 0
+  isTutorial: 0
+  lifetime: 20
   drift: {x: -0.1, y: -0.05, z: -0.15}
   bounce: 0.35
   baseScale: {x: 0.15, y: 0.15, z: 0.15}

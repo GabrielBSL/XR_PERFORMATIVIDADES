@@ -140,6 +140,11 @@ public class FMODAudioManager : MonoBehaviour
 
     //================ FMOD Oneshots ================
 
+    public static void BubblePop()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/bubble_pop");
+    }
+
     /*
     public static void Thunder()
     {

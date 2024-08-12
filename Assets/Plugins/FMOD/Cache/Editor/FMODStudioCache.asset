@@ -39,11 +39,38 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638588873232352157
+  lastModified: 638590615211272061
   FileSizes:
   - Name: Desktop
-    Value: 23895104
+    Value: 23947104
   Exists: 1
+--- !u!114 &-4471308419673354460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/bubble_pop
+  m_EditorClassIdentifier: 
+  Path: event:/bubble_pop
+  Guid:
+    Data1: -1466971700
+    Data2: 1206151875
+    Data3: 965305266
+    Data4: 956778576
+  Banks:
+  - {fileID: -7458557293458484265}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-4133336683539551429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,12 +150,13 @@ MonoBehaviour:
   - {fileID: -7458557293458484265}
   EditorEvents:
   - {fileID: -488526092126751948}
+  - {fileID: -4471308419673354460}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7458557293458484265}
   StringsBanks:
   - {fileID: 8425338897579817857}
-  cacheTime: 638588873232377474
+  cacheTime: 638590615211317498
   cacheVersion: 131616
 --- !u!114 &2510263918058029974
 MonoBehaviour:
@@ -337,10 +365,10 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638588873232377474
+  lastModified: 638590615211317498
   FileSizes:
   - Name: Desktop
-    Value: 1274
+    Value: 1326
   Exists: 1
 --- !u!114 &8551790805158306142
 MonoBehaviour:
