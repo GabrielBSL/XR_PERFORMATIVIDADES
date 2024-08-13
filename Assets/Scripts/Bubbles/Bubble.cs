@@ -33,7 +33,7 @@ public class Bubble : MonoBehaviour
         {
             if(Time.time - spawnTime >= lifetime) Destroy(this.gameObject);
             Vector3 bounceVector = new Vector3(0, bounce * Mathf.Sin(Time.time - spawnTime + timeOffset), 0);
-            this.transform.position += Time.deltaTime * bounceVector + globalDrift;
+            this.transform.position += Time.deltaTime * (bounceVector + globalDrift);
             globalDrift = drift;
         }
     }

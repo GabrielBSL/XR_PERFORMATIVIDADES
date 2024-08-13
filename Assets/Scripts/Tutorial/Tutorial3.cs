@@ -8,20 +8,20 @@ public class Tutorial3 : MonoBehaviour
     [SerializeField] private TransformSampler leftTransformSampler;
     [SerializeField] private TransformSampler rightTransformSampler;
     [SerializeField] private TransformSampler headTransformSampler;
-    [SerializeField] private CenteredProgressBar progressBar;
+    //[SerializeField] private CenteredProgressBar progressBar;
     [SerializeField] private GameObject avatar;
     [SerializeField] private Material material;
     [SerializeField] private float requiredMovement = 20000f;
     private float totalMovement = 0f;
     private bool isComplete = false;
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Jangada"))
         {
             totalMovement = 0f;
             isComplete = false;          
-            progressBar.gameObject.SetActive(true);
+            //progressBar.gameObject.SetActive(true);
             avatar.SetActive(true);  
             avatar.GetComponent<TutorialAvatar>().FadeIn();
             tutorialPanel.FadeIn();
@@ -32,11 +32,11 @@ public class Tutorial3 : MonoBehaviour
         totalMovement += leftTransformSampler.GetDisplacement().magnitude;
         totalMovement += rightTransformSampler.GetDisplacement().magnitude;
         totalMovement += headTransformSampler.GetDisplacement().magnitude;
-        progressBar.value = totalMovement / requiredMovement;
+        //progressBar.value = totalMovement / requiredMovement;
         material.SetFloat("_completion", totalMovement / requiredMovement);
         if(!isComplete && totalMovement >= requiredMovement)
         {
-            progressBar.gameObject.SetActive(false);
+            //progressBar.gameObject.SetActive(false);
             avatar.GetComponent<TutorialAvatar>().FadeOut();
             tutorialPanel.FadeOut();
             isComplete = true;

@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(Collider))]
 public class BubbleEmitter : MonoBehaviour
 {
     [SerializeField] private GameObject bubblePrefab;
     [SerializeField] private float cooldown;
     [SerializeField] private float spawnRadius;
-    private float lastTime;
-    private float currentTime;
 
-    void Start()
+    private bool emitting = true;
+
+    private void OnTriggerEnter()
     {
-        lastTime = Time.time;
+        emitting = true;
+        StartCoroutine(EmitBubbles());
     }
 
-    void Update()
+    private void OnTriggerExit()
     {
-        currentTime = Time.time;
-        if(currentTime - lastTime >= cooldown)
+        emitting = false;
+    }
+
+    private IEnumerator EmitBubbles()
+    {   
+        while(emitting)
         {
             GameObject bubble = Instantiate(bubblePrefab, this.transform.position + Random.insideUnitSphere * spawnRadius, Quaternion.identity);
-            lastTime = currentTime;
+            yield return new WaitForSeconds(cooldown);
         }
     }
 }
