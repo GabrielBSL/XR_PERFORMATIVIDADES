@@ -76,6 +76,7 @@ public class CubicStudy : MonoBehaviour
             D.position * Mathf.Pow(t, 3)
         ).normalized;
     }
+    
     private Vector3 BernsteinDerivative()
     {
         return
