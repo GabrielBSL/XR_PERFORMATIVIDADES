@@ -145,7 +145,7 @@ namespace Main.Scenario
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
 
-                    GestureReferenceEvents.aldeiaBlend?.Invoke(_pathIndex + (i + t)/(pathSize - 1));
+                    GestureReferenceEvents.aldeiaBlend?.Invoke(Mathf.Clamp(_pathIndex + (i + t)/(pathSize - 1) - 3, 0, 3));
                 
                     transform.position = curPosition;
 
