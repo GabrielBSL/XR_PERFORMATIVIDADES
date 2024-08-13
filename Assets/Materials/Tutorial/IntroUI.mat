@@ -32,7 +32,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2951
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -122,11 +122,11 @@ Material:
     - _amplitude: 0.005
     - _bubbleDensity: 16
     - _colorDistortion: 0.00390625
-    - _completion: 0.478
+    - _completion: 0.5
     - _dissolve: 1
     - _frequency: 4
     - _normalStrength: 8
-    - _normalTiling: 1
+    - _normalTiling: -2.8
     - _smoothness: 0.43
     - _speed: 2
     - _vertexDistortion: 0.03125
@@ -137,7 +137,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _baseColor: {r: 0.27999288, g: 0.32396707, b: 0.41509432, a: 1}
     - _bubbleColor: {r: 1, g: 1, b: 1, a: 1}
-    - _bubbleTiling: {r: 3, g: 3, b: 0, a: 0}
+    - _bubbleTiling: {r: 3, g: 2.25, b: 0, a: 0}
     - _bubbleVelocity: {r: 0, g: -0.2, b: 0, a: 0}
     - _color: {r: 0, g: 0.7461715, b: 1, a: 1}
     - _color1: {r: 0, g: 0.87161016, b: 1, a: 0}

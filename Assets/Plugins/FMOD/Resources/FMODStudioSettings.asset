@@ -499,7 +499,7 @@ MonoBehaviour:
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131616
-  HideSetupWizard: 1
+  HideSetupWizard: 0
   LastEventReferenceScanVersion: 131616
   Platforms:
   - {fileID: -8325480198678472859}
@@ -513,7 +513,7 @@ MonoBehaviour:
   - {fileID: 4621926997179511042}
   - {fileID: 4848476564945912614}
   - {fileID: 9091591462318537576}
-  MigratedPlatforms: 0500000012000000060000000b000000080000000a000000090000000c000000150000000200000001000000
+  MigratedPlatforms: 0c0000000b0000001200000005000000060000000900000015000000080000000a0000000200000001000000
 --- !u!114 &532037552672714401
 MonoBehaviour:
   m_ObjectHideFlags: 0
