@@ -14,10 +14,7 @@ public class Tutorial3 : MonoBehaviour
     [SerializeField] private float requiredMovement = 20000f;
     private float totalMovement = 0f;
     private bool isComplete = false;
-    private void Start()
-    {
-        avatar.SetActive(false);
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Jangada"))
