@@ -42,7 +42,7 @@ public class BubblePopper : MonoBehaviour
             streak = 0;
         }
         trail.time = Mathf.Lerp(trail.time, streak * trailTime, 0.05f);
-        GetComponent<Renderer>().material.SetColor("Color", countdown / streakDuration * Color.black);
+        //GetComponent<Renderer>().material.SetColor("Color", countdown / streakDuration * Color.black);
     }
 
     public void Pop(bool isTutorial)

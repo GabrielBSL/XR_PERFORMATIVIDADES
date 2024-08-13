@@ -431,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 26486637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 0, z: 228.34}
+  m_LocalPosition: {x: 1.05, y: 3, z: 228.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -579,7 +579,7 @@ MonoBehaviour:
   headTransformSampler: {fileID: 114523370}
   avatar: {fileID: 462173405}
   material: {fileID: 2100000, guid: f73c4e10bda40514783bce06300879d3, type: 2}
-  requiredMovement: 50
+  requiredMovement: 100
 --- !u!65 &30554715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -659,6 +659,10 @@ PrefabInstance:
       objectReference: {fileID: 1304492236}
     - target: {fileID: 7391150481655542171, guid: 913002cfbeba6dd49ab1a4866bd17c32, type: 3}
       propertyPath: m_Name
+      value: BubblePopper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391150481655542171, guid: 913002cfbeba6dd49ab1a4866bd17c32, type: 3}
+      propertyPath: m_TagString
       value: BubblePopper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8837,7 +8841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1080258271248655778, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3416378
+      value: 3.341638
       objectReference: {fileID: 0}
     - target: {fileID: 1098724856759099919, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_Enabled
@@ -8849,7 +8853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1323652499256439695, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.309277
+      value: 4.1060305
       objectReference: {fileID: 0}
     - target: {fileID: 1327317450584789978, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8869,7 +8873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1622615933921035255, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.334894
+      value: 11.334894
       objectReference: {fileID: 0}
     - target: {fileID: 1627304431895092269, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8997,7 +9001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3494634108733852830, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.72
+      value: -4.16
       objectReference: {fileID: 0}
     - target: {fileID: 3494634108733852830, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9005,7 +9009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3494634108733852830, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.71
+      value: 27.91
       objectReference: {fileID: 0}
     - target: {fileID: 3500929678773408676, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: m_TagString
@@ -9229,7 +9233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6055954295274248315, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: mimics.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6055954295274248315, guid: 25ce9a5b3a629c643b1a9db600db4abb, type: 3}
       propertyPath: mimics.Array.data[5]
@@ -11402,7 +11406,7 @@ Transform:
   m_GameObject: {fileID: 1646968255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.17, y: 2.5, z: 32.28}
+  m_LocalPosition: {x: -1.98, y: 2.5, z: 36.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12653,7 +12657,7 @@ Transform:
   m_GameObject: {fileID: 1829708316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.479, y: 0, z: 89.85}
+  m_LocalPosition: {x: 4.479, y: 3, z: 89.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12936,6 +12940,10 @@ PrefabInstance:
       objectReference: {fileID: 846040587}
     - target: {fileID: 7391150481655542171, guid: 913002cfbeba6dd49ab1a4866bd17c32, type: 3}
       propertyPath: m_Name
+      value: BubblePopper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391150481655542171, guid: 913002cfbeba6dd49ab1a4866bd17c32, type: 3}
+      propertyPath: m_TagString
       value: BubblePopper
       objectReference: {fileID: 0}
     m_RemovedComponents: []

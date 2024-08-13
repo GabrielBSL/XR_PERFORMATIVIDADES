@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bubble
   - Jangada
+  - BubblePopper
   layers:
   - Default
   - TransparentFX

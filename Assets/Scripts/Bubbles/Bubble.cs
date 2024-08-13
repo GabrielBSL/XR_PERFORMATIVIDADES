@@ -40,7 +40,7 @@ public class Bubble : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("BubblePopper"))
         {            
             other.gameObject.GetComponent<BubblePopper>().Pop(isTutorial);
             FMODAudioManager.BubblePop();
