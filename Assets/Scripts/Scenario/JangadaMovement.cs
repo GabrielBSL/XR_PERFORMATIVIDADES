@@ -61,7 +61,7 @@ namespace Main.Scenario
 
             if(_pathIndex < paths.Count)
             {
-                Debug.Log($"Total Delta = {TotalDelta}");
+                //Debug.Log($"Total Delta = {TotalDelta}");
                 if(TotalDelta > paths[_pathIndex].deltaToStartMove && _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
                 {
                     StartCoroutine(moveAlongPath());

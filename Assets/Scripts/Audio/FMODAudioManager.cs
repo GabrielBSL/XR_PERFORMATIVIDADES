@@ -6,21 +6,7 @@ using UnityEngine.UI;
 using FMOD.Studio;
 
 public class FMODAudioManager : MonoBehaviour
-{   
-    //================ SINGLETON LOGIC ================
-    public static FMODAudioManager instance = null;
-    private void Awake()
-    {
-        if(instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
+{
     //================ VARIABLE DECLARATIONS ================
 
     // FMOD
@@ -55,6 +41,7 @@ public class FMODAudioManager : MonoBehaviour
 
     public static void Play()
     {
+        fadeVolume = 1f;
         FMODAudioManager.MusicEventInstance.start();
     }
 

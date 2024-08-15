@@ -189,6 +189,7 @@ namespace Main.Scenario
             if (!reverse)
             {
                 _playerCamera.clearFlags = CameraClearFlags.SolidColor;
+                _playerCamera.backgroundColor = Color.white;
                 _playerCamera.cullingMask = cameraLayerMask;
                 _playerCameraPlane.layer = LayerMask.NameToLayer("Credits");
 
