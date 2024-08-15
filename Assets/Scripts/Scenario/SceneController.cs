@@ -90,7 +90,7 @@ namespace Main.Scenario
         private void ReceivePlayerCamera(Camera camera)
         {
             _playerCamera = camera;
-            //_playerCameraPlane = camera.transform.GetChild(0).gameObject;
+            _playerCameraPlane = camera.transform.GetChild(0).gameObject;
         }
 
         private void ReceiveJangada(JangadaMovement sceneJangada)
