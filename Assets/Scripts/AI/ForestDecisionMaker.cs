@@ -61,12 +61,23 @@ namespace Main.AI
         private void Awake()
         {
             List<AnimationClip> clipsList = Resources.LoadAll<AnimationClip>("Animations/Muse/Clips").ToList();
+
+            if(clipsList.Count == 0)
+            {
+                return;
+            }
+
             clipsList.RemoveAt(0);
             _clips = clipsList.ToArray();
         }
 
         void Start()
         {
+            if (_clips == null)
+            {
+                return;
+            }
+
             string path = Application.persistentDataPath + jsonFilePath;
 
             if (!File.Exists(path))

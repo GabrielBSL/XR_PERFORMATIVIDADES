@@ -16,7 +16,6 @@ namespace Main.Scenario
         [SerializeField] private InputAction startJourney;
 
         [Header("Scene transition")]
-        [SerializeField] private GameObject cameraPlane;
         [SerializeField] private Material cameraPlaneMaterial;
         [SerializeField] private InputAction startFade;
         [SerializeField] private float fadeDuration = 8;
@@ -227,11 +226,13 @@ namespace Main.Scenario
         // called second
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if(_antiFirstLoadTransition)
+            /*
+            if (_antiFirstLoadTransition)
             {
                 _antiFirstLoadTransition = false;
                 return;
             }
+            */
 
             FMODAudioManager.Play();
             StartCoroutine(FadeCoroutine(true));
