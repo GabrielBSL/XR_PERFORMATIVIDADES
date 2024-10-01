@@ -61,6 +61,7 @@ namespace Main.Scenario
 
             if(_pathIndex < paths.Count)
             {
+                //Debug.Log($"Total Delta = {TotalDelta}");
                 if(TotalDelta > paths[_pathIndex].deltaToStartMove && _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
                 {
                     StartCoroutine(moveAlongPath());
@@ -145,7 +146,7 @@ namespace Main.Scenario
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
 
-                    GestureReferenceEvents.aldeiaBlend?.Invoke(_pathIndex + (i + t)/(pathSize - 1));
+                    GestureReferenceEvents.aldeiaBlend?.Invoke(Mathf.Clamp(_pathIndex + (i + t)/(pathSize - 1) - 4, 0, 3));
                 
                     transform.position = curPosition;
 

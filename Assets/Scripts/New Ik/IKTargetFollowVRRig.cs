@@ -164,10 +164,7 @@ namespace Main.IK
                 _vrikRatioTimer = 0;
                 SetVRAndIKTargetPositionRation();
             }
-        }
 
-        void LateUpdate()
-        {
             if (forceRatioCalculation)
             {
                 forceRatioCalculation = false;
@@ -181,7 +178,7 @@ namespace Main.IK
             Vector3 positionRatio = new Vector3(_xAxisRatioBase / _currentXRatio, _yAxisRatioBase / _currentYRatio, 1);
             Vector3 headPosition = head.Map(new Vector3(1, positionRatio.y, 1), Vector3.zero, true);
 
-            if((headPosition - _currentHeadPosition).sqrMagnitude > Mathf.Pow(minimalHeadDistanceToAutoPosCorrect, 2))
+            if ((headPosition - _currentHeadPosition).sqrMagnitude > Mathf.Pow(minimalHeadDistanceToAutoPosCorrect, 2))
             {
                 MainEventsManager.currentHeadPosition?.Invoke(headPosition);
             }
@@ -192,7 +189,7 @@ namespace Main.IK
             {
                 _firstHeightValue = headPosition.y;
             }
-            else if(_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated && allowInitialPositionCorrection)
+            else if (_firstHeightValue != float.NegativeInfinity && !_firstHeightCalculated && allowInitialPositionCorrection)
             {
                 _firstHeightCalculated = true;
                 MainEventsManager.currentHeadPosition?.Invoke(headPosition);
@@ -243,13 +240,3 @@ namespace Main.IK
         }
     }
 }
-
-/*
- * Eu estou trabalhando em um projeto 3D para Unity e estou precisando de ajuda.
-
-Eu tenho uma tabela com 100 entradas, cada entrada possui os valores de posição e rotação da cabeça e das mãos de um modelo, cada posição e rotação possui valore x, y e z, e cada entrada possui esses valores para cada segundo por 10 segundos e, ao final, teria um valor que classificaria o tal movimento. Ou seja, cada entrada possui a posição e rotação da cabeça e das duas mãos em 10 tempos distintos para uma classificação (6 x 3 x 10 + 1), contabilizando 181 entradas.
-
-Essa tabela está sendo representada em um array bidimensional [100][181] de floats. Minha ideia é que esses valores sejam usados por um algoritmo de aprendizado de máquina para que, quando uma nova entrada chegar (um novo modelo fazendo movimentos distintos), eu possa identificar qual classificação dar para esse movimento.
-
-Qual seria o melhor algoritmo para esse caso em específico? Considere que o valor classificador, por mais que seja float, terá apenas valores inteiros maiores ou iguais a 0.
-*/

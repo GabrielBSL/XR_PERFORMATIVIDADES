@@ -94,12 +94,8 @@ namespace Main.Scenario
 
         public static bool ClipsLoaded { get; private set; }
 
-        private string _clipsPath;
-
         private void Awake()
         {
-            _clipsPath = Application.persistentDataPath + "/clips.json";
-
             saveClipAction.performed += _ => ReceiveSaveClipButtonUpdate(true);
             saveClipAction.canceled += _ => ReceiveSaveClipButtonUpdate(false);
             triggerMimicRewind.performed += _ => ReceiveStartRewindButtonUpdate(true);
@@ -215,13 +211,16 @@ namespace Main.Scenario
 
         private List<List<PoseInfo>> LoadClipsFromFile()
         {
-            if(!File.Exists(_clipsPath))
+            TextAsset jsonFile = Resources.Load<TextAsset>("clips");
+
+            if (jsonFile == null)
             {
+                Debug.Log("test");
                 return new List<List<PoseInfo>>();
             }
 
-            string jsonFile = File.ReadAllText(_clipsPath);
-            ClipsHolder clips = JsonUtility.FromJson<ClipsHolder>(jsonFile);
+            string clipsContent = jsonFile.text;
+            ClipsHolder clips = JsonUtility.FromJson<ClipsHolder>(clipsContent);
 
             return ConvertPoseClipToPoseInfo(clips);
         }
@@ -250,7 +249,7 @@ namespace Main.Scenario
             ClipsHolder clipsHolder = new ClipsHolder() { clipsArray = newClipsArray, clipName = "ClipNumber" + _movementClips.Count};
 
             string json = JsonUtility.ToJson(clipsHolder);
-            File.WriteAllText(_clipsPath, json);
+            //File.WriteAllText(_clipsPath, json);
         }
 
         private List<List<PoseInfo>> ConvertPoseClipToPoseInfo(ClipsHolder clips)

@@ -46,7 +46,7 @@ public class TransformSampler : MonoBehaviour
             Time.time
         );
         sampleQueue.Enqueue(currentSample);
-        while (sampleQueue.Count > sampleCount) oldestSample= sampleQueue.Dequeue();
+        while (sampleQueue.Count > sampleCount) oldestSample = sampleQueue.Dequeue();
 
         //================ ACCELERATION ================
         derivativeCurrentSample = new Tuple<Vector3, float>
@@ -65,9 +65,9 @@ public class TransformSampler : MonoBehaviour
 
     public float GetDeltaTime() {return currentSample.Item3 - oldestSample.Item3;}
 
-    private Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;}
-    public Vector3 GetVelocity() {return GetDisplacement() / GetDeltaTime();}
-    public float GetSpeed() {return GetDisplacement().magnitude / GetDeltaTime();}
+    public Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;}
+    public Vector3 GetVelocity() {return sampleQueue.Count > 1? GetDisplacement() / GetDeltaTime() : Vector3.zero;}
+    public float GetSpeed() {return sampleQueue.Count > 1? GetDisplacement().magnitude / GetDeltaTime() : 0;}
     
     public Quaternion GetRotation() {return currentSample.Item2 * Quaternion.Inverse(oldestSample.Item2);}
     public Quaternion GetAngularVelocity() {return GetRotation();}// * GetDeltaTime();}

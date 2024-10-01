@@ -462,8 +462,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/Audio/xr_performatividades/xr_performatividades.fspro
-  sourceBankPath: Assets/Audio/xr_performatividades/Build
+  sourceProjectPath: Assets/FMOD/xr_performatividades/xr_performatividades.fspro
+  sourceBankPath: Assets/FMOD/xr_performatividades/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
   - {fileID: 4621926997179511042}
   - {fileID: 4848476564945912614}
   - {fileID: 9091591462318537576}
-  MigratedPlatforms: 0500000012000000060000000b000000080000000a000000090000000c000000150000000200000001000000
+  MigratedPlatforms: 0c0000000b0000001200000005000000060000000900000015000000080000000a0000000200000001000000
 --- !u!114 &532037552672714401
 MonoBehaviour:
   m_ObjectHideFlags: 0

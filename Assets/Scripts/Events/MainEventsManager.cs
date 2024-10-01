@@ -16,6 +16,7 @@ namespace Main.Events
 
         public static Action<Vector3> currentHeadPosition;
         public static Action<Vector3> currentHeadEulerAngles;
+        public static Action<Vector3> currentPlayerCameraPointPos;
 
         public static Action<Camera> onPlayerCamera;
         public static Action<JangadaMovement> onJangada;

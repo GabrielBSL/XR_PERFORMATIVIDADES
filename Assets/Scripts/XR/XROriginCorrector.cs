@@ -7,6 +7,7 @@ namespace Main.XR
     public class XROriginCorrector : MonoBehaviour
     {
         [SerializeField] private Transform headSpawn;
+        [SerializeField] private Transform cameraTransform;
         [SerializeField] private Vector3 offset;
 
         [Header("Floating")]
@@ -30,13 +31,20 @@ namespace Main.XR
         {
             MainEventsManager.currentHeadPosition += ReceiveCurrentHeadPosition;
             MainEventsManager.currentHeadEulerAngles += ReceiveCurrentHeadEulerAngles;
+            MainEventsManager.currentPlayerCameraPointPos += UpdateCameraPosition;
             MainEventsManager.endOfPath += StartFloating;
         }
         private void OnDisable()
         {
             MainEventsManager.currentHeadPosition -= ReceiveCurrentHeadPosition;
             MainEventsManager.currentHeadEulerAngles -= ReceiveCurrentHeadEulerAngles;
+            MainEventsManager.currentPlayerCameraPointPos -= UpdateCameraPosition;
             MainEventsManager.endOfPath -= StartFloating;
+        }
+
+        private void UpdateCameraPosition(Vector3 position)
+        {
+            cameraTransform.position = position;
         }
 
         private void ReceiveCurrentHeadPosition(Vector3 headPosition)

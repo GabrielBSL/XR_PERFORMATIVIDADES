@@ -16,6 +16,7 @@ namespace Main.Scenario
         [SerializeField] private InputAction startJourney;
 
         [Header("Scene transition")]
+        [SerializeField] private GameObject cameraPlane;
         [SerializeField] private Material cameraPlaneMaterial;
         [SerializeField] private InputAction startFade;
         [SerializeField] private float fadeDuration = 8;
@@ -188,6 +189,7 @@ namespace Main.Scenario
             if (!reverse)
             {
                 _playerCamera.clearFlags = CameraClearFlags.SolidColor;
+                _playerCamera.backgroundColor = Color.white;
                 _playerCamera.cullingMask = cameraLayerMask;
                 _playerCameraPlane.layer = LayerMask.NameToLayer("Credits");
 

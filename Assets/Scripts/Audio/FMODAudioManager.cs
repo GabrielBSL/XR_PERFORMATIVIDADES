@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using FMOD.Studio;
 
 public class FMODAudioManager : MonoBehaviour
-{   
+{
     //================ VARIABLE DECLARATIONS ================
 
     // FMOD
@@ -41,6 +41,7 @@ public class FMODAudioManager : MonoBehaviour
 
     public static void Play()
     {
+        fadeVolume = 1f;
         FMODAudioManager.MusicEventInstance.start();
     }
 
@@ -125,6 +126,11 @@ public class FMODAudioManager : MonoBehaviour
     }
 
     //================ FMOD Oneshots ================
+
+    public static void BubblePop()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/bubble_pop");
+    }
 
     /*
     public static void Thunder()
