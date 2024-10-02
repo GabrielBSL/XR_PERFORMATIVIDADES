@@ -107,7 +107,7 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638591154714780026
+  lastModified: 638615314971986420
   FileSizes:
   - Name: Desktop
     Value: 23947104
@@ -406,7 +406,7 @@ MonoBehaviour:
   - {fileID: -7389464384285263461}
   StringsBanks:
   - {fileID: 3783975862530629693}
-  cacheTime: 638591154714971271
+  cacheTime: 638615314972019303
   cacheVersion: 131616
 --- !u!114 &1640242779905928029
 MonoBehaviour:
@@ -495,7 +495,7 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638591154714971271
+  lastModified: 638615314972019303
   FileSizes:
   - Name: Desktop
     Value: 1326
