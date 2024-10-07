@@ -6931,6 +6931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headSpawn: {fileID: 1401793130}
+  cameraTransform: {fileID: 0}
   offset: {x: 0, y: 0, z: 0.07}
   floatingDuration: 20
   floatingHeight: 6
@@ -9425,7 +9426,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b692e6f820ed3e42ac7aa40711ed2b9, type: 2}
+  - {fileID: 2100000, guid: 4d69c71a33e77294fbe3bc3700a38ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19159,7 +19160,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b692e6f820ed3e42ac7aa40711ed2b9, type: 2}
+  - {fileID: 2100000, guid: 4d69c71a33e77294fbe3bc3700a38ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24584,7 +24585,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b692e6f820ed3e42ac7aa40711ed2b9, type: 2}
+  - {fileID: 2100000, guid: 4d69c71a33e77294fbe3bc3700a38ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
