@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.30042717, g: 0.3702599, b: 0.5471698, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: e042e3a075d43734cb2151822f3efb89, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9b680d1647d3456458a330e044a362a7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2187,6 +2187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedTransform: {fileID: 1303212617882383438}
+  boundingVolumeColor: {r: 0, g: 0, b: 0, a: 0}
   maxSampleCount: 64
 --- !u!1 &588915849
 GameObject:
@@ -3765,7 +3766,6 @@ GameObject:
   - component: {fileID: 839770353}
   - component: {fileID: 839770356}
   - component: {fileID: 839770355}
-  - component: {fileID: 839770354}
   m_Layer: 0
   m_Name: Real Camera
   m_TagString: MainCamera
@@ -3789,15 +3789,6 @@ Transform:
   - {fileID: 1127310533}
   m_Father: {fileID: 186384958015856981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!45 &839770354
-Skybox:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839770352}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: e042e3a075d43734cb2151822f3efb89, type: 2}
 --- !u!114 &839770355
 MonoBehaviour:
   m_ObjectHideFlags: 0
