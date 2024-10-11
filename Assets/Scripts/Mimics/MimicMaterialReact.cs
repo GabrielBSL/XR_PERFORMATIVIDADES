@@ -49,6 +49,8 @@ namespace Main.Mimics
             mimicRenderer.material = _materialCopy;
 
             _materialCopy.EnableKeyword("_EMISSION");
+            _materialCopy.SetFloat("_dissolve", 1);
+
             StartCoroutine(materialEmissionCoroutine());
             StartCoroutine(materialSmoothnessCoroutine());
         }
