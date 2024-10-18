@@ -54,12 +54,13 @@ Material:
     - _QueueOffset: 0
     - _nadirBlendPower: 0.3
     - _noiseScale: 300
-    - _starsIntensity: 200
-    - _starsPower: 50
-    - _zenithBlendPower: 0.016
+    - _starsBlendPower: 7.1
+    - _starsIntensity: 20000
+    - _starsPower: 40
+    - _zenithBlendPower: 0.26
     m_Colors:
-    - _horizonColor: {r: 0.4174528, g: 0.49255052, b: 0.5, a: 0}
-    - _nadirColor: {r: 0.103363305, g: 0.6792453, b: 0, a: 0}
-    - _starsColor: {r: 766.9961, g: 644.4466, b: 36.141155, a: 1}
+    - _horizonColor: {r: 0.10720008, g: 0.112735175, b: 0.31132078, a: 0}
+    - _nadirColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0}
+    - _starsColor: {r: 0.9528302, g: 0.8394804, b: 0.26517445, a: 1}
     - _zenithColor: {r: 0, g: 0.026729539, b: 0.16037738, a: 0}
   m_BuildTextureStacks: []

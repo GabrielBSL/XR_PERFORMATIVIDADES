@@ -24,7 +24,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-8923225700847977265
+--- !u!114 &-8535474629694088140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,40 +34,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/crouch
+  m_Name: parameter:/music_standalone/aldeia3Angle
   m_EditorClassIdentifier: 
-  Name: crouch
+  Name: aldeia3Angle
   StudioPath: 
-  Min: 0
+  Min: -1
   Max: 1
-  Default: 1
-  ID:
-    data1: 3656428949
-    data2: 954841651
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-8047059568318203639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/aldeiaBlend
-  m_EditorClassIdentifier: 
-  Name: aldeiaBlend
-  StudioPath: 
-  Min: 0
-  Max: 3
   Default: 0
   ID:
-    data1: 2905741905
-    data2: 350332673
+    data1: 433104331
+    data2: 3882643625
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -107,12 +83,12 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638615314971986420
+  lastModified: 638647832878509011
   FileSizes:
   - Name: Desktop
-    Value: 23947104
+    Value: 24008096
   Exists: 1
---- !u!114 &-6827452621210624664
+--- !u!114 &-5499511770284080750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,7 +112,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-5803046227810191062
+--- !u!114 &-5445762148443715534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,21 +122,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/aldeia3Angle
+  m_Name: parameter:/music_standalone/aldeia2Angle
   m_EditorClassIdentifier: 
-  Name: aldeia3Angle
+  Name: aldeia2Angle
   StudioPath: 
   Min: -1
   Max: 1
   Default: 0
   ID:
-    data1: 433104331
-    data2: 3882643625
+    data1: 2660637593
+    data2: 2481795071
   Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-4729084323781876292
+--- !u!114 &-5092217959329063088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,21 +145,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/lookLeftRight
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music_standalone
   m_EditorClassIdentifier: 
-  Name: lookLeftRight
-  StudioPath: 
-  Min: -1
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2280839306
-    data2: 3307584806
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  Path: event:/music_standalone
+  Guid:
+    Data1: 1639102533
+    Data2: 1274716225
+    Data3: 2045662604
+    Data4: 769999453
+  Banks:
+  - {fileID: -7389464384285263461}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -798645914113807005}
+  - {fileID: 2029273816552519098}
+  - {fileID: -1724173695918826466}
+  - {fileID: 1921185320192120724}
+  - {fileID: -8535474629694088140}
+  - {fileID: 8971721444356136848}
+  - {fileID: -5499511770284080750}
+  - {fileID: 3283684387906993196}
+  - {fileID: -5445762148443715534}
+  - {fileID: -2040027691385714383}
+  - {fileID: -975304116654898874}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 735243
 --- !u!114 &-4471308419673354460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +225,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-3344114237694357100
+--- !u!114 &-2040027691385714383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,21 +235,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/leftConduct
+  m_Name: parameter:/music_standalone/leftVelocity
   m_EditorClassIdentifier: 
-  Name: leftConduct
+  Name: leftVelocity
   StudioPath: 
-  Min: -1
+  Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3767488954
-    data2: 447126141
+    data1: 918596575
+    data2: 4289079622
   Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-3020904181286582324
+--- !u!114 &-1724173695918826466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,21 +259,72 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/aldeia2Angle
+  m_Name: parameter:/music_standalone/rightVelocity
   m_EditorClassIdentifier: 
-  Name: aldeia2Angle
+  Name: rightVelocity
   StudioPath: 
-  Min: -1
+  Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 2660637593
-    data2: 2481795071
+    data1: 3483622295
+    data2: 3248620696
   Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-2014576681406643848
+--- !u!114 &-1609556744645994166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/experimental
+  m_EditorClassIdentifier: 
+  Path: event:/experimental
+  Guid:
+    Data1: -1841920422
+    Data2: 1312289651
+    Data3: -1102610268
+    Data4: 72407370
+  Banks:
+  - {fileID: -7389464384285263461}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2011
+--- !u!114 &-975304116654898874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_standalone/aldeiaBlend
+  m_EditorClassIdentifier: 
+  Name: aldeiaBlend
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 2905741905
+    data2: 350332673
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-798645914113807005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,44 +348,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-1541449558491747700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music_standalone
-  m_EditorClassIdentifier: 
-  Path: event:/music_standalone
-  Guid:
-    Data1: 1639102533
-    Data2: 1274716225
-    Data3: 2045662604
-    Data4: 769999453
-  Banks:
-  - {fileID: -7389464384285263461}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -2014576681406643848}
-  - {fileID: -8923225700847977265}
-  - {fileID: 3237724587745502765}
-  - {fileID: -4729084323781876292}
-  - {fileID: -5803046227810191062}
-  - {fileID: 1640242779905928029}
-  - {fileID: -6827452621210624664}
-  - {fileID: -3344114237694357100}
-  - {fileID: -3020904181286582324}
-  - {fileID: 8643220792937957401}
-  - {fileID: -8047059568318203639}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 735243
 --- !u!114 &-488526092126751948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,16 +402,17 @@ MonoBehaviour:
   - {fileID: 3783975862530629693}
   - {fileID: -7389464384285263461}
   EditorEvents:
-  - {fileID: -1541449558491747700}
-  - {fileID: 5511221947703895424}
+  - {fileID: -5092217959329063088}
+  - {fileID: -1609556744645994166}
+  - {fileID: 6039600559848166542}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7389464384285263461}
   StringsBanks:
   - {fileID: 3783975862530629693}
-  cacheTime: 638615314972019303
+  cacheTime: 638647832878581298
   cacheVersion: 131616
---- !u!114 &1640242779905928029
+--- !u!114 &1921185320192120724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,16 +422,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/lookUpDown
+  m_Name: parameter:/music_standalone/lookLeftRight
   m_EditorClassIdentifier: 
-  Name: lookUpDown
+  Name: lookLeftRight
   StudioPath: 
   Min: -1
   Max: 1
   Default: 0
   ID:
-    data1: 380310088
-    data2: 3558499632
+    data1: 2280839306
+    data2: 3307584806
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2029273816552519098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_standalone/crouch
+  m_EditorClassIdentifier: 
+  Name: crouch
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3656428949
+    data2: 954841651
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -456,7 +484,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &3237724587745502765
+--- !u!114 &3283684387906993196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -466,16 +494,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/rightVelocity
+  m_Name: parameter:/music_standalone/leftConduct
   m_EditorClassIdentifier: 
-  Name: rightVelocity
+  Name: leftConduct
   StudioPath: 
-  Min: 0
+  Min: -1
   Max: 1
   Default: 0
   ID:
-    data1: 3483622295
-    data2: 3248620696
+    data1: 3767488954
+    data2: 447126141
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -495,10 +523,10 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638615314972019303
+  lastModified: 638647832878581298
   FileSizes:
   - Name: Desktop
-    Value: 1326
+    Value: 1370
   Exists: 1
 --- !u!114 &3824991265575103754
 MonoBehaviour:
@@ -596,7 +624,31 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &5511221947703895424
+--- !u!114 &5929191883721422235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_standalone/aldeia3Angle
+  m_EditorClassIdentifier: 
+  Name: aldeia3Angle
+  StudioPath: 
+  Min: -1
+  Max: 1
+  Default: 0
+  ID:
+    data1: 433104331
+    data2: 3882643625
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6039600559848166542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,30 +675,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
---- !u!114 &5929191883721422235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/aldeia3Angle
-  m_EditorClassIdentifier: 
-  Name: aldeia3Angle
-  StudioPath: 
-  Min: -1
-  Max: 1
-  Default: 0
-  ID:
-    data1: 433104331
-    data2: 3882643625
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &7085264880156769816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,7 +767,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &8643220792937957401
+--- !u!114 &8971721444356136848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -749,16 +777,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/music_standalone/leftVelocity
+  m_Name: parameter:/music_standalone/lookUpDown
   m_EditorClassIdentifier: 
-  Name: leftVelocity
+  Name: lookUpDown
   StudioPath: 
-  Min: 0
+  Min: -1
   Max: 1
   Default: 0
   ID:
-    data1: 918596575
-    data2: 4289079622
+    data1: 380310088
+    data2: 3558499632
   Type: 0
   IsGlobal: 0
   Labels: []

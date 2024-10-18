@@ -127,7 +127,7 @@ Material:
     - _ZWrite: 1
     - _starsPower: 20.6
     - _starsScale: 256
-    - _time: 1
+    - _time: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
