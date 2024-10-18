@@ -19,12 +19,11 @@ public class TransformSampler : MonoBehaviour
             this.rotation = rotation;
         }
     }
-
-    [SerializeField] private Queue<TransformSnapshot> sampleQueue = new Queue<TransformSnapshot>();
+    
+    private Queue<TransformSnapshot> sampleQueue = new Queue<TransformSnapshot>();
     [SerializeField] private int maxSampleCount = 8;
     private TransformSnapshot oldestSample;
     [HideInInspector] public AABB aabb = new AABB();
-    public Vector3 ratioVector;
     public static Color ColorLerp(Vector3 vert1, Vector3 vert2, Vector3 t)
     {
         float x = Mathf.InverseLerp(vert1.x, vert2.x, t.x);
@@ -46,7 +45,6 @@ public class TransformSampler : MonoBehaviour
 
         aabb = new AABB();
         for(int i = 0; i < sampleQueue.Count; i += 1) aabb.GrowToInclude(sampleQueue.ElementAt(i).position);
-        ratioVector = aabb.direction;
     }
     private void OnDrawGizmos()
     {

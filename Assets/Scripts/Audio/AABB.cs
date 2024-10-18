@@ -70,4 +70,9 @@ public class AABB
 
         return result;
     }
+
+    public static float IntersectionOverUnion(AABB a, AABB b)
+    {
+        return Intersection(a, b).volume / Union(a, b).volume;
+    }
 }
