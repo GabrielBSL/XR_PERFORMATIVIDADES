@@ -13,20 +13,19 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private float lightColorTemperatureDay;
     [SerializeField] private float lightColorTemperatureNight;
     [SerializeField] private Material skyboxMaterial;
-    [SerializeField] private Color fogColorDay;
-    [SerializeField] private Color fogColorNight;
-    [SerializeField] private float fogDensityDay;
-    [SerializeField] private float fogDensityNight;
+    [SerializeField] private Gradient fogColor;
+    [SerializeField] private Gradient ambientLightColor;
+
 
     void Update()
     {
         skyboxMaterial.SetFloat("_time", time);
+        RenderSettings.ambientLight = ambientLightColor.Evaluate(time);
         if(useDynamicLighting)
         {
             directionalLight.transform.rotation = Quaternion.Slerp(lightRotationDay, lightRotationNight, time);
             directionalLight.colorTemperature = Mathf.Lerp(lightColorTemperatureDay, lightColorTemperatureNight, time);
         }
-        RenderSettings.fogColor = Color.Lerp(fogColorDay, fogColorNight, time);
-        RenderSettings.fogDensity = Mathf.Lerp(fogDensityDay, fogDensityNight, time);
+        RenderSettings.fogColor = fogColor.Evaluate(time);
     }
 }
