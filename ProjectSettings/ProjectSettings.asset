@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: 'EntreSeres: NO_HDR'
+  productName: 'EntreSeres: mixed lighting'
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.11449803, g: 0.2924528, b: 0.2597255, a: 1}
@@ -160,7 +160,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.unity.entreseres_nohdr
+    Android: com.unity.entreseres_mixed
     Standalone: com.Unity-Technologies.VR-Template
   buildNumber:
     Standalone: 0
