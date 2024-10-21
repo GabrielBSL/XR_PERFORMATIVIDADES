@@ -136,7 +136,7 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _baseColor: {r: 0.27999288, g: 0.32396707, b: 0.41509432, a: 1}
-    - _bubbleColor: {r: 1, g: 1, b: 1, a: 1}
+    - _bubbleColor: {r: 0.2803489, g: 0.54040325, b: 0.5660378, a: 1}
     - _bubbleTiling: {r: 3, g: 2.25, b: 0, a: 0}
     - _bubbleVelocity: {r: 0, g: -0.2, b: 0, a: 0}
     - _color: {r: 0, g: 0.7461715, b: 1, a: 1}

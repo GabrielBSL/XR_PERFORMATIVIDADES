@@ -10,6 +10,8 @@ public class BubbleEmitter : MonoBehaviour
     [SerializeField] private GameObject bubblePrefab;
     [SerializeField] private float cooldown;
     [SerializeField] private float spawnRadius;
+    [SerializeField] private Transform handle;
+    [SerializeField] private Vector3 drift { get { return handle.position - transform.position;}}
     [SerializeField] private Vector3 spawnOffset;
 
     private bool emitting = true;
@@ -23,6 +25,12 @@ public class BubbleEmitter : MonoBehaviour
     private void OnTriggerExit()
     {
         emitting = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, handle.position);
     }
 
     private IEnumerator EmitBubbles(Transform playerTranform)
