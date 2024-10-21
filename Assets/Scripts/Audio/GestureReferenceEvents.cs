@@ -10,13 +10,13 @@ public static class GestureReferenceEvents
     public static Action<bool> jangadaMoving;
 
     public static Action<Transform> rightTransform;
-    public static Action<TransformSampler> rightTransformSampler;
+    public static Action<OldTransformSampler> rightTransformSampler;
 
     public static Action<Transform> leftTransform;
-    public static Action<TransformSampler> leftTransformSampler;
+    public static Action<OldTransformSampler> leftTransformSampler;
 
     public static Action<Transform> headTransform;
-    public static Action<TransformSampler> headTransformSampler;
+    public static Action<OldTransformSampler> headTransformSampler;
     
     public static Action<Transform> jangadaTransform;
     public static Action<Transform> aldeia1Transform;

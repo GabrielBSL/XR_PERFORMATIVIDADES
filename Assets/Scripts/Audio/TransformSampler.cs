@@ -1,80 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TransformSampler : MonoBehaviour
 {
-    //================ VARIABLE DECLARATIONS ================
+    [SerializeField] private Transform trackedTransform;
+    [SerializeField] private Color boundingVolumeColor;
 
-    [SerializeField] private Transform referenceTransform;
-    [SerializeField] [Range(2, 16)] private int sampleCount = 16;
-
-    public Queue<Tuple<Vector3, Quaternion, float>> sampleQueue = new Queue<Tuple<Vector3, Quaternion, float>>();
-    public Tuple<Vector3, Quaternion, float> currentSample;
-    public Tuple<Vector3, Quaternion, float> oldestSample;
-    
-    public Queue<Tuple<Vector3, float>> derivativeSampleQueue = new Queue<Tuple<Vector3, float>>();
-    public Tuple<Vector3, float> derivativeCurrentSample;
-    public Tuple<Vector3, float> derivativeOldestSample;
-
-    /*
-    enum AccelerationAlgorithm {TripleSample, Estimator};
-    [SerializeField] AccelerationAlgorithm accelerationAlgorithm;
-    */
-
-    //================ MONOBEHAVIOUR FUNCTIONS ================
-
-    private void Awake()
+    class TransformSnapshot
     {
-        currentSample = new Tuple<Vector3, Quaternion, float>
-        (
-            this.transform.position - referenceTransform.position,
-            this.transform.rotation,
-            Time.time
-        );
-
-        oldestSample = currentSample;
+        public Vector3 position;
+        public Quaternion rotation;
+        public TransformSnapshot(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
+        }
     }
+    
+    private Queue<TransformSnapshot> sampleQueue = new Queue<TransformSnapshot>();
+    [SerializeField] private int maxSampleCount = 8;
+    private TransformSnapshot oldestSample;
+    [HideInInspector] public AABB aabb = new AABB();
+    public static Color ColorLerp(Vector3 vert1, Vector3 vert2, Vector3 t)
+    {
+        float x = Mathf.InverseLerp(vert1.x, vert2.x, t.x);
+        float y = Mathf.InverseLerp(vert1.y, vert2.y, t.y);
+        float z = Mathf.InverseLerp(vert1.z, vert2.z, t.z);
+        return new Color(x, y, z, 1);
+    }
+    
+    // ================================ MONOBEHAVIOUR ================================
 
     void Update()
     {
-        currentSample = new Tuple<Vector3, Quaternion, float>
+        sampleQueue.Enqueue(new TransformSnapshot
         (
-            this.transform.position - referenceTransform.position,
-            this.transform.rotation,
-            Time.time
-        );
-        sampleQueue.Enqueue(currentSample);
-        while (sampleQueue.Count > sampleCount) oldestSample = sampleQueue.Dequeue();
+            trackedTransform.position,
+            trackedTransform.rotation
+        ));
+        while (sampleQueue.Count > maxSampleCount) oldestSample = sampleQueue.Dequeue();
 
-        //================ ACCELERATION ================
-        derivativeCurrentSample = new Tuple<Vector3, float>
-        (
-            GetVelocity(),
-            Time.time
-        );
-        derivativeSampleQueue.Enqueue(derivativeCurrentSample);
-        while (derivativeSampleQueue.Count > sampleCount) derivativeOldestSample = derivativeSampleQueue.Dequeue();
-
+        aabb = new AABB();
+        for(int i = 0; i < sampleQueue.Count; i += 1) aabb.GrowToInclude(sampleQueue.ElementAt(i).position);
     }
+    private void OnDrawGizmos()
+    {
+        for(int i = 0; i < sampleQueue.Count; i += 1)
+        {
+            TransformSnapshot current = sampleQueue.ElementAt(i);
+            Gizmos.color = ColorLerp(aabb.minVert, aabb.maxVert, current.position);
+            Gizmos.DrawSphere(current.position, 0.005f);
+            if(i > 0) Gizmos.DrawLine(sampleQueue.ElementAt(i - 1).position, current.position);
+        }
 
-    //================ 1 PREVIOUS FRAME COMPLEXITY ================
-
-    public Tuple<Vector3, Quaternion, float> GetCurrentSample() {return currentSample;}
-
-    public float GetDeltaTime() {return currentSample.Item3 - oldestSample.Item3;}
-
-    public Vector3 GetDisplacement() {return currentSample.Item1 - oldestSample.Item1;}
-    public Vector3 GetVelocity() {return sampleQueue.Count > 1? GetDisplacement() / GetDeltaTime() : Vector3.zero;}
-    public float GetSpeed() {return sampleQueue.Count > 1? GetDisplacement().magnitude / GetDeltaTime() : 0;}
-    
-    public Quaternion GetRotation() {return currentSample.Item2 * Quaternion.Inverse(oldestSample.Item2);}
-    public Quaternion GetAngularVelocity() {return GetRotation();}// * GetDeltaTime();}
-    public float GetAngularSpeed() {return (Quaternion.Angle(currentSample.Item2, oldestSample.Item2) / 180) / GetDeltaTime();}
-
-    public Vector3 GetDeltaVelocity() {return (derivativeCurrentSample.Item1 - derivativeOldestSample.Item1);}
-    
-    public Vector3 GetAcceleration() {return (derivativeCurrentSample.Item1 - derivativeOldestSample.Item1) /
-                                             (derivativeCurrentSample.Item2 - derivativeOldestSample.Item2);}
+        Gizmos.color = boundingVolumeColor;
+        Gizmos.DrawCube(aabb.center, aabb.diagonal);
+    }
 }

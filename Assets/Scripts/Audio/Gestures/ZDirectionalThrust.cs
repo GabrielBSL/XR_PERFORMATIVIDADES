@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class DirectionalThrust : MonoBehaviour
 {
-    [SerializeField] private TransformSampler hand;
+    [SerializeField] private OldTransformSampler hand;
 
     enum Reference {Vector3, Transform};
     [SerializeField] Reference referenceMode;

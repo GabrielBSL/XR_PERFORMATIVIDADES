@@ -6,12 +6,12 @@ using UnityEngine;
 public class RightVelocity : MonoBehaviour
 {
     public float value;
-    private TransformSampler rightTransformSampler;
+    private OldTransformSampler rightTransformSampler;
     
     [SerializeField] private float scale = 1f;
     [SerializeField] private float threshold = 0f;
 
-    void GetRightTransformSampler(TransformSampler _rightTransformSampler){rightTransformSampler = _rightTransformSampler;}
+    void GetRightTransformSampler(OldTransformSampler _rightTransformSampler){rightTransformSampler = _rightTransformSampler;}
 
     void OnEnable()
     {

@@ -3,13 +3,13 @@ using UnityEngine;
 public class GestureReferenceEventsInvoker : MonoBehaviour
 {
     [SerializeField] private Transform rightTransform;
-    [SerializeField] private TransformSampler rightTransformSampler;
+    [SerializeField] private OldTransformSampler rightTransformSampler;
 
     [SerializeField] private Transform leftTransform;
-    [SerializeField] private TransformSampler leftTransformSampler;
+    [SerializeField] private OldTransformSampler leftTransformSampler;
 
     [SerializeField] private Transform headTransform;
-    [SerializeField] private TransformSampler headTransformSampler;
+    [SerializeField] private OldTransformSampler headTransformSampler;
     
     [SerializeField] private Transform jangadaTransform;
     [SerializeField] private Transform aldeia1Transform;

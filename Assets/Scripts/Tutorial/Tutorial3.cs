@@ -5,9 +5,9 @@ using UnityEngine;
 public class Tutorial3 : MonoBehaviour
 {
     [SerializeField] private TutorialPanel tutorialPanel;
-    [SerializeField] private TransformSampler leftTransformSampler;
-    [SerializeField] private TransformSampler rightTransformSampler;
-    [SerializeField] private TransformSampler headTransformSampler;
+    [SerializeField] private OldTransformSampler leftTransformSampler;
+    [SerializeField] private OldTransformSampler rightTransformSampler;
+    [SerializeField] private OldTransformSampler headTransformSampler;
     //[SerializeField] private CenteredProgressBar progressBar;
     [SerializeField] private GameObject avatar;
     [SerializeField] private Material material;

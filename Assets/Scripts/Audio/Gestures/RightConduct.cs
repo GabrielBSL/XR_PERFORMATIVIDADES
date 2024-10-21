@@ -6,12 +6,12 @@ using UnityEngine;
 public class RightConduct : MonoBehaviour
 {
     public float value;
-    private TransformSampler rightTransformSampler;
+    private OldTransformSampler rightTransformSampler;
     private Transform rightTransform;
     private Transform headTransform;
     public float userWingspan;
 
-    void GetRightTransformSampler(TransformSampler _rightTransformSampler){rightTransformSampler = _rightTransformSampler;}
+    void GetRightTransformSampler(OldTransformSampler _rightTransformSampler){rightTransformSampler = _rightTransformSampler;}
     void GetRightTransform(Transform _rightTransform){rightTransform = _rightTransform;}
     void GetHeadTransform(Transform _headTransform){headTransform = _headTransform;}
     void GetUserWingspan(float _userWingspan){userWingspan = _userWingspan;}
