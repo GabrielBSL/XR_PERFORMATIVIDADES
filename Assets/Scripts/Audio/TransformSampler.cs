@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TransformSampler : MonoBehaviour
 {
-    [SerializeField] private Transform trackedTransform;
+    [SerializeField] private Transform referenceTransform;
     [SerializeField] private Color boundingVolumeColor;
 
     class TransformSnapshot
@@ -38,8 +38,8 @@ public class TransformSampler : MonoBehaviour
     {
         sampleQueue.Enqueue(new TransformSnapshot
         (
-            trackedTransform.position,
-            trackedTransform.rotation
+            transform.position,
+            transform.rotation
         ));
         while (sampleQueue.Count > maxSampleCount) oldestSample = sampleQueue.Dequeue();
 

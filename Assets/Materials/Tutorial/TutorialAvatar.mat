@@ -122,8 +122,8 @@ Material:
     - _amplitude: 0.005
     - _bubbleDensity: 16
     - _colorDistortion: 0.00390625
-    - _completion: 0.0013999987
-    - _dissolve: 0.028039206
+    - _completion: 2.5401192
+    - _dissolve: 0.0015704092
     - _frequency: 4
     - _normalStrength: 8
     - _normalTiling: 1
