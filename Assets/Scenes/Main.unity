@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.38995194, g: 0.6509434, b: 0.6485921, a: 1}
+  m_FogColor: {r: 0.12388752, g: 0.13306268, b: 0.3018868, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8580114, g: 0.8584906, b: 0.84634215, a: 1}
+  m_AmbientSkyColor: {r: 0.035510853, g: 0.05717951, b: 0.13207549, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf08c1ea9384d34e9bb9b225c634a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  time: 1
   skyboxMaterial: {fileID: 2100000, guid: 5d2678442bfdee74884a5c8765e267e0, type: 2}
   ambientLightColor:
     serializedVersion: 2
@@ -3228,16 +3228,16 @@ MonoBehaviour:
     key2: {r: 0.8862745, g: 0.5454761, b: 0, a: 1}
     key3: {r: 0.7137255, g: 0.21263048, b: 0.007843137, a: 0}
     key4: {r: 0.20986114, g: 0.26608709, b: 0.33962262, a: 0}
-    key5: {r: 0.055268783, g: 0.07350543, b: 0.4339623, a: 0}
-    key6: {r: 0.12146226, g: 0.034949046, b: 0.034949046, a: 0}
+    key5: {r: 0.03551086, g: 0.057179507, b: 0.13207549, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
     ctime1: 26214
     ctime2: 29684
     ctime3: 34117
     ctime4: 39707
-    ctime5: 55512
-    ctime6: 65535
+    ctime5: 65535
+    ctime6: 0
     ctime7: 0
     atime0: 0
     atime1: 31611
@@ -3249,7 +3249,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 7
+    m_NumColorKeys: 6
     m_NumAlphaKeys: 3
   fogColor:
     serializedVersion: 2
@@ -37902,7 +37902,7 @@ Transform:
   m_GameObject: {fileID: 3462660262238486422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.96, y: 4.2133646, z: 361.64}
+  m_LocalPosition: {x: -9.96, y: 4.213364, z: 361.64}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
