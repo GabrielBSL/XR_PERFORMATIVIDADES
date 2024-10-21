@@ -107,10 +107,10 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638650638636103924
+  lastModified: 638650830447853933
   FileSizes:
   - Name: Desktop
-    Value: 23947104
+    Value: 32018656
   Exists: 1
 --- !u!114 &-6827452621210624664
 MonoBehaviour:
@@ -136,6 +136,35 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6478128276990880771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music
+  m_EditorClassIdentifier: 
+  Path: event:/music
+  Guid:
+    Data1: 1157969073
+    Data2: 1127484146
+    Data3: -1119214454
+    Data4: 1971873793
+  Banks:
+  - {fileID: -7389464384285263461}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8164624350442293529}
+  - {fileID: -4280383385686822591}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 96000
 --- !u!114 &-5803046227810191062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +240,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-4280383385686822591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/width
+  m_EditorClassIdentifier: 
+  Name: width
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 877678192
+    data2: 1980546557
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-4133336683539551429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,12 +454,13 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -1541449558491747700}
   - {fileID: 5511221947703895424}
+  - {fileID: -6478128276990880771}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7389464384285263461}
   StringsBanks:
   - {fileID: 3783975862530629693}
-  cacheTime: 638650638636115830
+  cacheTime: 638650830447916394
   cacheVersion: 131616
 --- !u!114 &1640242779905928029
 MonoBehaviour:
@@ -495,10 +549,10 @@ MonoBehaviour:
   Path: Assets/FMOD/xr_performatividades/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638650638636115830
+  lastModified: 638650830447916394
   FileSizes:
   - Name: Desktop
-    Value: 1326
+    Value: 1460
   Exists: 1
 --- !u!114 &3824991265575103754
 MonoBehaviour:
@@ -691,6 +745,30 @@ MonoBehaviour:
   ID:
     data1: 2660637593
     data2: 2481795071
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8164624350442293529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music/height
+  m_EditorClassIdentifier: 
+  Name: height
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 648269534
+    data2: 671474392
   Type: 0
   IsGlobal: 0
   Labels: []

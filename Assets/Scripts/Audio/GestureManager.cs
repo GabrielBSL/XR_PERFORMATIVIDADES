@@ -11,6 +11,18 @@ public class GestureManager : MonoBehaviour
     private AABB intersection = new AABB();
     [SerializeField] bool drawUnion;
     [SerializeField] bool drawIntersection;
+
+    public float GetWidth()
+    {
+        return union.direction.x;
+    }
+
+    public float GetHeight()
+    {
+        return union.direction.y;
+    }
+
+    //================ MONOBEHAVIOUR FUNCTIONS ================
     
     private void Update()
     {
