@@ -63,7 +63,7 @@ namespace Main.Scenario
 
             instance = this;
             DontDestroyOnLoad(gameObject);
-            cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, 0));
+            cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, 0));
         }
 
         private void OnEnable()
@@ -181,7 +181,7 @@ namespace Main.Scenario
 
                 timePassed += Time.deltaTime;
                 float t = Mathf.Lerp(0, 1, timePassed / fadeDuration);
-                cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, reverse ? 1 - t : t));
+                cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, reverse ? 1 - t : t));
                 FMODAudioManager.SetFadeVolume(reverse ? t : 1 - t);
             }
 
@@ -200,7 +200,7 @@ namespace Main.Scenario
 
                     timePassed += Time.deltaTime;
                     float t = Mathf.Lerp(0, 1, timePassed / creditsFadeDuration);
-                    cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, 1 - t));
+                    cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, 1 - t));
                 }
 
                 yield return new WaitForSeconds(creditsDuration);

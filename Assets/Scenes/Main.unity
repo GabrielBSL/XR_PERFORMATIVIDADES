@@ -22832,7 +22832,7 @@ MonoBehaviour:
   headSpawn: {fileID: 277903507067239190}
   cameraTransform: {fileID: 839770353}
   offset: {x: 0, y: 0, z: 0.07}
-  floatingDuration: 20
+  floatingDuration: 25
   floatingHeight: 6
   rightHandLineRenderer: {fileID: 8573052246060356389}
   leftHandLineRenderer: {fileID: 7675617517307781870}
@@ -30152,7 +30152,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   fadeDuration: 10
-  floatingToFadeDelay: 20
+  floatingToFadeDelay: 25
   autoFade: 1
   creditsFadeDuration: 5
   creditsDuration: 10
@@ -40039,7 +40039,7 @@ Transform:
   m_GameObject: {fileID: 3462660262238486422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.96, y: 4.213364, z: 361.64}
+  m_LocalPosition: {x: -9.96, y: 4.2133646, z: 361.64}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -62320,7 +62320,7 @@ Transform:
   m_GameObject: {fileID: 5684425381285802530}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.093867, y: 4.208763, z: 366.0647}
+  m_LocalPosition: {x: -9.093867, y: 4.2087636, z: 366.0647}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
