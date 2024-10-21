@@ -177,7 +177,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8359449414258622918}
   - component: {fileID: 7605806774468312298}
-  - component: {fileID: 5508363497365216890}
   m_Layer: 0
   m_Name: tree5
   m_TagString: Untagged
@@ -216,35 +215,8 @@ LODGroup:
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.05
+  - screenRelativeHeight: 0.005
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7719565394169497427}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5207446968202646537}
   m_Enabled: 1
---- !u!114 &5508363497365216890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042116121942215485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: e31d8e90a45684d468737bf47cbeb37e, type: 2}
-  m_rootTransform: {fileID: 8359449414258622918}
-  m_lodGroup: {fileID: 7605806774468312298}
-  m_renderers:
-  - {fileID: 7719565394169497427}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 2
-  m_insertIndex: 1
-  m_lastImpostor: {fileID: 1485787306166140349}
-  m_folderPath: Assets/Models/Impostors/
-  m_cutMode: 0
