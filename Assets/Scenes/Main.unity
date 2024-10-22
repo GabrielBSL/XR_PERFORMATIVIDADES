@@ -352,9 +352,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 7640882556929740551}
-  leftTransformSampler: {fileID: 0}
-  rightTransformSampler: {fileID: 0}
-  headTransformSampler: {fileID: 0}
+  leftTransformSampler: {fileID: 8970336550759962522}
+  rightTransformSampler: {fileID: 6023949326870498816}
+  headTransformSampler: {fileID: 7805092089754356112}
   avatar: {fileID: 1356214722}
   material: {fileID: 2100000, guid: f73c4e10bda40514783bce06300879d3, type: 2}
   requiredMovement: 200
@@ -5438,6 +5438,7 @@ GameObject:
   - component: {fileID: 839770353}
   - component: {fileID: 839770356}
   - component: {fileID: 839770355}
+  - component: {fileID: 839770357}
   m_Layer: 0
   m_Name: Real Camera
   m_TagString: MainCamera
@@ -5556,6 +5557,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &839770357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839770352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &840444547
 GameObject:
   m_ObjectHideFlags: 0
@@ -17950,14 +17964,6 @@ MonoBehaviour:
       z: 1
     m_MaintainPositionOffset: 0
     m_MaintainRotationOffset: 0
---- !u!81 &370216837128141519
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886275967321593860}
-  m_Enabled: 1
 --- !u!4 &371010125428327503
 Transform:
   m_ObjectHideFlags: 0
@@ -18682,9 +18688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0de02879e0ea8348a08633474949ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftTransformSampler: {fileID: 0}
-  rightTransformSampler: {fileID: 0}
-  headTransformSampler: {fileID: 0}
+  leftTransformSampler: {fileID: 2103214106}
+  rightTransformSampler: {fileID: 1856593784}
+  headTransformSampler: {fileID: 975034576}
   drawUnion: 0
   drawIntersection: 1
 --- !u!4 &481593248026880137
@@ -22015,7 +22021,6 @@ GameObject:
   m_Component:
   - component: {fileID: 186384958015856981}
   - component: {fileID: 1799171710827453558}
-  - component: {fileID: 370216837128141519}
   - component: {fileID: 1303620926256744892}
   - component: {fileID: 533696731626823438}
   m_Layer: 0
@@ -53194,21 +53199,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4703871198758555064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5675907778767974904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceTransform: {fileID: 4313916634465289953}
-  boundingVolumeColor: {r: 0, g: 0, b: 0, a: 0}
-  maxSampleCount: 8
 --- !u!137 &4704688869116329038
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -61748,7 +61738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8970336550759962521}
-  - component: {fileID: 4703871198758555064}
+  - component: {fileID: 8970336550759962522}
   m_Layer: 0
   m_Name: Left Hand VR Target
   m_TagString: Untagged
@@ -61772,21 +61762,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5677225407196660349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7805092089754356111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceTransform: {fileID: 4313916634465289953}
-  boundingVolumeColor: {r: 0, g: 0, b: 0, a: 0}
-  maxSampleCount: 8
 --- !u!1 &5683638361815160864
 GameObject:
   m_ObjectHideFlags: 0
@@ -64700,7 +64675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303212617882383438}
-  - component: {fileID: 8496803121113193771}
+  - component: {fileID: 6023949326870498816}
   m_Layer: 0
   m_Name: Right Hand VR Target
   m_TagString: Untagged
@@ -64708,6 +64683,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6023949326870498816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023949326870498815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0333c9352b2b0d54b986ffea5c0b9aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceTransform: {fileID: 8389359037250869238}
+  sampleCount: 16
 --- !u!4 &6025978761886823976
 Transform:
   m_ObjectHideFlags: 0
@@ -78414,16 +78403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrideInterpolation: 0
   aldeiaBlend: 0
-  crouch: 0.5
-  handsHeight: 0
-  lookUpDown: 1
-  lookLeftRight: 1
-  leftVelocity: 0
-  rightVelocity: 0
-  aldeia1Angle: 0
-  aldeia2Angle: 0
-  aldeia3Angle: 0
-  leftConduct: 0
 --- !u!1 &7743269640491524769
 GameObject:
   m_ObjectHideFlags: 0
@@ -78953,7 +78932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113414789356282626}
-  - component: {fileID: 5677225407196660349}
+  - component: {fileID: 7805092089754356112}
   m_Layer: 0
   m_Name: Head VR Target
   m_TagString: Untagged
@@ -78961,6 +78940,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7805092089754356112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805092089754356111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0333c9352b2b0d54b986ffea5c0b9aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceTransform: {fileID: 8389359037250869238}
+  sampleCount: 16
 --- !u!4 &7805979427639414248
 Transform:
   m_ObjectHideFlags: 0
@@ -84088,21 +84081,6 @@ Transform:
   - {fileID: 5555800059029561088}
   m_Father: {fileID: 3832180095579535878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8496803121113193771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6023949326870498815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38439b02e5909e944b7cffe57dc3ca83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceTransform: {fileID: 4313916634465289953}
-  boundingVolumeColor: {r: 0, g: 0, b: 0, a: 0}
-  maxSampleCount: 8
 --- !u!1 &8499059651523986997
 GameObject:
   m_ObjectHideFlags: 0
@@ -88386,6 +88364,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5121564963980509169}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 98.5}
+--- !u!114 &8970336550759962522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5675907778767974904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0333c9352b2b0d54b986ffea5c0b9aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceTransform: {fileID: 8389359037250869238}
+  sampleCount: 16
 --- !u!1 &8970868927112295175
 GameObject:
   m_ObjectHideFlags: 0

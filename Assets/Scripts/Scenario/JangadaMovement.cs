@@ -77,7 +77,7 @@ namespace Main.Scenario
                 startMove = false;
                 StartCoroutine(moveAlongPath());
             }
-            GestureReferenceEvents.jangadaMoving?.Invoke(_traveling);
+            //GestureReferenceEvents.jangadaMoving?.Invoke(_traveling);
         }
 
         private void CalculatePlayerMovement()
@@ -146,7 +146,7 @@ namespace Main.Scenario
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
 
-                    GestureReferenceEvents.aldeiaBlend?.Invoke(Mathf.Clamp(_pathIndex + (i + t)/(pathSize - 1) - 4, 0, 3));
+                    //GestureReferenceEvents.aldeiaBlend?.Invoke(Mathf.Clamp(_pathIndex + (i + t)/(pathSize - 1) - 4, 0, 3));
                 
                     transform.position = curPosition;
 

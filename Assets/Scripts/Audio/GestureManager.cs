@@ -27,11 +27,11 @@ public class GestureManager : MonoBehaviour
     private void Update()
     {
         float dot = Vector3.Dot(leftTransformSampler.aabb.direction, rightTransformSampler.aabb.direction);
-        Debug.Log($"dot = {dot}");
+        //Debug.Log($"dot = {dot}");
 
         union = AABB.Union(leftTransformSampler.aabb, rightTransformSampler.aabb);
         intersection = AABB.Intersection(leftTransformSampler.aabb, rightTransformSampler.aabb);
-        Debug.Log($"overlap volume = {intersection.volume / union.volume}");
+        //Debug.Log($"overlap volume = {intersection.volume / union.volume}");
     }
 
     private void OnDrawGizmos()
