@@ -1,14 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 //using UnityEditor.Animations;
 using UnityEngine;
 //using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Main.AI
 {
-    /*
     public class AIMimic : MonoBehaviour
     {
         [SerializeField] private Animator animator;
@@ -36,6 +32,7 @@ namespace Main.AI
         {
             yield return new WaitForSeconds(firstCallDelay);
 
+            /*
             while (true)
             {
                 ForestResult predict = ForestAnimationDecisionMaker.GetCurrentResult();
@@ -58,8 +55,9 @@ namespace Main.AI
                 animator.Play("defaultState", -1, 0f);
 
                 yield return new WaitForSeconds(durationForNextAnimation);
+                
             }
+            */
         }
     }
-    */
 }
