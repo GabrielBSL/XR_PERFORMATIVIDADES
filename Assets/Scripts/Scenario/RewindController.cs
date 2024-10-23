@@ -92,6 +92,9 @@ namespace Main.Scenario
         private bool _saveClipPressed;
         private bool _startRewindPressed;
 
+        private int _deltaClipSize = 60;
+        private static float _deltaSum;
+
         public static bool ClipsLoaded { get; private set; }
 
         private void Awake()
@@ -192,6 +195,28 @@ namespace Main.Scenario
             {
                 forceRewind = false;
                 onStartRewind?.Invoke();
+            }
+
+            CalculateDeltaSum();
+        }
+
+        private void CalculateDeltaSum()
+        {
+            int floorLimit = Mathf.Max(_currentClip.Count - _deltaClipSize, 0);
+            _deltaSum = 0;
+
+            for(int i = _currentClip.Count - 2; i >= floorLimit; i--)
+            {
+                PoseInfo currPose = _currentClip[i+1];
+                PoseInfo prevPose = _currentClip[i];
+
+                _deltaSum += Mathf.Abs(currPose.rightTargetLocalPos.x - prevPose.rightTargetLocalPos.x);
+                _deltaSum += Mathf.Abs(currPose.rightTargetLocalPos.y - prevPose.rightTargetLocalPos.y);
+                _deltaSum += Mathf.Abs(currPose.rightTargetLocalPos.z - prevPose.rightTargetLocalPos.z);
+
+                _deltaSum += Mathf.Abs(currPose.leftTargetLocalPos.x - prevPose.leftTargetLocalPos.x);
+                _deltaSum += Mathf.Abs(currPose.leftTargetLocalPos.y - prevPose.leftTargetLocalPos.y);
+                _deltaSum += Mathf.Abs(currPose.leftTargetLocalPos.z - prevPose.leftTargetLocalPos.z);
             }
         }
 
@@ -364,6 +389,11 @@ namespace Main.Scenario
         public static PoseInfo GetLastPose()
         {
             return _pose;
+        }
+
+        public static float GetDeltaSum()
+        {
+            return _deltaSum;
         }
 
         public static List<PoseInfo> GetRandomClip()

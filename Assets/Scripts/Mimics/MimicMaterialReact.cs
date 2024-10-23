@@ -20,7 +20,6 @@ namespace Main.Mimics
         [SerializeField, Range(1, 10)] private float loopDurationMultiplier = 3;
         [SerializeField, Range(1, 10)] private float smoothnessDurationMultiplier = 3;
         [SerializeField, Range(1, 10)] private float emissionMultiplier = 5;
-        [SerializeField, Range(.1f, 5)] private float movementDeltaDuration = 3;
         [SerializeField] private float maxMultiplierMovementDelta = 30f;
         [SerializeField] private float totalDeltaThreshold = 0;
 
@@ -62,30 +61,13 @@ namespace Main.Mimics
 
         private void CalculateMovementDelta()
         {
-            _poses.Add(RewindController.GetLastPose());
-            if (_currentDuration >= movementDeltaDuration)
+            if(mimicRenderer.enabled == false)
             {
-                _poses.RemoveAt(0);
-            }
-            else
-            {
-                _currentDuration += Time.deltaTime;
+                _finalDeltaLerp = 0;
+                return;
             }
 
-            Vector3 deltaVector = Vector3.zero;
-
-            for (int i = 0; i < _poses.Count - 1; i++)
-            {
-                deltaVector += new Vector3(Mathf.Abs(_poses[i + 1].rightTargetLocalPos.x - _poses[i].rightTargetLocalPos.x),
-                                           Mathf.Abs(_poses[i + 1].rightTargetLocalPos.y - _poses[i].rightTargetLocalPos.y),
-                                           Mathf.Abs(_poses[i + 1].rightTargetLocalPos.z - _poses[i].rightTargetLocalPos.z));
-
-                deltaVector += new Vector3(Mathf.Abs(_poses[i + 1].leftTargetLocalPos.x - _poses[i].leftTargetLocalPos.x),
-                                           Mathf.Abs(_poses[i + 1].leftTargetLocalPos.y - _poses[i].leftTargetLocalPos.y),
-                                           Mathf.Abs(_poses[i + 1].leftTargetLocalPos.z - _poses[i].leftTargetLocalPos.z));
-            }
-
-            _currentDelta = Vector3.Distance(Vector3.zero, deltaVector);
+            _currentDelta = RewindController.GetDeltaSum();
             float currentRandom = Random.Range(1, _baseRandomness);
 
             _finalDeltaLerp = _currentDelta * currentRandom / maxMultiplierMovementDelta;

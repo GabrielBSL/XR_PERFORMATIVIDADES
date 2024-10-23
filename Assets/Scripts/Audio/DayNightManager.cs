@@ -10,7 +10,6 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private Gradient ambientLightColor;
     [SerializeField] private Gradient fogColor;
 
-
     void Update()
     {
         skyboxMaterial.SetFloat("_time", time);
