@@ -1,28 +1,24 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(FMODAudioManager))]
 class FMODAudioManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        FMODAudioManager test = (FMODAudioManager) target;
+        FMODAudioManager instance = (FMODAudioManager) target;
 
         EditorGUILayout.BeginHorizontal();
 
-            if(GUILayout.Button("Teste1"))
+            if(GUILayout.Button("Reset"))
             {
-                //test.DoThing("Teste1");
+                instance.Reset();
             }
 
-            if(GUILayout.Button("Teste2"))
+            if(GUILayout.Button("Reload Scene"))
             {
-                //test.DoThing("Teste2");
-            }
-
-            if(GUILayout.Button("Teste3"))
-            {
-                //test.DoThing("Teste3");
+                SceneManager.LoadScene("Main", LoadSceneMode.Single);
             }
 
         EditorGUILayout.EndHorizontal();

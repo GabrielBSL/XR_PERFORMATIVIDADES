@@ -4,7 +4,7 @@ using FMOD.Studio;
 
 public class FMODGestureManager : MonoBehaviour
 {
-    //================ VARIABLE DECLARATIONS ================
+    /* //================ VARIABLE DECLARATIONS ================
 
     // FMOD
     private static FMODUnity.EventReference musicEventReference;
@@ -27,5 +27,5 @@ public class FMODGestureManager : MonoBehaviour
         musicEventInstance.setVolume(1f);
         musicEventInstance.setParameterByName("width", gestureManager.GetWidth());
         musicEventInstance.setParameterByName("height", gestureManager.GetHeight());
-    }
+    } */
 }

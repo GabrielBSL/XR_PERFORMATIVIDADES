@@ -43,7 +43,7 @@ public class Bubble : MonoBehaviour
         if(other.gameObject.CompareTag("BubblePopper"))
         {            
             other.gameObject.GetComponent<BubblePopper>().Pop(isTutorial);
-            FMODAudioManager.BubblePop();
+            FMODAudioManager.instance.BubblePop();
             Destroy(this.gameObject);
         }
     }
