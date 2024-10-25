@@ -27,6 +27,7 @@ public class BubbleEmitter : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
+        Gizmos.DrawSphere(transform.position, 0.25f);
         Gizmos.DrawLine(transform.position, handle.position);
     }
 

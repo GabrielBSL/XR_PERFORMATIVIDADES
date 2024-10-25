@@ -11,7 +11,7 @@ public class AldeiaFill : MonoBehaviour
     {
         for(int i = 0; i < avatars.Length; i += 1)
         {
-            avatars[i].GetComponent<Renderer>().material.SetFloat("_fill", Mathf.Min(0, fill % 1 - i));
+            avatars[i].GetComponent<Renderer>().material.SetFloat("_completion", Mathf.Clamp(fill - i, 0, 1));
         }
     }
 }
