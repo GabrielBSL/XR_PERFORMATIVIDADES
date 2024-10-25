@@ -125,7 +125,7 @@ Material:
     - Color_89B8B254: {r: 0.23375756, g: 0.4811321, b: 0.4811321, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _tiling: {r: 8, g: 32, b: 0, a: 0}
+    - _tiling: {r: 5, g: 24, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &168852626814361104
 MonoBehaviour:
