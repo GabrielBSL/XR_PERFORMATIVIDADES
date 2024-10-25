@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class DayNightManager : MonoBehaviour
 {
     //================ SINGLETON LOGIC ================
@@ -25,6 +24,10 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private Gradient ambientLightColor;
     [SerializeField] private Gradient fogColor;
 
+    public void Awake()
+    {
+        SingletonCheck();
+    }
     public void Update()
     {
         skyboxMaterial.SetFloat("_time", time);

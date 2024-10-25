@@ -1,15 +1,12 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Bubble : MonoBehaviour
 {
-    private static Vector3 globalDrift;
     [SerializeField] private bool isTutorial;
     [SerializeField] private float lifetime;
 
     [Header("Movement")]
-    [SerializeField] private Vector3 drift;
+    public Vector3 drift;
     [SerializeField] private float bounce;
 
     [Header("Scale")]
@@ -18,6 +15,11 @@ public class Bubble : MonoBehaviour
     [SerializeField] private float maxScaleMultiplier;
     private float spawnTime;
     private float timeOffset;
+
+    public Bubble(Vector3 drift)
+    {
+        this.drift = drift;
+    }
 
     private void Start()
     {
@@ -33,8 +35,7 @@ public class Bubble : MonoBehaviour
         {
             if(Time.time - spawnTime >= lifetime) Destroy(this.gameObject);
             Vector3 bounceVector = new Vector3(0, bounce * Mathf.Sin(Time.time - spawnTime + timeOffset), 0);
-            this.transform.position += Time.deltaTime * (bounceVector + globalDrift);
-            globalDrift = drift;
+            this.transform.position += Time.deltaTime * (bounceVector + drift);
         }
     }
 

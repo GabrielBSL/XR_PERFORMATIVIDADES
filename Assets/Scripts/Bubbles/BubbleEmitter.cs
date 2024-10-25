@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider))]
 public class BubbleEmitter : MonoBehaviour
@@ -37,7 +34,10 @@ public class BubbleEmitter : MonoBehaviour
     {   
         while(emitting)
         {
-            GameObject bubble = Instantiate(bubblePrefab, playerTranform.position + spawnOffset + Random.insideUnitSphere * spawnRadius, Quaternion.identity);
+            Vector3 bubbleSpawnPosition = playerTranform.position + spawnOffset + Random.insideUnitSphere * spawnRadius;
+
+            GameObject bubble = Instantiate(bubblePrefab, bubbleSpawnPosition, Quaternion.identity);
+            bubble.GetComponent<Bubble>().drift = drift;
             yield return new WaitForSeconds(cooldown);
         }
     }
