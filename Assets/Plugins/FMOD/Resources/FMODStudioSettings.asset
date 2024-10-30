@@ -462,8 +462,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/FMOD/xr_performatividades/xr_performatividades.fspro
-  sourceBankPath: Assets/FMOD/xr_performatividades/Build
+  sourceProjectPath: Assets/!Original/FMOD/xr_performatividades/xr_performatividades.fspro
+  sourceBankPath: Assets/!Original/FMOD/xr_performatividades/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
