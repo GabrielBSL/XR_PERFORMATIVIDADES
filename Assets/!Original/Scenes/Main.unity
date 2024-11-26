@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d2838aef13daf4088af5c24d79504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentProgress: 6.02
+  currentProgress: 1
   raftSplineAnimate: {fileID: 0}
   dayNightManager: {fileID: 0}
 --- !u!4 &7660264
@@ -6171,8 +6171,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167112400}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.2857007, z: -0, w: 0.9583189}
-  m_LocalPosition: {x: 0.065609366, y: 0, z: 5.2858567}
+  m_LocalRotation: {x: 0, y: -0.33531705, z: -0, w: 0.94210535}
+  m_LocalPosition: {x: 1.65, y: 0, z: 3.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9237,7 +9237,7 @@ Transform:
   m_GameObject: {fileID: 780820205}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 113.883736, z: 113.88376}
   m_ConstrainProportionsScale: 1
   m_Children: []

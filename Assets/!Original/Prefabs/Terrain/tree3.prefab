@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8359449414258622918}
-  - component: {fileID: 8767626245170766127}
-  - component: {fileID: 6155408366815148143}
+  - component: {fileID: 6148544276397435276}
+  - component: {fileID: 3175162800658095652}
   m_Layer: 0
-  m_Name: tree4
+  m_Name: tree3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8767626245170766127
+--- !u!33 &6148544276397435276
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7042116121942215485}
   m_Mesh: {fileID: 4300000, guid: 6e068c0f06c01a94cb7db74646b44eeb, type: 2}
---- !u!23 &6155408366815148143
+--- !u!23 &3175162800658095652
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8892a18f0a2421f449cb1c6bb723027e, type: 2}
+  - {fileID: 2100000, guid: 621f4d1e88e38b946aabe17f9625ef84, type: 2}
   - {fileID: 2100000, guid: 740f008adac9e2c4498a24d0e8a2039e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
