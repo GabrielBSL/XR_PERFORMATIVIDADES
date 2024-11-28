@@ -135,7 +135,7 @@ Material:
     - _starsBlendPower: 1
     - _starsIntensity: 42
     - _starsPower: 15
-    - _time: 0.451
+    - _time: 0
     - _zenithBlendPower: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
