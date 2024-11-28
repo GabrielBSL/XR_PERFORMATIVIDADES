@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ProceduralSkybox
-  m_Shader: {fileID: -6465566751694194690, guid: f494c804224307641b211adac6a3b6a3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0b9ee0b4198b31a47819add7719f4207, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -131,12 +131,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _nadirBlendPower: 1
-    - _noiseScale: 250
-    - _starsBlendPower: 0.34
-    - _starsIntensity: 91.7
-    - _starsPower: 20
-    - _time: 1
-    - _zenithBlendPower: 0.187
+    - _noiseScale: 200
+    - _starsBlendPower: 1
+    - _starsIntensity: 42
+    - _starsPower: 15
+    - _time: 0.451
+    - _zenithBlendPower: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
