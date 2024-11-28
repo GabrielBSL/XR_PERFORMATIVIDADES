@@ -15,18 +15,24 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private AnimationCurve lightColorTemperature;
 
     [Header("Environment")]
-    [SerializeField] private Material skyboxMaterial;
+    [SerializeField] private Material skyboxMaterialInstance;
     [SerializeField] private Gradient ambientLightColor;
     [SerializeField] private Gradient fogColor;
     [SerializeField] private AnimationCurve fogDensity;
 
+    void Start()
+    {
+        skyboxMaterialInstance = new Material(RenderSettings.skybox);
+    }
+    
     public void Update()
     {
         directionalLight.transform.rotation = Quaternion.Euler(lightRotationX.Evaluate(time), 0, 0);
         directionalLight.colorTemperature = lightColorTemperature.Evaluate(time);
         directionalLight.intensity = lightIntensity.Evaluate(time);
 
-        skyboxMaterial.SetFloat("_time", time);
+        skyboxMaterialInstance.SetFloat("_time", time);
+        RenderSettings.skybox = skyboxMaterialInstance;
         RenderSettings.ambientLight = ambientLightColor.Evaluate(time);
         RenderSettings.fogColor = fogColor.Evaluate(time);
         RenderSettings.fogDensity = fogDensity.Evaluate(time);
