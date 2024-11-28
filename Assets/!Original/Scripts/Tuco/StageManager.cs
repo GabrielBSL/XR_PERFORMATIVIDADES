@@ -26,7 +26,7 @@ public class StageManager : MonoBehaviour
         Jornada3, Aldeia3, Flutuacao
     }
     
-    [Range(0f, 1f)] public float currentProgress;
+    [Range(0f, 8f)] public float currentProgress;
     public Stage currentStage { get{ return (Stage) currentProgress; }}
     public float normalizedProgress{ get{ return currentProgress / 8; }}
     public float localProgress{ get{ return currentProgress % 1; }}
@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] SplineAnimate raftSplineAnimate;
 
     [Header("Day-Night Cycle")]
-    [SerializeField] private DayNightCycle dayNightManager;
+    [SerializeField] private DayNightManager dayNightManager;
 
     public void Awake()
     {
@@ -44,7 +44,7 @@ public class StageManager : MonoBehaviour
     public void Update()
     {
         dayNightManager.time = normalizedProgress;
-        raftSplineAnimate.NormalizedTime = currentProgress;
+        raftSplineAnimate.NormalizedTime = normalizedProgress;
         //Debug.Log($"currentProgress = \t{currentProgress}");
         //Debug.Log($"currentStage = \t{currentStage}");
         //Debug.Log($"normalizedProgress = \t{normalizedProgress}");

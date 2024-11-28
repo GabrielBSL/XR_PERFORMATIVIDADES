@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3631864493134215968}
   - component: {fileID: 5122200024528276462}
   - component: {fileID: 2859245749852646514}
-  - component: {fileID: 2869474655811705552}
+  - component: {fileID: 2250205419087340853}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2869474655811705552
+--- !u!114 &2250205419087340853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7412264619792533416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981ab3454b8aaea47a06761d9a846906, type: 3}
+  m_Script: {fileID: 11500000, guid: 25559018a6325b24e9acbee176dcd325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 0}

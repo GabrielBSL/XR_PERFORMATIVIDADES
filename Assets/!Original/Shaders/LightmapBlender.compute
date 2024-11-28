@@ -1,0 +1,17 @@
+// TextureBlend.compute
+#pragma kernel CSMain
+
+// Define textures and parameters
+Texture2D<float4> _Texture1;
+Texture2D<float4> _Texture2;
+RWTexture2D<float4> _ResultTexture;
+float _BlendFactor; // Value from 0 to 1 to control blending
+
+// Main compute shader function
+[numthreads(8, 8, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID) {
+    float4 color1 = _Texture1[id.xy];
+    float4 color2 = _Texture2[id.xy];
+    float4 blendedColor = lerp(color1, color2, _BlendFactor);
+    _ResultTexture[id.xy] = blendedColor;
+}

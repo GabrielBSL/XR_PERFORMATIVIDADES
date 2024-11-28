@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Firefly
-  m_Shader: {fileID: -6465566751694194690, guid: 1727b48c016124d46bd068e8e1d4e8e0, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0506cc98e982fd14499dc4aa9c59e88b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
