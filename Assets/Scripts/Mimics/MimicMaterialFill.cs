@@ -13,32 +13,13 @@ namespace Main.Mimics
         [SerializeField] private Renderer mimicRenderer;
         [SerializeField] private float totalDeltaThreshold;
         [SerializeField] private float totalMovementToFill;
+        [SerializeField] private bool startMovementCaptureOnStart = true;
+
+        public bool ToUpdate { get; set; }
 
         private Material _materialCopy;
         private float _completion = 0;
         private float _rawDelta = 0;
-        private bool _toUpdate;
-
-        private void OnEnable()
-        {
-            MainEventsManager.pathReachingEnd += ReceiveReachingEnd;
-            MainEventsManager.pathStartMoving += ReceiveStartMoving;
-        }
-        private void OnDisable()
-        {
-            MainEventsManager.pathReachingEnd -= ReceiveReachingEnd;
-            MainEventsManager.pathStartMoving -= ReceiveStartMoving;
-        }
-
-        private void ReceiveStartMoving()
-        {
-            _toUpdate = false;
-        }
-
-        private void ReceiveReachingEnd()
-        {
-            _toUpdate = true;
-        }
 
         // Start is called before the first frame update
         void Start()
@@ -48,6 +29,8 @@ namespace Main.Mimics
                 enabled = false;
                 return;
             }
+
+            ToUpdate = startMovementCaptureOnStart;
 
             _materialCopy = new Material(mimicRenderer.material);
             mimicRenderer.material = _materialCopy;
@@ -59,7 +42,7 @@ namespace Main.Mimics
         // Update is called once per frame
         void Update()
         {
-            if(!_toUpdate)
+            if(!ToUpdate)
             {
                 return;
             }

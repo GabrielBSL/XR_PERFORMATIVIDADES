@@ -25,6 +25,7 @@ namespace Main.Events
         public static Action activateMimic;
         public static Action endOfPath;
 
+        public static Action<float> pathProgression;
         public static Action pathStartMoving;
         public static Action pathReachingEnd;
         public static Action pathStopped;

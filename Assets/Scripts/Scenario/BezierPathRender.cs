@@ -14,6 +14,7 @@ namespace Main.Scenario
         [SerializeField] private Color bezierLineColor;
         [SerializeField] private Color pathColor;
         [SerializeField, Range(.01f, .99f)] private float pathDrawDensity = .9f;
+        [SerializeField, Range(.01f, 1f)] private float circleRadius = .2f;
 
         private void Awake()
         {
@@ -69,7 +70,7 @@ namespace Main.Scenario
                     Vector3 bezier5 = Vector3.Lerp(bezier2, bezier3, t);
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
-                    Gizmos.DrawWireSphere(curPosition, .1f);
+                    Gizmos.DrawSphere(curPosition, circleRadius);
 
                     t += 1 - pathDrawDensity;
                 }

@@ -124,7 +124,7 @@ namespace Main.Scenario
             if( _fadePressedTimer > 1)
             {
                 _fadeButtonPressed = false;
-                StartCoroutine(FadeCoroutine());
+                StartCoroutine(FadeOutCoroutine());
             }
 
             _journeyPressedTimer = _journeyButtonPressed ? _journeyPressedTimer + Time.deltaTime : 0;
@@ -142,7 +142,7 @@ namespace Main.Scenario
             if (tryStartFading)
             {
                 tryStartFading = false;
-                StartCoroutine(FadeCoroutine());
+                StartCoroutine(FadeOutCoroutine());
             }
         }
 
@@ -161,11 +161,11 @@ namespace Main.Scenario
 
             if (autoFade)
             {
-                StartCoroutine(FadeCoroutine());
+                StartCoroutine(FadeOutCoroutine());
             }
         }
 
-        private IEnumerator FadeCoroutine(bool reverse = false)
+        private IEnumerator FadeOutCoroutine(bool reverse = false)
         {
             if(!_canFade || _fading)
             {
@@ -213,7 +213,7 @@ namespace Main.Scenario
 
                     timePassed += Time.deltaTime;
                     float t = Mathf.Lerp(0, 1, timePassed / creditsFadeDuration);
-                    cameraPlaneMaterial.SetColor("_BaseColor", new Color(1, 1, 1, t));
+                    cameraPlaneMaterial.SetColor("_BaseColor", new Color(0, 0, 0, t));
                 }
 
                 FMODAudioManager.Reset();
@@ -235,7 +235,7 @@ namespace Main.Scenario
             */
 
             FMODAudioManager.Play();
-            StartCoroutine(FadeCoroutine(true));
+            StartCoroutine(FadeOutCoroutine(reverse: true));
             _canFade = false;
         }
 

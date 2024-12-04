@@ -31,6 +31,9 @@ namespace Main.Scenario
         private bool _traveling = false;
 
         private int _pathIndex = 0;
+        private int _totalPathPoints = 1;
+        private int _currentPathPoint = 0;
+
         private static float _totalDelta = 0;
         private float _timeToMoveTimer = 0;
         private PoseInfo _lastPose;
@@ -43,6 +46,13 @@ namespace Main.Scenario
         {
             _lastPose = RewindController.GetLastPose();
             MainEventsManager.onJangada?.Invoke(this);
+
+            foreach (var path in paths)
+            {
+                _totalPathPoints += path.points.Length - 1;
+            }
+
+            MainEventsManager.pathProgression?.Invoke(0);
         }
 
         public void StartCalculation()
@@ -61,12 +71,12 @@ namespace Main.Scenario
 
             if(_pathIndex < paths.Count)
             {
-                //Debug.Log($"Total Delta = {TotalDelta}");
-                if(TotalDelta > paths[_pathIndex].deltaToStartMove && _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
+                if (TotalDelta > paths[_pathIndex].deltaToStartMove && _timeToMoveTimer > paths[_pathIndex].minimalTimeToMove)
                 {
                     StartCoroutine(moveAlongPath());
                 }
             }
+
             else if(TotalDelta > endOfPathDelta && _timeToMoveTimer > endOfPathDuration)
             {
                 StartCoroutine(moveAlongPath());
@@ -158,7 +168,10 @@ namespace Main.Scenario
                     }
 
                     yield return null;
+                    MainEventsManager.pathProgression?.Invoke((_currentPathPoint + t) / _totalPathPoints);
                 }
+
+                _currentPathPoint++;
             }
 
             _lastPose = RewindController.GetLastPose();
