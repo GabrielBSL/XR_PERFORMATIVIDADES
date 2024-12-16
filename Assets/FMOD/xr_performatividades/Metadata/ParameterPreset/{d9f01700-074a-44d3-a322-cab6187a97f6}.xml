@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{d9f01700-074a-44d3-a322-cab6187a97f6}">
+		<property name="name">
+			<value>leftConduct</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9bfb26bb-3d82-469f-96bd-80cb026e79fc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d5e4a686-a617-4183-a0eb-e57f759dc448}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d5e4a686-a617-4183-a0eb-e57f759dc448}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
