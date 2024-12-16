@@ -70640,6 +70640,7 @@ GameObject:
   - component: {fileID: 6822891250768303257}
   - component: {fileID: 2267998988509526829}
   - component: {fileID: 4156742561268533121}
+  - component: {fileID: 6822891250768303258}
   - component: {fileID: 2624430943979221560}
   - component: {fileID: 5991228488765180918}
   m_Layer: 3
@@ -70662,6 +70663,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPoint: {fileID: 378093830}
+--- !u!114 &6822891250768303258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822891250768303256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748505b71d794ae499b02f95c9300b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandTracker: {fileID: 3000144420327044058}
+  leftElbowTracker: {fileID: 7600324926412649877}
+  rightHandTracker: {fileID: 3975434038941296345}
+  rightElbowTracker: {fileID: 6843128023419848256}
+  chestTracker: {fileID: 6685512853753751742}
+  headTracker: {fileID: 6584631015818350546}
 --- !u!1 &6823311391674368350
 GameObject:
   m_ObjectHideFlags: 0
