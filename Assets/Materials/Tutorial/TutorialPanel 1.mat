@@ -123,7 +123,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
-    - _dissolve: 0.032318585
+    - _dissolve: 0.011403987
     - _edge: 0.01
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

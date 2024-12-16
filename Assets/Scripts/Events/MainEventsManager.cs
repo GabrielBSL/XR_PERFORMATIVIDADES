@@ -26,6 +26,7 @@ namespace Main.Events
         public static Action endOfPath;
 
         public static Action pathStartMoving;
+        public static Action<float> pathProgression;
         public static Action pathReachingEnd;
         public static Action pathStopped;
 

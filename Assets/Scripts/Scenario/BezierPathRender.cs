@@ -69,7 +69,7 @@ namespace Main.Scenario
                     Vector3 bezier5 = Vector3.Lerp(bezier2, bezier3, t);
 
                     Vector3 curPosition = Vector3.Lerp(bezier4, bezier5, t);
-                    Gizmos.DrawWireSphere(curPosition, .1f);
+                    Gizmos.DrawWireSphere(curPosition, .25f);
 
                     t += 1 - pathDrawDensity;
                 }

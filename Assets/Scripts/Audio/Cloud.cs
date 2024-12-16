@@ -70,6 +70,6 @@ public class Cloud : MonoBehaviour
 
         Gizmos.color = boundingVolumeColor;
         Gizmos.DrawCube((minVert + maxVert) / 2, maxVert - minVert);
-        Debug.Log($"Ratio = {ratioVector}");
+        //Debug.Log($"Ratio = {ratioVector}");
     }
 }
